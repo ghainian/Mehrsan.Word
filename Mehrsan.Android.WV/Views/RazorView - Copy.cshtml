@@ -1,0 +1,171 @@
+﻿@model Mehrsan.Android.WV.Models.Word
+<html>
+<head>
+    <link rel='stylesheet' href='jquery.mobile-1.4.5.min.css'>
+
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript">
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function playText(wordText) {
+
+            var i = 0;
+            var url = '/Words/';
+            for (i = 0; i < wordText.length ; i++) {
+                url += wordText[i] + '/';
+            }
+
+            url += wordText + '.mp3';
+
+            if (fileExists(url)) {
+                var audio = new Audio(url);
+                audio.play();
+            }
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function fileExists(image_url) {
+
+            var http = new XMLHttpRequest();
+
+            return false;
+            http.open('HEAD', image_url, false);
+            http.send();
+
+            return http.status != 404;
+
+        }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // This javascript method calls C# by setting the browser
+        // to a URL with a custom scheme that is registered in C#.
+        // All values are sent to C# as part of the querystring
+        function InvokeCSharpWithFormValues(elm) {
+            var qs = "";
+            var elms = elm.form.elements;
+
+            for (var i = 0; i < elms.length; i++) {
+                qs += "&" + elms[i].name + "=" + elms[i].value;
+            }
+
+            if (elms.length > 0)
+                qs = qs.substring(1);
+
+            location.href = "hybrid:" + elm.name + "?" + qs;
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // This javascript method is called from C#
+        function SetLabelText(text) {
+            var splitter = '1****2';
+
+            var arr = text.split(splitter);
+
+            if (arr[0] == "ShowWord") {
+                var lblNOFTodayHistories = document.getElementById('lblNOFTodayHistories');
+                lblNOFTodayHistories.value = arr[4]
+
+                ShowWord(arr[1], arr[2], arr[3]);
+            }
+            else if (arr[0] == "SetLabelText") {
+                var elm = document.getElementById('label');
+                elm.innerHTML = arr[1];
+            }
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function ShowWord(id, word, meaning) {
+
+            var txtId = document.getElementById('txtId');
+            var txtWord = document.getElementById('txtWord');
+            word = getAlignedText(word);
+            meaning = getAlignedText(meaning);
+            var txtMeaning = document.getElementById('txtMeaning');
+
+            txtId.value = id;
+            txtWord.value = word;
+            txtMeaning.value = meaning;
+
+            playText(word);
+            showImagesForWord(word);
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function getAlignedText(text) {
+            var j = 0;
+            var newText = '';
+            for (var i = 0; i < text.length ; i+=25) {
+
+                newText = newText +'\n' + text.substring(i, i+25) ;
+
+            }
+            return newText;
+        }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function getWordDirectory(word) {
+            var i = 0;
+            var result = "/words/"
+            for (i = 0; i < word.length ; i = i + 1) {
+                result = result + word.substring(i, i + 1) + "/";
+            }
+            return result;
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function showImagesForWord(currentWord) {
+
+            var targetDirectory = getWordDirectory(currentWord.TargetWord.trim());
+
+
+            var theSrc = targetDirectory + "1.jpg";
+
+            if (!fileExists(theSrc)) {
+
+                theSrc = '/images/noImage.jpg';
+
+            }
+
+            document["imgMain"].src = theSrc;
+
+
+
+        }
+
+    </script>
+</head>
+<body style="background-color:coral;">
+    <div data-role="page" data-theme="b">
+        <form>
+
+            <div data-role="content" class="content">
+                <input id="lblNOFTodayHistories" type="text" name="lblNOFTodayHistories" value="00000" style="position:absolute;left:5px;top:5px;">
+
+                <textarea rows="3" cols="25" wrap="hard" style="visibility:hidden;" id="txtId" name="txtId" value="@Model.WordId">@Model.WordId</textarea>
+                <div data-role="content" class="content">
+                    <textarea rows="6" cols="30" wrap="hard" id="txtWord" name="txtWord" value=@Model.TargetWord placeholder="txtWord" onclick="InvokeCSharpWithFormValues(this)" class="ui-btn ui-btn-inline ui-corner-all">@Model.TargetWord</textarea>
+                </div>
+                <div data-role="content" class="content">
+                    <textarea rows="6" cols="30" wrap="hard" id="txtMeaning" name="txtMeaning" value="@Model.Meaning" placeholder="txtMeaning" onclick="InvokeCSharpWithFormValues(this)" class="ui-btn ui-btn-inline ui-corner-all">@Model.Meaning</textarea>
+                </div>
+            </div>
+                <div data-role="content" class="content">
+
+                    <span><input type="button" name="btnOK" value="OK" onclick="InvokeCSharpWithFormValues(this)" class="ui-btn ui-btn-inline ui-corner-all"></span>
+                    <span><input type="button" name="btnNOK" value="NOK" onclick="InvokeCSharpWithFormValues(this)" class="ui-btn ui-btn-inline ui-corner-all"></span>
+                    <span><input type="button" name="btnSetAmbiguous" value="Ambiguous" onclick="InvokeCSharpWithFormValues(this)" class="ui-btn ui-btn-inline ui-corner-all"></span>
+                </div>
+
+
+        </form>
+    </div>
+</body>
+</html>
+
+

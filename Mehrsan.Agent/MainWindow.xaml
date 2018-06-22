@@ -1,0 +1,14 @@
+﻿<Window x:Class="Mehrsan.Agent.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mehrsan.Agent"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="1025">
+    <Grid>
+        <Button x:Name="btnCreatGraph" Content="Create Graph" HorizontalAlignment="Left" Margin="10,669,0,0" VerticalAlignment="Top" Width="118" RenderTransformOrigin="-1.055,0.497" Click="btnCreatGraph_Click"/>
+        <Button x:Name="btnLoadWordsFromOrdNet" Content="Load Words from OrdNet" HorizontalAlignment="Left" Margin="154,669,0,0" VerticalAlignment="Top" Width="173" RenderTransformOrigin="-1.055,0.497" Click="btnLoadWordsFromOrdNet_Click" />
+
+    </Grid>
+</Window>

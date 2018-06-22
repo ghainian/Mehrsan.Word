@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Word", "Mehrsan.Word\Mehrsan.Word.csproj", "{82F90EAB-0DD8-46F0-864B-2362FD107136}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Mehrsan.Db", "Mehrsan.Db\Mehrsan.Db.sqlproj", "{33BB2EFA-578C-42E6-9998-3E439B891FEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Dal.DB", "Mehsan.Dal.DB\Mehrsan.Dal.DB.csproj", "{0CAF3C5D-B185-48C7-8B42-B606CF19A778}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Agent", "Mehrsan.Agent\Mehrsan.Agent.csproj", "{287DD462-9622-496B-890B-9BFF9E713E6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Common", "Mehrsan.Common\Mehrsan.Common.csproj", "{EB6D1F71-1462-4D2A-B5EE-BA84BF52DC82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Business", "Mehrsan.Business\Mehrsan.Business.csproj", "{ACBD01DD-7692-4644-A6C2-ECDCDD0E610B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82F90EAB-0DD8-46F0-864B-2362FD107136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82F90EAB-0DD8-46F0-864B-2362FD107136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82F90EAB-0DD8-46F0-864B-2362FD107136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82F90EAB-0DD8-46F0-864B-2362FD107136}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33BB2EFA-578C-42E6-9998-3E439B891FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BB2EFA-578C-42E6-9998-3E439B891FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BB2EFA-578C-42E6-9998-3E439B891FEA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{33BB2EFA-578C-42E6-9998-3E439B891FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BB2EFA-578C-42E6-9998-3E439B891FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33BB2EFA-578C-42E6-9998-3E439B891FEA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0CAF3C5D-B185-48C7-8B42-B606CF19A778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CAF3C5D-B185-48C7-8B42-B606CF19A778}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CAF3C5D-B185-48C7-8B42-B606CF19A778}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CAF3C5D-B185-48C7-8B42-B606CF19A778}.Release|Any CPU.Build.0 = Release|Any CPU
+		{287DD462-9622-496B-890B-9BFF9E713E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{287DD462-9622-496B-890B-9BFF9E713E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{287DD462-9622-496B-890B-9BFF9E713E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{287DD462-9622-496B-890B-9BFF9E713E6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB6D1F71-1462-4D2A-B5EE-BA84BF52DC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB6D1F71-1462-4D2A-B5EE-BA84BF52DC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB6D1F71-1462-4D2A-B5EE-BA84BF52DC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB6D1F71-1462-4D2A-B5EE-BA84BF52DC82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACBD01DD-7692-4644-A6C2-ECDCDD0E610B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACBD01DD-7692-4644-A6C2-ECDCDD0E610B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACBD01DD-7692-4644-A6C2-ECDCDD0E610B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACBD01DD-7692-4644-A6C2-ECDCDD0E610B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C074AC10-F5AF-444D-909F-6021CFC5C0CB}
+	EndGlobalSection
+EndGlobal
