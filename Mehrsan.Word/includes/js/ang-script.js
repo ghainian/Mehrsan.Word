@@ -1,10 +1,14 @@
 /// <reference path="angular.min.js" />
 
 var myApp = angular.module("myModule", [])
+
+
     .controller('myController', ['$scope', '$interval', '$http',
       function ($scope, $interval, $http) {
-
+          $scope.chkPronounceWholeWordChecked = true;
           var stop;
+          
+
           $scope.playWordQueue = function () {
               // Don't start a new fight if we are already fighting
               if (angular.isDefined(stop)) return;
@@ -93,9 +97,9 @@ var myApp = angular.module("myModule", [])
           var _currentWordsParts = new Array();
           //var _recentWordsMeanings = new Array();
           var _wordIndexToPlay = 0;
-          var _wordRepeationThresholdForLearning = 13;
+          var _wordRepeationThresholdForLearning = 3;
           var _numberOfAutomaticRepetitionOfCurrentWord = 0;
-          var _playWordQueueInterval = 13000;
+          var _playWordQueueInterval = 3000;
           var _wordReviewStartTime = new Date();
           var _wordReviewEndTime = new Date();
           var _tokenKey = 'accessToken';
@@ -198,7 +202,7 @@ var myApp = angular.module("myModule", [])
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
           function addImageBoxes() {
-
+              return;//tis image is not supported currently
               for (var i = 1; i <= _numberOfImages; i++) {
 
                   var theSrc = '/images/noImage.jpg';
@@ -680,9 +684,9 @@ var myApp = angular.module("myModule", [])
 
               var wordId = ' <h4 >' + currentWord.Id.toString() + '</h4>';
               _newCarouselhtml = '<div class="item active" id="slide1">' +
-                  '<video id="vidMain" controls autoplay loop muted style="opacity:0.8;  ">' +
-                                    '<source id="vidMainSrc" src="/video/polina.webm" type="video/webm">' +
-                                '</video>' +
+                  //'<video id="vidMain" controls autoplay loop muted style="opacity:0.8;  ">' +
+                  //                  '<source id="vidMainSrc" src="/video/polina.webm" type="video/webm">' +
+                  //              '</video>' +
                                       '<div id="divNewWord"  class="currentWord carousel-caption ' + className + '">' +
 
                                           '<div class="wordId" data-original-title="Id of The word" data-toggle="tooltip" >' +
@@ -761,7 +765,7 @@ var myApp = angular.module("myModule", [])
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
           function showImagesForWord(currentWord) {
-
+              return;//this feature is not supported currently
               var targetDirectory = getWordDirectory(currentWord.TargetWord.trim());
 
               Math.random()
@@ -816,14 +820,18 @@ var myApp = angular.module("myModule", [])
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
           function fileExists(image_url) {
-
+              
               var http = new XMLHttpRequest();
 
-              http.open('HEAD', image_url, false);
-              http.send();
+              try {
+                  http.open('HEAD', image_url, false);
+                  http.send();
 
-              return http.status != 404;
+                  return http.status != 404;
 
+              } catch (e) {
+                  return false;
+              }
           }
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1147,8 +1155,7 @@ var myApp = angular.module("myModule", [])
                   _words = response.data;
                   _wordIndex = 0;
                   showWord(_wordIndex);
-
-
+                  
               }, function errorCallback(err) {
                   alert('loadWords:' + err.responseText);
               });
@@ -1440,6 +1447,7 @@ var myApp = angular.module("myModule", [])
 
 
           function showChart() {
+              return;//currently we dont support this feature
               var getReviewHistoryPromise = new Promise(function (resolve, reject) {
                   getReviewHistory(resolve,reject);
               });
