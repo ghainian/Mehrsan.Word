@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 using System.IO;
 using Mehrsan.Business;
 using Mehrsan.Common;
-using Mehrsan.Test.Data;
 
 namespace Mehrsan.Test.Controllers
 {
@@ -205,134 +204,47 @@ namespace Mehrsan.Test.Controllers
         public async Task SurfLinkedinProfiles()
         {
             driver = new ChromeDriver(CHROME_DRIVER_PATH);
-            string content = LinkedInProfiles.Profiles;
+            string content = Common.Common.ReadFile("Profiles.txt");
             List<string> profiles = new List<string>();
+            profiles.AddRange(content.Split('\n'));
 
             int index = 0;
-            string profilePrefix = "\"https://www.linkedin.com/profile/";
-            int nextProfileIndex = content.Substring(index).IndexOf(profilePrefix);
-            using (LinkedInEntities entities = new LinkedInEntities())
+            foreach (string profile in profiles)
             {
-                do
-                {
-                    //string newContent = content.Substring(nextProfileIndex + 1);
-                    //int doubleQuoteIndex = newContent.IndexOf("\"");
-                    //string currentUrl = newContent.Substring(0, doubleQuoteIndex);
-                    //content = newContent.Substring(doubleQuoteIndex);
+                if (string.IsNullOrEmpty(profile.Trim()))
+                    continue;
 
-                    var oldestReview = (from s in entities.Surfings orderby s.Lastreview ascending select s).First();
-
-                    
-                    driver.Navigate().GoToUrl(oldestReview.Url);
-
-                    try
-                    {
-                        Thread.Sleep(20000);
-                        IWebElement signInLink = driver.FindElement(By.ClassName("sign-in-link"));
-                        signInLink.Click();
-                        Thread.Sleep(10000);
-                        IWebElement user = driver.FindElement(By.Id("session_key-login"));
-                        user.SendKeys("ghainian@gmail.com");
-                        IWebElement pass = driver.FindElement(By.Id("session_password-login"));
-                        pass.SendKeys("hafz852");
-
-                        IWebElement btnLogin = driver.FindElement(By.ClassName("btn-primary"));
-                        btnLogin.Click();
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-                    Random r = new Random();
-                    int sleepTime = r.Next() % 180;
-                    Thread.Sleep(85000 + sleepTime * 1000);
-
-                    oldestReview.Lastreview = DateTime.Now;
-                    var entry = entities.Entry(oldestReview);
-                    entry.Property(e => e.Lastreview).IsModified = true;
-                    entities.SaveChanges();
-                    //nextProfileIndex = content.IndexOf(profilePrefix);
-                }
-                while (true || nextProfileIndex > 0);
-            }
-        }
-
-        private static void AddSurfing(LinkedInEntities entities, string currentUrl)
-        {
-            Surfing s = new Surfing();
-            s.Url = currentUrl;
-            s.Lastreview = DateTime.Now;
-            entities.Surfings.Add(s);
-            entities.SaveChanges();
-        }
-
-        [TestMethod]
-        public async Task SaveProfiles()
-        {
-            driver = new ChromeDriver(CHROME_DRIVER_PATH);
-
-            var baseUrl = "https://www.dating.dk/start?b=1&ref=topmenu";
-            driver.Navigate().GoToUrl(baseUrl);
-            List<string> profiles = new List<string>();
-            string profilesPath = @"D:\temp\profiles.txt";
-            if (File.Exists(profilesPath))
-            {
-                using (StreamReader sr = new StreamReader(profilesPath))
-                {
-                    string[] lines = sr.ReadToEnd().Split('\n');
-                    foreach (string line in lines)
-                    {
-                        if (!string.IsNullOrEmpty(line))
-                            profiles.Add(line);
-                    }
-                }
-            }
-
-
-            while (true)
-            {
-
+                driver.Navigate().GoToUrl(profile);
                 try
                 {
+                    Thread.Sleep(2000);
+                    IWebElement signInLink = driver.FindElement(By.ClassName("sign-in-link"));
+                    signInLink.Click();
+                    Thread.Sleep(1000);
+                    IWebElement user = driver.FindElement(By.Id("session_key-login"));
+                    user.SendKeys("ghainian@gmail.com");
+                    IWebElement pass = driver.FindElement(By.Id("session_password-login"));
+                    pass.SendKeys("hafz852");
 
-                    long index = 0;
-                    string messages = string.Empty;
-
-                    //Thread.Sleep(5000);
-
-                    var elements = driver.FindElements(By.TagName("a"));
-
-                    foreach (var elem in elements)
-                    {
-                        try
-                        {
-
-                            var href = elem.GetAttribute("href");
-                            if (!string.IsNullOrEmpty(href) && href.Contains("/profil/") && !href.Contains("nirvana"))
-                            {
-                                if (!profiles.Contains(href))
-                                {
-                                    using (StreamWriter sw = new StreamWriter(profilesPath, true))
-                                    {
-                                        sw.WriteLine(href);
-                                        profiles.Add(href);
-                                    }
-                                }
-                            }
-                        }
-                        catch (Exception ee)
-                        {
-
-                        }
-                    }
-
+                    IWebElement btnLogin = driver.FindElement(By.ClassName("btn-primary"));
+                    btnLogin.Click();
                 }
                 catch (Exception e)
                 {
 
                 }
+                Random r = new Random();
+                int sleepTime = r.Next() % 180;
+                Thread.Sleep(8500 + sleepTime * 100);
+
             }
+
+
+
+
         }
+        
+
 
         #endregion
         [TestMethod]
