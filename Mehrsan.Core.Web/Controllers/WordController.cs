@@ -16,6 +16,10 @@ namespace Mehrsan.Core.Web.Controllers
     public class WordController : Controller
     {
         
+        public WordController(WordEntities context)
+        {
+            DAL.Instance = context;
+        }
 
         private string StorageRoot
         {

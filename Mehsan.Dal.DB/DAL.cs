@@ -10,18 +10,15 @@ namespace Mehrsan.Dal.DB
 {
     public class DAL
     {
+        public static WordEntities Instance { get; set; }
 
 
         //public static WordEntities Entity { get; set; } = new WordEntities();
-
-        private static WordEntities NewEntity()
-        {
-            return new WordEntities();
-        }
+        
 
         public static bool DeleteWord(long id)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 Word word = entity.Words.Find(id);
                 if (word == null)
@@ -52,14 +49,14 @@ namespace Mehrsan.Dal.DB
         }
         public static bool WordExists(long id)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
                 return entity.Words.Count(e => e.Id == id) > 0;
         }
 
         public static List<Word> LoadRelatedSentences(long wordId)
         {
 
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 List<Word> words = (from w in entity.Words
                                     join
@@ -91,7 +88,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static List<History> GetHistories(long wordId, DateTime reviewTime)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
 
                 IQueryable<History> q = (from h in entity.Histories select h);
@@ -110,7 +107,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
         {
 
 
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
 
                 IQueryable<object> q =
@@ -220,7 +217,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
         public static List<Word> GetAllWords(string userId, string containText)
         {
 
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 IQueryable<Word> query = (from w in entity.Words
                                           orderby w.TargetWord
@@ -243,7 +240,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
                 return null;
 
             word = word.Trim(Common.Common.Separators);
-            using (var db = NewEntity())
+            using (var db = Instance)
             {
                 var wordInDb = (from w in db.Words where w.TargetWord.Trim().ToLower() == word.ToLower() select w).FirstOrDefault();
 
@@ -253,7 +250,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static bool AddToGraph(Word srcWord, Word dstWord)
         {
-            using (var db = NewEntity())
+            using (var db = Instance)
             {
                 var graph = (from g in db.Graphs where g.SrcWordId == srcWord.Id && g.DstWordId == dstWord.Id select g).FirstOrDefault();
 
@@ -270,7 +267,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static int AddWord(Word word)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 entity.Words.Add(word);
                 return entity.SaveChanges();
@@ -279,7 +276,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         //public static int SetWordAmbiguous(long wordId)
         //{
-        //    using (var entity = NewEntity())
+        //    using (var entity = Instance)
         //    {
         //        Word updatedWord = entity.Words.Find(wordId);
         //        updatedWord.IsAmbiguous = true;
@@ -291,13 +288,13 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static List<Graph> GetGraphs()
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
                 return entity.Graphs.ToList();
         }
 
         public static List<Word> GetWords(long id, string targetWord)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
 
                 var q = (from w in entity.Words select w);
@@ -318,7 +315,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static long AddWordFile(WordFile wordFile)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 entity.WordFiles.Add(wordFile);
                 return entity.SaveChanges();
@@ -328,7 +325,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
         public static List<ChartData> GetChartData()
         {
             List<ChartData> result = new List<ChartData>();
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 var resultq = (from h in entity.Histories
                                group h by (h.ReviewTime.Year.ToString() + "/" + h.ReviewTime.Month.ToString() + "/" + h.ReviewTime.Day.ToString()) into g
@@ -348,7 +345,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
         {
             long wordId = history.WordId;
 
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 entity.Histories.Add(history);
                 return entity.SaveChanges();
@@ -357,7 +354,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static History GetLastHistory(long wordId)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 return (from h in entity.Histories where h.WordId == wordId orderby h.Id descending select h).FirstOrDefault();
             }
@@ -368,7 +365,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
             if (reviewPeriod >= Common.Common.MaxReviewDate)
                 reviewPeriod = Common.Common.MaxReviewDate;
 
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 if (!string.IsNullOrEmpty(word))
                 {
@@ -438,7 +435,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static List<Word> GetWordsForReview(string userId, DateTime reviewDate, int resultCount)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
 
                 return (from w in entity.Words
@@ -456,7 +453,7 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static List<Word> GetWordsLike(string word)
         {
-            using (var entity = NewEntity())
+            using (var entity = Instance)
             {
                 var q = (from w in entity.Words
                          where w.TargetWord.ToLower().Contains(word)

@@ -9,24 +9,24 @@
 
 namespace Mehrsan.Dal.DB
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Core.Objects;
+    using System;    
     using System.Data.Entity.Infrastructure;
     using System.Linq;
-    
+    using Microsoft.EntityFrameworkCore;
+
+
     public partial class WordEntities : DbContext
     {
-        public WordEntities()
-            : base("name=WordEntities")
+
+        public WordEntities(DbContextOptions<WordEntities> options) : base(options)
         {
         }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+
         }
-    
+
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }

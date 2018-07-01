@@ -25,6 +25,10 @@ namespace Mehrsan.Word.Controllers
     public class WordController : ApiController
     {
         
+        public WordController(WordEntities wordEntities)
+        {
+            DAL.Instance = wordEntities;
+        }
 
         private string StorageRoot
         {
