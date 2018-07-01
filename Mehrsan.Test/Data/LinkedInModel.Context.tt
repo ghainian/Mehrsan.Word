@@ -41,8 +41,8 @@ namespace <#=code.EscapeNamespace(codeNamespace)#>
 
 #>
 using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+
+
 <#
 if (container.FunctionImports.Any())
 {
