@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Business", "Mehrsan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Test", "Mehrsan.Test\Mehrsan.Test.csproj", "{F1D7C36F-34E4-4A0C-9674-ACB258DC2A5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Core.Web", "Mehrsan.Core.Web\Mehrsan.Core.Web.csproj", "{D3E35F7B-93EF-466D-9535-28E84CB1ACCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{F1D7C36F-34E4-4A0C-9674-ACB258DC2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D7C36F-34E4-4A0C-9674-ACB258DC2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D7C36F-34E4-4A0C-9674-ACB258DC2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3E35F7B-93EF-466D-9535-28E84CB1ACCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E35F7B-93EF-466D-9535-28E84CB1ACCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E35F7B-93EF-466D-9535-28E84CB1ACCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E35F7B-93EF-466D-9535-28E84CB1ACCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
