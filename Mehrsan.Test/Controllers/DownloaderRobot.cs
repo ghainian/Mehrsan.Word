@@ -460,13 +460,13 @@ namespace Mehrsan.Test.Controllers
             FileInfo lastMp3File = mp3Files.OrderByDescending(f => f.CreationTime).First();
             string downloadedFile = downloadDirectory + lastMp3File.Name;
             File.Move(downloadedFile, mp3File);
-            WordFile wordFile = new WordFile();
-            wordFile.CorrespondingText = simpleWord;
-            Language lang = new Language();
-            lang.Id = (long)(language.ToLower() == "english" ? Languages.English : Languages.Danish);
-            wordFile.Language = lang;
-            wordFile.LanguageId = lang.Id;
-            WordManager.AddWordFile(wordFile);
+            //WordFile wordFile = new WordFile();
+            //wordFile.CorrespondingText = simpleWord;
+            //Language lang = new Language();
+            //lang.Id = (long)(language.ToLower() == "english" ? Languages.English : Languages.Danish);
+            //wordFile.Language = lang;
+            //wordFile.LanguageId = lang.Id;
+            //WordManager.AddWordFile(wordFile);
 
             //WordManager.SendCrossDomainCallForBinaryFile("http://soundoftext.com/static/sounds/da/"+simpleWord+".mp3", mp3File);
 

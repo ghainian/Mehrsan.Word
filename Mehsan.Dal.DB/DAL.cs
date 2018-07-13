@@ -32,11 +32,11 @@ namespace Mehrsan.Dal.DB
                     entity.Histories.Remove(history);
                 }
 
-                var relatedGraphRecords = (from g in entity.Graphs where g.SrcWordId == id || g.DstWordId == id select g).ToList();
-                foreach (Graph graph in relatedGraphRecords)
-                {
-                    entity.Graphs.Remove(graph);
-                }
+                //var relatedGraphRecords = (from g in entity.Graphs where g.SrcWordId == id || g.DstWordId == id select g).ToList();
+                //foreach (Graph graph in relatedGraphRecords)
+                //{
+                //    entity.Graphs.Remove(graph);
+                //}
 
 
 
@@ -55,34 +55,34 @@ namespace Mehrsan.Dal.DB
 
         public static List<Word> LoadRelatedSentences(long wordId)
         {
+            return new List<Word>();
+//            using (var entity = Instance)
+//            {
+//                List<Word> words = (from w in entity.Words
+//                                    join
+//g in entity.Graphs on w.Id equals g.SrcWordId
+//                                    join
+//dstWord in entity.Words on g.DstWordId equals dstWord.Id
+//                                    where w.Id == wordId
+//                                    orderby dstWord.NextReviewDate, dstWord.Id ascending
+//                                    select dstWord).Take(Common.Common.NofRelatedSentences).ToList();
 
-            using (var entity = Instance)
-            {
-                List<Word> words = (from w in entity.Words
-                                    join
-g in entity.Graphs on w.Id equals g.SrcWordId
-                                    join
-dstWord in entity.Words on g.DstWordId equals dstWord.Id
-                                    where w.Id == wordId
-                                    orderby dstWord.NextReviewDate, dstWord.Id ascending
-                                    select dstWord).Take(Common.Common.NofRelatedSentences).ToList();
+//                List<Word> newWords = new List<Word>();
+//                foreach (Word w in words)
+//                {
+//                    Word newWord = new Word()
+//                    {
+//                        Id = w.Id,
+//                        TargetWord = w.TargetWord,
+//                        Meaning = w.Meaning,
+//                        Graphs = null,
+//                        Graphs1 = null,
 
-                List<Word> newWords = new List<Word>();
-                foreach (Word w in words)
-                {
-                    Word newWord = new Word()
-                    {
-                        Id = w.Id,
-                        TargetWord = w.TargetWord,
-                        Meaning = w.Meaning,
-                        Graphs = null,
-                        Graphs1 = null,
-
-                    };
-                    newWords.Add(newWord);
-                }
-                return newWords;
-            }
+//                    };
+//                    newWords.Add(newWord);
+//                }
+//                return newWords;
+//            }
 
         }
 
@@ -252,15 +252,15 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
         {
             using (var db = Instance)
             {
-                var graph = (from g in db.Graphs where g.SrcWordId == srcWord.Id && g.DstWordId == dstWord.Id select g).FirstOrDefault();
+                //var graph = (from g in db.Graphs where g.SrcWordId == srcWord.Id && g.DstWordId == dstWord.Id select g).FirstOrDefault();
 
-                if (graph == null && srcWord.Id != dstWord.Id)
-                {
-                    Graph newGraph = new Graph() { SrcWordId = srcWord.Id, DstWordId = dstWord.Id };
-                    db.Graphs.Add(newGraph);
-                    db.SaveChanges();
-                    return true;
-                }
+                //if (graph == null && srcWord.Id != dstWord.Id)
+                //{
+                //    Graph newGraph = new Graph() { SrcWordId = srcWord.Id, DstWordId = dstWord.Id };
+                //    db.Graphs.Add(newGraph);
+                //    db.SaveChanges();
+                //    return true;
+                //}
             }
             return false;
         }
@@ -288,8 +288,10 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
 
         public static List<Graph> GetGraphs()
         {
-            using (var entity = Instance)
-                return entity.Graphs.ToList();
+            //using (var entity = Instance)
+            //    return entity.Graphs.ToList();
+
+            return null;
         }
 
         public static List<Word> GetWords(long id, string targetWord)
@@ -313,14 +315,14 @@ dstWord in entity.Words on g.DstWordId equals dstWord.Id
             }
         }
 
-        public static long AddWordFile(WordFile wordFile)
-        {
-            using (var entity = Instance)
-            {
-                entity.WordFiles.Add(wordFile);
-                return entity.SaveChanges();
-            }
-        }
+        //public static long AddWordFile(WordFile wordFile)
+        //{
+        //    using (var entity = Instance)
+        //    {
+        //        entity.WordFiles.Add(wordFile);
+        //        return entity.SaveChanges();
+        //    }
+        //}
 
         public static List<ChartData> GetChartData()
         {

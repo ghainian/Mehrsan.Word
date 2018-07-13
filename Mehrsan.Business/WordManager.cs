@@ -499,10 +499,10 @@ namespace Mehrsan.Business
 
             return result;
         }
-        public static bool AddWordFile(WordFile wordFile)
-        {
-            return DAL.AddWordFile(wordFile) > 0;
-        }
+        //public static bool AddWordFile(WordFile wordFile)
+        //{
+        //    return DAL.AddWordFile(wordFile) > 0;
+        //}
 
         public static bool PostWord(Word word)
         {
@@ -1010,8 +1010,8 @@ namespace Mehrsan.Business
             allWords = (from d in DAL.GetWords(0, string.Empty) orderby d.Id select d).ToList();
             long maxSrcGraphId = 0;
             var graphs = DAL.GetGraphs();
-            if (graphs.Count > 0)
-                maxSrcGraphId = (from g in graphs orderby g.Id select g.SrcWordId).Max(s => s);
+            //if (graphs.Count > 0)
+            //    maxSrcGraphId = (from g in graphs orderby g.Id select g.SrcWordId).Max(s => s);
 
 
             var srcWords = (from d in allWords orderby d.Id where d.Id > maxSrcGraphId select d).ToList();
@@ -1097,8 +1097,8 @@ namespace Mehrsan.Business
                 StartTime = word.StartTime,
                 EndTime = word.EndTime,
                 WrittenByMe = word.WrittenByMe,
-                Graphs = null,
-                Graphs1 = null,
+                //Graphs = null,
+                //Graphs1 = null,
 
 
             };
