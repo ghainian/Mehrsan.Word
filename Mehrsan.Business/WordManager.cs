@@ -648,7 +648,12 @@ namespace Mehrsan.Business
             foreach (Word word in containingWords)
             {
                 var lastHistory = DAL.GetLastHistory(word.Id);
-                if (lastHistory.ReviewPeriod < -1)
+                if (lastHistory == null)
+                {
+                    lastHistory = new History();
+                    lastHistory.ReviewPeriod = 1;
+                }
+                    if (lastHistory.ReviewPeriod < -1)
                     lastHistory.ReviewPeriod = 1;
                 var reviewPeriod = knowsWord ? lastHistory.ReviewPeriod * 2 : 1;
 

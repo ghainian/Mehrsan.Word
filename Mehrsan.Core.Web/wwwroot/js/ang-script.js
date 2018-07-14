@@ -1062,7 +1062,7 @@ var myApp = angular.module("myModule", [])
                   async: false,
                   headers: headers,
                   dataType: "json",
-                  data: { "Id": 0, "TargetWord": word, "Meaning": '' },
+                  data: { "id": 0, "targetWord": word, "meaning": '' },
                   scriptCharset: "utf-8",
                   contentType: "application/x-www-form-urlencoded;charset=utf-8",
                   encoding: "UTF-8",
@@ -1331,11 +1331,11 @@ var myApp = angular.module("myModule", [])
           function getWordLocally(id) {
 
 
-              var oldWord = { "Id": '', "TargetWord": '', "Meaning": '', "WrittenByMe": '' }
+              var oldWord = { "id": '', "targetWord": '', "meaning": '', "WrittenByMe": '' }
 
               oldWord.id = id;
               var idStr = id.toString();
-              oldWord.meaning = sessionStorage.getItem(idStr + "Meaning");
+              oldWord.meaning = sessionStorage.getItem(idStr + "meaning");
               oldWord.targetWord = sessionStorage.getItem(idStr + "Word");
 
               var writtenByMe = sessionStorage.getItem(idStr + "WrittenByMe");
@@ -1351,7 +1351,7 @@ var myApp = angular.module("myModule", [])
           function saveWordLocally(word) {
 
               var id = word.id.toString();
-              sessionStorage.setItem(id + "Meaning", word.meaning);
+              sessionStorage.setItem(id + "meaning", word.meaning);
               sessionStorage.setItem(id + "Word", word.targetWord);
               sessionStorage.setItem(id + "WrittenByMe", word.writtenByMe);
 
@@ -1376,30 +1376,35 @@ var myApp = angular.module("myModule", [])
               }
 
 
-              $http({
-                  method: 'POST',
+              $.ajax({
                   url: _webUrl + 'Word/UpdateWord',
-                  data: {"Id": wordId, "TargetWord": word, "Meaning": meaning, "WrittenByMe": writtenByMe},
-                  //scriptCharset: "utf-8",
-                  //contentType: "application/json",
-                  headers: { 'Authorization': 'Bearer ' + token },
-                  //encoding: "UTF-8",
+                  type: 'post',
+                  async: false,
+                  dataType: "json",
+                  data: {
+                      "id": wordId, "targetWord": word, "meaning": meaning, "writtenByMe": writtenByMe
+                  },
+                  scriptCharset: "utf-8",
+                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                  encoding: "UTF-8",
+                  headers: headers,
+                  success: function (result) {
 
+                      addRecentWord(word, meaning)
+                      updateWordStatusToSpecificResult(true, wordId);
+                      showResult(result);
+                      if (wordId == _words[_wordIndex].id) {
+                          _words[_wordIndex].targetWord = word;
+                          _words[_wordIndex].meaning = meaning;
+                          _words[_wordIndex].writtenByMe = writtenByMe;
+                      }
 
-              }).then(function successCallback(response) {
-                  addRecentWord(word, meaning)
-                  updateWordStatusToSpecificResult(true, wordId);
-                  showResult(response.data);
-                  if (wordId == _words[_wordIndex].id) {
-                      _words[_wordIndex].targetWord = word;
-                      _words[_wordIndex].meaning = meaning;
-                      _words[_wordIndex].writtenByMe = writtenByMe;
+                  },
+                  error: function (html) {
+                      showResult(false);
+
                   }
-
-              }, function errorCallback(err) {
-                  showResult(false);
               });
-
 
               showWord(_wordIndex);
 

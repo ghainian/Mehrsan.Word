@@ -1330,7 +1330,7 @@ var myApp = angular.module("myModule", [])
                   async: false,
                   dataType: "json",
                   data: {
-                      "Id": wordId, "TargetWord": word, "Meaning": meaning, "WrittenByMe": writtenByMe
+                      "id": wordId, "targetWord": word, "meaning": meaning, "writtenByMe": writtenByMe
                   },
                   scriptCharset: "utf-8",
                   contentType: "application/x-www-form-urlencoded;charset=utf-8",
@@ -1341,10 +1341,10 @@ var myApp = angular.module("myModule", [])
                       addRecentWord(word, meaning)
                       updateWordStatusToSpecificResult(true, wordId);
                       showResult(result);
-                      if (wordId == _words[_wordIndex].Id) {
-                          _words[_wordIndex].TargetWord = word;
-                          _words[_wordIndex].Meaning = meaning;
-                          _words[_wordIndex].WrittenByMe = writtenByMe;
+                      if (wordId == _words[_wordIndex].id) {
+                          _words[_wordIndex].targetWord = word;
+                          _words[_wordIndex].meaning = meaning;
+                          _words[_wordIndex].writtenByMe = writtenByMe;
                       }
 
                   },
