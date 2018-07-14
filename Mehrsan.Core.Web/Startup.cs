@@ -16,15 +16,17 @@ namespace Mehrsan.Core.Web
     {
         public Startup(IHostingEnvironment env)
         {
+            
+            
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Common.Common.Configuration = (ConfigurationRoot)builder.Build();
+            Common.Common.Initialise();
         }
 
-        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,14 +35,14 @@ namespace Mehrsan.Core.Web
             services.AddMvc();
 
             //Add database services.
-            var connectionString = this.Configuration.GetConnectionString("WordEntities");
+            var connectionString = Common.Common.Configuration.GetConnectionString("WordEntities");
             services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(Common.Common.Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
