@@ -5,26 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="bootstrap\img\**" />
     <Compile Remove="images\New folder\**" />
-    <Compile Remove="Scripts\Models\**" />
-    <Content Remove="bootstrap\img\**" />
     <Content Remove="images\New folder\**" />
-    <Content Remove="Scripts\Models\**" />
-    <EmbeddedResource Remove="bootstrap\img\**" />
     <EmbeddedResource Remove="images\New folder\**" />
-    <EmbeddedResource Remove="Scripts\Models\**" />
-    <None Remove="bootstrap\img\**" />
     <None Remove="images\New folder\**" />
-    <None Remove="Scripts\Models\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="bootstrap\.DS_Store" />
-    <None Remove="bootstrap\css\bootstrap.css" />
-    <None Remove="bootstrap\css\bootstrap.min.css" />
-    <None Remove="bootstrap\js\bootstrap.js" />
-    <None Remove="bootstrap\js\bootstrap.min.js" />
+    <Content Remove="wwwroot\css\bootstrap-responsive.css" />
+    <Content Remove="wwwroot\css\bootstrap-responsive.min.css" />
+    <Content Remove="wwwroot\js\ERIS.zip" />
+    <Content Remove="wwwroot\js\jquery-1.10.2.intellisense.js" />
+    <Content Remove="wwwroot\js\jquery.validate-vsdoc.js" />
+    <Content Remove="wwwroot\js\script.jsx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Content\bootstrap.css" />
     <None Remove="Content\bootstrap.min.css" />
     <None Remove="Content\Site.css" />
@@ -48,54 +44,14 @@
     <None Remove="images\item_webhosting101.jpg" />
     <None Remove="images\logo.png" />
     <None Remove="images\noImage.jpg" />
-    <None Remove="includes\css\bootstrap-glyphicons.css" />
-    <None Remove="includes\css\jquery-ui.css" />
-    <None Remove="includes\css\jquery-ui.min.css" />
-    <None Remove="includes\css\styles.css" />
-    <None Remove="includes\fonts\glyphiconshalflings-regular.eot" />
-    <None Remove="includes\fonts\glyphiconshalflings-regular.otf" />
-    <None Remove="includes\fonts\glyphiconshalflings-regular.svg" />
-    <None Remove="includes\fonts\glyphiconshalflings-regular.ttf" />
-    <None Remove="includes\fonts\glyphiconshalflings-regular.woff" />
-    <None Remove="includes\js\ang-script.js" />
-    <None Remove="includes\js\angular.min.js" />
-    <None Remove="includes\js\app.js" />
-    <None Remove="includes\js\cors\jquery.postmessage-transport.js" />
-    <None Remove="includes\js\cors\jquery.xdr-transport.js" />
-    <None Remove="includes\js\d3.min.js" />
-    <None Remove="includes\js\ERIS.js" />
-    <None Remove="includes\js\jquery-1.10.2.js" />
-    <None Remove="includes\js\jquery-1.8.2.min.js" />
-    <None Remove="includes\js\jquery-ui.js" />
-    <None Remove="includes\js\jquery-ui.min.js" />
-    <None Remove="includes\js\jquery.iframe-transport.js" />
-    <None Remove="includes\js\JSXTransformer-0.13.3.js" />
-    <None Remove="includes\js\modernizr-2.6.2.min.js" />
-    <None Remove="includes\js\react-0.13.3.js" />
-    <None Remove="includes\js\script.js" />
-    <None Remove="includes\js\vendor\jquery.ui.widget.js" />
-    <None Remove="index.html" />
-    <None Remove="Scripts\bootstrap.js" />
-    <None Remove="Scripts\bootstrap.min.js" />
-    <None Remove="Scripts\jquery-1.10.2.js" />
-    <None Remove="Scripts\jquery-1.10.2.min.js" />
-    <None Remove="Scripts\jquery-1.10.2.min.map" />
-    <None Remove="Scripts\jquery.validate.js" />
-    <None Remove="Scripts\jquery.validate.min.js" />
-    <None Remove="Scripts\jquery.validate.unobtrusive.js" />
-    <None Remove="Scripts\jquery.validate.unobtrusive.min.js" />
-    <None Remove="Scripts\modernizr-2.6.2.js" />
-    <None Remove="Scripts\respond.js" />
-    <None Remove="Scripts\respond.min.js" />
-    <None Remove="Scripts\_references.js" />
+    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.eot" />
+    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.otf" />
+    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.svg" />
+    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.ttf" />
+    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.woff" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bootstrap\.DS_Store" />
-    <Content Include="bootstrap\css\bootstrap.css" />
-    <Content Include="bootstrap\css\bootstrap.min.css" />
-    <Content Include="bootstrap\js\bootstrap.js" />
-    <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -119,45 +75,6 @@
     <Content Include="images\item_webhosting101.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="images\noImage.jpg" />
-    <Content Include="includes\css\bootstrap-glyphicons.css" />
-    <Content Include="includes\css\jquery-ui.css" />
-    <Content Include="includes\css\jquery-ui.min.css" />
-    <Content Include="includes\css\styles.css" />
-    <Content Include="includes\fonts\glyphiconshalflings-regular.eot" />
-    <Content Include="includes\fonts\glyphiconshalflings-regular.otf" />
-    <Content Include="includes\fonts\glyphiconshalflings-regular.svg" />
-    <Content Include="includes\fonts\glyphiconshalflings-regular.ttf" />
-    <Content Include="includes\fonts\glyphiconshalflings-regular.woff" />
-    <Content Include="includes\js\ang-script.js" />
-    <Content Include="includes\js\angular.min.js" />
-    <Content Include="includes\js\app.js" />
-    <Content Include="includes\js\cors\jquery.postmessage-transport.js" />
-    <Content Include="includes\js\cors\jquery.xdr-transport.js" />
-    <Content Include="includes\js\d3.min.js" />
-    <Content Include="includes\js\ERIS.js" />
-    <Content Include="includes\js\jquery-1.10.2.js" />
-    <Content Include="includes\js\jquery-1.8.2.min.js" />
-    <Content Include="includes\js\jquery-ui.js" />
-    <Content Include="includes\js\jquery-ui.min.js" />
-    <Content Include="includes\js\jquery.iframe-transport.js" />
-    <Content Include="includes\js\JSXTransformer-0.13.3.js" />
-    <Content Include="includes\js\modernizr-2.6.2.min.js" />
-    <Content Include="includes\js\react-0.13.3.js" />
-    <Content Include="includes\js\script.js" />
-    <Content Include="includes\js\vendor\jquery.ui.widget.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -172,6 +89,12 @@
 
   <ItemGroup>
     <None Include="Views\Word\index.cshtml" />
+    <None Include="wwwroot\css\bootstrap-responsive.css" />
+    <None Include="wwwroot\css\bootstrap-responsive.min.css" />
+    <None Include="wwwroot\js\ERIS.zip" />
+    <None Include="wwwroot\js\jquery-1.10.2.intellisense.js" />
+    <None Include="wwwroot\js\jquery.validate-vsdoc.js" />
+    <None Include="wwwroot\js\script.jsx" />
   </ItemGroup>
 
   <ItemGroup>

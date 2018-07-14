@@ -29,11 +29,11 @@ namespace Mehrsan.Core.Web.Controllers
         }
 
 
-        public List<Mehrsan.Dal.DB.Word> Index()
+        public ViewResult Index()
         {
             UserInfoViewModel userInfo = new UserInfoViewModel();// ac.GetUserInfo();
 
-            return WordManager.GetWordsForReview(userInfo.UserId);
+            return View( WordManager.GetWordsForReview(userInfo.UserId));
         }
 
 
