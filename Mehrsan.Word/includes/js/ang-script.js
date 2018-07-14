@@ -243,21 +243,25 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-
-              $http({
-                  method: 'POST',
-                  url: _webUrl + 'api/Account/ChangePassword',
+              $.ajax({
+                  url: _webUrl + 'Account/ChangePassword',
+                  type: 'post',
+                  async: false,
+                  dataType: "json",
                   data: changePassData,
-                  headers: { 'Authorization': 'Bearer ' + token },
-
-              }).then(function successCallback(response) {
-                  alert("Change Password finished successfully");
-
-              }, function errorCallback(err) {
-                  if (e2.status != 200)
-                      alert('ChangePasswordError ' + e2.responseText.toString());
-                  else
-                      alert("Change Password finished successfully with status Code 200");
+                  scriptCharset: "utf-8",
+                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                  encoding: "UTF-8",
+                  headers: headers,
+                  success: function (e1) {
+                      alert("Change Password finished successfully");
+                  },
+                  error: function (e2) {
+                      if (e2.status != 200)
+                          alert('ChangePasswordError ' + e2.responseText.toString());
+                      else
+                          alert("Change Password finished successfully with status Code 200");
+                  }
               });
           }
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -267,20 +271,23 @@ var myApp = angular.module("myModule", [])
               var email = $("#txtEmailSignup").val();
               var password = $("#txtPasswordSignup").val();
 
-              $http({
-                  method: 'POST',
-                  url: _webUrl + 'api/Account/Register',
+              $.ajax({
+                  url: _webUrl + 'Account/Register',
+                  type: 'post',
+                  async: false,
+                  dataType: "json",
                   data: { "Email": email, "Password": password, "ConfirmPassword": password },
-                  headers: { 'Authorization': 'Bearer ' + token },
-
-
-              }).then(function successCallback(response) {
-                  alert("Signup finished successfully");
-                  loginFunction(email, password);
-
-              }, function errorCallback(err) {
-                  if (e2.status != 200)
-                      alert('Signup ' + e2.toString());
+                  scriptCharset: "utf-8",
+                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                  encoding: "UTF-8",
+                  success: function (e1) {
+                      alert("Signup finished successfully");
+                      loginFunction(email, password);
+                  },
+                  error: function (e2) {
+                      if (e2.status != 200)
+                          alert('Signup ' + e2.toString());
+                  }
               });
 
           }
@@ -514,17 +521,18 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'GET',
+              $.ajax({
                   url: '/api/Word/GetWordsInfoFromOrdNet',
-                  headers: { 'Authorization': 'Bearer ' + token },
-
-              }).then(function successCallback(response) {
-                  resource = response.data;
-                  alert(response.data);
-
-              }, function errorCallback(err) {
-                  alert('Load resource ' + err);
+                  type: 'GET',
+                  async: true,
+                  headers: headers,
+                  success: function (html) {
+                      resource = html;
+                      alert(html);
+                  },
+                  error: function (html) {
+                      alert('Load resource ' + html);
+                  }
               });
 
 
@@ -565,16 +573,19 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'GET',
-                  url: _webUrl + 'api/Word/UpdateWordStatus?knowsWord=' + result + '&wordId=' + wordId + '&reviewTime=' + reviewTime,
-                  headers: { 'Authorization': 'Bearer ' + token },
+              $.ajax({
+                  url: _webUrl + 'Word/UpdateWordStatus?knowsWord=' + result + '&wordId=' + wordId + '&reviewTime=' + reviewTime,
+                  type: 'get',
+                  async: false,
+                  encoding: "UTF-8",
+                  headers: headers,
+                  success: function (message) {
+                      _wordReviewStartTime = new Date();
+                  },
+                  error: function (err) {
+                      alert('updateWordStatusToSpecificResult' + err.responseText);
+                  }
 
-              }).then(function successCallback(response) {
-                  _wordReviewStartTime = new Date();
-
-              }, function errorCallback(err) {
-                  alert('updateWordStatusToSpecificResult' + err.responseText);
               });
 
 
@@ -709,27 +720,26 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'POST',
-                  url: _webUrl + 'api/Word/LoadRelatedSentences?wordId=' + currentWord.Id,
-                  headers: { 'Authorization': 'Bearer ' + token },
+              $.ajax({
+                  url: _webUrl + 'Word/LoadRelatedSentences?wordId=' + currentWord.Id,
+                  type: 'post',
+                  async: false,
+                  encoding: "UTF-8",
+                  headers: headers,
+                  success: function (sentences) {
 
-
-              }).then(function successCallback(response) {
-
-                  sentences = response.data;
-                  var index = 0;
-                  _newCarouselhtml = _newCarouselhtml + '<p>';
-                  for (index = 0; index < sentences.length; index++) {
-                      var spannedSentence = getWordInSpan(sentences[index].Id, sentences[index].TargetWord);
-                      _newCarouselhtml = _newCarouselhtml + spannedSentence + " = <span> <small>"
-                          + sentences[index].Meaning + " _  </small></span>";
+                      var index = 0;
+                      _newCarouselhtml = _newCarouselhtml + '<p>';
+                      for (index = 0; index < sentences.length; index++) {
+                          var spannedSentence = getWordInSpan(sentences[index].Id, sentences[index].TargetWord);
+                          _newCarouselhtml = _newCarouselhtml + spannedSentence + " = <span> <small>"
+                              + sentences[index].Meaning + " _  </small></span>";
+                      }
+                      _newCarouselhtml = _newCarouselhtml + '</p>'
+                  },
+                  error: function (err) {
+                      alert('showWord' + err.responseText);
                   }
-                  _newCarouselhtml = _newCarouselhtml + '</p>'
-
-              }, function errorCallback(err) {
-
-                  alert('showWord' + err.responseText);
 
               });
 
@@ -874,7 +884,7 @@ var myApp = angular.module("myModule", [])
 
               var wordText = '';
               $.ajax({
-                  url: _webUrl + 'api/Word/GetWord?id=' + wordId + '&targetWord=' + wordText,
+                  url: _webUrl + 'Word/GetWord?id=' + wordId + '&targetWord=' + wordText,
                   type: 'get',
                   async: false,
                   headers: headers,
@@ -907,24 +917,30 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'POST',
-                  url: _webUrl + 'api/Word/GetReviewHistory',
-                  headers: { 'Authorization': 'Bearer ' + token },
+              $.ajax({
+                  url: _webUrl + 'Word/GetReviewHistory',
+                  type: 'post',
+                  async: false,
+                  headers: headers,
+                  dataType: "json",
+                  scriptCharset: "utf-8",
+                  contentType: "application/json; charset=utf-8",
+                  encoding: "UTF-8",
+                  success: function (histories) {
 
+                      result = histories;
+                      $.each(result, function (i, j) {
+                          _xAxisData.push(j.Date);
+                          _yAxisData.push(j.Count);
+                      });
+                      console.log(_xAxisData);
+                      console.log(_yAxisData);
+                      return result;
+                  },
+                  error: function (err) {
+                      alert('GetReviewHistory:' + err);
+                  }
 
-              }).then(function successCallback(response) {
-                  histories = response.data
-                  result = histories;
-                  $.each(result, function (i, j) {
-                      _xAxisData.push(j.Date);
-                      _yAxisData.push(j.Count);
-                  });
-                  resolve(result);
-                  return result;
-              }, function errorCallback(err) {
-                  alert('GetReviewHistory:' + err);
-                  reject()
               });
 
               return result;
@@ -944,7 +960,7 @@ var myApp = angular.module("myModule", [])
               }
 
               $.ajax({
-                  url: _webUrl + 'api/Word/GetWordByTargetWord',
+                  url: _webUrl + 'Word/GetWordByTargetWord',
                   type: 'post',
                   async: false,
                   headers: headers,
@@ -1067,21 +1083,24 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'GET',
-                  url: _webUrl + 'api/Word/GetAllWords?containText=' + containText,
-                  headers: { 'Authorization': 'Bearer ' + token },
+              $.ajax({
+                  url: _webUrl + 'Word/GetAllWords?containText=' + containText,
+                  type: 'get',
+                  async: true,
+                  scriptCharset: "utf-8",
+                  headers: headers,
+                  contentType: "application/json",
+                  encoding: "UTF-8",
+                  success: function (words) {
+                      _allWords = words;
 
-              }).then(function successCallback(response) {
+                      setAutoComplete();
 
-                  words = response.data;
-                  _allWords = words;
+                  },
+                  error: function (err) {
+                      alert('loadAllWords:' + err);
+                  }
 
-                  setAutoComplete();
-
-
-              }, function errorCallback(err) {
-                  alert('loadAllWords:' + err);
               });
 
           }
@@ -1141,23 +1160,25 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'GET',
+              $.ajax({
                   url: _webUrl + 'api/Word/GetWordsForReview',
-                  //async: false,
-                  //scriptCharset: "utf-8",
-                  //contentType: "application/json",
-                  headers: { 'Authorization': 'Bearer ' + token },
-                  //encoding: "UTF-8",
+                  type: 'get',
+                  async: false,
+                  scriptCharset: "utf-8",
+                  contentType: "application/json",
+                  headers: headers,
+                  encoding: "UTF-8",
+                  success: function (words) {
+                      _words = words;
+                      _wordIndex = 0;
+                      showWord(_wordIndex);
 
 
-              }).then(function successCallback(response) {
-                  _words = response.data;
-                  _wordIndex = 0;
-                  showWord(_wordIndex);
-                  
-              }, function errorCallback(err) {
-                  alert('loadWords:' + err.responseText);
+                  },
+                  error: function (err) {
+                      alert('loadWords:' + err.responseText);
+                  }
+
               });
 
 
@@ -1166,12 +1187,12 @@ var myApp = angular.module("myModule", [])
 
 
           function createGraph(e) {
-
+              return;
               e.preventDefault();
 
               $http({
                   method: 'GET',
-                  url: _webUrl + 'api/Word/CreateGraph',
+                  url: _webUrl + 'Word/CreateGraph',
                   headers: { 'Authorization': 'Bearer ' + token },
 
               }).then(function successCallback(response) {
@@ -1191,22 +1212,26 @@ var myApp = angular.module("myModule", [])
 
               var wordId = _words[_wordIndex].Id;
 
-              $http({
-                  method: 'GET',
+              $.ajax({
                   url: _webUrl + 'api/Word/SetWordAmbiguous?wordId=' + wordId,
-                  headers: { 'Authorization': 'Bearer ' + token },
+                  type: 'get',
+                  async: false,
+                  scriptCharset: "utf-8",
+                  headers: headers,
+                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                  encoding: "UTF-8",
+                  success: function (result) {
+                      _words[_wordIndex].IsAmbiguous = true;
 
-              }).then(function successCallback(response) {
+                      showResult(result);
+                      _wordIndex = _wordIndex + 1;
+                      showWord(_wordIndex);
 
-                  result = response.data
-                  _words[_wordIndex].IsAmbiguous = true;
+                  },
+                  error: function (html) {
+                      showResult(false);
 
-                  showResult(result);
-                  _wordIndex = _wordIndex + 1;
-                  showWord(_wordIndex);
-
-              }, function errorCallback(err) {
-                  showResult(false);
+                  }
               });
 
 
@@ -1225,21 +1250,25 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'GET',
+              $.ajax({
                   url: _webUrl + 'api/Word/DeleteWord?id=' + wordId,
-                  headers: { 'Authorization': 'Bearer ' + token },
+                  type: 'get',
+                  async: false,
+                  scriptCharset: "utf-8",
+                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                  encoding: "UTF-8",
+                  headers: headers,
+                  success: function (result) {
 
-              }).then(function successCallback(response) {
+                      showResult(result);
+                      _wordIndex = _wordIndex + 1;
+                      showWord(_wordIndex);
 
-                  result = response.data
-                  showResult(result);
-                  _wordIndex = _wordIndex + 1;
-                  showWord(_wordIndex);
+                  },
+                  error: function (html) {
+                      showResult(false);
 
-
-              }, function errorCallback(err) {
-                  showResult(false);
+                  }
               });
 
 
@@ -1295,28 +1324,34 @@ var myApp = angular.module("myModule", [])
               }
 
 
-              $http({
-                  method: 'POST',
-                  url: _webUrl + 'api/Word/UpdateWord',
-                  data: {"Id": wordId, "TargetWord": word, "Meaning": meaning, "WrittenByMe": writtenByMe},
-                  //scriptCharset: "utf-8",
-                  //contentType: "application/json",
-                  headers: { 'Authorization': 'Bearer ' + token },
-                  //encoding: "UTF-8",
+              $.ajax({
+                  url: _webUrl + 'Word/UpdateWord',
+                  type: 'post',
+                  async: false,
+                  dataType: "json",
+                  data: {
+                      "Id": wordId, "TargetWord": word, "Meaning": meaning, "WrittenByMe": writtenByMe
+                  },
+                  scriptCharset: "utf-8",
+                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                  encoding: "UTF-8",
+                  headers: headers,
+                  success: function (result) {
 
+                      addRecentWord(word, meaning)
+                      updateWordStatusToSpecificResult(true, wordId);
+                      showResult(result);
+                      if (wordId == _words[_wordIndex].Id) {
+                          _words[_wordIndex].TargetWord = word;
+                          _words[_wordIndex].Meaning = meaning;
+                          _words[_wordIndex].WrittenByMe = writtenByMe;
+                      }
 
-              }).then(function successCallback(response) {
-                  addRecentWord(word, meaning)
-                  updateWordStatusToSpecificResult(true, wordId);
-                  showResult(response.data);
-                  if (wordId == _words[_wordIndex].Id) {
-                      _words[_wordIndex].TargetWord = word;
-                      _words[_wordIndex].Meaning = meaning;
-                      _words[_wordIndex].WrittenByMe = writtenByMe;
+                  },
+                  error: function (html) {
+                      showResult(false);
+
                   }
-
-              }, function errorCallback(err) {
-                  showResult(false);
               });
 
 
@@ -1407,7 +1442,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'POST',
-                  url: _webUrl + 'api/Word/PostWord',
+                  url: _webUrl + 'Word/PostWord',
                   data: { "Id": "1", "TargetWord": targetWord, "Meaning": meaning, "WrittenByMe": writtenByMe },
                   headers: { 'Authorization': 'Bearer ' + token },
 

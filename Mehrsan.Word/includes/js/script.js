@@ -133,12 +133,12 @@ function addImageBoxes() {
 function undo(e) {
     e.preventDefault();
 
-    var id = _words[_wordIndex].Id;
+    var id = _words[_wordIndex].id;
     var oldWord = getWordLocally(id);
 
-    _words[_wordIndex].TargetWord = oldWord.TargetWord;
+    _words[_wordIndex].targetWord = oldWord.targetWord;
     _words[_wordIndex].WrittenByMe = oldWord.WrittenByMe;
-    _words[_wordIndex].Meaning = oldWord.Meaning;
+    _words[_wordIndex].meaning = oldWord.meaning;
 
     updateWord(e);
     showWord(_wordIndex);
@@ -328,7 +328,7 @@ function playWordQueue() {
     var pronounceWholeWord = $('#chkPronounceWholeWord').is(":checked");
     var pronounceWordAndMeaning = $('#chkPronounceWordAndMeaning').is(":checked");
 
-    var wordText = _words[_wordIndex].Id.toString();
+    var wordText = _words[_wordIndex].id.toString();
     if (pronounceWholeWord) {
 
         if (_currentWordsParts.length > 1 ) {
@@ -370,7 +370,7 @@ function playWordQueue() {
         _numberOfAutomaticRepetitionOfCurrentWord++;
         if (_numberOfAutomaticRepetitionOfCurrentWord >= _wordRepeationThresholdForLearning) {
             _numberOfAutomaticRepetitionOfCurrentWord = 0;
-            updateWordStatusToSpecificResult(true, _words[_wordIndex].Id);
+            updateWordStatusToSpecificResult(true, _words[_wordIndex].id);
             goToNextWord();
 
         }
@@ -411,7 +411,7 @@ function meaningBoxKeyDown(e) {
         if (wordExists) {
             $("#btnCreateNewWord").prop('disabled', true);
             $("#btnCreateNewWord").attr("class", "btn btn-danger");
-            setNewWordPanel(_allWords[index].TargetWord, _allWords[index].Meaning, _allWords[index].Id, _allWords[index].WrittenByMe);
+            setNewWordPanel(_allWords[index].targetWord, _allWords[index].meaning, _allWords[index].id, _allWords[index].WrittenByMe);
             return;
         }
 
@@ -439,13 +439,13 @@ function goToNextWord() {
 function takeDecisionForNewInformation(e) {
 
 
-    var item = getWordLocally(_words[_wordIndex].Id);
+    var item = getWordLocally(_words[_wordIndex].id);
 
     _wordReviewEndTime = new Date();
-    var curretWordPreviewText = _words[_wordIndex].TargetWord.toLowerCase().trim();
+    var curretWordPreviewText = _words[_wordIndex].targetWord.toLowerCase().trim();
     curretWordPreviewFoundWord = getWordByTargetWord(curretWordPreviewText);
-    curretWordPreviewFoundWord.TargetWord = curretWordPreviewFoundWord.TargetWord.toLowerCase().trim();
-    curretWordPreviewFoundWord.Meaning = curretWordPreviewFoundWord.Meaning.toLowerCase().trim();
+    curretWordPreviewFoundWord.targetWord = curretWordPreviewFoundWord.targetWord.toLowerCase().trim();
+    curretWordPreviewFoundWord.meaning = curretWordPreviewFoundWord.meaning.toLowerCase().trim();
 
     var wordText = $('#txtWord').val();
     var wordId = $('#lblWordId').val();
@@ -456,13 +456,13 @@ function takeDecisionForNewInformation(e) {
     } else {
         foundWord = getWord(wordId);
     }
-    if (foundWord != null && foundWord != '' && foundWord.Meaning != undefined)
+    if (foundWord != null && foundWord != '' && foundWord.meaning != undefined)
         saveWordLocally(foundWord);
     var meaning = $('#txtMeaning').val().toLowerCase().trim();
-    if ((foundWord != null && foundWord != '' && foundWord.Meaning != undefined && wordId != "0" && this.id != 'btnCreateNewWord' )) {
+    if ((foundWord != null && foundWord != '' && foundWord.meaning != undefined && wordId != "0" && this.id != 'btnCreateNewWord' )) {
 
-        if (curretWordPreviewFoundWord.TargetWord == curretWordPreviewText && curretWordPreviewFoundWord.Meaning == meaning && this.id != 'btnUpdateWord') {
-            updateWordStatusToSpecificResult(true, _words[_wordIndex].Id);
+        if (curretWordPreviewFoundWord.targetWord == curretWordPreviewText && curretWordPreviewFoundWord.meaning == meaning && this.id != 'btnUpdateWord') {
+            updateWordStatusToSpecificResult(true, _words[_wordIndex].id);
             goToNextWord();
         }
         else {
@@ -531,7 +531,7 @@ function closeAddWordPanel() {
 function updateWordStatus(e) {
     e.preventDefault();
     var result = false;
-    var wordId = _words[_wordIndex].Id;
+    var wordId = _words[_wordIndex].id;
     if (this.id === 'btnKnow') {
         result = true;
     }
@@ -624,14 +624,14 @@ function getWordInSpan(wordId, text) {
 
         var meaning = "No meaning found!";
         var part = "";
-        if (foundWord != null && foundWord != '' && foundWord.Meaning != undefined) {
-            meaning = foundWord.Meaning;
+        if (foundWord != null && foundWord != '' && foundWord.meaning != undefined) {
+            meaning = foundWord.meaning;
             part = '<span id="spn';
-            part += foundWord.Id.toString()
+            part += foundWord.id.toString()
             part += '" data-original-title="'
             part += meaning.trim()
             part += '"  data-toggle="tooltip" word-id="'
-            part += foundWord.Id.toString()
+            part += foundWord.id.toString()
             part += '"  written-by-me="'
             if (foundWord.WrittenByMe != null)
                 part += foundWord.WrittenByMe.toString();
@@ -660,8 +660,8 @@ function showWord(i) {
     _wordReviewStartTime = new Date();
     _currentWordsParts.splice(0, _currentWordsParts.length)
     var currentWord = _words[i];
-    var str = currentWord.TargetWord;
-    var newWord = getWordInSpan(currentWord.Id, str);
+    var str = currentWord.targetWord;
+    var newWord = getWordInSpan(currentWord.id, str);
 
     var isAmbiguous = currentWord.IsAmbiguous != null && currentWord.IsAmbiguous;
     var className = 'word' + (isAmbiguous ? "Ambiguous" : "Normal");
@@ -670,7 +670,7 @@ function showWord(i) {
         playVideo(currentWord);
     $('#divCarousel').empty();
 
-    var wordId = ' <h4 >' + currentWord.Id.toString() + '</h4>';
+    var wordId = ' <h4 >' + currentWord.id.toString() + '</h4>';
     _newCarouselhtml = '<div class="item active" id="slide1">' +
 
                             '<div id="divNewWord"  class="currentWord carousel-caption ' + className + '">' +
@@ -683,10 +683,10 @@ function showWord(i) {
                              + '</div>' +
                             '<div >' +
                                 '<p>' +
-                                    '<small>' + currentWord.Meaning + '</small>'
+                                    '<small>' + currentWord.meaning + '</small>'
                              + '</p>';
 
-    setNewWordPanel(currentWord.TargetWord, currentWord.Meaning, currentWord.Id, currentWord.WrittenByMe);
+    setNewWordPanel(currentWord.targetWord, currentWord.meaning, currentWord.id, currentWord.WrittenByMe);
 
     showWordImages(i);
     var token = sessionStorage.getItem(_tokenKey);
@@ -697,7 +697,7 @@ function showWord(i) {
 
 
     $.ajax({
-        url: _webUrl + 'api/Word/LoadRelatedSentences?wordId=' + currentWord.Id,
+        url: _webUrl + 'api/Word/LoadRelatedSentences?wordId=' + currentWord.id,
         type: 'post',
         async: false,
         encoding: "UTF-8",
@@ -707,9 +707,9 @@ function showWord(i) {
             var index = 0;
             _newCarouselhtml = _newCarouselhtml + '<p>';
             for (index = 0; index < sentences.length; index++) {
-                var spannedSentence = getWordInSpan(sentences[index].Id, sentences[index].TargetWord);
+                var spannedSentence = getWordInSpan(sentences[index].id, sentences[index].targetWord);
                 _newCarouselhtml = _newCarouselhtml + spannedSentence + " = <span> <small>"
-                    + sentences[index].Meaning + " _  </small></span>";
+                    + sentences[index].meaning + " _  </small></span>";
             }
             _newCarouselhtml = _newCarouselhtml + '</p>'
         },
@@ -726,7 +726,7 @@ function showWord(i) {
     initializeTooltips();
 
     emptyArray(_currentWordsParts);
-    pushPartsIntoCurrentWordPartsQueue(currentWord.TargetWord);
+    pushPartsIntoCurrentWordPartsQueue(currentWord.targetWord);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -747,7 +747,7 @@ function setNewWordPanel(targetWord, meaning, id, writtenByMe) {
 
 function showImagesForWord(currentWord) {
 
-    var targetDirectory = getWordDirectory(currentWord.TargetWord.trim());
+    var targetDirectory = getWordDirectory(currentWord.targetWord.trim());
 
     Math.random()
     $('#images-frame').empty();
@@ -760,9 +760,9 @@ function showImagesForWord(currentWord) {
 
 
             $(imageId).attr("src", theSrc);
-            $(imageId).attr("alt", currentWord.TargetWord.trim());
+            $(imageId).attr("alt", currentWord.targetWord.trim());
             $(imageId).attr("data-toggle", "tooltip");
-            $(imageId).attr("data-original-title", currentWord.TargetWord.trim());
+            $(imageId).attr("data-original-title", currentWord.targetWord.trim());
 
         }
         else {
@@ -1077,11 +1077,11 @@ function setAutoComplete() {
         select: function (event, ui) {
             _allWords.map(function (word) {
 
-                if (word.TargetWord.toUpperCase() === ui.item.value.toUpperCase()) {
+                if (word.targetWord.toUpperCase() === ui.item.value.toUpperCase()) {
                     {
-                        setNewWordPanel(word.TargetWord, word.Meaning, word.Id, word.WrittenByMe);
+                        setNewWordPanel(word.targetWord, word.meaning, word.id, word.WrittenByMe);
 
-                        return word.Meaning;
+                        return word.meaning;
                     }
                 }
             })
@@ -1089,7 +1089,7 @@ function setAutoComplete() {
 
         },
         source: function (request, response) {
-            _targetWordArr = _allWords.map(function (word) { return word.TargetWord; })
+            _targetWordArr = _allWords.map(function (word) { return word.targetWord; })
 
             var matches = $.map(_targetWordArr, function (tag) {
                 if (tag.toUpperCase().indexOf(request.term.toUpperCase()) >= 0) {
@@ -1174,7 +1174,7 @@ function setAmbiguous(e) {
 
     e.preventDefault();
 
-    var wordId = _words[_wordIndex].Id;
+    var wordId = _words[_wordIndex].id;
 
 
     $.ajax({
@@ -1243,10 +1243,10 @@ function getWordLocally(id) {
 
     var oldWord = { "Id": '', "TargetWord": '', "Meaning": '', "WrittenByMe": '' }
 
-    oldWord.Id = id;
+    oldWord.id = id;
     var idStr = id.toString();
-    oldWord.Meaning = sessionStorage.getItem(idStr + "Meaning");
-    oldWord.TargetWord = sessionStorage.getItem(idStr + "Word");
+    oldWord.meaning = sessionStorage.getItem(idStr + "Meaning");
+    oldWord.targetWord = sessionStorage.getItem(idStr + "Word");
 
     var writtenByMe = sessionStorage.getItem(idStr + "WrittenByMe");
     if (writtenByMe == "null")
@@ -1260,9 +1260,9 @@ function getWordLocally(id) {
 
 function saveWordLocally(word) {
 
-    var id = word.Id.toString();
-    sessionStorage.setItem(id + "Meaning", word.Meaning);
-    sessionStorage.setItem(id + "Word", word.TargetWord);
+    var id = word.id.toString();
+    sessionStorage.setItem(id + "Meaning", word.meaning);
+    sessionStorage.setItem(id + "Word", word.targetWord);
     sessionStorage.setItem(id + "WrittenByMe", word.WrittenByMe);
 
 }
@@ -1302,9 +1302,9 @@ function updateWord(e) {
             addRecentWord(word, meaning)
             updateWordStatusToSpecificResult(true, wordId);
             showResult(result);
-            if (wordId == _words[_wordIndex].Id) {
-                _words[_wordIndex].TargetWord = word;
-                _words[_wordIndex].Meaning = meaning;
+            if (wordId == _words[_wordIndex].id) {
+                _words[_wordIndex].targetWord = word;
+                _words[_wordIndex].meaning = meaning;
                 _words[_wordIndex].WrittenByMe = writtenByMe;
             }
             

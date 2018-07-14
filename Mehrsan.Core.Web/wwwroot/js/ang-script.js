@@ -7,16 +7,177 @@ var myApp = angular.module("myModule", [])
       function ($scope, $interval, $http) {
           $scope.chkPronounceWholeWordChecked = true;
           var stop;
+          var _wordIndex = 0;
+          var _words = [];
+          var _newCarouselhtml = '';
+          var _webUrl = 'http://localhost:56171/';//window.location.href;
+          var _numberOfImages = 20;
+          var _allWords = '';
+          var _targetWordArr = '';
+          var _recentWords = new Array();
+          var _currentWordsParts = new Array();
+          //var _recentWordsMeanings = new Array();
+          var _wordIndexToPlay = 0;
+          var _wordRepeationThresholdForLearning = 3;
+          var _numberOfAutomaticRepetitionOfCurrentWord = 0;
+          var _playWordQueueInterval = 3000;
+          var _wordReviewStartTime = new Date();
+          var _wordReviewEndTime = new Date();
+          var _tokenKey = 'accessToken';
+          var _lock = 1;
+          var _intervalHandle = 0;
+          var _xAxisData = new Array();
+          var _yAxisData = new Array();
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+          function callController() {
+
+              if (_words == null || _words.length == 0) {
+                  loadWords();
+              }
+
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+          function initializeTooltips() {
+              $('[data-toggle="tooltip"]').tooltip();
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+          function initializeSliders() {
+
+              $("#divMain > span").each(function () {
+                  // read initial values from markup and remove that
+                  var value = parseInt($(this).text(), 10);
+                  $(this).empty().slider({
+                      value: value,
+                      range: "min",
+                      animate: true,
+                      orientation: "horizontal"
+                  });
+              });
+
+
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+          function initialize() {
+
+              if (_lock == 1) {
+                  _lock = 0;
+                  var sec = _playWordQueueInterval / 1000;
+                  $scope.txtWordRepeationIntervalContent = sec.toString();
+
+                  $scope.txtNumberOfAutomaticRepetitionsContent = _numberOfAutomaticRepetitionOfCurrentWord.toString();
+                  $scope.txtWordRepeationThresholdForLearningContent = _wordRepeationThresholdForLearning.toString();
+                  $('#btnSignup').click(signup);
+                  $('.dropdown-toggle').dropdown();
+                  var resource = null;
+                  $('li').on('click', setWordReviewStrategy);
+                  'use strict';
+                  //clearInterval();
+
+                  callController();
+
+                  $("#txtMeaning").on("input propertychange paste", meaningBoxKeyDown);
+                  $("#txtWord").on("input propertychange paste", meaningBoxKeyDown);
+                  $("#txtMeaning").on("keypress kyup keydown", meaningBoxKeyDown);
+                  $("#txtWord").on("keypress kyup keydown", meaningBoxKeyDown);
+
+                  $("#btnUndo").click(undo);
+
+                  $('#importFile').slideUp();
+                  //$("#vidMain").on("play", videoPlayingHandler);
+
+                  $('#successAlert').slideDown();
+
+                  $('#btnAddWord').click(showAddWordDiv);
+
+                  $('#btnImportFile').click(importFile);
+
+                  $('#btnCreateGraph').click(createGraph);
+
+                  //$('#btnBatchImport').click(batchImport);
+
+                  $('#btnCreateNewWord').click(takeDecisionForNewInformation);
+                  $('#btnUpdateWord').click(takeDecisionForNewInformation);
+                  $('#btnDeleteWord').click(deleteWord);
+                  $('#btnSetAmbiguous').click(setAmbiguous);
+                  $('#btnLogin').click(login);
+                  $('#btnChangePassword').click(changePassword);
+
+
+                  $('#ancLeftArrowCarousel').click(loadOrderedWord);
+                  $('#ancRightArrowCarousel').click(loadOrderedWord);
+
+                  $('#btnKnow').click(updateWordStatus);
+                  $('#btnDontKnow').click(updateWordStatus);
+
+                  $('#btnCloseAddWord').click(closeAddWordPanel);
+
+                  $('#btnLoadOrdNetData').click(loadOrdNetData);
+
+                  $('#images-frame').empty();
+
+
+                  initializeSliders();
+                  initializeTooltips();
+              }
+
+          }
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+          initialize();
+
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            
+          function loadWords() {
+
+              var token = sessionStorage.getItem(_tokenKey);
+              var headers = {};
+              if (token) {
+                  headers.Authorization = 'Bearer ' + token;
+              }
+
+              $http({
+                  method: 'GET',
+                  url: _webUrl + 'Word/GetWordsForReview',
+                  async: false,
+                  //scriptCharset: "utf-8",
+                  contentType: "application/json",
+                  headers: { 'Authorization': 'Bearer ' + token },
+                  //encoding: "UTF-8",
+
+
+              }).then(function successCallback(response) {
+                  _words = response.data;
+                  _wordIndex = 0;
+                  showWord(_wordIndex);
+
+                  $scope.playWordQueue = function () {
+                      // Don't start a new fight if we are already fighting
+                      if (angular.isDefined(stop)) return;
+
+                      func = $interval(function () {
+                          playWord();
+                      }, parseInt(_wordRepeationThresholdForLearning) * 1000);
+                  };
+
+              }, function errorCallback(err) {
+                  alert('loadWords:' + err.responseText);
+              });
+
+
+          }
+
           
 
-          $scope.playWordQueue = function () {
-              // Don't start a new fight if we are already fighting
-              if (angular.isDefined(stop)) return;
-
-              func = $interval(function () {
-                  playWord();
-              }, parseInt(_wordRepeationThresholdForLearning) * 1000);
-          };
 
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -28,7 +189,8 @@ var myApp = angular.module("myModule", [])
               var pronounceWholeWord = $scope.chkPronounceWholeWordChecked;
               var pronounceWordAndMeaning = $scope.chkPronounceWordAndMeaningChecked;
 
-              var wordText = _words[_wordIndex].Id.toString();
+
+              var wordText = _words[_wordIndex].id.toString();
               if (pronounceWholeWord) {
 
                   if (_currentWordsParts.length > 1) {
@@ -70,7 +232,7 @@ var myApp = angular.module("myModule", [])
                   _numberOfAutomaticRepetitionOfCurrentWord++;
                   if (_numberOfAutomaticRepetitionOfCurrentWord >= _wordRepeationThresholdForLearning) {
                       _numberOfAutomaticRepetitionOfCurrentWord = 0;
-                      updateWordStatusToSpecificResult(true, _words[_wordIndex].Id);
+                      updateWordStatusToSpecificResult(true, _words[_wordIndex].id);
                       goToNextWord();
 
                   }
@@ -86,30 +248,7 @@ var myApp = angular.module("myModule", [])
 
           }
 
-          var _wordIndex = 0;
-          var _words = [];
-          var _newCarouselhtml = '';
-          var _webUrl = '/';//window.location.href;
-          var _numberOfImages = 20;
-          var _allWords = '';
-          var _targetWordArr = '';
-          var _recentWords = new Array();
-          var _currentWordsParts = new Array();
-          //var _recentWordsMeanings = new Array();
-          var _wordIndexToPlay = 0;
-          var _wordRepeationThresholdForLearning = 3;
-          var _numberOfAutomaticRepetitionOfCurrentWord = 0;
-          var _playWordQueueInterval = 3000;
-          var _wordReviewStartTime = new Date();
-          var _wordReviewEndTime = new Date();
-          var _tokenKey = 'accessToken';
-          var _lock = 1;
-          var _intervalHandle = 0;
-          var _xAxisData = new Array();
-          var _yAxisData = new Array();
-
-          initialize();
-
+          
           //$(function () {
           //    initialize();
           //    //loadResource();
@@ -121,6 +260,8 @@ var myApp = angular.module("myModule", [])
               console.log($scope.txtWordRepeationIntervalContent); //works
               console.log('-----------------------------------------------------------------------'); //works
           }
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
           function initialize() {
 
@@ -187,17 +328,7 @@ var myApp = angular.module("myModule", [])
 
           }
 
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-          function callController() {
-
-              if (window.location.href.toString().indexOf("index.html") >= 0) {
-                  loadWords();
-                  addImageBoxes();
-                  showChart();
-              }
-
-          }
 
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -218,12 +349,12 @@ var myApp = angular.module("myModule", [])
           function undo(e) {
               e.preventDefault();
 
-              var id = _words[_wordIndex].Id;
+              var id = _words[_wordIndex].id;
               var oldWord = getWordLocally(id);
 
-              _words[_wordIndex].TargetWord = oldWord.TargetWord;
-              _words[_wordIndex].WrittenByMe = oldWord.WrittenByMe;
-              _words[_wordIndex].Meaning = oldWord.Meaning;
+              _words[_wordIndex].targetWord = oldWord.targetWord;
+              _words[_wordIndex].writtenByMe = oldWord.writtenByMe;
+              _words[_wordIndex].meaning = oldWord.meaning;
 
               updateWord(e);
               showWord(_wordIndex);
@@ -246,7 +377,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'POST',
-                  url: _webUrl + 'api/Account/ChangePassword',
+                  url: _webUrl + 'Account/ChangePassword',
                   data: changePassData,
                   headers: { 'Authorization': 'Bearer ' + token },
 
@@ -269,7 +400,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'POST',
-                  url: _webUrl + 'api/Account/Register',
+                  url: _webUrl + 'Account/Register',
                   data: { "Email": email, "Password": password, "ConfirmPassword": password },
                   headers: { 'Authorization': 'Bearer ' + token },
 
@@ -359,23 +490,7 @@ var myApp = angular.module("myModule", [])
                   alert("unsuccessful login");
           }
          
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-          function initializeSliders() {
-
-              $("#divMain > span").each(function () {
-                  // read initial values from markup and remove that
-                  var value = parseInt($(this).text(), 10);
-                  $(this).empty().slider({
-                      value: value,
-                      range: "min",
-                      animate: true,
-                      orientation: "horizontal"
-                  });
-              });
-
-
-          }
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
           function setWordReviewStrategy() {
@@ -423,7 +538,7 @@ var myApp = angular.module("myModule", [])
                   if (wordExists) {
                       $("#btnCreateNewWord").prop('disabled', true);
                       $("#btnCreateNewWord").attr("class", "btn btn-danger");
-                      setNewWordPanel(_allWords[index].TargetWord, _allWords[index].Meaning, _allWords[index].Id, _allWords[index].WrittenByMe);
+                      setNewWordPanel(_allWords[index].targetWord, _allWords[index].meaning, _allWords[index].id, _allWords[index].writtenByMe);
                       return;
                   }
 
@@ -451,13 +566,13 @@ var myApp = angular.module("myModule", [])
           function takeDecisionForNewInformation(e) {
 
 
-              var item = getWordLocally(_words[_wordIndex].Id);
+              var item = getWordLocally(_words[_wordIndex].id);
 
               _wordReviewEndTime = new Date();
-              var curretWordPreviewText = _words[_wordIndex].TargetWord.toLowerCase().trim();
+              var curretWordPreviewText = _words[_wordIndex].targetWord.toLowerCase().trim();
               curretWordPreviewFoundWord = getWordByTargetWord(curretWordPreviewText);
-              curretWordPreviewFoundWord.TargetWord = curretWordPreviewFoundWord.TargetWord.toLowerCase().trim();
-              curretWordPreviewFoundWord.Meaning = curretWordPreviewFoundWord.Meaning.toLowerCase().trim();
+              curretWordPreviewFoundWord.targetWord = curretWordPreviewFoundWord.targetWord.toLowerCase().trim();
+              curretWordPreviewFoundWord.meaning = curretWordPreviewFoundWord.meaning.toLowerCase().trim();
 
               var wordText = $('#txtWord').val();
               var wordId = $('#lblWordId').val();
@@ -468,13 +583,13 @@ var myApp = angular.module("myModule", [])
               } else {
                   foundWord = getWord(wordId);
               }
-              if (foundWord != null && foundWord != '' && foundWord.Meaning != undefined)
+              if (foundWord != null && foundWord != '' && foundWord.meaning != undefined)
                   saveWordLocally(foundWord);
               var meaning = $('#txtMeaning').val().toLowerCase().trim();
-              if ((foundWord != null && foundWord != '' && foundWord.Meaning != undefined && wordId != "0" && this.id != 'btnCreateNewWord')) {
+              if ((foundWord != null && foundWord != '' && foundWord.meaning != undefined && wordId != "0" && this.id != 'btnCreateNewWord')) {
 
-                  if (curretWordPreviewFoundWord.TargetWord == curretWordPreviewText && curretWordPreviewFoundWord.Meaning == meaning && this.id != 'btnUpdateWord') {
-                      updateWordStatusToSpecificResult(true, _words[_wordIndex].Id);
+                  if (curretWordPreviewFoundWord.targetWord == curretWordPreviewText && curretWordPreviewFoundWord.meaning == meaning && this.id != 'btnUpdateWord') {
+                      updateWordStatusToSpecificResult(true, _words[_wordIndex].id);
                       goToNextWord();
                   }
                   else {
@@ -496,11 +611,7 @@ var myApp = angular.module("myModule", [])
               setNewWordPanel('', '', 0, false);
           }
 
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-          function initializeTooltips() {
-              $('[data-toggle="tooltip"]').tooltip();
-          }
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -514,17 +625,18 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'GET',
+              $.ajax({
                   url: '/api/Word/GetWordsInfoFromOrdNet',
-                  headers: { 'Authorization': 'Bearer ' + token },
-
-              }).then(function successCallback(response) {
-                  resource = response.data;
-                  alert(response.data);
-
-              }, function errorCallback(err) {
-                  alert('Load resource ' + err);
+                  type: 'GET',
+                  async: true,
+                  headers: headers,
+                  success: function (html) {
+                      resource = html;
+                      alert(html);
+                  },
+                  error: function (html) {
+                      alert('Load resource ' + html);
+                  }
               });
 
 
@@ -544,7 +656,7 @@ var myApp = angular.module("myModule", [])
           function updateWordStatus(e) {
               e.preventDefault();
               var result = false;
-              var wordId = _words[_wordIndex].Id;
+              var wordId = _words[_wordIndex].id;
               if (this.id === 'btnKnow') {
                   result = true;
               }
@@ -567,7 +679,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'GET',
-                  url: _webUrl + 'api/Word/UpdateWordStatus?knowsWord=' + result + '&wordId=' + wordId + '&reviewTime=' + reviewTime,
+                  url: _webUrl + 'Word/UpdateWordStatus?knowsWord=' + result + '&wordId=' + wordId + '&reviewTime=' + reviewTime,
                   headers: { 'Authorization': 'Bearer ' + token },
 
               }).then(function successCallback(response) {
@@ -636,17 +748,17 @@ var myApp = angular.module("myModule", [])
 
                   var meaning = "No meaning found!";
                   var part = "";
-                  if (foundWord != null && foundWord != '' && foundWord.Meaning != undefined) {
-                      meaning = foundWord.Meaning;
+                  if (foundWord != null && foundWord != '' && foundWord.meaning != undefined) {
+                      meaning = foundWord.meaning;
                       part = '<span id="spn';
-                      part += foundWord.Id.toString()
+                      part += foundWord.id.toString()
                       part += '" data-original-title="'
                       part += meaning.trim()
                       part += '"  data-toggle="tooltip" word-id="'
-                      part += foundWord.Id.toString()
+                      part += foundWord.id.toString()
                       part += '"  written-by-me="'
-                      if (foundWord.WrittenByMe != null)
-                          part += foundWord.WrittenByMe.toString();
+                      if (foundWord.writtenByMe != null)
+                          part += foundWord.writtenByMe.toString();
                       else
                           part += 'false';
                       part += '" title="' + meaning.trim() + '" '
@@ -672,8 +784,8 @@ var myApp = angular.module("myModule", [])
               _wordReviewStartTime = new Date();
               _currentWordsParts.splice(0, _currentWordsParts.length)
               var currentWord = _words[i];
-              var str = currentWord.TargetWord;
-              var newWord = getWordInSpan( currentWord.Id, str );
+              var str = currentWord.targetWord;
+              var newWord = getWordInSpan( currentWord.id, str );
 
               var isAmbiguous = currentWord.IsAmbiguous != null && currentWord.IsAmbiguous;
               var className = 'word' + (isAmbiguous ? "Ambiguous" : "Normal");
@@ -682,7 +794,7 @@ var myApp = angular.module("myModule", [])
                   playVideo(currentWord);
               $('#divCarousel').empty();
 
-              var wordId = ' <h4 >' + currentWord.Id.toString() + '</h4>';
+              var wordId = ' <h4 >' + currentWord.id.toString() + '</h4>';
               _newCarouselhtml = '<div class="item active" id="slide1">' +
                   //'<video id="vidMain" controls autoplay loop muted style="opacity:0.8;  ">' +
                   //                  '<source id="vidMainSrc" src="/video/polina.webm" type="video/webm">' +
@@ -697,10 +809,10 @@ var myApp = angular.module("myModule", [])
                                        + '</div>' +
                                       '<div >' +
                                           '<p>' +
-                                              '<small>' + currentWord.Meaning + '</small>'
+                                              '<small>' + currentWord.meaning + '</small>'
                                        + '</p>';
 
-              setNewWordPanel(currentWord.TargetWord, currentWord.Meaning, currentWord.Id, currentWord.WrittenByMe);
+              setNewWordPanel(currentWord.targetWord, currentWord.meaning, currentWord.id, currentWord.writtenByMe);
 
               showWordImages(i);
               var token = sessionStorage.getItem(_tokenKey);
@@ -711,7 +823,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'POST',
-                  url: _webUrl + 'api/Word/LoadRelatedSentences?wordId=' + currentWord.Id,
+                  url: _webUrl + 'Word/LoadRelatedSentences?wordId=' + currentWord.id,
                   headers: { 'Authorization': 'Bearer ' + token },
 
 
@@ -721,9 +833,9 @@ var myApp = angular.module("myModule", [])
                   var index = 0;
                   _newCarouselhtml = _newCarouselhtml + '<p>';
                   for (index = 0; index < sentences.length; index++) {
-                      var spannedSentence = getWordInSpan(sentences[index].Id, sentences[index].TargetWord);
+                      var spannedSentence = getWordInSpan(sentences[index].id, sentences[index].targetWord);
                       _newCarouselhtml = _newCarouselhtml + spannedSentence + " = <span> <small>"
-                          + sentences[index].Meaning + " _  </small></span>";
+                          + sentences[index].meaning + " _  </small></span>";
                   }
                   _newCarouselhtml = _newCarouselhtml + '</p>'
 
@@ -741,7 +853,7 @@ var myApp = angular.module("myModule", [])
               initializeTooltips();
 
               emptyArray(_currentWordsParts);
-              pushPartsIntoCurrentWordPartsQueue(currentWord.TargetWord);
+              pushPartsIntoCurrentWordPartsQueue(currentWord.targetWord);
           }
 
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -766,7 +878,7 @@ var myApp = angular.module("myModule", [])
 
           function showImagesForWord(currentWord) {
               return;//this feature is not supported currently
-              var targetDirectory = getWordDirectory(currentWord.TargetWord.trim());
+              var targetDirectory = getWordDirectory(currentWord.targetWord.trim());
 
               Math.random()
               $('#images-frame').empty();
@@ -779,9 +891,9 @@ var myApp = angular.module("myModule", [])
 
 
                       $(imageId).attr("src", theSrc);
-                      $(imageId).attr("alt", currentWord.TargetWord.trim());
+                      $(imageId).attr("alt", currentWord.targetWord.trim());
                       $(imageId).attr("data-toggle", "tooltip");
-                      $(imageId).attr("data-original-title", currentWord.TargetWord.trim());
+                      $(imageId).attr("data-original-title", currentWord.targetWord.trim());
 
                   }
                   else {
@@ -874,7 +986,7 @@ var myApp = angular.module("myModule", [])
 
               var wordText = '';
               $.ajax({
-                  url: _webUrl + 'api/Word/GetWord?id=' + wordId + '&targetWord=' + wordText,
+                  url: _webUrl + 'Word/GetWord?id=' + wordId + '&targetWord=' + wordText,
                   type: 'get',
                   async: false,
                   headers: headers,
@@ -909,7 +1021,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'POST',
-                  url: _webUrl + 'api/Word/GetReviewHistory',
+                  url: _webUrl + 'Word/GetReviewHistory',
                   headers: { 'Authorization': 'Bearer ' + token },
 
 
@@ -944,7 +1056,7 @@ var myApp = angular.module("myModule", [])
               }
 
               $.ajax({
-                  url: _webUrl + 'api/Word/GetWordByTargetWord',
+                  url: _webUrl + 'Word/GetWordByTargetWord',
                   type: 'post',
                   async: false,
                   headers: headers,
@@ -1069,7 +1181,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'GET',
-                  url: _webUrl + 'api/Word/GetAllWords?containText=' + containText,
+                  url: _webUrl + 'Word/GetAllWords?containText=' + containText,
                   headers: { 'Authorization': 'Bearer ' + token },
 
               }).then(function successCallback(response) {
@@ -1095,11 +1207,11 @@ var myApp = angular.module("myModule", [])
                   select: function (event, ui) {
                       _allWords.map(function (word) {
 
-                          if (word.TargetWord.toUpperCase() === ui.item.value.toUpperCase()) {
+                          if (word.targetWord.toUpperCase() === ui.item.value.toUpperCase()) {
                               {
-                                  setNewWordPanel(word.TargetWord, word.Meaning, word.Id, word.WrittenByMe);
+                                  setNewWordPanel(word.targetWord, word.meaning, word.id, word.writtenByMe);
 
-                                  return word.Meaning;
+                                  return word.meaning;
                               }
                           }
                       })
@@ -1107,7 +1219,7 @@ var myApp = angular.module("myModule", [])
 
                   },
                   source: function (request, response) {
-                      _targetWordArr = _allWords.map(function (word) { return word.TargetWord; })
+                      _targetWordArr = _allWords.map(function (word) { return word.targetWord; })
 
                       var matches = $.map(_targetWordArr, function (tag) {
                           if (tag.toUpperCase().indexOf(request.term.toUpperCase()) >= 0) {
@@ -1133,45 +1245,13 @@ var myApp = angular.module("myModule", [])
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-          function loadWords() {
-
-              var token = sessionStorage.getItem(_tokenKey);
-              var headers = {};
-              if (token) {
-                  headers.Authorization = 'Bearer ' + token;
-              }
-
-              $http({
-                  method: 'GET',
-                  url: _webUrl + 'api/Word/GetWordsForReview',
-                  //async: false,
-                  //scriptCharset: "utf-8",
-                  //contentType: "application/json",
-                  headers: { 'Authorization': 'Bearer ' + token },
-                  //encoding: "UTF-8",
-
-
-              }).then(function successCallback(response) {
-                  _words = response.data;
-                  _wordIndex = 0;
-                  showWord(_wordIndex);
-                  
-              }, function errorCallback(err) {
-                  alert('loadWords:' + err.responseText);
-              });
-
-
-          }
-          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
           function createGraph(e) {
 
               e.preventDefault();
 
               $http({
                   method: 'GET',
-                  url: _webUrl + 'api/Word/CreateGraph',
+                  url: _webUrl + 'Word/CreateGraph',
                   headers: { 'Authorization': 'Bearer ' + token },
 
               }).then(function successCallback(response) {
@@ -1189,11 +1269,11 @@ var myApp = angular.module("myModule", [])
 
               e.preventDefault();
 
-              var wordId = _words[_wordIndex].Id;
+              var wordId = _words[_wordIndex].id;
 
               $http({
                   method: 'GET',
-                  url: _webUrl + 'api/Word/SetWordAmbiguous?wordId=' + wordId,
+                  url: _webUrl + 'Word/SetWordAmbiguous?wordId=' + wordId,
                   headers: { 'Authorization': 'Bearer ' + token },
 
               }).then(function successCallback(response) {
@@ -1227,7 +1307,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'GET',
-                  url: _webUrl + 'api/Word/DeleteWord?id=' + wordId,
+                  url: _webUrl + 'Word/DeleteWord?id=' + wordId,
                   headers: { 'Authorization': 'Bearer ' + token },
 
               }).then(function successCallback(response) {
@@ -1252,16 +1332,16 @@ var myApp = angular.module("myModule", [])
 
               var oldWord = { "Id": '', "TargetWord": '', "Meaning": '', "WrittenByMe": '' }
 
-              oldWord.Id = id;
+              oldWord.id = id;
               var idStr = id.toString();
-              oldWord.Meaning = sessionStorage.getItem(idStr + "Meaning");
-              oldWord.TargetWord = sessionStorage.getItem(idStr + "Word");
+              oldWord.meaning = sessionStorage.getItem(idStr + "Meaning");
+              oldWord.targetWord = sessionStorage.getItem(idStr + "Word");
 
               var writtenByMe = sessionStorage.getItem(idStr + "WrittenByMe");
               if (writtenByMe == "null")
-                  oldWord.WrittenByMe = null;
+                  oldWord.writtenByMe = null;
               else
-                  oldWord.WrittenByMe = Boolean(writtenByMe);
+                  oldWord.writtenByMe = Boolean(writtenByMe);
               return oldWord;
           }
 
@@ -1269,10 +1349,10 @@ var myApp = angular.module("myModule", [])
 
           function saveWordLocally(word) {
 
-              var id = word.Id.toString();
-              sessionStorage.setItem(id + "Meaning", word.Meaning);
-              sessionStorage.setItem(id + "Word", word.TargetWord);
-              sessionStorage.setItem(id + "WrittenByMe", word.WrittenByMe);
+              var id = word.id.toString();
+              sessionStorage.setItem(id + "Meaning", word.meaning);
+              sessionStorage.setItem(id + "Word", word.targetWord);
+              sessionStorage.setItem(id + "WrittenByMe", word.writtenByMe);
 
           }
 
@@ -1297,7 +1377,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'POST',
-                  url: _webUrl + 'api/Word/UpdateWord',
+                  url: _webUrl + 'Word/UpdateWord',
                   data: {"Id": wordId, "TargetWord": word, "Meaning": meaning, "WrittenByMe": writtenByMe},
                   //scriptCharset: "utf-8",
                   //contentType: "application/json",
@@ -1309,10 +1389,10 @@ var myApp = angular.module("myModule", [])
                   addRecentWord(word, meaning)
                   updateWordStatusToSpecificResult(true, wordId);
                   showResult(response.data);
-                  if (wordId == _words[_wordIndex].Id) {
-                      _words[_wordIndex].TargetWord = word;
-                      _words[_wordIndex].Meaning = meaning;
-                      _words[_wordIndex].WrittenByMe = writtenByMe;
+                  if (wordId == _words[_wordIndex].id) {
+                      _words[_wordIndex].targetWord = word;
+                      _words[_wordIndex].meaning = meaning;
+                      _words[_wordIndex].writtenByMe = writtenByMe;
                   }
 
               }, function errorCallback(err) {
@@ -1407,7 +1487,7 @@ var myApp = angular.module("myModule", [])
 
               $http({
                   method: 'POST',
-                  url: _webUrl + 'api/Word/PostWord',
+                  url: _webUrl + 'Word/PostWord',
                   data: { "Id": "1", "TargetWord": targetWord, "Meaning": meaning, "WrittenByMe": writtenByMe },
                   headers: { 'Authorization': 'Bearer ' + token },
 
