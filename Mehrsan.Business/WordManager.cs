@@ -510,6 +510,7 @@ namespace Mehrsan.Business
             if (searchedWord == null || searchedWord.Count == 0)
             {
 
+                word.Id = 0;
                 word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
                 word.NextReviewDate = DateTime.Now.AddDays(1);
                 word.TargetLanguageId = (long)Languages.Danish;
@@ -604,6 +605,7 @@ namespace Mehrsan.Business
         {
 
             return DAL.DeleteWord(id);
+
         }
 
         public static List<Word> GetWords(long id, string targetWord)
@@ -757,7 +759,7 @@ namespace Mehrsan.Business
             if (string.IsNullOrEmpty(inpWord.TargetWord))
                 return false;
 
-            
+
             Word word = null;
             if (id > 0)
                 word = GetWords(id, string.Empty)[0];

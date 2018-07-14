@@ -5,8 +5,15 @@ namespace Mehrsan.Dal.DB
 {
     public partial class WordEntities : DbContext
     {
+
+
+        public virtual DbSet<History> Histories { get; set; }
+        public virtual DbSet<Word   > Words { get; set; }
+        public static DbContextOptions<WordEntities> Options { get; private set; }
+
         public WordEntities(DbContextOptions<WordEntities> options) : base(options)
         {
+            Options = options;
         }
 
         
@@ -21,9 +28,6 @@ namespace Mehrsan.Dal.DB
             
         }
 
-        
-        public virtual DbSet<History> Histories { get; set; }
-        public virtual DbSet<Word> Words { get; set; }
         
     }
 }

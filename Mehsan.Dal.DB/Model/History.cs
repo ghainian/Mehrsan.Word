@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Mehrsan.Dal.DB
 {
+    [Table("History")]
     public partial class History
     {
         public long Id { get; set; }

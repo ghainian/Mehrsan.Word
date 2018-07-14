@@ -10,7 +10,7 @@ namespace Mehrsan.Dal.DB
 {
     public class DAL
     {
-        public static WordEntities Instance { get; set; }
+        public static WordEntities Instance { get { return new WordEntities(WordEntities.Options); } }
 
 
         //public static WordEntities Entity { get; set; } = new WordEntities();
@@ -31,15 +31,8 @@ namespace Mehrsan.Dal.DB
                 {
                     entity.Histories.Remove(history);
                 }
-
-                //var relatedGraphRecords = (from g in entity.Graphs where g.SrcWordId == id || g.DstWordId == id select g).ToList();
-                //foreach (Graph graph in relatedGraphRecords)
-                //{
-                //    entity.Graphs.Remove(graph);
-                //}
-
-
-
+                
+                
                 entity.Words.Remove(word);
 
                 entity.SaveChanges();

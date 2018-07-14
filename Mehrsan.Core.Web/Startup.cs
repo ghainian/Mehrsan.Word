@@ -43,6 +43,8 @@ namespace Mehrsan.Core.Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Common.Common.Configuration.GetSection("Logging"));
+            loggerFactory.AddFile("Logs/myapp-{Date}.txt");
+
             loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
@@ -50,11 +52,9 @@ namespace Mehrsan.Core.Web
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+            
 
+            app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

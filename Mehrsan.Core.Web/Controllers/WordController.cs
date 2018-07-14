@@ -9,16 +9,18 @@ using System.Net.Http;
 using System.IO;
 using Mehrsan.Dal.DB;
 using Mehrsan.Business;
+using Microsoft.Extensions.Logging;
 
 namespace Mehrsan.Core.Web.Controllers
 {
     //[System.Web.Http.Authorize]
+    
     public class WordController : Controller
     {
-        
-        public WordController(WordEntities context)
+        private readonly ILogger<HomeController> _logger;
+        public WordController(WordEntities context, ILogger<HomeController> logger)
         {
-            DAL.Instance = context;
+            _logger = logger;
         }
 
         private string StorageRoot
@@ -116,24 +118,32 @@ namespace Mehrsan.Core.Web.Controllers
         //[ResponseType(typeof(Mehrsan.Dal.DB.Word))]
         public bool PostWord(Mehrsan.Dal.DB.Word word)
         {
+            try
+            {
 
-            if (!ModelState.IsValid)
-            {
-                return false;
-            }
-            //AccountController ac = new AccountController();
-            //UserInfoViewModel userInfo = ac.GetUserInfo();
-            UserInfoViewModel userInfo = new UserInfoViewModel();
-            word.UserId = userInfo.UserId;
-            if (WordManager.PostWord(word))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                if (!ModelState.IsValid)
+                {
+                    return false;
+                }
+                //AccountController ac = new AccountController();
+                //UserInfoViewModel userInfo = ac.GetUserInfo();
+                UserInfoViewModel userInfo = new UserInfoViewModel();
+                word.UserId = userInfo.UserId;
+                if (WordManager.PostWord(word))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
+            }
+            catch (Exception e)
+            {
+
+                _logger.LogCritical(e.Message + e.StackTrace , e);
+            }
             return false;
         }
 
@@ -188,10 +198,18 @@ namespace Mehrsan.Core.Web.Controllers
         [AcceptVerbs("GET", "POST")]
         public IActionResult DeleteWord(long id)
         {
-            if (WordManager.DeleteWord(id))
+            try
             {
-                return Ok();
 
+                if (WordManager.DeleteWord(id))
+                {
+                    return Ok();
+                }
+            }
+            catch (Exception e)
+            {
+
+                _logger.LogCritical(e.Message + e.StackTrace, e);
             }
 
             return NotFound();

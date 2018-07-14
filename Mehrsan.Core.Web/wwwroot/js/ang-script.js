@@ -793,7 +793,8 @@ var myApp = angular.module("myModule", [])
               if (currentWord.StartTime != null && currentWord.StartTime != undefined)
                   playVideo(currentWord);
               $('#divCarousel').empty();
-
+              wordId = currentWord.id;
+              $('#lblWordId').val(wordId.toString())
               var wordId = ' <h4 >' + currentWord.id.toString() + '</h4>';
               _newCarouselhtml = '<div class="item active" id="slide1">' +
                   //'<video id="vidMain" controls autoplay loop muted style="opacity:0.8;  ">' +
@@ -1485,21 +1486,30 @@ var myApp = angular.module("myModule", [])
                   headers.Authorization = 'Bearer ' + token;
               }
 
-              $http({
-                  method: 'POST',
+              $.ajax({
                   url: _webUrl + 'Word/PostWord',
-                  data: { "Id": "1", "TargetWord": targetWord, "Meaning": meaning, "WrittenByMe": writtenByMe },
-                  headers: { 'Authorization': 'Bearer ' + token },
+                  type: 'post',
+                  async: false,
+                  dataType: "json",
+                  data: { "id": "1", "targetWord": targetWord, "meaning": meaning, "writtenByMe": writtenByMe },
+                  scriptCharset: "utf-8",
+                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                  encoding: "UTF-8",
+                  headers: headers,
+                  success: function (result) {
+                      _wordReviewStartTime = new Date();
+                      addRecentWord(targetWord, meaning)
+                      callback(result);
 
 
-              }).then(function successCallback(response) {
-                  result = response.data;
-                  _wordReviewStartTime = new Date();
-                  addRecentWord(targetWord, meaning)
-                  callback(result);
-              }, function errorCallback(err) {
-                  callback(false);
+
+                  },
+                  error: function (html) {
+                      callback(false);
+
+                  }
               });
+
 
           }
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
