@@ -3,7 +3,9 @@ namespace Mehrsan.Dal.DB
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    [Table("Word")]
     public partial class Word
     {
         public Word()
