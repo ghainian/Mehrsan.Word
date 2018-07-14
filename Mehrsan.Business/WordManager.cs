@@ -50,7 +50,6 @@ namespace Mehrsan.Business
                     catch (Exception eee)
                     {
 
-
                     }
                 }
             }
@@ -58,12 +57,12 @@ namespace Mehrsan.Business
 
         public static List<History> GetHistories(long wordId, DateTime reviewTime)
         {
-            return DAL.GetHistories(wordId, reviewTime);
+            return DAL.Instance.GetHistories(wordId, reviewTime);
         }
 
         public static void RemoveSpecialCharsFromWords()
         {
-            foreach (Word dbWord in DAL.GetWords(0, string.Empty))
+            foreach (Word dbWord in DAL.Instance.GetWords(0, string.Empty))
             {
                 foreach (char ch in Common.Common.Separators)
                 {
@@ -495,13 +494,13 @@ namespace Mehrsan.Business
 
         public static List<ChartData> GetChartData()
         {
-            List<ChartData> result = DAL.GetChartData();
+            List<ChartData> result = DAL.Instance.GetChartData();
 
             return result;
         }
         //public static bool AddWordFile(WordFile wordFile)
         //{
-        //    return DAL.AddWordFile(wordFile) > 0;
+        //    return DAL.Instance.AddWordFile(wordFile) > 0;
         //}
 
         public static bool PostWord(Word word)
@@ -535,19 +534,19 @@ namespace Mehrsan.Business
 
         public static void MergeRepetitiveWords()
         {
-            DAL.MergeRepetitiveWords();
+            DAL.Instance.MergeRepetitiveWords();
         }
 
         public static void UpdateNofSpaces()
         {
-            DAL.UpdateNofSpaces();
+            DAL.Instance.UpdateNofSpaces();
         }
 
         public static List<Word> GetAllWords(string userId, string containText)
         {
             if (containText.Length < 1)
                 return new List<Word>();
-            List<Word> words = DAL.GetAllWords(userId, containText);
+            List<Word> words = DAL.Instance.GetAllWords(userId, containText);
 
             var newWords = words.Select(s => GetSerializableWord(s)).ToList();
             return newWords;
@@ -597,27 +596,27 @@ namespace Mehrsan.Business
 
         public static Word GetWordByTargetWord(string word)
         {
-            var result = DAL.GetWordByTargetWord(word);
+            var result = DAL.Instance.GetWordByTargetWord(word);
             return result;
         }
 
         public static bool DeleteWord(long id)
         {
 
-            return DAL.DeleteWord(id);
+            return DAL.Instance.DeleteWord(id);
 
         }
 
         public static List<Word> GetWords(long id, string targetWord)
         {
-            var result = DAL.GetWords(id, targetWord);
+            var result = DAL.Instance.GetWords(id, targetWord);
             result = result.Select(x => GetSerializableWord(x)).ToList();
             return result;
         }
 
         public static History GetLastHistory(long wordId)
         {
-            return DAL.GetLastHistory(wordId);
+            return DAL.Instance.GetLastHistory(wordId);
         }
 
         public static bool UpdateWordStatus(bool knowsWord, long wordId, long reviewTime)
@@ -647,7 +646,7 @@ namespace Mehrsan.Business
 
             foreach (Word word in containingWords)
             {
-                var lastHistory = DAL.GetLastHistory(word.Id);
+                var lastHistory = DAL.Instance.GetLastHistory(word.Id);
                 if (lastHistory == null)
                 {
                     lastHistory = new History();
@@ -677,9 +676,9 @@ namespace Mehrsan.Business
                         UpdatedWord = word.TargetWord,
                         UpdatedMeaning = word.Meaning
                     };
-                    DAL.AddHistory(history);
+                    DAL.Instance.AddHistory(history);
 
-                    int res = DAL.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod, null, null, null);
+                    int res = DAL.Instance.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod, null, null, null);
 
                 }
             }
@@ -724,12 +723,12 @@ namespace Mehrsan.Business
 
         public static bool AddHistory(History history)
         {
-            return DAL.AddHistory(history) > 0;
+            return DAL.Instance.AddHistory(history) > 0;
         }
 
         public static bool SetWordAmbiguous(long wordId)
         {
-            return DAL.UpdateWord(wordId, string.Empty, string.Empty, null, null, 0, null, null, true) > 0;
+            return DAL.Instance.UpdateWord(wordId, string.Empty, string.Empty, null, null, 0, null, null, true) > 0;
         }
 
         public static bool AddWord(Word word)
@@ -739,7 +738,7 @@ namespace Mehrsan.Business
 
             word.TargetWord = word.TargetWord.Trim(Common.Common.Separators);
             word.Meaning = word.Meaning.Trim(Common.Common.Separators);
-            return DAL.AddWord(word) > 0;
+            return DAL.Instance.AddWord(word) > 0;
 
         }
 
@@ -787,7 +786,7 @@ namespace Mehrsan.Business
             word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
             word.Meaning = Common.Common.HarrassWord(word.Meaning);
 
-            bool updateResult = DAL.UpdateWord(id,
+            bool updateResult = DAL.Instance.UpdateWord(id,
                 word.TargetWord.Trim(Common.Common.Separators),
                 word.Meaning.Trim(Common.Common.Separators),
                 word.StartTime,
@@ -802,7 +801,7 @@ namespace Mehrsan.Business
 
         public string GetWordonly(long id)
         {
-            Word word = DAL.GetWords(id, string.Empty).FirstOrDefault();
+            Word word = DAL.Instance.GetWords(id, string.Empty).FirstOrDefault();
 
             return word.TargetWord;
         }
@@ -821,7 +820,7 @@ namespace Mehrsan.Business
             long index = 0;
             string messages = string.Empty;
 
-            foreach (Word dbWord in DAL.GetWords(0, string.Empty))
+            foreach (Word dbWord in DAL.Instance.GetWords(0, string.Empty))
             {
                 string targetWord = dbWord.TargetWord;
                 foreach (char ch in Common.Common.Separators)
@@ -1014,9 +1013,9 @@ namespace Mehrsan.Business
         {
             List<Word> allWords = null;
 
-            allWords = (from d in DAL.GetWords(0, string.Empty) orderby d.Id select d).ToList();
+            allWords = (from d in DAL.Instance.GetWords(0, string.Empty) orderby d.Id select d).ToList();
             long maxSrcGraphId = 0;
-            var graphs = DAL.GetGraphs();
+            var graphs = DAL.Instance.GetGraphs();
             //if (graphs.Count > 0)
             //    maxSrcGraphId = (from g in graphs orderby g.Id select g.SrcWordId).Max(s => s);
 
@@ -1031,23 +1030,23 @@ namespace Mehrsan.Business
 
                 foreach (string word in splittedNewWord)
                 {
-                    wordsUsedByNewWord = DAL.GetWordsLike(word);
+                    wordsUsedByNewWord = DAL.Instance.GetWordsLike(word);
                     foreach (Word wordUsedByNewWord in wordsUsedByNewWord)
                     {
                         if (WholeWordIsUsed(srcWord, wordUsedByNewWord))
                         {
-                            DAL.AddToGraph(srcWord, wordUsedByNewWord);
+                            DAL.Instance.AddToGraph(srcWord, wordUsedByNewWord);
                         }
                     }
                 }
 
-                wordsUseNewWord.AddRange(DAL.GetWordsLike(srcWordNew));
+                wordsUseNewWord.AddRange(DAL.Instance.GetWordsLike(srcWordNew));
 
                 foreach (Word wordUseNewWord in wordsUseNewWord)
                 {
                     if (WholeWordIsUsed(wordUseNewWord, srcWord))
                     {
-                        DAL.AddToGraph(wordUseNewWord, srcWord);
+                        DAL.Instance.AddToGraph(wordUseNewWord, srcWord);
                     }
                 }
             }
@@ -1066,7 +1065,7 @@ namespace Mehrsan.Business
                 {
                     if (dstWordNew.Contains(sep1 + mainWordNew + sep2))
                     {
-                        // if (DAL.AddToGraph(mainWord, wordUsedByMainWord))
+                        // if (DAL.Instance.AddToGraph(mainWord, wordUsedByMainWord))
                         return true;
 
                     }
@@ -1079,13 +1078,13 @@ namespace Mehrsan.Business
 
         public static List<Word> LoadRelatedSentences(long wordId)
         {
-            return DAL.LoadRelatedSentences(wordId);
+            return DAL.Instance.LoadRelatedSentences(wordId);
         }
 
         public static List<Word> GetWordsForReview(string userId)
         {
 
-            List<Word> words = DAL.GetWordsForReview(userId, DateTime.Now, 20);
+            List<Word> words = DAL.Instance.GetWordsForReview(userId, DateTime.Now, 20);
 
             var newWords = words.Select(s => GetSerializableWord(s)).ToList();
             return newWords;

@@ -79,8 +79,10 @@
   <ItemGroup>
     <Compile Include="ChartData.cs" />
     <Compile Include="DAL.cs" />
+    <Compile Include="Interface\IDAL.cs" />
     <Compile Include="Model\History.cs" />
     <Compile Include="Model\Graph.cs" />
+    <Compile Include="Interface\IWordEntities.cs" />
     <Compile Include="Model\Word.cs" />
     <Compile Include="Model\WordEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

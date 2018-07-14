@@ -22,13 +22,10 @@ using Mehrsan.Word.Models;
 namespace Mehrsan.Word.Controllers
 {
     //[System.Web.Http.Authorize]
-    public class WordController : ApiController
+    public class WordController : ApiController, IWordController
     {
         
-        public WordController(WordEntities wordEntities)
-        {
-            DAL.Instance = wordEntities;
-        }
+        
 
         private string StorageRoot
         {

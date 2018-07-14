@@ -3,22 +3,39 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mehrsan.Dal.DB
 {
-    public class DAL
+    public class DAL : IDAL
     {
-        public static WordEntities Instance { get { return new WordEntities(WordEntities.Options); } }
+        #region Fields
 
+        private static readonly IDAL _instance;
 
-        //public static WordEntities Entity { get; set; } = new WordEntities();
-        
+        #endregion
+        #region Properties
 
-        public static bool DeleteWord(long id)
+        public static WordEntities WordEntitiesInstance { get { return new WordEntities(WordEntities.Options); } }
+
+        public static IDAL Instance { get { return _instance; } }
+
+        #endregion
+
+        #region Methods
+
+        static DAL()
         {
-            using (var entity = Instance)
+            _instance = new DAL();
+        }
+
+        private DAL()
+        {
+            
+        }
+
+        public bool DeleteWord(long id)
+        {
+            using (var entity = WordEntitiesInstance)
             {
                 Word word = entity.Words.Find(id);
                 if (word == null)
@@ -31,8 +48,8 @@ namespace Mehrsan.Dal.DB
                 {
                     entity.Histories.Remove(history);
                 }
-                
-                
+
+
                 entity.Words.Remove(word);
 
                 entity.SaveChanges();
@@ -40,48 +57,48 @@ namespace Mehrsan.Dal.DB
                 return true;
             }
         }
-        public static bool WordExists(long id)
+        public bool WordExists(long id)
         {
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
                 return entity.Words.Count(e => e.Id == id) > 0;
         }
 
-        public static List<Word> LoadRelatedSentences(long wordId)
+        public List<Word> LoadRelatedSentences(long wordId)
         {
             return new List<Word>();
-//            using (var entity = Instance)
-//            {
-//                List<Word> words = (from w in entity.Words
-//                                    join
-//g in entity.Graphs on w.Id equals g.SrcWordId
-//                                    join
-//dstWord in entity.Words on g.DstWordId equals dstWord.Id
-//                                    where w.Id == wordId
-//                                    orderby dstWord.NextReviewDate, dstWord.Id ascending
-//                                    select dstWord).Take(Common.Common.NofRelatedSentences).ToList();
+            //            using (var entity = WordEntitiesInstance)
+            //            {
+            //                List<Word> words = (from w in entity.Words
+            //                                    join
+            //g in entity.Graphs on w.Id equals g.SrcWordId
+            //                                    join
+            //dstWord in entity.Words on g.DstWordId equals dstWord.Id
+            //                                    where w.Id == wordId
+            //                                    orderby dstWord.NextReviewDate, dstWord.Id ascending
+            //                                    select dstWord).Take(Common.Common.NofRelatedSentences).ToList();
 
-//                List<Word> newWords = new List<Word>();
-//                foreach (Word w in words)
-//                {
-//                    Word newWord = new Word()
-//                    {
-//                        Id = w.Id,
-//                        TargetWord = w.TargetWord,
-//                        Meaning = w.Meaning,
-//                        Graphs = null,
-//                        Graphs1 = null,
+            //                List<Word> newWords = new List<Word>();
+            //                foreach (Word w in words)
+            //                {
+            //                    Word newWord = new Word()
+            //                    {
+            //                        Id = w.Id,
+            //                        TargetWord = w.TargetWord,
+            //                        Meaning = w.Meaning,
+            //                        Graphs = null,
+            //                        Graphs1 = null,
 
-//                    };
-//                    newWords.Add(newWord);
-//                }
-//                return newWords;
-//            }
+            //                    };
+            //                    newWords.Add(newWord);
+            //                }
+            //                return newWords;
+            //            }
 
         }
 
-        public static List<History> GetHistories(long wordId, DateTime reviewTime)
+        public List<History> GetHistories(long wordId, DateTime reviewTime)
         {
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
 
                 IQueryable<History> q = (from h in entity.Histories select h);
@@ -96,11 +113,11 @@ namespace Mehrsan.Dal.DB
 
             }
         }
-        public static void MergeRepetitiveWords()
+        public void MergeRepetitiveWords()
         {
 
 
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
 
                 IQueryable<object> q =
@@ -131,7 +148,7 @@ namespace Mehrsan.Dal.DB
                         }
 
                         wordWithMinId.Meaning = newMeaning;
-                        UpdateWord(wordWithMinId.Id, wordWithMinId.TargetWord, wordWithMinId.Meaning,null,null,
+                        UpdateWord(wordWithMinId.Id, wordWithMinId.TargetWord, wordWithMinId.Meaning, null, null,
                             0, null, null, null);
                     }
 
@@ -141,7 +158,7 @@ namespace Mehrsan.Dal.DB
 
         }
 
-        public static void UpdateNofSpaces()
+        public void UpdateNofSpaces()
         {
             var words = GetAllWords(string.Empty, string.Empty).OrderBy(x => x.NofSpace).ToList();
             //var words = GetAllWords(string.Empty).Where(x => x.TargetWord.Contains(" i i ") ).ToList();
@@ -207,10 +224,10 @@ namespace Mehrsan.Dal.DB
             }
         }
 
-        public static List<Word> GetAllWords(string userId, string containText)
+        public List<Word> GetAllWords(string userId, string containText)
         {
 
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
                 IQueryable<Word> query = (from w in entity.Words
                                           orderby w.TargetWord
@@ -227,13 +244,13 @@ namespace Mehrsan.Dal.DB
             }
         }
 
-        public static Word GetWordByTargetWord(string word)
+        public Word GetWordByTargetWord(string word)
         {
             if (string.IsNullOrEmpty(word))
                 return null;
 
             word = word.Trim(Common.Common.Separators);
-            using (var db = Instance)
+            using (var db = WordEntitiesInstance)
             {
                 var wordInDb = (from w in db.Words where w.TargetWord.Trim().ToLower() == word.ToLower() select w).FirstOrDefault();
 
@@ -241,9 +258,9 @@ namespace Mehrsan.Dal.DB
             }
         }
 
-        public static bool AddToGraph(Word srcWord, Word dstWord)
+        public bool AddToGraph(Word srcWord, Word dstWord)
         {
-            using (var db = Instance)
+            using (var db = WordEntitiesInstance)
             {
                 //var graph = (from g in db.Graphs where g.SrcWordId == srcWord.Id && g.DstWordId == dstWord.Id select g).FirstOrDefault();
 
@@ -258,18 +275,18 @@ namespace Mehrsan.Dal.DB
             return false;
         }
 
-        public static int AddWord(Word word)
+        public int AddWord(Word word)
         {
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
                 entity.Words.Add(word);
                 return entity.SaveChanges();
             }
         }
 
-        //public static int SetWordAmbiguous(long wordId)
+        //public  int SetWordAmbiguous(long wordId)
         //{
-        //    using (var entity = Instance)
+        //    using (var entity = WordEntitiesInstance)
         //    {
         //        Word updatedWord = entity.Words.Find(wordId);
         //        updatedWord.IsAmbiguous = true;
@@ -279,17 +296,17 @@ namespace Mehrsan.Dal.DB
         //    }
         //}
 
-        public static List<Graph> GetGraphs()
+        public List<Graph> GetGraphs()
         {
-            //using (var entity = Instance)
+            //using (var entity = WordEntitiesInstance)
             //    return entity.Graphs.ToList();
 
             return null;
         }
 
-        public static List<Word> GetWords(long id, string targetWord)
+        public List<Word> GetWords(long id, string targetWord)
         {
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
 
                 var q = (from w in entity.Words select w);
@@ -308,19 +325,19 @@ namespace Mehrsan.Dal.DB
             }
         }
 
-        //public static long AddWordFile(WordFile wordFile)
+        //public  long AddWordFile(WordFile wordFile)
         //{
-        //    using (var entity = Instance)
+        //    using (var entity = WordEntitiesInstance)
         //    {
         //        entity.WordFiles.Add(wordFile);
         //        return entity.SaveChanges();
         //    }
         //}
 
-        public static List<ChartData> GetChartData()
+        public List<ChartData> GetChartData()
         {
             List<ChartData> result = new List<ChartData>();
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
                 var resultq = (from h in entity.Histories
                                group h by (h.ReviewTime.Year.ToString() + "/" + h.ReviewTime.Month.ToString() + "/" + h.ReviewTime.Day.ToString()) into g
@@ -336,31 +353,31 @@ namespace Mehrsan.Dal.DB
             return result;
         }
 
-        public static int AddHistory(History history)
+        public int AddHistory(History history)
         {
             long wordId = history.WordId;
 
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
                 entity.Histories.Add(history);
                 return entity.SaveChanges();
             }
         }
 
-        public static History GetLastHistory(long wordId)
+        public History GetLastHistory(long wordId)
         {
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
                 return (from h in entity.Histories where h.WordId == wordId orderby h.Id descending select h).FirstOrDefault();
             }
         }
 
-        public static int UpdateWord(long wordId, string word, string meaning, TimeSpan? startTime, TimeSpan? endTime, int reviewPeriod, short? nofSpace, bool? writtenByMe, bool? isAmbiguous)
+        public int UpdateWord(long wordId, string word, string meaning, TimeSpan? startTime, TimeSpan? endTime, int reviewPeriod, short? nofSpace, bool? writtenByMe, bool? isAmbiguous)
         {
             if (reviewPeriod >= Common.Common.MaxReviewDate)
                 reviewPeriod = Common.Common.MaxReviewDate;
 
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
                 if (!string.IsNullOrEmpty(word))
                 {
@@ -384,7 +401,7 @@ namespace Mehrsan.Dal.DB
                 {
                     updatedWord.EndTime = endTime;
                     entry.Property(e => e.EndTime).IsModified = true;
-                    
+
                 }
 
                 if (nofSpace != null)
@@ -428,9 +445,9 @@ namespace Mehrsan.Dal.DB
             }
         }
 
-        public static List<Word> GetWordsForReview(string userId, DateTime reviewDate, int resultCount)
+        public List<Word> GetWordsForReview(string userId, DateTime reviewDate, int resultCount)
         {
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
 
                 return (from w in entity.Words
@@ -446,9 +463,9 @@ namespace Mehrsan.Dal.DB
             }
         }
 
-        public static List<Word> GetWordsLike(string word)
+        public List<Word> GetWordsLike(string word)
         {
-            using (var entity = Instance)
+            using (var entity = WordEntitiesInstance)
             {
                 var q = (from w in entity.Words
                          where w.TargetWord.ToLower().Contains(word)
@@ -458,6 +475,7 @@ namespace Mehrsan.Dal.DB
                 else
                     return new List<Word>();
             }
-        }
+        } 
+        #endregion
     }
 }

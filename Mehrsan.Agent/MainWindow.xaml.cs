@@ -107,7 +107,7 @@ namespace Mehrsan.Agent
                                 UpdatedWord = word.TargetWord,
                                 UpdatedMeaning = word.Meaning
                             };
-                            DAL.AddHistory(history);
+                            DAL.Instance.AddHistory(history);
 
                             var reviewPeriod = lastHistory.ReviewPeriod;
                             if (reviewPeriod > Common.Common.MaxReviewDate)
@@ -116,7 +116,7 @@ namespace Mehrsan.Agent
                             if (reviewPeriod < 0)
                                 reviewPeriod = 1;
 
-                            DAL.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod * 2, null, null, null);
+                            DAL.Instance.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod * 2, null, null, null);
                         }
                     }
                     try
