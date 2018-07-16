@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,18 +36,24 @@ namespace Mehrsan.Core.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Add framework services.
-            services.AddMvc();
-
             //Add database services.
             var connectionString = Common.Common.Configuration.GetConnectionString("WordEntities");
 
-            services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
+            //services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            //services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-            
             services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+               .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
 
@@ -62,13 +69,18 @@ namespace Mehrsan.Core.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                app.UseDatabaseErrorPage();
             }
-
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
 
             app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
             app.UseStaticFiles();
 
+            app.UseCookiePolicy();
             app.UseAuthentication();
 
             app.UseMvc(routes =>

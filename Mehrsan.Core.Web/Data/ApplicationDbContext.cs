@@ -11,6 +11,7 @@ namespace Mehrsan.Core.Web.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
     }
 }
