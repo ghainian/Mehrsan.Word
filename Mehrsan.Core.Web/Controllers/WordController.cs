@@ -23,13 +23,7 @@ namespace Mehrsan.Core.Web.Controllers
             _logger = logger;
         }
 
-        private string StorageRoot
-        {
-            get {
-                return string.Empty;// Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Files"));
-            }
-        }
-
+     
 
         public IActionResult Index()
         {

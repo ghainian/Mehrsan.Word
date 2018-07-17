@@ -32,4 +32,9 @@
     <ProjectReference Include="..\Mehsan.Dal.DB\Mehrsan.Dal.DB.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\" />
+    <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
 </Project>

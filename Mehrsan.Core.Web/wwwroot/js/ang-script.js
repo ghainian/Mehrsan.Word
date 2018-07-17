@@ -2,10 +2,11 @@
 
 var myApp = angular.module("myModule", [])
 
-return;
     .controller('myController', ['$scope', '$interval', '$http',
         function ($scope, $interval, $http) {
             register()
+
+            login();
           $scope.chkPronounceWholeWordChecked = true;
           var stop;
           var _wordIndex = 0;
@@ -84,10 +85,10 @@ return;
 
                   callController();
 
-                  $("#txtMeaning").on("input propertychange paste", meaningBoxKeyDown);
-                  $("#txtWord").on("input propertychange paste", meaningBoxKeyDown);
-                  $("#txtMeaning").on("keypress kyup keydown", meaningBoxKeyDown);
-                  $("#txtWord").on("keypress kyup keydown", meaningBoxKeyDown);
+                  //$("#txtMeaning").on("input propertychange paste", meaningBoxKeyDown);
+                  //$("#txtWord").on("input propertychange paste", meaningBoxKeyDown);
+                  //$("#txtMeaning").on("kyup ", meaningBoxKeyDown);
+                  //$("#txtWord").on("kyup", meaningBoxKeyDown);
 
                   $("#btnUndo").click(undo);
 
@@ -282,10 +283,10 @@ return;
 
                   callController();
 
-                  $("#txtMeaning").on("input propertychange paste", meaningBoxKeyDown);
-                  $("#txtWord").on("input propertychange paste", meaningBoxKeyDown);
-                  $("#txtMeaning").on("keypress kyup keydown", meaningBoxKeyDown);
-                  $("#txtWord").on("keypress kyup keydown", meaningBoxKeyDown);
+                  //$("#txtMeaning").on("input propertychange paste", meaningBoxKeyDown);
+                  //$("#txtWord").on("input propertychange paste", meaningBoxKeyDown);
+                  //$("#txtMeaning").on("keypress kyup keydown", meaningBoxKeyDown);
+                  //$("#txtWord").on("keypress kyup keydown", meaningBoxKeyDown);
 
                   $("#btnUndo").click(undo);
 
@@ -430,7 +431,7 @@ return;
 
               $.ajax({
                   type: 'POST',
-                  url: 'http://localhost:62193/Token  ',
+                  url: '/Identity/Account/login',
                   async: false,
                   data: loginData,
                   success: function (data) {
@@ -497,7 +498,9 @@ return;
 
                   },
                   error: function (html) {
-                      callback(false);
+                      if (callback) {
+                          callback(false);
+                      }
 
                   }
               });
@@ -508,8 +511,8 @@ return;
           function login() {
 
 
-              var email = $("#txtEmailLogin").val();
-              var password = $("#txtPasswordLogin").val();
+              var email = "ghainian3@gmail.com";//$("#txtEmailLogin").val();
+              var password = "Dardo.delanirvanahafz852";//$("#txtPasswordLogin").val();
 
               var loginResult = null;
               loginFunction(email, password);
@@ -1197,9 +1200,9 @@ return;
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
           function showAddWordDiv(e) {
-
+              if (e) {
               e.preventDefault();
-
+              }
               $('#successAlert').slideDown();
 
 
@@ -1209,7 +1212,7 @@ return;
 
           function loadAllWords(containText) {
 
-              if (containText.length < 1)
+              if (containText && containText.length < 1)
                   return;
 
               var token = sessionStorage.getItem(_tokenKey);
@@ -1417,7 +1420,7 @@ return;
               $.ajax({
                   url: _webUrl + 'Word/UpdateWord',
                   type: 'post',
-                  async: false,
+                  async: true,
                   dataType: "json",
                   data: {
                       "id": wordId, "targetWord": word, "meaning": meaning, "writtenByMe": writtenByMe
@@ -1486,7 +1489,7 @@ return;
 
                   $('#divResult').removeClass("alert-danger");
                   $('#divResult').addClass("alert-success");
-                  $('#divResult').text(resource.addWordSuccessMsg + " " + date.toString());
+                  $('#divResult').text( "Word Created/Updated successfully " + date.toString());
 
               } else {
 
