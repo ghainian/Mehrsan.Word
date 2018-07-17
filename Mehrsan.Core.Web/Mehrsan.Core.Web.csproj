@@ -2,114 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-Mehrsan.Core.Web-D53C9B0C-992B-40FF-95F4-1380D2C00ADE</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="images\New folder\**" />
-    <Compile Remove="wwwroot\images\New folder\**" />
-    <Content Remove="images\New folder\**" />
-    <Content Remove="wwwroot\images\New folder\**" />
-    <EmbeddedResource Remove="images\New folder\**" />
-    <EmbeddedResource Remove="wwwroot\images\New folder\**" />
-    <None Remove="images\New folder\**" />
-    <None Remove="wwwroot\images\New folder\**" />
+    <Compile Remove="Areas\Identity\Controllers\**" />
+    <Compile Remove="Areas\Identity\Views\**" />
+    <Compile Remove="wwwroot\Words\**" />
+    <Content Remove="Areas\Identity\Controllers\**" />
+    <Content Remove="Areas\Identity\Views\**" />
+    <Content Remove="wwwroot\Words\**" />
+    <EmbeddedResource Remove="Areas\Identity\Controllers\**" />
+    <EmbeddedResource Remove="Areas\Identity\Views\**" />
+    <EmbeddedResource Remove="wwwroot\Words\**" />
+    <None Remove="Areas\Identity\Controllers\**" />
+    <None Remove="Areas\Identity\Views\**" />
+    <None Remove="wwwroot\Words\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\css\bootstrap-responsive.css" />
-    <Content Remove="wwwroot\css\bootstrap-responsive.min.css" />
-    <Content Remove="wwwroot\js\ERIS.zip" />
-    <Content Remove="wwwroot\js\jquery-1.10.2.intellisense.js" />
-    <Content Remove="wwwroot\js\jquery.validate-vsdoc.js" />
-    <Content Remove="wwwroot\js\script.jsx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Content\bootstrap.css" />
-    <None Remove="Content\bootstrap.min.css" />
-    <None Remove="Content\Site.css" />
-    <None Remove="fonts\glyphicons-halflings-regular.eot" />
-    <None Remove="fonts\glyphicons-halflings-regular.svg" />
-    <None Remove="fonts\glyphicons-halflings-regular.ttf" />
-    <None Remove="fonts\glyphicons-halflings-regular.woff" />
-    <None Remove="images\badge_bootstrap.jpg" />
-    <None Remove="images\badge_css3.jpg" />
-    <None Remove="images\badge_html5.jpg" />
-    <None Remove="images\carousel_large_01.jpg" />
-    <None Remove="images\carousel_large_02.jpg" />
-    <None Remove="images\carousel_large_03.jpg" />
-    <None Remove="images\carousel_medium_01.jpg" />
-    <None Remove="images\carousel_medium_02.jpg" />
-    <None Remove="images\carousel_medium_03.jpg" />
-    <None Remove="images\carousel_small_01.jpg" />
-    <None Remove="images\carousel_small_02.jpg" />
-    <None Remove="images\carousel_small_03.jpg" />
-    <None Remove="images\item_psd2html5.jpg" />
-    <None Remove="images\item_webhosting101.jpg" />
-    <None Remove="images\logo.png" />
-    <None Remove="images\noImage.jpg" />
-    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.eot" />
-    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.otf" />
-    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.svg" />
-    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.ttf" />
-    <None Remove="wwwroot\fonts\glyphiconshalflings-regular.woff" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="images\badge_bootstrap.jpg" />
-    <Content Include="images\badge_css3.jpg" />
-    <Content Include="images\badge_html5.jpg" />
-    <Content Include="images\carousel_large_01.jpg" />
-    <Content Include="images\carousel_large_02.jpg" />
-    <Content Include="images\carousel_large_03.jpg" />
-    <Content Include="images\carousel_medium_01.jpg" />
-    <Content Include="images\carousel_medium_02.jpg" />
-    <Content Include="images\carousel_medium_03.jpg" />
-    <Content Include="images\carousel_small_01.jpg" />
-    <Content Include="images\carousel_small_02.jpg" />
-    <Content Include="images\carousel_small_03.jpg" />
-    <Content Include="images\item_psd2html5.jpg" />
-    <Content Include="images\item_webhosting101.jpg" />
-    <Content Include="images\logo.png" />
-    <Content Include="images\noImage.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.CookiePolicy" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="2.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
-    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
-    <None Include="Views\Word\index.cshtml" />
-    <None Include="wwwroot\css\bootstrap-responsive.css" />
-    <None Include="wwwroot\css\bootstrap-responsive.min.css" />
-    <None Include="wwwroot\js\ERIS.zip" />
-    <None Include="wwwroot\js\jquery-1.10.2.intellisense.js" />
-    <None Include="wwwroot\js\jquery.validate-vsdoc.js" />
-    <None Include="wwwroot\js\script.jsx" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0-dev-00024" />
   </ItemGroup>
 
   <ItemGroup>

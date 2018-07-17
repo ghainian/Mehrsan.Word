@@ -31,11 +31,11 @@ namespace Mehrsan.Core.Web.Controllers
         }
 
 
-        public ViewResult Index()
+        public IActionResult Index()
         {
             UserInfoViewModel userInfo = new UserInfoViewModel();// ac.GetUserInfo();
 
-            return View( WordManager.GetWordsForReview(userInfo.UserId));
+            return View();
         }
 
 

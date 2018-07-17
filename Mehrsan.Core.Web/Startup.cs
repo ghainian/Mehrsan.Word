@@ -2,44 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Mehrsan.Core.Web.Data;
-using Mehrsan.Dal.DB;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Mehrsan.Core.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Mehrsan.Dal.DB;
 
 namespace Mehrsan.Core.Web
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Common.Common.Configuration = (ConfigurationRoot)builder.Build();
+            Configuration = configuration;
+            Common.Common.Configuration = (ConfigurationRoot)configuration;
             Common.Common.Initialise();
-
         }
 
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Add database services.
             var connectionString = Common.Common.Configuration.GetConnectionString("WordEntities");
-
-            //services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -48,13 +40,13 @@ namespace Mehrsan.Core.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
             services.AddDefaultIdentity<IdentityUser>()
-               .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,7 +57,6 @@ namespace Mehrsan.Core.Web
             loggerFactory.AddFile("Logs/myapp-{Date}.txt");
 
             loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -77,17 +68,19 @@ namespace Mehrsan.Core.Web
                 app.UseHsts();
             }
 
+            
+            app.UseHttpsRedirection();
             app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
             app.UseStaticFiles();
-
             app.UseCookiePolicy();
+
             app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Word}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

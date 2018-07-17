@@ -2,9 +2,10 @@
 
 var myApp = angular.module("myModule", [])
 
-
+return;
     .controller('myController', ['$scope', '$interval', '$http',
-      function ($scope, $interval, $http) {
+        function ($scope, $interval, $http) {
+            register()
           $scope.chkPronounceWholeWordChecked = true;
           var stop;
           var _wordIndex = 0;
@@ -463,6 +464,43 @@ var myApp = angular.module("myModule", [])
               });
 
 
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+          function register() {
+
+
+              email = "ghainian@gmail.com"
+              pass = "Ghainian1@gmail.com"
+              var regData = {                 
+                  username: email,
+                  password: pass
+              };
+              var token = sessionStorage.getItem(_tokenKey);
+              $.ajax({
+                  url: _webUrl + 'Identity/Account/Register',
+                  type: 'post',
+                  async: false,
+                  dataType: "json",
+                  data: regData,
+                  scriptCharset: "utf-8",
+                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                  encoding: "UTF-8",
+                  headers: { 'Authorization': 'Bearer ' + token },
+                  success: function (result) {
+                      _wordReviewStartTime = new Date();
+                      addRecentWord(targetWord, meaning)
+                      callback(result);
+
+
+
+                  },
+                  error: function (html) {
+                      callback(false);
+
+                  }
+              });
           }
 
           /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
