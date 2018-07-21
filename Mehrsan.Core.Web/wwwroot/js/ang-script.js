@@ -4,14 +4,14 @@ var myApp = angular.module("myModule", [])
 
     .controller('myController', ['$scope', '$interval', '$http',
         function ($scope, $interval, $http) {
-            register()
+            
             
           $scope.chkPronounceWholeWordChecked = true;
           var stop;
           var _wordIndex = 0;
           var _words = [];
           var _newCarouselhtml = '';
-          var _webUrl = 'http://localhost:56171/';//window.location.href;
+          var _webUrl = 'http://localhost:44396/';//window.location.href;
           var _numberOfImages = 20;
           var _allWords = '';
           var _targetWordArr = '';
