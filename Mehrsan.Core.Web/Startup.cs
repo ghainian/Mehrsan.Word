@@ -19,6 +19,9 @@ using System.Security.Claims;
 
 namespace Mehrsan.Core.Web
 {
+    /// <summary>
+    /// This is Startup class
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
