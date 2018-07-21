@@ -14,9 +14,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Mehrsan.Dal.DB;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace Mehrsan.Core.Web
 {
+    /// <summary>
+    /// This is Startup class
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -38,6 +43,14 @@ namespace Mehrsan.Core.Web
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddSingleton<IClaimsTransformation, ClaimsTransformer>();
+
+
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             });
 
             services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
@@ -68,7 +81,7 @@ namespace Mehrsan.Core.Web
                 app.UseHsts();
             }
 
-            
+
             app.UseHttpsRedirection();
             app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
             app.UseStaticFiles();
@@ -84,4 +97,15 @@ namespace Mehrsan.Core.Web
             });
         }
     }
+    internal class ClaimsTransformer : IClaimsTransformation
+    {
+        // Can consume services from DI as needed, including scoped DbContexts
+        public ClaimsTransformer(IHttpContextAccessor httpAccessor) { }
+        public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal p)
+        {
+            p.AddIdentity(new ClaimsIdentity());
+            return Task.FromResult(p);
+        }
+    }
+
 }
