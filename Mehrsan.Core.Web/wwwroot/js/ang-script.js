@@ -5,8 +5,7 @@ var myApp = angular.module("myModule", [])
     .controller('myController', ['$scope', '$interval', '$http',
         function ($scope, $interval, $http) {
             register()
-
-            login();
+            
           $scope.chkPronounceWholeWordChecked = true;
           var stop;
           var _wordIndex = 0;

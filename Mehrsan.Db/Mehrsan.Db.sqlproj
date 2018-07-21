@@ -155,4 +155,7 @@
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="20180721.bak" />
+  </ItemGroup>
 </Project>
