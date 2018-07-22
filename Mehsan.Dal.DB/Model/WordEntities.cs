@@ -13,6 +13,9 @@ namespace Mehrsan.Dal.DB
 
         public virtual DbSet<History> Histories { get; set; }
         public virtual DbSet<Word> Words { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+
         public static DbContextOptions<WordEntities> Options { get; private set; }
 
         #endregion

@@ -182,6 +182,8 @@
     <Compile Include="ChartData.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="Interface\IDAL.cs" />
+    <Compile Include="Model\AspNetUser.cs" />
+    <Compile Include="Model\AspNetUserClaim.cs" />
     <Compile Include="Model\History.cs" />
     <Compile Include="Model\Graph.cs" />
     <Compile Include="Interface\IWordEntities.cs" />
