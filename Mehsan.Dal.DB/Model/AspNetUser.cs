@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Mehrsan.Dal.DB
 {
 
-    public partial class AspNetUser
+    public class AspNetUser
     {
         public AspNetUser()
         {

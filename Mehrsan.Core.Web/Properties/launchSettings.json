@@ -7,7 +7,7 @@
       "sslPort": 0
     },
     "iisExpress": {
-      "applicationUrl": "http://localhost:44333/",
+      "applicationUrl": "http://localhost:44378/",
       "sslPort": 0
     }
   },
@@ -20,7 +20,7 @@
       }
     },
     "Mehrsan.Core.Web": {
-      "commandName": "IIS",
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

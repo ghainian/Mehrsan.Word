@@ -57,6 +57,7 @@ namespace Mehrsan.Core.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _context.Add(aspNetUserClaim);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -115,8 +116,12 @@ namespace Mehrsan.Core.Web.Controllers
             return View(aspNetUserClaim);
         }
 
-        // GET: Account/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public List<AspNetUserClaim> GetUserClaims()
+        {
+            var result = Use
+        }
+            // GET: Account/Delete/5
+            public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {

@@ -10,6 +10,7 @@ namespace Mehrsan.Dal.DB
         int AddWord(Word word);
         bool DeleteWord(long id);
         List<Word> GetAllWords(string userId, string containText);
+        bool CreateClaim(AspNetUserClaim userClaim);
         List<ChartData> GetChartData();
         List<Graph> GetGraphs();
         List<History> GetHistories(long wordId, DateTime reviewTime);
@@ -18,6 +19,7 @@ namespace Mehrsan.Dal.DB
         List<Word> GetWords(long id, string targetWord);
         List<Word> GetWordsForReview(string userId, DateTime reviewDate, int resultCount);
         List<Word> GetWordsLike(string word);
+        List<AspNetUserClaim> GetUserClaims(string searchText);
         List<Word> LoadRelatedSentences(long wordId);
         void MergeRepetitiveWords();
         void UpdateNofSpaces();

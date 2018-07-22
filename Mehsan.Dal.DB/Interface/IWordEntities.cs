@@ -7,7 +7,8 @@ namespace Mehrsan.Dal.DB
     {
         DbSet<History> Histories { get; set; }
         DbSet<Word> Words { get; set; }
-        
+        DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        DbSet<AspNetUser> AspNetUsers { get; set; }
 
     }
 }

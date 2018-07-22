@@ -1,0 +1,768 @@
+2018-07-22T09:25:42.8836143+02:00 0HLFFKHAKJSV5:00000001 [INF] Request starting HTTP/1.1 GET http://localhost/Mehrsan.Core.Web   (ca22a1cb)
+2018-07-22T09:25:42.8836147+02:00 0HLFFKHAKJSV6:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost/Mehrsan.Core.Web  0 (ca22a1cb)
+2018-07-22T09:25:43.0220961+02:00 0HLFFKHAKJSV5:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-07-22T09:25:43.0338760+02:00 0HLFFKHAKJSV6:00000001 [INF] Request finished in 131.3852ms 200  (791a596a)
+2018-07-22T09:25:44.7842193+02:00 0HLFFKHAKJSV5:00000001 [INF] "Identity.Application" was not authenticated. Failure message: "Unprotect ticket failed" (48071232)
+2018-07-22T09:25:45.6698821+02:00 0HLFFKHAKJSV5:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:25:46.0865988+02:00 0HLFFKHAKJSV5:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:25:46.6880027+02:00 0HLFFKHAKJSV5:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:25:47.6496283+02:00 0HLFFKHAKJSV5:00000001 [ERR] An error occurred using the connection to database '"Word"' on server '"L4KD6162\MEHRANG4"'. (5fc3407c)
+System.Data.SqlClient.SqlException (0x80131904): Login failed for user 'EUROPE\L4KD6162$'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+ClientConnectionId:dd611261-fa96-4e09-afd5-be80735fc809
+Error Number:18456,State:1,Class:14
+2018-07-22T09:25:47.7474710+02:00 0HLFFKHAKJSV5:00000001 [ERR] An exception occurred in the database while iterating the results of a query for context type '"Mehrsan.Dal.DB.WordEntities"'."
+""System.Data.SqlClient.SqlException (0x80131904): Login failed for user 'EUROPE\L4KD6162$'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+ClientConnectionId:dd611261-fa96-4e09-afd5-be80735fc809
+Error Number:18456,State:1,Class:14" (64e2593c)
+System.Data.SqlClient.SqlException (0x80131904): Login failed for user 'EUROPE\L4KD6162$'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+ClientConnectionId:dd611261-fa96-4e09-afd5-be80735fc809
+Error Number:18456,State:1,Class:14
+2018-07-22T09:25:48.0425386+02:00 0HLFFKHAKJSV5:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 2357.0031ms (afa2e885)
+2018-07-22T09:25:48.3930180+02:00 0HLFFKHAKJSV5:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:25:49.8586802+02:00 0HLFFKHAKJSV5:00000001 [ERR] An exception occurred while calculating the database error page content. Skipping display of the database error page. (3f43c218)
+System.Data.SqlClient.SqlException (0x80131904): Login failed for user 'EUROPE\L4KD6162$'.
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+ClientConnectionId:dd611261-fa96-4e09-afd5-be80735fc809
+Error Number:18456,State:1,Class:14
+2018-07-22T09:25:50.0119472+02:00 0HLFFKHAKJSV5:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.Data.SqlClient.SqlException (0x80131904): Login failed for user 'EUROPE\L4KD6162$'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.BufferlessMoveNext(DbContext _, Boolean buffer)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable`1.Enumerator.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider._TrackEntities[TOut,TIn](IEnumerable`1 results, QueryContext queryContext, IList`1 entityTrackingInfos, IList`1 entityAccessors)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Mehrsan.Dal.DB.DAL.GetWordsForReview(String userId, DateTime reviewDate, Int32 resultCount) in D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehsan.Dal.DB\DAL.cs:line 453
+   at Mehrsan.Business.WordManager.GetWordsForReview(String userId) in D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Business\WordManager.cs:line 1087
+   at Mehrsan.Core.Web.Controllers.HomeController.GetWordsForReview() in D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\Controllers\HomeController.cs:line 68
+   at Mehrsan.Core.Web.Controllers.HomeController.Index() in D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\Controllers\HomeController.cs:line 28
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:dd611261-fa96-4e09-afd5-be80735fc809
+Error Number:18456,State:1,Class:14
+2018-07-22T09:25:50.2298859+02:00 0HLFFKHAKJSV5:00000001 [INF] Request finished in 7334.6791ms 500 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:26:28.8037488+02:00 0HLFFKHOAFN31:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-07-22T09:26:28.8037496+02:00 0HLFFKHOAFN32:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:44378/  0 (ca22a1cb)
+2018-07-22T09:26:28.8914458+02:00 0HLFFKHOAFN32:00000001 [INF] Request finished in 85.1978ms 200  (791a596a)
+2018-07-22T09:26:28.8945270+02:00 0HLFFKHOAFN31:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-07-22T09:26:29.5321934+02:00 0HLFFKHOAFN31:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:26:29.8459410+02:00 0HLFFKHOAFN31:00000001 [INF] Executed DbCommand ("16"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-07-22T09:26:31.0211680+02:00 0HLFFKHOAFN31:00000001 [INF] Executed DbCommand ("542"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-07-22T09:26:31.5993362+02:00 0HLFFKHOAFN31:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:26:31.6376833+02:00 0HLFFKHOAFN31:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:26:31.7770084+02:00 0HLFFKHOAFN31:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:26:31.8748238+02:00 0HLFFKHOAFN31:00000001 [INF] Executed DbCommand ("64"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-07-22T09:26:31.9973827+02:00 0HLFFKHOAFN31:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 347.1736ms. (50a9e262)
+2018-07-22T09:26:32.0293605+02:00 0HLFFKHOAFN31:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-07-22T09:26:32.5486796+02:00 0HLFFKHOAFN31:00000001 [INF] Executed ViewResult - view "Index" executed in 515.1048ms. (f66409e9)
+2018-07-22T09:26:32.6639849+02:00 0HLFFKHOAFN33:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2018-07-22T09:26:32.6754483+02:00 0HLFFKHOAFN32:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/js/angular.min.js   (ca22a1cb)
+2018-07-22T09:26:32.6820723+02:00 0HLFFKHOAFN31:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 1057.4033ms (afa2e885)
+2018-07-22T09:26:32.7137263+02:00 0HLFFKHOAFN35:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/css/site.css   (ca22a1cb)
+2018-07-22T09:26:32.7166929+02:00 0HLFFKHOAFN34:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/js/jquery-1.10.2.js   (ca22a1cb)
+2018-07-22T09:26:32.7507992+02:00 0HLFFKHOAFN31:00000001 [INF] Request finished in 3960.9087ms 200 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:26:32.7599367+02:00 0HLFFKHOAFN35:00000001 [INF] Sending file. Request path: '"/css/site.css"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\css\site.css"' (27b0a520)
+2018-07-22T09:26:32.8039896+02:00 0HLFFKHOAFN36:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/css/bootstrap-glyphicons.css   (ca22a1cb)
+2018-07-22T09:26:32.8128247+02:00 0HLFFKHOAFN35:00000001 [INF] Request finished in 132.6591ms 200 text/css (791a596a)
+2018-07-22T09:26:32.8381303+02:00 0HLFFKHOAFN31:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/css/bootstrap.css   (ca22a1cb)
+2018-07-22T09:26:32.8523111+02:00 0HLFFKHOAFN33:00000001 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2018-07-22T09:26:32.8563417+02:00 0HLFFKHOAFN32:00000002 [INF] Sending file. Request path: '"/js/angular.min.js"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\js\angular.min.js"' (27b0a520)
+2018-07-22T09:26:32.8689995+02:00 0HLFFKHOAFN33:00000001 [INF] Request finished in 214.0964ms 200 text/css (791a596a)
+2018-07-22T09:26:32.8975855+02:00 0HLFFKHOAFN32:00000002 [INF] Request finished in 210.6664ms 200 application/javascript (791a596a)
+2018-07-22T09:26:32.9351018+02:00 0HLFFKHOAFN35:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/css/styles.css   (ca22a1cb)
+2018-07-22T09:26:32.9527186+02:00 0HLFFKHOAFN33:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/js/ang-script.js   (ca22a1cb)
+2018-07-22T09:26:32.9637686+02:00 0HLFFKHOAFN32:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/jquery/dist/jquery.js   (ca22a1cb)
+2018-07-22T09:26:32.9767988+02:00 0HLFFKHOAFN36:00000001 [INF] Sending file. Request path: '"/css/bootstrap-glyphicons.css"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\css\bootstrap-glyphicons.css"' (27b0a520)
+2018-07-22T09:26:33.0054934+02:00 0HLFFKHOAFN31:00000002 [INF] Sending file. Request path: '"/css/bootstrap.css"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\css\bootstrap.css"' (27b0a520)
+2018-07-22T09:26:33.0170673+02:00 0HLFFKHOAFN35:00000002 [INF] Sending file. Request path: '"/css/styles.css"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\css\styles.css"' (27b0a520)
+2018-07-22T09:26:33.0548716+02:00 0HLFFKHOAFN31:00000002 [INF] Request finished in 223.8371ms 200 text/css (791a596a)
+2018-07-22T09:26:33.0603603+02:00 0HLFFKHOAFN33:00000002 [INF] Sending file. Request path: '"/js/ang-script.js"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\js\ang-script.js"' (27b0a520)
+2018-07-22T09:26:33.0995645+02:00 0HLFFKHOAFN35:00000002 [INF] Request finished in 210.9163ms 200 text/css (791a596a)
+2018-07-22T09:26:33.1163773+02:00 0HLFFKHOAFN33:00000002 [INF] Request finished in 197.7452ms 200 application/javascript (791a596a)
+2018-07-22T09:26:33.1361223+02:00 0HLFFKHOAFN31:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44378/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0   (ca22a1cb)
+2018-07-22T09:26:33.1434489+02:00 0HLFFKHOAFN36:00000001 [INF] Request finished in 219.6977ms 200 text/css (791a596a)
+2018-07-22T09:26:33.1593300+02:00 0HLFFKHOAFN32:00000003 [INF] Sending file. Request path: '"/lib/jquery/dist/jquery.js"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\jquery\dist\jquery.js"' (27b0a520)
+2018-07-22T09:26:33.1697134+02:00 0HLFFKHOAFN31:00000003 [INF] Sending file. Request path: '"/js/site.js"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\js\site.js"' (27b0a520)
+2018-07-22T09:26:33.1907354+02:00 0HLFFKHOAFN32:00000003 [INF] Request finished in 225.7963ms 200 application/javascript (791a596a)
+2018-07-22T09:26:33.1953146+02:00 0HLFFKHOAFN31:00000003 [INF] Request finished in 60.8499ms 200 application/javascript (791a596a)
+2018-07-22T09:26:33.2078348+02:00 0HLFFKHOAFN36:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2018-07-22T09:26:33.2599491+02:00 0HLFFKHOAFN36:00000002 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2018-07-22T09:26:33.3334964+02:00 0HLFFKHOAFN34:00000001 [INF] Sending file. Request path: '"/js/jquery-1.10.2.js"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\js\jquery-1.10.2.js"' (27b0a520)
+2018-07-22T09:26:33.3534625+02:00 0HLFFKHOAFN36:00000002 [INF] Request finished in 167.5367ms 200 application/javascript (791a596a)
+2018-07-22T09:26:33.3664516+02:00 0HLFFKHOAFN34:00000001 [INF] Request finished in 710.5726ms 200 application/javascript (791a596a)
+2018-07-22T09:26:33.4316225+02:00 0HLFFKHOAFN35:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2   (ca22a1cb)
+2018-07-22T09:26:33.4744783+02:00 0HLFFKHOAFN35:00000003 [INF] Sending file. Request path: '"/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2"' (27b0a520)
+2018-07-22T09:26:33.5216139+02:00 0HLFFKHOAFN33:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44378/fonts/glyphiconshalflings-regular.woff   (ca22a1cb)
+2018-07-22T09:26:33.5373766+02:00 0HLFFKHOAFN35:00000003 [INF] Request finished in 77.1226ms 200 font/woff2 (791a596a)
+2018-07-22T09:26:33.5803455+02:00 0HLFFKHOAFN33:00000003 [INF] Sending file. Request path: '"/fonts/glyphiconshalflings-regular.woff"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\fonts\glyphiconshalflings-regular.woff"' (27b0a520)
+2018-07-22T09:26:33.6074263+02:00 0HLFFKHOAFN33:00000003 [INF] Request finished in 108.8122ms 200 application/font-woff (791a596a)
+2018-07-22T09:26:33.7231322+02:00 0HLFFKHOAFN31:00000004 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:44396/Word/GetWordsForReview   (ca22a1cb)
+2018-07-22T09:26:33.7351017+02:00 0HLFFKHOAFN32:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff   (ca22a1cb)
+2018-07-22T09:26:33.7874354+02:00 0HLFFKHOAFN32:00000004 [INF] Sending file. Request path: '"/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff"' (27b0a520)
+2018-07-22T09:26:33.7900847+02:00 0HLFFKHOAFN31:00000004 [INF] Route matched with "{action = \"GetWordsForReview\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:26:33.8128070+02:00 0HLFFKHOAFN32:00000004 [INF] Request finished in 62.4037ms 200 application/font-woff (791a596a)
+2018-07-22T09:26:33.8227940+02:00 0HLFFKHOAFN31:00000004 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:26:33.8352608+02:00 0HLFFKHOAFN36:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf   (ca22a1cb)
+2018-07-22T09:26:33.8506449+02:00 0HLFFKHOAFN31:00000004 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:26:33.8699671+02:00 0HLFFKHOAFN36:00000003 [INF] Sending file. Request path: '"/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf"' (27b0a520)
+2018-07-22T09:26:33.8836857+02:00 0HLFFKHOAFN36:00000003 [INF] Request finished in 48.5595ms 200 application/x-font-ttf (791a596a)
+2018-07-22T09:26:33.9211814+02:00 0HLFFKHOAFN34:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/favicon.ico   (ca22a1cb)
+2018-07-22T09:26:33.9449138+02:00 0HLFFKHOAFN34:00000002 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\favicon.ico"' (27b0a520)
+2018-07-22T09:26:33.9479155+02:00 0HLFFKHOAFN31:00000004 [INF] Executed DbCommand ("60"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-07-22T09:26:33.9775852+02:00 0HLFFKHOAFN34:00000002 [INF] Request finished in 33.2828ms 200 image/x-icon (791a596a)
+2018-07-22T09:26:33.9790402+02:00 0HLFFKHOAFN31:00000004 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 142.4262ms. (50a9e262)
+2018-07-22T09:26:33.9897058+02:00 0HLFFKHOAFN31:00000004 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-07-22T09:26:34.0653663+02:00 0HLFFKHOAFN31:00000004 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" in 264.2058ms (afa2e885)
+2018-07-22T09:26:34.0734568+02:00 0HLFFKHOAFN31:00000004 [INF] Request finished in 365.1221ms 200 application/json; charset=utf-8 (791a596a)
+2018-07-22T09:26:58.7438972+02:00 0HLFFKHOAFN35:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Account/Create   (ca22a1cb)
+2018-07-22T09:26:58.7939497+02:00 0HLFFKHOAFN35:00000004 [INF] Route matched with "{action = \"Create\", controller = \"Account\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:26:58.8045447+02:00 0HLFFKHOAFN35:00000004 [INF] Executing action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:26:58.8100417+02:00 0HLFFKHOAFN35:00000004 [INF] Executed action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.6418ms. (50a9e262)
+2018-07-22T09:26:58.8268236+02:00 0HLFFKHOAFN35:00000004 [INF] Executing ViewResult, running view "Create". (c83d0e25)
+2018-07-22T09:26:59.0917973+02:00 0HLFFKHOAFN35:00000004 [INF] Executed ViewResult - view "Create" executed in 275.9167ms. (f66409e9)
+2018-07-22T09:26:59.0986870+02:00 0HLFFKHOAFN35:00000004 [INF] Executed action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" in 294.2595ms (afa2e885)
+2018-07-22T09:26:59.1358116+02:00 0HLFFKHOAFN35:00000004 [INF] Request finished in 361.7927ms 200 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:26:59.1380778+02:00 0HLFFKHOAFN33:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2018-07-22T09:26:59.1508190+02:00 0HLFFKHOAFN32:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2018-07-22T09:26:59.1647915+02:00 0HLFFKHOAFN33:00000004 [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2018-07-22T09:26:59.1846155+02:00 0HLFFKHOAFN33:00000004 [INF] Request finished in 52.9891ms 200 application/javascript (791a596a)
+2018-07-22T09:26:59.1942038+02:00 0HLFFKHOAFN32:00000005 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2018-07-22T09:26:59.2137932+02:00 0HLFFKHOAFN32:00000005 [INF] Request finished in 61.9982ms 200 application/javascript (791a596a)
+2018-07-22T09:28:25.5101829+02:00 0HLFFKHOAFN37:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Account/Create application/x-www-form-urlencoded 305 (ca22a1cb)
+2018-07-22T09:28:25.5536237+02:00 0HLFFKHOAFN37:00000001 [INF] Route matched with "{action = \"Create\", controller = \"Account\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:28:25.6269392+02:00 0HLFFKHOAFN37:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.AspNetUserClaim"]) - Validation state: Valid (4e3479ed)
+2018-07-22T09:28:25.6366155+02:00 0HLFFKHOAFN37:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:28:25.9770668+02:00 0HLFFKHOAFN37:00000001 [ERR] Failed executing DbCommand ("167"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([AspNetUserId], [ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (627a98df)
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:97002c70-fb11-4720-891a-f5ea1beff3fa
+Error Number:207,State:1,Class:16
+2018-07-22T09:28:26.2933602+02:00 0HLFFKHOAFN37:00000001 [ERR] An exception occurred in the database while saving changes for context type '"Mehrsan.Dal.DB.WordEntities"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2018-07-22T09:28:28.0509552+02:00 0HLFFKHOAFN37:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" in 2492.0162ms (afa2e885)
+2018-07-22T09:28:28.9972350+02:00 0HLFFKHOAFN37:00000001 [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');" (0723d8ff)
+2018-07-22T09:28:29.0207862+02:00 0HLFFKHOAFN37:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2018-07-22T09:28:29.1397568+02:00 0HLFFKHOAFN37:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Mehrsan.Core.Web.Controllers.AccountController.Create(AspNetUserClaim aspNetUserClaim) in D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\Controllers\AccountController.cs:line 61
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-07-22T09:28:29.3045804+02:00 0HLFFKHOAFN37:00000001 [INF] Request finished in 3725.0117ms 500 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:29:25.9331571+02:00 0HLFFKHOAFN37:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Account/Create   (ca22a1cb)
+2018-07-22T09:29:25.9467238+02:00 0HLFFKHOAFN37:00000002 [INF] Route matched with "{action = \"Create\", controller = \"Account\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:29:25.9530419+02:00 0HLFFKHOAFN37:00000002 [INF] Executing action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:29:25.9609450+02:00 0HLFFKHOAFN37:00000002 [INF] Executed action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.0386ms. (50a9e262)
+2018-07-22T09:29:25.9664881+02:00 0HLFFKHOAFN37:00000002 [INF] Executing ViewResult, running view "Create". (c83d0e25)
+2018-07-22T09:29:26.1108293+02:00 0HLFFKHOAFN37:00000002 [INF] Executed ViewResult - view "Create" executed in 144.3277ms. (f66409e9)
+2018-07-22T09:29:26.1174755+02:00 0HLFFKHOAFN37:00000002 [INF] Executed action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" in 165.0825ms (afa2e885)
+2018-07-22T09:29:26.1582796+02:00 0HLFFKHOAFN37:00000002 [INF] Request finished in 192.9686ms 200 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:30:04.5822349+02:00 0HLFFKHOAFN37:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Account/Create application/x-www-form-urlencoded 305 (ca22a1cb)
+2018-07-22T09:30:04.5896828+02:00 0HLFFKHOAFN37:00000003 [INF] Route matched with "{action = \"Create\", controller = \"Account\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:30:04.5980738+02:00 0HLFFKHOAFN37:00000003 [INF] Executing action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.AspNetUserClaim"]) - Validation state: Valid (4e3479ed)
+2018-07-22T09:30:37.9935962+02:00 0HLFFKHOAFN37:00000003 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:30:39.4237349+02:00 0HLFFKHOAFN37:00000003 [ERR] Failed executing DbCommand ("217"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([AspNetUserId], [ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (627a98df)
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:97002c70-fb11-4720-891a-f5ea1beff3fa
+Error Number:207,State:1,Class:16
+2018-07-22T09:30:39.8135077+02:00 0HLFFKHOAFN37:00000003 [ERR] An exception occurred in the database while saving changes for context type '"Mehrsan.Dal.DB.WordEntities"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2018-07-22T09:30:40.7257447+02:00 0HLFFKHOAFN37:00000003 [INF] Executed action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" in 36130.8057ms (afa2e885)
+2018-07-22T09:30:41.5142339+02:00 0HLFFKHOAFN37:00000003 [INF] Executed DbCommand ("172"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');" (0723d8ff)
+2018-07-22T09:30:41.7461248+02:00 0HLFFKHOAFN37:00000003 [INF] Executed DbCommand ("41"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2018-07-22T09:30:43.5828629+02:00 0HLFFKHOAFN37:00000003 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Mehrsan.Core.Web.Controllers.AccountController.Create(AspNetUserClaim aspNetUserClaim) in D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\Controllers\AccountController.cs:line 61
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-07-22T09:30:43.8782957+02:00 0HLFFKHOAFN37:00000003 [INF] Request finished in 39285.6585ms 500 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:36:21.1149857+02:00 0HLFFKN8QPJ41:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:44378/  0 (ca22a1cb)
+2018-07-22T09:36:21.1149857+02:00 0HLFFKN8QPJ42:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-07-22T09:36:21.2828622+02:00 0HLFFKN8QPJ42:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-07-22T09:36:21.2935903+02:00 0HLFFKN8QPJ41:00000001 [INF] Request finished in 182.1949ms 200  (791a596a)
+2018-07-22T09:36:22.2281651+02:00 0HLFFKN8QPJ42:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:36:22.2730958+02:00 0HLFFKN8QPJ42:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:36:24.1233302+02:00 0HLFFKN8QPJ42:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:36:24.6577749+02:00 0HLFFKN8QPJ42:00000001 [INF] Executed DbCommand ("77"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-07-22T09:36:24.9016527+02:00 0HLFFKN8QPJ42:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 2591.8315ms. (50a9e262)
+2018-07-22T09:36:24.9459020+02:00 0HLFFKN8QPJ42:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-07-22T09:36:25.3859285+02:00 0HLFFKN8QPJ42:00000001 [INF] Executed ViewResult - view "Index" executed in 458.2743ms. (f66409e9)
+2018-07-22T09:36:25.4884903+02:00 0HLFFKN8QPJ42:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 3195.0221ms (afa2e885)
+2018-07-22T09:36:25.5231572+02:00 0HLFFKN8QPJ42:00000001 [INF] Request finished in 4421.2412ms 200 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:36:26.2119343+02:00 0HLFFKN8QPJ41:00000002 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:44396/Word/GetWordsForReview   (ca22a1cb)
+2018-07-22T09:36:26.3708178+02:00 0HLFFKN8QPJ41:00000002 [INF] Route matched with "{action = \"GetWordsForReview\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:36:26.4011782+02:00 0HLFFKN8QPJ41:00000002 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:36:26.4368916+02:00 0HLFFKN8QPJ41:00000002 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:36:26.5239731+02:00 0HLFFKN8QPJ41:00000002 [INF] Executed DbCommand ("78"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-07-22T09:36:26.5308495+02:00 0HLFFKN8QPJ41:00000002 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 121.8408ms. (50a9e262)
+2018-07-22T09:36:26.5448502+02:00 0HLFFKN8QPJ41:00000002 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-07-22T09:36:26.6804224+02:00 0HLFFKN8QPJ41:00000002 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" in 284.4446ms (afa2e885)
+2018-07-22T09:36:26.6907124+02:00 0HLFFKN8QPJ41:00000002 [INF] Request finished in 511.0269ms 200 application/json; charset=utf-8 (791a596a)
+2018-07-22T09:36:35.8436648+02:00 0HLFFKN8QPJ42:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Account/Create   (ca22a1cb)
+2018-07-22T09:36:35.8580700+02:00 0HLFFKN8QPJ42:00000002 [INF] Route matched with "{action = \"Create\", controller = \"Account\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:36:35.8632320+02:00 0HLFFKN8QPJ42:00000002 [INF] Executing action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:36:35.8700902+02:00 0HLFFKN8QPJ42:00000002 [INF] Executed action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.596ms. (50a9e262)
+2018-07-22T09:36:35.9000448+02:00 0HLFFKN8QPJ42:00000002 [INF] Executing ViewResult, running view "Create". (c83d0e25)
+2018-07-22T09:36:36.1955202+02:00 0HLFFKN8QPJ42:00000002 [INF] Executed ViewResult - view "Create" executed in 305.9929ms. (f66409e9)
+2018-07-22T09:36:36.2050434+02:00 0HLFFKN8QPJ42:00000002 [INF] Executed action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" in 340.4845ms (afa2e885)
+2018-07-22T09:36:36.2463881+02:00 0HLFFKN8QPJ42:00000002 [INF] Request finished in 388.0618ms 200 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:37:59.1658198+02:00 0HLFFKN8QPJ43:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Account/Create application/x-www-form-urlencoded 305 (ca22a1cb)
+2018-07-22T09:37:59.2089923+02:00 0HLFFKN8QPJ43:00000001 [INF] Route matched with "{action = \"Create\", controller = \"Account\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:37:59.2670517+02:00 0HLFFKN8QPJ43:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.AspNetUserClaim"]) - Validation state: Valid (4e3479ed)
+2018-07-22T09:38:21.5990224+02:00 0HLFFKN8QPJ43:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:38:23.9218740+02:00 0HLFFKN8QPJ43:00000001 [ERR] Failed executing DbCommand ("1,204"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([AspNetUserId], [ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (627a98df)
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:b733c92a-7b4d-45bf-9a12-5c35e7e910da
+Error Number:207,State:1,Class:16
+2018-07-22T09:38:24.3739252+02:00 0HLFFKN8QPJ43:00000001 [ERR] An exception occurred in the database while saving changes for context type '"Mehrsan.Dal.DB.WordEntities"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2018-07-22T09:38:25.2623687+02:00 0HLFFKN8QPJ43:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" in 26048.2899ms (afa2e885)
+2018-07-22T09:38:25.9148978+02:00 0HLFFKN8QPJ43:00000001 [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');" (0723d8ff)
+2018-07-22T09:38:25.9879333+02:00 0HLFFKN8QPJ43:00000001 [INF] Executed DbCommand ("34"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2018-07-22T09:38:28.1075283+02:00 0HLFFKN8QPJ43:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Mehrsan.Core.Web.Controllers.AccountController.Create(AspNetUserClaim aspNetUserClaim) in D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\Controllers\AccountController.cs:line 61
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-07-22T09:38:28.5441878+02:00 0HLFFKN8QPJ43:00000001 [INF] Request finished in 29373.4254ms 500 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:41:30.3782029+02:00 0HLFFKQ50SF76:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:44378/  0 (ca22a1cb)
+2018-07-22T09:41:30.3782029+02:00 0HLFFKQ50SF75:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-07-22T09:41:30.4673943+02:00 0HLFFKQ50SF75:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-07-22T09:41:30.4675470+02:00 0HLFFKQ50SF76:00000001 [INF] Request finished in 90.5282ms 200  (791a596a)
+2018-07-22T09:41:31.0811591+02:00 0HLFFKQ50SF75:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:41:31.1032570+02:00 0HLFFKQ50SF75:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:41:31.3394338+02:00 0HLFFKQ50SF75:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:41:31.6093047+02:00 0HLFFKQ50SF75:00000001 [INF] Executed DbCommand ("28"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-07-22T09:41:31.7080943+02:00 0HLFFKQ50SF75:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 595.7025ms. (50a9e262)
+2018-07-22T09:41:31.7357701+02:00 0HLFFKQ50SF75:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-07-22T09:41:32.5649467+02:00 0HLFFKQ50SF75:00000001 [INF] Executed ViewResult - view "Index" executed in 580.318ms. (f66409e9)
+2018-07-22T09:41:32.9977620+02:00 0HLFFKQ50SF75:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 1828.4291ms (afa2e885)
+2018-07-22T09:41:33.0184972+02:00 0HLFFKQ50SF75:00000001 [INF] Request finished in 2647.4252ms 200 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:41:33.3930237+02:00 0HLFFKQ50SF76:00000002 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:44396/Word/GetWordsForReview   (ca22a1cb)
+2018-07-22T09:41:33.4255879+02:00 0HLFFKQ50SF76:00000002 [INF] Route matched with "{action = \"GetWordsForReview\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:41:33.4357558+02:00 0HLFFKQ50SF76:00000002 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:41:33.4541721+02:00 0HLFFKQ50SF76:00000002 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:41:33.5241359+02:00 0HLFFKQ50SF76:00000002 [INF] Executed DbCommand ("59"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-07-22T09:41:33.5328819+02:00 0HLFFKQ50SF76:00000002 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 89.5934ms. (50a9e262)
+2018-07-22T09:41:33.5429206+02:00 0HLFFKQ50SF76:00000002 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-07-22T09:41:33.6379446+02:00 0HLFFKQ50SF76:00000002 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" in 200.2475ms (afa2e885)
+2018-07-22T09:41:33.6513818+02:00 0HLFFKQ50SF76:00000002 [INF] Request finished in 254.0514ms 200 application/json; charset=utf-8 (791a596a)
+2018-07-22T09:41:42.1789934+02:00 0HLFFKQ50SF75:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Account/Create   (ca22a1cb)
+2018-07-22T09:41:42.1961840+02:00 0HLFFKQ50SF75:00000002 [INF] Route matched with "{action = \"Create\", controller = \"Account\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:41:42.2013640+02:00 0HLFFKQ50SF75:00000002 [INF] Executing action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T09:41:42.2068176+02:00 0HLFFKQ50SF75:00000002 [INF] Executed action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 0.6099ms. (50a9e262)
+2018-07-22T09:41:42.2156781+02:00 0HLFFKQ50SF75:00000002 [INF] Executing ViewResult, running view "Create". (c83d0e25)
+2018-07-22T09:41:42.4662546+02:00 0HLFFKQ50SF75:00000002 [INF] Executed ViewResult - view "Create" executed in 252.763ms. (f66409e9)
+2018-07-22T09:41:42.4810732+02:00 0HLFFKQ50SF75:00000002 [INF] Executed action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" in 274.779ms (afa2e885)
+2018-07-22T09:41:42.5147640+02:00 0HLFFKQ50SF75:00000002 [INF] Request finished in 330.2054ms 200 text/html; charset=utf-8 (791a596a)
+2018-07-22T09:41:50.1854935+02:00 0HLFFKQ50SF76:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Account/Create application/x-www-form-urlencoded 305 (ca22a1cb)
+2018-07-22T09:41:50.2320026+02:00 0HLFFKQ50SF76:00000003 [INF] Route matched with "{action = \"Create\", controller = \"Account\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T09:41:50.3027129+02:00 0HLFFKQ50SF76:00000003 [INF] Executing action method "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.AspNetUserClaim"]) - Validation state: Valid (4e3479ed)
+2018-07-22T09:41:53.6449709+02:00 0HLFFKQ50SF76:00000003 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T09:41:54.9588675+02:00 0HLFFKQ50SF76:00000003 [ERR] Failed executing DbCommand ("224"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([AspNetUserId], [ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (627a98df)
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+ClientConnectionId:de70cb7f-7ba4-440c-916f-3bc5db4a446a
+Error Number:207,State:1,Class:16
+2018-07-22T09:41:55.4729833+02:00 0HLFFKQ50SF76:00000003 [ERR] An exception occurred in the database while saving changes for context type '"Mehrsan.Dal.DB.WordEntities"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2018-07-22T09:41:56.1937563+02:00 0HLFFKQ50SF76:00000003 [INF] Executed action "Mehrsan.Core.Web.Controllers.AccountController.Create (Mehrsan.Core.Web)" in 5954.6348ms (afa2e885)
+2018-07-22T09:41:57.8522869+02:00 0HLFFKQ50SF76:00000003 [INF] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');" (0723d8ff)
+2018-07-22T09:41:58.1029897+02:00 0HLFFKQ50SF76:00000003 [INF] Executed DbCommand ("52"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];" (0723d8ff)
+2018-07-22T09:41:59.2812363+02:00 0HLFFKQ50SF76:00000003 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Invalid column name 'AspNetUserId'.
+   at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(DbContext _, ValueTuple`2 parameters, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Mehrsan.Core.Web.Controllers.AccountController.Create(AspNetUserClaim aspNetUserClaim) in D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\Controllers\AccountController.cs:line 62
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2018-07-22T09:41:59.7139316+02:00 0HLFFKQ50SF76:00000003 [INF] Request finished in 9502.4445ms 500 text/html; charset=utf-8 (791a596a)
+2018-07-22T10:02:48.8490030+02:00 0HLFFL621J40F:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-07-22T10:02:48.8806622+02:00 0HLFFL621J40F:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-07-22T10:02:49.2313173+02:00 0HLFFL621J40F:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T10:02:49.4832679+02:00 0HLFFL621J40F:00000001 [INF] Executed DbCommand ("28"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-07-22T10:02:49.6382671+02:00 0HLFFL621J40F:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-07-22T10:02:49.9100650+02:00 0HLFFL621J40F:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T10:02:49.9321102+02:00 0HLFFL621J40F:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T10:02:49.9854167+02:00 0HLFFL621J40F:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T10:02:50.0943126+02:00 0HLFFL621J40F:00000001 [INF] Executed DbCommand ("72"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-07-22T10:02:50.1817530+02:00 0HLFFL621J40F:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 241.4429ms. (50a9e262)
+2018-07-22T10:02:50.2128765+02:00 0HLFFL621J40F:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-07-22T10:02:50.4755732+02:00 0HLFFL621J40F:00000001 [INF] Executed ViewResult - view "Index" executed in 276.433ms. (f66409e9)
+2018-07-22T10:02:50.4762596+02:00 0HLFFL621J40F:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 565.3408ms (afa2e885)
+2018-07-22T10:02:50.4984463+02:00 0HLFFL621J40F:00000001 [INF] Request finished in 1661.0562ms 200 text/html; charset=utf-8 (791a596a)
+2018-07-22T11:40:14.5417753+02:00 0HLFFMSG6G847:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-07-22T11:40:14.5814687+02:00 0HLFFMSG6G847:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-07-22T11:40:14.9057925+02:00 0HLFFMSG6G847:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T11:40:15.1354662+02:00 0HLFFMSG6G847:00000001 [INF] Executed DbCommand ("15"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2018-07-22T11:40:15.2453138+02:00 0HLFFMSG6G847:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-07-22T11:40:15.4375042+02:00 0HLFFMSG6G847:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-07-22T11:40:15.4561498+02:00 0HLFFMSG6G847:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-07-22T11:40:15.4864508+02:00 0HLFFMSG6G847:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-07-22T11:40:15.5464685+02:00 0HLFFMSG6G847:00000001 [INF] Executed DbCommand ("44"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-07-22T11:40:15.6312799+02:00 0HLFFMSG6G847:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 168.633ms. (50a9e262)
+2018-07-22T11:40:15.6558976+02:00 0HLFFMSG6G847:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-07-22T11:40:15.9043251+02:00 0HLFFMSG6G847:00000001 [INF] Executed ViewResult - view "Index" executed in 260.4982ms. (f66409e9)
+2018-07-22T11:40:15.9050736+02:00 0HLFFMSG6G847:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 467.0983ms (afa2e885)
+2018-07-22T11:40:15.9269653+02:00 0HLFFMSG6G847:00000001 [INF] Request finished in 1391.9052ms 200 text/html; charset=utf-8 (791a596a)

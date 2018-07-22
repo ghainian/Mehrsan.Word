@@ -6,13 +6,14 @@ using System.Linq;
 
 namespace Mehrsan.Dal.DB
 {
-    public class DAL : IDAL
+    public sealed class DAL : IDAL
     {
         #region Fields
 
         private static readonly IDAL _instance;
 
         #endregion
+
         #region Properties
 
         public static WordEntities WordEntitiesInstance { get { return new WordEntities(WordEntities.Options); } }
@@ -30,7 +31,7 @@ namespace Mehrsan.Dal.DB
 
         private DAL()
         {
-            
+
         }
 
         public bool DeleteWord(long id)
@@ -475,7 +476,35 @@ namespace Mehrsan.Dal.DB
                 else
                     return new List<Word>();
             }
-        } 
+        }
+
+        public bool CreateClaim(AspNetUserClaim userClaim)
+        {
+            using (var entity = WordEntitiesInstance)
+            {
+                entity.Add(userClaim);
+                entity.SaveChanges();
+                return true;
+            }
+
+        }
+
+        public List<AspNetUserClaim> GetUserClaims(string searchText)
+        {
+            using (var entity = WordEntitiesInstance)
+            {
+                
+   .Join(database.Post_Metas, // the source table of the inner join
+      post => post.ID,        // Select the primary key (the first part of the "on" clause in an sql "join" statement)
+      meta => meta.Post_ID,   // Select the foreign key (the second part of the "on" clause)
+      (post, meta) => new { Post = post, Meta = meta }) // selection
+   .Where(postAndMeta => postAndMeta.Post.ID == id);
+
+                entity.Add(userClaim);
+                entity.SaveChanges();
+                return true;
+            }
+        }
         #endregion
     }
 }
