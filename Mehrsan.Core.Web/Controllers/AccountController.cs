@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Mehrsan.Dal.DB;
+using Mehrsan.Business;
 
 namespace Mehrsan.Core.Web.Controllers
 {
@@ -116,12 +117,21 @@ namespace Mehrsan.Core.Web.Controllers
             return View(aspNetUserClaim);
         }
 
-        public List<AspNetUserClaim> GetUserClaims()
+        public JsonResult GetUserClaims(string searchText)
         {
-            var result = Use
+            var result = AccountManager.Instance.GetUserClaims(searchText);
+            return Json(result);
+
         }
-            // GET: Account/Delete/5
-            public async Task<IActionResult> Delete(int? id)
+
+        private JsonResult Json(List<AspNetUserClaim> result, object jsonRequestBahaviour)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        // GET: Account/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {

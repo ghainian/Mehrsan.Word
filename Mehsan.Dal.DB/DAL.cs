@@ -486,23 +486,24 @@ namespace Mehrsan.Dal.DB
                 entity.SaveChanges();
                 return true;
             }
-
         }
 
         public List<AspNetUserClaim> GetUserClaims(string searchText)
         {
             using (var entity = WordEntitiesInstance)
             {
-                
-   .Join(database.Post_Metas, // the source table of the inner join
-      post => post.ID,        // Select the primary key (the first part of the "on" clause in an sql "join" statement)
-      meta => meta.Post_ID,   // Select the foreign key (the second part of the "on" clause)
-      (post, meta) => new { Post = post, Meta = meta }) // selection
-   .Where(postAndMeta => postAndMeta.Post.ID == id);
+                var query = entity.AspNetUserClaims.Join(entity.AspNetUsers,
+                claim => claim.UserId,
+                user => user.Id,
+                (claim, user) => new { claim, user });
 
-                entity.Add(userClaim);
-                entity.SaveChanges();
-                return true;
+                if(!string.IsNullOrEmpty(searchText))
+                { 
+                    query = query.Where(z => z.user.UserName.Contains(searchText));
+                }
+
+                var lastQuery = (from item in query select item.claim);
+                return lastQuery.ToList();
             }
         }
         #endregion
