@@ -181,6 +181,8 @@
   <ItemGroup>
     <Compile Include="ChartData.cs" />
     <Compile Include="DAL.cs" />
+    <Compile Include="DALGeneric.cs" />
+    <Compile Include="Interface\IDALGeneric.cs" />
     <Compile Include="Interface\IDAL.cs" />
     <Compile Include="Model\AspNetUser.cs" />
     <Compile Include="Model\AspNetUserClaim.cs" />

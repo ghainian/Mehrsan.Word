@@ -117,9 +117,9 @@ namespace Mehrsan.Core.Web.Controllers
             return View(aspNetUserClaim);
         }
 
-        public JsonResult GetUserClaims(string searchText)
+        public JsonResult GetUsers(string searchText)
         {
-            var result = AccountManager.Instance.GetUserClaims(searchText);
+            var result = AccountManager.Instance.GetUsers(searchText).Select(x=>x.UserName);
             return Json(result);
 
         }

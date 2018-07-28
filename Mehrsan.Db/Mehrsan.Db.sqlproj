@@ -154,7 +154,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="schema20180722.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="20180721.bak" />

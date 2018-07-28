@@ -1,4 +1,5 @@
 ﻿using Mehrsan.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,44 +37,44 @@ namespace Mehrsan.Dal.DB
 
         public bool DeleteWord(long id)
         {
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
-                Word word = entity.Words.Find(id);
+                Word word = dbContext.Words.Find(id);
                 if (word == null)
                 {
                     return false;
                 }
 
-                var relatedHistories = (from h in entity.Histories where h.WordId == id select h).ToList();
+                var relatedHistories = (from h in dbContext.Histories where h.WordId == id select h).ToList();
                 foreach (History history in relatedHistories)
                 {
-                    entity.Histories.Remove(history);
+                    dbContext.Histories.Remove(history);
                 }
 
 
-                entity.Words.Remove(word);
+                dbContext.Words.Remove(word);
 
-                entity.SaveChanges();
+                dbContext.SaveChanges();
 
                 return true;
             }
         }
         public bool WordExists(long id)
         {
-            using (var entity = WordEntitiesInstance)
-                return entity.Words.Count(e => e.Id == id) > 0;
+            using (var dbContext = WordEntitiesInstance)
+                return dbContext.Words.Count(e => e.Id == id) > 0;
         }
 
         public List<Word> LoadRelatedSentences(long wordId)
         {
             return new List<Word>();
-            //            using (var entity = WordEntitiesInstance)
+            //            using (var dbContext = WordEntitiesInstance)
             //            {
-            //                List<Word> words = (from w in entity.Words
+            //                List<Word> words = (from w in dbContext.Words
             //                                    join
-            //g in entity.Graphs on w.Id equals g.SrcWordId
+            //g in dbContext.Graphs on w.Id equals g.SrcWordId
             //                                    join
-            //dstWord in entity.Words on g.DstWordId equals dstWord.Id
+            //dstWord in dbContext.Words on g.DstWordId equals dstWord.Id
             //                                    where w.Id == wordId
             //                                    orderby dstWord.NextReviewDate, dstWord.Id ascending
             //                                    select dstWord).Take(Common.Common.NofRelatedSentences).ToList();
@@ -99,10 +100,10 @@ namespace Mehrsan.Dal.DB
 
         public List<History> GetHistories(long wordId, DateTime reviewTime)
         {
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
 
-                IQueryable<History> q = (from h in entity.Histories select h);
+                IQueryable<History> q = (from h in dbContext.Histories select h);
 
                 if (wordId != 0)
                     q = (from item in q where item.WordId == wordId select item);
@@ -118,11 +119,11 @@ namespace Mehrsan.Dal.DB
         {
 
 
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
 
                 IQueryable<object> q =
-                     (from w in entity.Words
+                     (from w in dbContext.Words
                       group w.Id by w.TargetWord into g
                       where g.ToList().Count > 1
                       select new Item() { TargetWord = g.Key, RepetitiveWords = g.ToList() });
@@ -228,9 +229,9 @@ namespace Mehrsan.Dal.DB
         public List<Word> GetAllWords(string userId, string containText)
         {
 
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
-                IQueryable<Word> query = (from w in entity.Words
+                IQueryable<Word> query = (from w in dbContext.Words
                                           orderby w.TargetWord
                                           select w);
                 if (!string.IsNullOrEmpty(containText))
@@ -276,41 +277,34 @@ namespace Mehrsan.Dal.DB
             return false;
         }
 
-        public int AddWord(Word word)
-        {
-            using (var entity = WordEntitiesInstance)
-            {
-                entity.Words.Add(word);
-                return entity.SaveChanges();
-            }
-        }
+       
 
         //public  int SetWordAmbiguous(long wordId)
         //{
-        //    using (var entity = WordEntitiesInstance)
+        //    using (var dbContext = WordEntitiesInstance)
         //    {
-        //        Word updatedWord = entity.Words.Find(wordId);
+        //        Word updatedWord = dbContext.Words.Find(wordId);
         //        updatedWord.IsAmbiguous = true;
-        //        entity.Words.Attach(updatedWord);
-        //        entity.Entry(updatedWord).State = EntityState.Modified;
-        //        return entity.SaveChanges();
+        //        dbContext.Words.Attach(updatedWord);
+        //        dbContext.Entry(updatedWord).State = EntityState.Modified;
+        //        return dbContext.SaveChanges();
         //    }
         //}
 
         public List<Graph> GetGraphs()
         {
-            //using (var entity = WordEntitiesInstance)
-            //    return entity.Graphs.ToList();
+            //using (var dbContext = WordEntitiesInstance)
+            //    return dbContext.Graphs.ToList();
 
             return null;
         }
 
         public List<Word> GetWords(long id, string targetWord)
         {
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
 
-                var q = (from w in entity.Words select w);
+                var q = (from w in dbContext.Words select w);
                 Word word = null;
 
                 if (id != 0)
@@ -328,19 +322,19 @@ namespace Mehrsan.Dal.DB
 
         //public  long AddWordFile(WordFile wordFile)
         //{
-        //    using (var entity = WordEntitiesInstance)
+        //    using (var dbContext = WordEntitiesInstance)
         //    {
-        //        entity.WordFiles.Add(wordFile);
-        //        return entity.SaveChanges();
+        //        dbContext.WordFiles.Add(wordFile);
+        //        return dbContext.SaveChanges();
         //    }
         //}
 
         public List<ChartData> GetChartData()
         {
             List<ChartData> result = new List<ChartData>();
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
-                var resultq = (from h in entity.Histories
+                var resultq = (from h in dbContext.Histories
                                group h by (h.ReviewTime.Year.ToString() + "/" + h.ReviewTime.Month.ToString() + "/" + h.ReviewTime.Day.ToString()) into g
                                select new { Count = g.Count(), Date = g.Key }).ToList();
 
@@ -354,22 +348,13 @@ namespace Mehrsan.Dal.DB
             return result;
         }
 
-        public int AddHistory(History history)
-        {
-            long wordId = history.WordId;
-
-            using (var entity = WordEntitiesInstance)
-            {
-                entity.Histories.Add(history);
-                return entity.SaveChanges();
-            }
-        }
+       
 
         public History GetLastHistory(long wordId)
         {
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
-                return (from h in entity.Histories where h.WordId == wordId orderby h.Id descending select h).FirstOrDefault();
+                return (from h in dbContext.Histories where h.WordId == wordId orderby h.Id descending select h).FirstOrDefault();
             }
         }
 
@@ -378,19 +363,19 @@ namespace Mehrsan.Dal.DB
             if (reviewPeriod >= Common.Common.MaxReviewDate)
                 reviewPeriod = Common.Common.MaxReviewDate;
 
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
                 if (!string.IsNullOrEmpty(word))
                 {
-                    var q = (from w in entity.Words where w.Id != wordId && w.TargetWord == word select w);
+                    var q = (from w in dbContext.Words where w.Id != wordId && w.TargetWord == word select w);
                     //var list = q.ToList();
                     if (q.Any())
                         return 0;
                 }
-                Word updatedWord = entity.Words.Find(wordId);
-                entity.Words.Attach(updatedWord);
+                Word updatedWord = dbContext.Words.Find(wordId);
+                dbContext.Words.Attach(updatedWord);
 
-                var entry = entity.Entry(updatedWord);
+                var entry = dbContext.Entry(updatedWord);
 
                 if (startTime != null && startTime.Value != TimeSpan.MinValue)
                 {
@@ -442,16 +427,16 @@ namespace Mehrsan.Dal.DB
                     updatedWord.IsAmbiguous = isAmbiguous;
                     entry.Property(e => e.IsAmbiguous).IsModified = true;
                 }
-                return entity.SaveChanges();
+                return dbContext.SaveChanges();
             }
         }
 
         public List<Word> GetWordsForReview(string userId, DateTime reviewDate, int resultCount)
         {
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
 
-                return (from w in entity.Words
+                return (from w in dbContext.Words
                         where true
 
                         //&& w.NextReviewDate <= reviewDate
@@ -466,9 +451,9 @@ namespace Mehrsan.Dal.DB
 
         public List<Word> GetWordsLike(string word)
         {
-            using (var entity = WordEntitiesInstance)
+            using (var dbContext = WordEntitiesInstance)
             {
-                var q = (from w in entity.Words
+                var q = (from w in dbContext.Words
                          where w.TargetWord.ToLower().Contains(word)
                          select w);
                 if (q.Any())
@@ -478,34 +463,44 @@ namespace Mehrsan.Dal.DB
             }
         }
 
-        public bool CreateClaim(AspNetUserClaim userClaim)
+
+        public List<AspNetUser> GetUsers(string searchText)
         {
-            using (var entity = WordEntitiesInstance)
+
+            using (var dbContext = WordEntitiesInstance)
             {
-                entity.Add(userClaim);
-                entity.SaveChanges();
-                return true;
+                var query = dbContext.AspNetUsers;
+
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    var lastQuery = (from item in query where item.UserName.Contains(searchText) select item);
+                    return lastQuery.ToList();
+                }
+
+
+                return query.ToList();
             }
         }
 
         public List<AspNetUserClaim> GetUserClaims(string searchText)
         {
-            using (var entity = WordEntitiesInstance)
-            {
-                var query = entity.AspNetUserClaims.Join(entity.AspNetUsers,
-                claim => claim.UserId,
-                user => user.Id,
-                (claim, user) => new { claim, user });
 
+            using (var dbContext = WordEntitiesInstance)
+            {
+                var query = dbContext.AspNetUserClaims;
+
+                
                 if(!string.IsNullOrEmpty(searchText))
                 { 
-                    query = query.Where(z => z.user.UserName.Contains(searchText));
+                   var lastQuery = (from item in query where item.ClaimType.Contains(searchText) select item);
+                    return lastQuery.ToList();
                 }
 
-                var lastQuery = (from item in query select item.claim);
-                return lastQuery.ToList();
+                
+                return query.ToList();
             }
         }
+
         #endregion
     }
 }

@@ -37,6 +37,12 @@ namespace Mehrsan.Business
 
         }
 
+        public List<AspNetUser> GetUsers(string searchText)
+        {
+
+            return DAL.Instance.GetUsers(searchText);
+        }
+
         public List<AspNetUserClaim> GetUserClaims(string searchText)
         {
 
@@ -45,7 +51,7 @@ namespace Mehrsan.Business
 
         public bool CreateClaim(AspNetUserClaim userClaim)
         {
-            DAL.Instance.CreateClaim(userClaim);
+            DALGeneric<AspNetUserClaim>.Instance.Create(userClaim);
             return true;
         } 
         #endregion

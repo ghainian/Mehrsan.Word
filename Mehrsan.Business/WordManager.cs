@@ -45,7 +45,7 @@ namespace Mehrsan.Business
                         word.TargetLanguageId = (long)Languages.Danish;
                         word.MeaningLanguageId = (long)Languages.English;
                         if (GetWordByTargetWord(word.TargetWord) == null)
-                            AddWord(word);
+                            CreateWord(word);
                     }
                     catch (Exception eee)
                     {
@@ -514,7 +514,7 @@ namespace Mehrsan.Business
                 word.NextReviewDate = DateTime.Now.AddDays(1);
                 word.TargetLanguageId = (long)Languages.Danish;
                 word.MeaningLanguageId = (long)Languages.English;
-                WordManager.AddWord(word);
+                WordManager.CreateWord(word);
 
                 History history = new History()
                 {
@@ -676,7 +676,7 @@ namespace Mehrsan.Business
                         UpdatedWord = word.TargetWord,
                         UpdatedMeaning = word.Meaning
                     };
-                    DAL.Instance.AddHistory(history);
+                    DALGeneric<History>.Instance.Create(history);
 
                     int res = DAL.Instance.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod, null, null, null);
 
@@ -723,7 +723,7 @@ namespace Mehrsan.Business
 
         public static bool AddHistory(History history)
         {
-            return DAL.Instance.AddHistory(history) > 0;
+            return DALGeneric<History>.Instance.Create(history);
         }
 
         public static bool SetWordAmbiguous(long wordId)
@@ -731,14 +731,14 @@ namespace Mehrsan.Business
             return DAL.Instance.UpdateWord(wordId, string.Empty, string.Empty, null, null, 0, null, null, true) > 0;
         }
 
-        public static bool AddWord(Word word)
+        public static bool CreateWord(Word word)
         {
             word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
             word.Meaning = Common.Common.HarrassWord(word.Meaning);
 
             word.TargetWord = word.TargetWord.Trim(Common.Common.Separators);
             word.Meaning = word.Meaning.Trim(Common.Common.Separators);
-            return DAL.Instance.AddWord(word) > 0;
+            return DALGeneric<Word>.Instance.Create(word) ;
 
         }
 

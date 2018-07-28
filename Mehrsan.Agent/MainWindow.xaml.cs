@@ -107,7 +107,7 @@ namespace Mehrsan.Agent
                                 UpdatedWord = word.TargetWord,
                                 UpdatedMeaning = word.Meaning
                             };
-                            DAL.Instance.AddHistory(history);
+                            DALGeneric<History>.Instance.Create(history);
 
                             var reviewPeriod = lastHistory.ReviewPeriod;
                             if (reviewPeriod > Common.Common.MaxReviewDate)
