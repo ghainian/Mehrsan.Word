@@ -39,19 +39,26 @@ namespace Mehrsan.Business
 
         public List<AspNetUser> GetUsers(string searchText)
         {
-
-            return DAL.Instance.GetUsers(searchText);
+            using (var dbContext = DAL.Instance.NewWordEntitiesInstance())
+            {
+                return DAL.Instance.GetUsers(searchText);
+            }
         }
 
         public List<AspNetUserClaim> GetUserClaims(string searchText)
         {
-
-            return DAL.Instance.GetUserClaims(searchText);
+            using (var dbContext = DAL.Instance.NewWordEntitiesInstance())
+            {
+                return DAL.Instance.GetUserClaims(searchText);
+            }
         }
 
         public bool CreateClaim(AspNetUserClaim userClaim)
         {
-            DALGeneric<AspNetUserClaim>.Instance.Create(userClaim);
+            using (var dbContext = DAL.Instance.NewWordEntitiesInstance())
+            {
+                DALGeneric<AspNetUserClaim>.Instance.Create(userClaim);
+            }
             return true;
         } 
         #endregion

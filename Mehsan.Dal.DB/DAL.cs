@@ -12,18 +12,28 @@ namespace Mehrsan.Dal.DB
         #region Fields
 
         private static readonly IDAL _instance;
+        private static WordEntities _dbContext;
 
         #endregion
 
         #region Properties
 
-        public static WordEntities WordEntitiesInstance { get { return new WordEntities(WordEntities.Options); } }
+
 
         public static IDAL Instance { get { return _instance; } }
+
+        public WordEntities DbContext { get => _dbContext; set => _dbContext = value; }
 
         #endregion
 
         #region Methods
+
+        public WordEntities NewWordEntitiesInstance()
+        {
+            DbContext = new WordEntities(WordEntities.Options);
+            return DbContext;
+
+        }
 
         static DAL()
         {
@@ -37,44 +47,41 @@ namespace Mehrsan.Dal.DB
 
         public bool DeleteWord(long id)
         {
-            using (var dbContext = WordEntitiesInstance)
+
+            Word word = DbContext.Words.Find(id);
+            if (word == null)
             {
-                Word word = dbContext.Words.Find(id);
-                if (word == null)
-                {
-                    return false;
-                }
-
-                var relatedHistories = (from h in dbContext.Histories where h.WordId == id select h).ToList();
-                foreach (History history in relatedHistories)
-                {
-                    dbContext.Histories.Remove(history);
-                }
-
-
-                dbContext.Words.Remove(word);
-
-                dbContext.SaveChanges();
-
-                return true;
+                return false;
             }
+
+            var relatedHistories = (from h in DbContext.Histories where h.WordId == id select h).ToList();
+            foreach (History history in relatedHistories)
+            {
+                DbContext.Histories.Remove(history);
+            }
+
+
+            DbContext.Words.Remove(word);
+
+            DbContext.SaveChanges();
+
+            return true;
+
         }
         public bool WordExists(long id)
         {
-            using (var dbContext = WordEntitiesInstance)
-                return dbContext.Words.Count(e => e.Id == id) > 0;
+            return DbContext.Words.Count(e => e.Id == id) > 0;
         }
 
         public List<Word> LoadRelatedSentences(long wordId)
         {
             return new List<Word>();
-            //            using (var dbContext = WordEntitiesInstance)
-            //            {
-            //                List<Word> words = (from w in dbContext.Words
+
+            //                List<Word> words = (from w in DbContext.Words
             //                                    join
-            //g in dbContext.Graphs on w.Id equals g.SrcWordId
+            //g in DbContext.Graphs on w.Id equals g.SrcWordId
             //                                    join
-            //dstWord in dbContext.Words on g.DstWordId equals dstWord.Id
+            //dstWord in DbContext.Words on g.DstWordId equals dstWord.Id
             //                                    where w.Id == wordId
             //                                    orderby dstWord.NextReviewDate, dstWord.Id ascending
             //                                    select dstWord).Take(Common.Common.NofRelatedSentences).ToList();
@@ -94,68 +101,64 @@ namespace Mehrsan.Dal.DB
             //                    newWords.Add(newWord);
             //                }
             //                return newWords;
-            //            }
+
 
         }
 
         public List<History> GetHistories(long wordId, DateTime reviewTime)
         {
-            using (var dbContext = WordEntitiesInstance)
-            {
 
-                IQueryable<History> q = (from h in dbContext.Histories select h);
 
-                if (wordId != 0)
-                    q = (from item in q where item.WordId == wordId select item);
+            IQueryable<History> q = (from h in DbContext.Histories select h);
 
-                if (reviewTime != DateTime.MinValue)
-                    q = (from item in q where item.ReviewTime == reviewTime select item);
+            if (wordId != 0)
+                q = (from item in q where item.WordId == wordId select item);
 
-                return q.ToList();
+            if (reviewTime != DateTime.MinValue)
+                q = (from item in q where item.ReviewTime == reviewTime select item);
 
-            }
+            return q.ToList();
+
         }
         public void MergeRepetitiveWords()
         {
 
 
-            using (var dbContext = WordEntitiesInstance)
+
+            IQueryable<object> q =
+                 (from w in DbContext.Words
+                  group w.Id by w.TargetWord into g
+                  where g.ToList().Count > 1
+                  select new Item() { TargetWord = g.Key, RepetitiveWords = g.ToList() });
+
+            if (q.Any())
             {
-
-                IQueryable<object> q =
-                     (from w in dbContext.Words
-                      group w.Id by w.TargetWord into g
-                      where g.ToList().Count > 1
-                      select new Item() { TargetWord = g.Key, RepetitiveWords = g.ToList() });
-
-                if (q.Any())
+                var result = q.ToList();
+                foreach (Item item in result)
                 {
-                    var result = q.ToList();
-                    foreach (Item item in result)
+                    long minId = item.RepetitiveWords.Min();
+                    Word wordWithMinId = null;
+                    List<Word> repetitiveWords = new List<Word>();
+                    string newMeaning = string.Empty;
+                    foreach (long id in item.RepetitiveWords)
                     {
-                        long minId = item.RepetitiveWords.Min();
-                        Word wordWithMinId = null;
-                        List<Word> repetitiveWords = new List<Word>();
-                        string newMeaning = string.Empty;
-                        foreach (long id in item.RepetitiveWords)
-                        {
-                            Word word = GetWords(id, string.Empty)[0];
+                        Word word = GetWords(id, string.Empty)[0];
 
-                            newMeaning += word.Meaning.Trim(Common.Common.Separators) + " ,";
+                        newMeaning += word.Meaning.Trim(Common.Common.Separators) + " ,";
 
-                            if (minId == id)
-                                wordWithMinId = word;
-                            else
-                                DeleteWord(word.Id);
-                        }
-
-                        wordWithMinId.Meaning = newMeaning;
-                        UpdateWord(wordWithMinId.Id, wordWithMinId.TargetWord, wordWithMinId.Meaning, null, null,
-                            0, null, null, null);
+                        if (minId == id)
+                            wordWithMinId = word;
+                        else
+                            DeleteWord(word.Id);
                     }
 
-
+                    wordWithMinId.Meaning = newMeaning;
+                    UpdateWord(wordWithMinId.Id, wordWithMinId.TargetWord, wordWithMinId.Meaning, null, null,
+                        0, null, null, null);
                 }
+
+
+
             }
 
         }
@@ -229,21 +232,19 @@ namespace Mehrsan.Dal.DB
         public List<Word> GetAllWords(string userId, string containText)
         {
 
-            using (var dbContext = WordEntitiesInstance)
+            IQueryable<Word> query = (from w in DbContext.Words
+                                      orderby w.TargetWord
+                                      select w);
+            if (!string.IsNullOrEmpty(containText))
             {
-                IQueryable<Word> query = (from w in dbContext.Words
-                                          orderby w.TargetWord
-                                          select w);
-                if (!string.IsNullOrEmpty(containText))
-                {
-                    query = (from word in query where word.TargetWord.Contains(containText) select word);
-                }
-                if (!string.IsNullOrEmpty(userId))
-                {
-                    query = (from word in query where word.UserId == userId select word);
-                }
-                return query.ToList();
+                query = (from word in query where word.TargetWord.Contains(containText) select word);
             }
+            if (!string.IsNullOrEmpty(userId))
+            {
+                query = (from word in query where word.UserId == userId select word);
+            }
+            return query.ToList();
+
         }
 
         public Word GetWordByTargetWord(string word)
@@ -252,110 +253,102 @@ namespace Mehrsan.Dal.DB
                 return null;
 
             word = word.Trim(Common.Common.Separators);
-            using (var db = WordEntitiesInstance)
-            {
-                var wordInDb = (from w in db.Words where w.TargetWord.Trim().ToLower() == word.ToLower() select w).FirstOrDefault();
 
-                return wordInDb;
-            }
+            var wordInDb = (from w in DbContext.Words where w.TargetWord.Trim().ToLower() == word.ToLower() select w).FirstOrDefault();
+
+            return wordInDb;
+
         }
 
         public bool AddToGraph(Word srcWord, Word dstWord)
         {
-            using (var db = WordEntitiesInstance)
-            {
-                //var graph = (from g in db.Graphs where g.SrcWordId == srcWord.Id && g.DstWordId == dstWord.Id select g).FirstOrDefault();
 
-                //if (graph == null && srcWord.Id != dstWord.Id)
-                //{
-                //    Graph newGraph = new Graph() { SrcWordId = srcWord.Id, DstWordId = dstWord.Id };
-                //    db.Graphs.Add(newGraph);
-                //    db.SaveChanges();
-                //    return true;
-                //}
-            }
+            //var graph = (from g in db.Graphs where g.SrcWordId == srcWord.Id && g.DstWordId == dstWord.Id select g).FirstOrDefault();
+
+            //if (graph == null && srcWord.Id != dstWord.Id)
+            //{
+            //    Graph newGraph = new Graph() { SrcWordId = srcWord.Id, DstWordId = dstWord.Id };
+            //    db.Graphs.Add(newGraph);
+            //    db.SaveChanges();
+            //    return true;
+            //}
+
             return false;
         }
 
-       
+
 
         //public  int SetWordAmbiguous(long wordId)
         //{
-        //    using (var dbContext = WordEntitiesInstance)
+        //    using (DbContext)
         //    {
-        //        Word updatedWord = dbContext.Words.Find(wordId);
+        //        Word updatedWord = DbContext.Words.Find(wordId);
         //        updatedWord.IsAmbiguous = true;
-        //        dbContext.Words.Attach(updatedWord);
-        //        dbContext.Entry(updatedWord).State = EntityState.Modified;
-        //        return dbContext.SaveChanges();
+        //        DbContext.Words.Attach(updatedWord);
+        //        DbContext.Entry(updatedWord).State = EntityState.Modified;
+        //        return DbContext.SaveChanges();
         //    }
         //}
 
         public List<Graph> GetGraphs()
         {
-            //using (var dbContext = WordEntitiesInstance)
-            //    return dbContext.Graphs.ToList();
+            //using (DbContext)
+            //    return DbContext.Graphs.ToList();
 
             return null;
         }
 
         public List<Word> GetWords(long id, string targetWord)
         {
-            using (var dbContext = WordEntitiesInstance)
+
+
+            var q = (from w in DbContext.Words select w);
+            Word word = null;
+
+            if (id != 0)
+                q = (from w in q where w.Id == id select w);
+
+            if (!string.IsNullOrEmpty(targetWord))
             {
-
-                var q = (from w in dbContext.Words select w);
-                Word word = null;
-
-                if (id != 0)
-                    q = (from w in q where w.Id == id select w);
-
-                if (!string.IsNullOrEmpty(targetWord))
-                {
-                    targetWord = targetWord.ToLower().Trim();
-                    q = (from w in q where w.TargetWord.ToLower().Trim() == targetWord select w);
-                }
-
-                return q.ToList();
+                targetWord = targetWord.ToLower().Trim();
+                q = (from w in q where w.TargetWord.ToLower().Trim() == targetWord select w);
             }
+
+            return q.ToList();
+
         }
 
         //public  long AddWordFile(WordFile wordFile)
         //{
-        //    using (var dbContext = WordEntitiesInstance)
+        //    using (DbContext)
         //    {
-        //        dbContext.WordFiles.Add(wordFile);
-        //        return dbContext.SaveChanges();
+        //        DbContext.WordFiles.Add(wordFile);
+        //        return DbContext.SaveChanges();
         //    }
         //}
 
         public List<ChartData> GetChartData()
         {
             List<ChartData> result = new List<ChartData>();
-            using (var dbContext = WordEntitiesInstance)
-            {
-                var resultq = (from h in dbContext.Histories
-                               group h by (h.ReviewTime.Year.ToString() + "/" + h.ReviewTime.Month.ToString() + "/" + h.ReviewTime.Day.ToString()) into g
-                               select new { Count = g.Count(), Date = g.Key }).ToList();
 
-                result = (from item in resultq select new ChartData() { X = (DateTime.Now - DateTime.Parse(item.Date)).Days, Y = item.Count }).ToList();
+            var resultq = (from h in DbContext.Histories
+                           group h by (h.ReviewTime.Year.ToString() + "/" + h.ReviewTime.Month.ToString() + "/" + h.ReviewTime.Day.ToString()) into g
+                           select new { Count = g.Count(), Date = g.Key }).ToList();
 
-                result = (from item in result orderby item.X ascending select item).ToList();
+            result = (from item in resultq select new ChartData() { X = (DateTime.Now - DateTime.Parse(item.Date)).Days, Y = item.Count }).ToList();
 
-            }
-
+            result = (from item in result orderby item.X ascending select item).ToList();
 
             return result;
         }
 
-       
+
 
         public History GetLastHistory(long wordId)
         {
-            using (var dbContext = WordEntitiesInstance)
-            {
-                return (from h in dbContext.Histories where h.WordId == wordId orderby h.Id descending select h).FirstOrDefault();
-            }
+
+            return (from h in DbContext.Histories where h.WordId == wordId orderby h.Id descending select h).FirstOrDefault();
+
         }
 
         public int UpdateWord(long wordId, string word, string meaning, TimeSpan? startTime, TimeSpan? endTime, int reviewPeriod, short? nofSpace, bool? writtenByMe, bool? isAmbiguous)
@@ -363,97 +356,95 @@ namespace Mehrsan.Dal.DB
             if (reviewPeriod >= Common.Common.MaxReviewDate)
                 reviewPeriod = Common.Common.MaxReviewDate;
 
-            using (var dbContext = WordEntitiesInstance)
+
+            if (!string.IsNullOrEmpty(word))
             {
-                if (!string.IsNullOrEmpty(word))
-                {
-                    var q = (from w in dbContext.Words where w.Id != wordId && w.TargetWord == word select w);
-                    //var list = q.ToList();
-                    if (q.Any())
-                        return 0;
-                }
-                Word updatedWord = dbContext.Words.Find(wordId);
-                dbContext.Words.Attach(updatedWord);
-
-                var entry = dbContext.Entry(updatedWord);
-
-                if (startTime != null && startTime.Value != TimeSpan.MinValue)
-                {
-                    updatedWord.StartTime = startTime;
-                    entry.Property(e => e.StartTime).IsModified = true;
-                }
-
-                if (endTime != null && endTime.Value != TimeSpan.MinValue)
-                {
-                    updatedWord.EndTime = endTime;
-                    entry.Property(e => e.EndTime).IsModified = true;
-
-                }
-
-                if (nofSpace != null)
-                {
-                    updatedWord.NofSpace = nofSpace;
-                    entry.Property(e => e.NofSpace).IsModified = true;
-                }
-
-                if (reviewPeriod != 0)
-                {
-                    if (reviewPeriod > Common.Common.MaxReviewDate)
-                        reviewPeriod = Common.Common.MaxReviewDate;
-                    updatedWord.NextReviewDate = DateTime.Now.AddDays(reviewPeriod);
-                    entry.Property(e => e.NextReviewDate).IsModified = true;
-                }
-
-                if (!string.IsNullOrEmpty(word))
-                {
-                    updatedWord.TargetWord = word;
-                    entry.Property(e => e.TargetWord).IsModified = true;
-                }
-
-                if (!string.IsNullOrEmpty(meaning))
-                {
-                    updatedWord.Meaning = meaning;
-                    entry.Property(e => e.Meaning).IsModified = true;
-                }
-
-                if (writtenByMe != null)
-                {
-                    updatedWord.WrittenByMe = writtenByMe;
-                    entry.Property(e => e.WrittenByMe).IsModified = true;
-                }
-
-                if (isAmbiguous != null)
-                {
-                    updatedWord.IsAmbiguous = isAmbiguous;
-                    entry.Property(e => e.IsAmbiguous).IsModified = true;
-                }
-                return dbContext.SaveChanges();
+                var q = (from w in DbContext.Words where w.Id != wordId && w.TargetWord == word select w);
+                //var list = q.ToList();
+                if (q.Any())
+                    return 0;
             }
+            Word updatedWord = DbContext.Words.Find(wordId);
+            DbContext.Words.Attach(updatedWord);
+
+            var entry = DbContext.Entry(updatedWord);
+
+            if (startTime != null && startTime.Value != TimeSpan.MinValue)
+            {
+                updatedWord.StartTime = startTime;
+                entry.Property(e => e.StartTime).IsModified = true;
+            }
+
+            if (endTime != null && endTime.Value != TimeSpan.MinValue)
+            {
+                updatedWord.EndTime = endTime;
+                entry.Property(e => e.EndTime).IsModified = true;
+
+            }
+
+            if (nofSpace != null)
+            {
+                updatedWord.NofSpace = nofSpace;
+                entry.Property(e => e.NofSpace).IsModified = true;
+            }
+
+            if (reviewPeriod != 0)
+            {
+                if (reviewPeriod > Common.Common.MaxReviewDate)
+                    reviewPeriod = Common.Common.MaxReviewDate;
+                updatedWord.NextReviewDate = DateTime.Now.AddDays(reviewPeriod);
+                entry.Property(e => e.NextReviewDate).IsModified = true;
+            }
+
+            if (!string.IsNullOrEmpty(word))
+            {
+                updatedWord.TargetWord = word;
+                entry.Property(e => e.TargetWord).IsModified = true;
+            }
+
+            if (!string.IsNullOrEmpty(meaning))
+            {
+                updatedWord.Meaning = meaning;
+                entry.Property(e => e.Meaning).IsModified = true;
+            }
+
+            if (writtenByMe != null)
+            {
+                updatedWord.WrittenByMe = writtenByMe;
+                entry.Property(e => e.WrittenByMe).IsModified = true;
+            }
+
+            if (isAmbiguous != null)
+            {
+                updatedWord.IsAmbiguous = isAmbiguous;
+                entry.Property(e => e.IsAmbiguous).IsModified = true;
+            }
+            return DbContext.SaveChanges();
+
         }
 
         public List<Word> GetWordsForReview(string userId, DateTime reviewDate, int resultCount)
         {
-            using (var dbContext = WordEntitiesInstance)
-            {
 
-                return (from w in dbContext.Words
-                        where true
 
-                        //&& w.NextReviewDate <= reviewDate
-                        //&& w.UserId == userId
-                        //&& w.Meaning.ToLower().Contains("undefined")
-                        //&& w.IsMovieSubtitle == true
-                        //&& w.IsMovieSubtitle == true
-                        orderby w.NextReviewDate ascending
-                        select w).Take(resultCount).ToList();
-            }
+            return (from w in DbContext.Words
+                    where true
+
+                    //&& w.NextReviewDate <= reviewDate
+                    //&& w.UserId == userId
+                    //&& w.Meaning.ToLower().Contains("undefined")
+                    //&& w.IsMovieSubtitle == true
+                    //&& w.IsMovieSubtitle == true
+                    orderby w.NextReviewDate ascending
+                    select w).Take(resultCount).ToList();
+
         }
 
         public List<Word> GetWordsLike(string word)
         {
-            using (var dbContext = WordEntitiesInstance)
+            using (DbContext)
             {
-                var q = (from w in dbContext.Words
+                var q = (from w in DbContext.Words
                          where w.TargetWord.ToLower().Contains(word)
                          select w);
                 if (q.Any())
@@ -467,9 +458,9 @@ namespace Mehrsan.Dal.DB
         public List<AspNetUser> GetUsers(string searchText)
         {
 
-            using (var dbContext = WordEntitiesInstance)
+            using (DbContext)
             {
-                var query = dbContext.AspNetUsers;
+                var query = DbContext.AspNetUsers;
 
                 if (!string.IsNullOrEmpty(searchText))
                 {
@@ -484,21 +475,17 @@ namespace Mehrsan.Dal.DB
 
         public List<AspNetUserClaim> GetUserClaims(string searchText)
         {
-
-            using (var dbContext = WordEntitiesInstance)
+            var query = DbContext.AspNetUserClaims;
+            
+            if (!string.IsNullOrEmpty(searchText))
             {
-                var query = dbContext.AspNetUserClaims;
-
-                
-                if(!string.IsNullOrEmpty(searchText))
-                { 
-                   var lastQuery = (from item in query where item.ClaimType.Contains(searchText) select item);
-                    return lastQuery.ToList();
-                }
-
-                
-                return query.ToList();
+                var lastQuery = (from item in query where item.ClaimType.Contains(searchText) select item);
+                return lastQuery.ToList();
             }
+
+
+            return query.ToList();
+
         }
 
         #endregion

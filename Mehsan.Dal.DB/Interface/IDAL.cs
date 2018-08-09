@@ -23,7 +23,9 @@ namespace Mehrsan.Dal.DB
         int UpdateWord(long wordId, string word, string meaning, TimeSpan? startTime, TimeSpan? endTime, int reviewPeriod, short? nofSpace, bool? writtenByMe, bool? isAmbiguous);
         bool WordExists(long id);
         List<AspNetUser> GetUsers(string searchText);
-        
-        
+        WordEntities NewWordEntitiesInstance();
+
+
+
     }
 }
