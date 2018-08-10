@@ -119,7 +119,7 @@ namespace Mehrsan.Core.Web.Controllers
 
         public JsonResult GetUsers(string searchText)
         {
-            var result = AccountManager.Instance.GetUsers(searchText).Select(x=>x.UserName);
+            var result = AccountRepository.Instance.GetUsers(searchText).Select(x=>x.UserName);
             return Json(result);
 
         }

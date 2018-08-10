@@ -7,32 +7,20 @@ using System.Threading.Tasks;
 
 namespace Mehrsan.Business
 {
-    public sealed class AccountManager
+    public sealed class AccountRepository
     {
         #region Fields
-
-        private static AccountManager _instance;
 
         #endregion
 
         #region Properties
-        public static AccountManager Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
+        public static AccountRepository Instance { get; } = new AccountRepository();
 
         #endregion
 
         #region Methods
-        static AccountManager()
-        {
-            _instance = new AccountManager();
-        }
-
-        private AccountManager()
+        
+        private AccountRepository()
         {
 
         }
