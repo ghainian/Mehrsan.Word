@@ -1,4 +1,5 @@
-﻿using Mehrsan.Common;
+﻿using Mehrsan.Business.Interface;
+using Mehrsan.Common;
 using Mehrsan.Dal.DB;
 using System;
 using System.Collections.Generic;
@@ -14,198 +15,65 @@ using System.Threading.Tasks;
 
 namespace Mehrsan.Business
 {
-    public class WordApis
+    public class WordApis : IWordApis
     {
+        #region Properties
+
+        public static IWordApis Instance { get; } = new WordApis();
+
+        #endregion
 
 
+        #region Methods
 
-        private static void BatchImport()
+        private WordApis()
         {
-            using (StreamReader sr = new StreamReader(@"d:\words.txt"))
-            {
-                string contrnet = sr.ReadToEnd();
-                string[] lines = contrnet.Split('\n');
-                foreach (string line in lines)
-                {
-                    if (string.IsNullOrEmpty(line))
-                        continue;
-
-                    try
-                    {
-
-                        string[] parts = line.Split('\t');
-                        var word = new Word();
-                        word.TargetWord = parts[0].Trim(Common.Common.Separators);
-                        word.Meaning = parts[1].Trim(Common.Common.Separators);
-                        word.NextReviewDate = DateTime.Now.AddDays(1);
-                        word.TargetLanguageId = (long)Languages.Danish;
-                        word.MeaningLanguageId = (long)Languages.English;
-                        if (GetWordByTargetWord(word.TargetWord) == null)
-                            CreateWord(word, false);
-                    }
-                    catch (Exception eee)
-                    {
-
-                    }
-                }
-            }
-        }
-
-        
-
-        
-
-        public static void RemoveSpecialCharsFromWords()
-        {
-
-            foreach (Word dbWord in DAL.Instance.GetWords(0, string.Empty))
-            {
-                foreach (char ch in Common.Common.Separators)
-                {
-                    dbWord.TargetWord = dbWord.TargetWord.Replace(ch, ' ');
-                    dbWord.Meaning = dbWord.Meaning.Replace(ch, ' ');
-                }
-                UpdateWord(dbWord.Id, dbWord);
-            }
 
         }
 
-        public static void InsertSubtitlesByTimeConsideration(string movieName, TimeSpan timeSpan)
+        public bool WholeWordIsUsed(Word wordUsedByMainWord, Word mainWord)
         {
+            string dstWordNew = " " + wordUsedByMainWord.TargetWord.ToLower().Trim(Common.Common.Separators) + " ";
 
-
-
-            foreach (string file in Directory.GetFiles(Common.Common.VideoDirectory))
+            string mainWordNew = mainWord.TargetWord.ToLower().Trim(Common.Common.Separators);
+            foreach (char sep1 in Common.Common.Separators)
             {
-                if (Path.GetExtension(file).ToLower().EndsWith("srt"))
+                foreach (char sep2 in Common.Common.Separators)
                 {
-                    if (Path.GetFileNameWithoutExtension(file).EndsWith("da"))
+                    if (dstWordNew.Contains(sep1 + mainWordNew + sep2))
                     {
-                        string englishSubtitle = file;
-                        string danishSubtitle = englishSubtitle.Replace("_en.srt", "_da.srt");
-                        var danishWords = ExtractWords(danishSubtitle);
-                        var englishWords = ExtractWords(englishSubtitle);
-                        foreach (Word word in danishWords)
-                        {
-                            TimeSpan zeroTimeSpan = new TimeSpan(0, 0, 0, 0);
-                            List<Word> neighbours = englishWords.Where(x =>
-                           (
-                               (x.StartTime - word.StartTime <= timeSpan && x.StartTime - word.StartTime >= zeroTimeSpan)
-                               ||
-                               (word.StartTime - x.StartTime <= timeSpan && word.StartTime - x.StartTime >= zeroTimeSpan)
-                           )
-                            ).ToList();
-                            if (neighbours.Count > 0)
-                            {
-                                word.Meaning = string.Empty;
-                                foreach (Word meaningWord in neighbours)
-                                {
-                                    word.Meaning += " " + meaningWord.TargetWord;
-                                }
+                        // if (DAL.Instance.AddToGraph(mainWord, wordUsedByMainWord))
+                        return true;
 
-                                foreach (char ch in Common.Common.Separators)
-                                {
-                                    word.TargetWord = word.TargetWord.Replace(ch, ' ');
-                                    word.Meaning = word.Meaning.Replace(ch, ' ');
-                                }
-
-                                word.IsMovieSubtitle = true;
-                                word.MovieName = movieName;
-                                word.NextReviewDate = DateTime.Now.AddDays(1);
-
-                                try
-                                {
-                                    CreateDefaultWord(word);
-                                }
-                                catch (Exception ee)
-                                {
-                                    var words = GetWords(0, word.TargetWord);
-                                    var foundWord = words[0];
-                                    if (foundWord.Meaning == "undefined")
-                                    {
-                                        word.Id = foundWord.Id;
-                                        UpdateWord(word.Id, word);
-                                    }
-                                }
-
-                            }
-                        }
                     }
+
                 }
             }
+            return false;
+
         }
 
-        private static List<Word> ExtractWords(string subtitleFile)
+        public Word GetSerializableWord(Word word)
         {
-            int idIndex = 1;
-            List<Word> result = new List<Word>();
-            string englishContent = Common.Common.ReadFile(subtitleFile);
-
-            List<string> englishLines = new List<string>();
-            englishLines.AddRange(englishContent.Split('\n'));
-
-            List<string> danishLines = new List<string>();
-
-            int index = 0;
-            TimeSpan startTime = TimeSpan.MinValue;
-            TimeSpan endTime = TimeSpan.MinValue;
-            string engLishSentence = string.Empty;
-
-            bool newSentenceDetected = false;
-            foreach (string line in englishLines)
+            return new Word()
             {
-                string currentLine = line.Trim(Common.Common.Separators);
-                if (line.Contains("-->"))
-                {
-                    newSentenceDetected = true;
-                    engLishSentence = string.Empty;
-
-                    int indexOfArrow = currentLine.IndexOf("-->");
-                    startTime = TimeSpan.Parse(currentLine.Substring(0, indexOfArrow).Replace(",", "."));
-                    endTime = TimeSpan.Parse(currentLine.Substring(indexOfArrow + 3).Replace(",", "."));
-
-                }
-                else if (newSentenceDetected)
-                {
-                    if (string.IsNullOrEmpty(currentLine))
-                    {
-                        newSentenceDetected = false;
-
-                        Word newWord = new Word();
-
-                        newWord.TargetWord = engLishSentence.Trim(Common.Common.Separators);
-
-                        foreach (char ch in Common.Common.Separators)
-                        {
-                            newWord.TargetWord = newWord.TargetWord.Replace(ch, ' ');
-                        }
-
-                        newWord.IsMovieSubtitle = true;
-                        newWord.StartTime = startTime;
-                        newWord.EndTime = endTime;
-                        newWord.NextReviewDate = DateTime.Now.AddDays(1);
-                        newWord.Id = idIndex;
-                        result.Add(newWord);
-                        idIndex++;
-
-                        startTime = TimeSpan.MinValue;
-                        endTime = TimeSpan.MinValue;
-                        engLishSentence = string.Empty;
-
-                    }
-                    else
-                    {
-                        engLishSentence += " " + englishLines[index].Trim(Common.Common.Separators);
-                    }
-                }
-                index++;
-            }
+                Id = word.Id,
+                TargetWord = word.TargetWord,
+                IsAmbiguous = word.IsAmbiguous,
+                MovieName = word.MovieName,
+                IsMovieSubtitle = word.IsMovieSubtitle,
+                Meaning = word.Meaning,
+                StartTime = word.StartTime,
+                EndTime = word.EndTime,
+                WrittenByMe = word.WrittenByMe,
+                //Graphs = null,
+                //Graphs1 = null,
 
 
-            return result;
+            };
         }
 
-        public static void UpdateSubtitlesInfo(string movieName)
+        public void UpdateSubtitlesInfo(string movieName)
         {
             foreach (string file in Directory.GetFiles(Common.Common.VideoDirectory))
             {
@@ -247,7 +115,7 @@ namespace Mehrsan.Business
                                     Word newWord = new Word();
 
                                     newWord.TargetWord = danishSentence.Trim(Common.Common.Separators);
-                                    var foundWord = WordApis.GetWordByTargetWord(newWord.TargetWord);
+                                    var foundWord = GetWordByTargetWord(newWord.TargetWord);
 
                                     if (foundWord != null && foundWord.TargetWord.ToLower().Trim() ==
                                         newWord.TargetWord.ToLower().Trim())
@@ -303,7 +171,7 @@ namespace Mehrsan.Business
 
         }
 
-        public static void InsertSubtitlesWidoutMeaning(string movieName)
+        public void InsertSubtitlesWidoutMeaning(string movieName)
         {
             foreach (string file in Directory.GetFiles(Common.Common.VideoDirectory))
             {
@@ -394,7 +262,7 @@ namespace Mehrsan.Business
 
         }
 
-        public static void InsertSubtitles(string movieName)
+        public void InsertSubtitles(string movieName)
         {
             foreach (string file in Directory.GetFiles(Common.Common.VideoDirectory))
             {
@@ -488,47 +356,8 @@ namespace Mehrsan.Business
             }
 
         }
-        
-        private static bool CreateDefaultWord(Word word)
-        {
-            var searchedWord = GetWords(0, word.TargetWord);
-            if (searchedWord == null || searchedWord.Count == 0)
-            {
 
-                word.Id = 0;
-                word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
-                word.NextReviewDate = DateTime.Now.AddDays(1);
-                word.TargetLanguageId = (long)Languages.Danish;
-                word.MeaningLanguageId = (long)Languages.English;
-                WordApis.CreateWord(word, true);
-
-                return true;
-            }
-            return false;
-        }
-        
-        private static void RunAgentProcess()
-        {
-            try
-            {
-                Process.Start(Common.Common.AgentPath);
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private static bool AgentIsRunning()
-        {
-            var processes = Process.GetProcesses();
-            foreach (Process process in processes)
-                if (process.ProcessName.ToLower().Contains("mehrsan.agent"))
-                    return true;
-
-            return false;
-        }
-
-        public static async Task<string> SendCrossDomainCallForHtml(string url)
+        public async Task<string> SendCrossDomainCallForHtml(string url)
         {
             string result = string.Empty;
             Stream stream = await GetStream(url);
@@ -548,29 +377,110 @@ namespace Mehrsan.Business
             );
             return text;
         }
-        
-        private static Word GetWordByTargetWord(string word)
+
+        public void RemoveSpecialCharsFromWords()
         {
-            return DAL.Instance.GetWordByTargetWord(word);
-        }
-        
-        private static List<Word> GetWords(long id, string targetWord)
-        {
-            var result = DAL.Instance.GetWords(id, targetWord);
-            result = result.Select(x => GetSerializableWord(x)).ToList();
-            return result;
-        }
-        
-        
-        private static async Task<Stream> GetStream(string url)
-        {
-            HttpClient httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(url);
-            var stream = await response.Content.ReadAsStreamAsync();
-            return stream;
+
+            foreach (Word dbWord in DAL.Instance.GetWords(0, string.Empty))
+            {
+                foreach (char ch in Common.Common.Separators)
+                {
+                    dbWord.TargetWord = dbWord.TargetWord.Replace(ch, ' ');
+                    dbWord.Meaning = dbWord.Meaning.Replace(ch, ' ');
+                }
+                UpdateWord(dbWord.Id, dbWord);
+            }
+
         }
 
-        public static async Task<string> SendCrossDomainCallForBinaryFile(string url, string saveFilePath)
+        public void InsertSubtitlesByTimeConsideration(string movieName, TimeSpan timeSpan)
+        {
+
+
+
+            foreach (string file in Directory.GetFiles(Common.Common.VideoDirectory))
+            {
+                if (Path.GetExtension(file).ToLower().EndsWith("srt"))
+                {
+                    if (Path.GetFileNameWithoutExtension(file).EndsWith("da"))
+                    {
+                        string englishSubtitle = file;
+                        string danishSubtitle = englishSubtitle.Replace("_en.srt", "_da.srt");
+                        var danishWords = ExtractWords(danishSubtitle);
+                        var englishWords = ExtractWords(englishSubtitle);
+                        foreach (Word word in danishWords)
+                        {
+                            TimeSpan zeroTimeSpan = new TimeSpan(0, 0, 0, 0);
+                            List<Word> neighbours = englishWords.Where(x =>
+                           (
+                               (x.StartTime - word.StartTime <= timeSpan && x.StartTime - word.StartTime >= zeroTimeSpan)
+                               ||
+                               (word.StartTime - x.StartTime <= timeSpan && word.StartTime - x.StartTime >= zeroTimeSpan)
+                           )
+                            ).ToList();
+                            if (neighbours.Count > 0)
+                            {
+                                word.Meaning = string.Empty;
+                                foreach (Word meaningWord in neighbours)
+                                {
+                                    word.Meaning += " " + meaningWord.TargetWord;
+                                }
+
+                                foreach (char ch in Common.Common.Separators)
+                                {
+                                    word.TargetWord = word.TargetWord.Replace(ch, ' ');
+                                    word.Meaning = word.Meaning.Replace(ch, ' ');
+                                }
+
+                                word.IsMovieSubtitle = true;
+                                word.MovieName = movieName;
+                                word.NextReviewDate = DateTime.Now.AddDays(1);
+
+                                try
+                                {
+                                    CreateDefaultWord(word);
+                                }
+                                catch (Exception ee)
+                                {
+                                    var words = GetWords(0, word.TargetWord);
+                                    var foundWord = words[0];
+                                    if (foundWord.Meaning == "undefined")
+                                    {
+                                        word.Id = foundWord.Id;
+                                        UpdateWord(word.Id, word);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        public string GetWordDirectory(string simpleWord)
+        {
+            string dir = string.Empty;
+            var wordChars = simpleWord.ToCharArray();
+            foreach (char wordChar in wordChars)
+                dir += wordChar + "\\";
+
+            return dir;
+        }
+
+        public async void SaveGoogleImagesForWord(string trimedWord, string targetDirectory)
+        {
+
+            var googleImageUrl = "https://www.google.dk/search?site=&tbm=isch&source=hp&biw=1920&bih=919&q=ABCDEFGH&oq=ABCDEFGH&gs_l=img.3..0l10.2852.3597.0.4226.4.4.0.0.0.0.142.414.2j2.4.0....0...1.1.64.img..0.4.411.lJv85Iott1M&gws_rd=cr&ei=fZeSVr3PJsOuswGtnqawAg";
+            var googleImageCustomizedUrl = googleImageUrl.Replace("ABCDEFGH", trimedWord);
+            var googleImageFile = targetDirectory + trimedWord + "Image.html";
+            await SaveGoogleImageFile(googleImageCustomizedUrl, googleImageFile);
+            await ExtractGoogleImageFiles(trimedWord, targetDirectory, googleImageFile);
+
+        }
+
+        public async Task<string> SendCrossDomainCallForBinaryFile(string url, string saveFilePath)
         {
             try
             {
@@ -597,13 +507,174 @@ namespace Mehrsan.Business
             }
 
         }
-        
-        private static bool AddHistory(History history)
+
+        private void BatchImport()
+        {
+            using (StreamReader sr = new StreamReader(@"d:\words.txt"))
+            {
+                string contrnet = sr.ReadToEnd();
+                string[] lines = contrnet.Split('\n');
+                foreach (string line in lines)
+                {
+                    if (string.IsNullOrEmpty(line))
+                        continue;
+
+                    try
+                    {
+
+                        string[] parts = line.Split('\t');
+                        var word = new Word();
+                        word.TargetWord = parts[0].Trim(Common.Common.Separators);
+                        word.Meaning = parts[1].Trim(Common.Common.Separators);
+                        word.NextReviewDate = DateTime.Now.AddDays(1);
+                        word.TargetLanguageId = (long)Languages.Danish;
+                        word.MeaningLanguageId = (long)Languages.English;
+                        if (GetWordByTargetWord(word.TargetWord) == null)
+                            CreateWord(word, false);
+                    }
+                    catch (Exception eee)
+                    {
+
+                    }
+                }
+            }
+        }
+
+        private List<Word> ExtractWords(string subtitleFile)
+        {
+            int idIndex = 1;
+            List<Word> result = new List<Word>();
+            string englishContent = Common.Common.ReadFile(subtitleFile);
+
+            List<string> englishLines = new List<string>();
+            englishLines.AddRange(englishContent.Split('\n'));
+
+            List<string> danishLines = new List<string>();
+
+            int index = 0;
+            TimeSpan startTime = TimeSpan.MinValue;
+            TimeSpan endTime = TimeSpan.MinValue;
+            string engLishSentence = string.Empty;
+
+            bool newSentenceDetected = false;
+            foreach (string line in englishLines)
+            {
+                string currentLine = line.Trim(Common.Common.Separators);
+                if (line.Contains("-->"))
+                {
+                    newSentenceDetected = true;
+                    engLishSentence = string.Empty;
+
+                    int indexOfArrow = currentLine.IndexOf("-->");
+                    startTime = TimeSpan.Parse(currentLine.Substring(0, indexOfArrow).Replace(",", "."));
+                    endTime = TimeSpan.Parse(currentLine.Substring(indexOfArrow + 3).Replace(",", "."));
+
+                }
+                else if (newSentenceDetected)
+                {
+                    if (string.IsNullOrEmpty(currentLine))
+                    {
+                        newSentenceDetected = false;
+
+                        Word newWord = new Word();
+
+                        newWord.TargetWord = engLishSentence.Trim(Common.Common.Separators);
+
+                        foreach (char ch in Common.Common.Separators)
+                        {
+                            newWord.TargetWord = newWord.TargetWord.Replace(ch, ' ');
+                        }
+
+                        newWord.IsMovieSubtitle = true;
+                        newWord.StartTime = startTime;
+                        newWord.EndTime = endTime;
+                        newWord.NextReviewDate = DateTime.Now.AddDays(1);
+                        newWord.Id = idIndex;
+                        result.Add(newWord);
+                        idIndex++;
+
+                        startTime = TimeSpan.MinValue;
+                        endTime = TimeSpan.MinValue;
+                        engLishSentence = string.Empty;
+
+                    }
+                    else
+                    {
+                        engLishSentence += " " + englishLines[index].Trim(Common.Common.Separators);
+                    }
+                }
+                index++;
+            }
+
+
+            return result;
+        }
+
+        private bool CreateDefaultWord(Word word)
+        {
+            var searchedWord = GetWords(0, word.TargetWord);
+            if (searchedWord == null || searchedWord.Count == 0)
+            {
+
+                word.Id = 0;
+                word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
+                word.NextReviewDate = DateTime.Now.AddDays(1);
+                word.TargetLanguageId = (long)Languages.Danish;
+                word.MeaningLanguageId = (long)Languages.English;
+                CreateWord(word, true);
+
+                return true;
+            }
+            return false;
+        }
+
+        private void RunAgentProcess()
+        {
+            try
+            {
+                Process.Start(Common.Common.AgentPath);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private bool AgentIsRunning()
+        {
+            var processes = Process.GetProcesses();
+            foreach (Process process in processes)
+                if (process.ProcessName.ToLower().Contains("mehrsan.agent"))
+                    return true;
+
+            return false;
+        }
+
+        private Word GetWordByTargetWord(string word)
+        {
+            return DAL.Instance.GetWordByTargetWord(word);
+        }
+
+        private List<Word> GetWords(long id, string targetWord)
+        {
+            var result = DAL.Instance.GetWords(id, targetWord);
+            result = result.Select(x => GetSerializableWord(x)).ToList();
+            return result;
+        }
+
+        private async Task<Stream> GetStream(string url)
+        {
+            HttpClient httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(url);
+            var stream = await response.Content.ReadAsStreamAsync();
+            return stream;
+        }
+
+        private bool AddHistory(History history)
         {
             return DALGeneric<History>.Instance.Create(history);
         }
-        
-        private static bool CreateWord(Word word, bool createHistory)
+
+        private bool CreateWord(Word word, bool createHistory)
         {
             word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
             word.Meaning = Common.Common.HarrassWord(word.Meaning);
@@ -629,9 +700,7 @@ namespace Mehrsan.Business
             return true;
         }
 
-        
-        
-        private static bool UpdateWord(long id, Word inpWord)
+        private bool UpdateWord(long id, Word inpWord)
         {
             if (string.IsNullOrEmpty(inpWord.TargetWord))
                 return false;
@@ -672,29 +741,8 @@ namespace Mehrsan.Business
 
             return updateResult;
         }
-        
-        public static string GetWordDirectory(string simpleWord)
-        {
-            string dir = string.Empty;
-            var wordChars = simpleWord.ToCharArray();
-            foreach (char wordChar in wordChars)
-                dir += wordChar + "\\";
 
-            return dir;
-        }
-        
-        public async static void SaveGoogleImagesForWord(string trimedWord, string targetDirectory)
-        {
-
-            var googleImageUrl = "https://www.google.dk/search?site=&tbm=isch&source=hp&biw=1920&bih=919&q=ABCDEFGH&oq=ABCDEFGH&gs_l=img.3..0l10.2852.3597.0.4226.4.4.0.0.0.0.142.414.2j2.4.0....0...1.1.64.img..0.4.411.lJv85Iott1M&gws_rd=cr&ei=fZeSVr3PJsOuswGtnqawAg";
-            var googleImageCustomizedUrl = googleImageUrl.Replace("ABCDEFGH", trimedWord);
-            var googleImageFile = targetDirectory + trimedWord + "Image.html";
-            await SaveGoogleImageFile(googleImageCustomizedUrl, googleImageFile);
-            await ExtractGoogleImageFiles(trimedWord, targetDirectory, googleImageFile);
-
-        }
-
-        private static async Task ExtractGoogleImageFiles(string trimedWord, string targetDirectory, string googleImageFile)
+        private async Task ExtractGoogleImageFiles(string trimedWord, string targetDirectory, string googleImageFile)
         {
             try
             {
@@ -747,7 +795,7 @@ namespace Mehrsan.Business
             }
         }
 
-        private static string ExtractImageTableFromGoogleImageFile(StreamReader sr1)
+        private string ExtractImageTableFromGoogleImageFile(StreamReader sr1)
         {
             var fileText = sr1.ReadToEnd();
             var startTableTag = "<table class=\"images_table\"";
@@ -759,7 +807,7 @@ namespace Mehrsan.Business
             return imageTableText;
         }
 
-        private static async Task SaveGoogleImageFile(string googleImageCustomizedUrl, string googleImageFile)
+        private async Task SaveGoogleImageFile(string googleImageCustomizedUrl, string googleImageFile)
         {
 
             if (!File.Exists(googleImageFile))
@@ -770,7 +818,7 @@ namespace Mehrsan.Business
             }
         }
 
-        private static string ExtractMp3Url(string text)
+        private string ExtractMp3Url(string text)
         {
             int audioIndex = text.IndexOf(".mp3\"");
             if (audioIndex > -1)
@@ -781,48 +829,7 @@ namespace Mehrsan.Business
                 return mp3Url;
             }
             return null;
-        }
-        
-        public static bool WholeWordIsUsed(Word wordUsedByMainWord, Word mainWord)
-        {
-            string dstWordNew = " " + wordUsedByMainWord.TargetWord.ToLower().Trim(Common.Common.Separators) + " ";
-
-            string mainWordNew = mainWord.TargetWord.ToLower().Trim(Common.Common.Separators);
-            foreach (char sep1 in Common.Common.Separators)
-            {
-                foreach (char sep2 in Common.Common.Separators)
-                {
-                    if (dstWordNew.Contains(sep1 + mainWordNew + sep2))
-                    {
-                        // if (DAL.Instance.AddToGraph(mainWord, wordUsedByMainWord))
-                        return true;
-
-                    }
-
-                }
-            }
-            return false;
-
-        }
-        
-        public static Word GetSerializableWord(Word word)
-        {
-            return new Word()
-            {
-                Id = word.Id,
-                TargetWord = word.TargetWord,
-                IsAmbiguous = word.IsAmbiguous,
-                MovieName = word.MovieName,
-                IsMovieSubtitle = word.IsMovieSubtitle,
-                Meaning = word.Meaning,
-                StartTime = word.StartTime,
-                EndTime = word.EndTime,
-                WrittenByMe = word.WrittenByMe,
-                //Graphs = null,
-                //Graphs1 = null,
-
-
-            };
-        }
+        } 
+        #endregion
     }
 }

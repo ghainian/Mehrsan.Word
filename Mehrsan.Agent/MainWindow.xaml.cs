@@ -83,13 +83,13 @@ namespace Mehrsan.Agent
                     {
 
                     }
-                    Word word= WordRepository.GetWordByTargetWord(targetWord);
+                    Word word= WordRepository.Instance.GetWordByTargetWord(targetWord);
 
                     if (word != null)
                     {
                         long wordId = word.Id;
-                        var lastHistory = WordRepository.GetLastHistory(word.Id);
-                        List<History> histories = WordRepository.GetHistories(wordId, reviewTime);
+                        var lastHistory = WordRepository.Instance.GetLastHistory(word.Id);
+                        List<History> histories = WordRepository.Instance.GetHistories(wordId, reviewTime);
 
                         if ((histories == null || histories.Count == 0))
                         {
@@ -186,10 +186,10 @@ namespace Mehrsan.Agent
         private void CreateHistoryForWordsThatDoNotHave()
         {
             DateTime startTime = DateTime.Now;
-            List<Word> words = WordRepository.GetAllWords(string.Empty, string.Empty);
+            List<Word> words = WordRepository.Instance.GetAllWords(string.Empty, string.Empty);
             foreach (Word word in words)
             {
-                History history = WordRepository.GetLastHistory(word.Id);
+                History history = WordRepository.Instance.GetLastHistory(word.Id);
                 word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
                 if (history == null)
                 {
@@ -204,7 +204,7 @@ namespace Mehrsan.Agent
                         UpdatedMeaning = word.Meaning
                     };
 
-                    WordRepository.AddHistory(history);
+                    WordRepository.Instance.AddHistory(history);
                 }
             }
             Logger.Log("CreateHistoryForWordsThatdoNotHave Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
@@ -274,7 +274,7 @@ namespace Mehrsan.Agent
         private void RemoveSpecialCharsFromWords()
         {
             DateTime startTime = DateTime.Now;
-            WordApis.RemoveSpecialCharsFromWords();
+            WordApis.Instance.RemoveSpecialCharsFromWords();
             Logger.Log("RemoveSpecialCharsFromWords Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
 
         }
@@ -284,7 +284,7 @@ namespace Mehrsan.Agent
             DateTime startTime = DateTime.Now;
 
             TimeSpan timeSpan = new TimeSpan(0, 0, 0, 1, 0);
-            WordApis.UpdateSubtitlesInfo("Spartacus01_04");
+            WordApis.Instance.UpdateSubtitlesInfo("Spartacus01_04");
 
             //WordManager.InsertSubtitlesByTimeConsideration("Zootopia", timeSpan);
             Logger.Log("MergeRepetitiveWords Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
@@ -293,7 +293,7 @@ namespace Mehrsan.Agent
         private void MergeRepetitiveWords()
         {
             DateTime startTime = DateTime.Now;
-            WordRepository.MergeRepetitiveWords();
+            WordRepository.Instance.MergeRepetitiveWords();
             Logger.Log("MergeRepetitiveWords Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
 
         }
@@ -346,14 +346,14 @@ namespace Mehrsan.Agent
 
         private void UpdateNofSpaces()
         {
-            WordRepository.UpdateNofSpaces();
+            WordRepository.Instance.UpdateNofSpaces();
         }
 
         private void btnCreatGraph_Click(object sender, RoutedEventArgs e)
         {
 
             DateTime startTime = DateTime.Now;
-            WordRepository.CreateGraph();
+            WordRepository.Instance.CreateGraph();
             Logger.Log("Create Graph Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
 
         }
@@ -361,7 +361,7 @@ namespace Mehrsan.Agent
         private async void btnLoadWordsFromOrdNet_Click(object sender, RoutedEventArgs e)
         {
             DateTime startTime = DateTime.Now;
-            await WordRepository.GetWordsRelatedInfo();
+            await WordRepository.Instance.GetWordsRelatedInfo();
             Logger.Log("Loading words from ordnet Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
         }
     }

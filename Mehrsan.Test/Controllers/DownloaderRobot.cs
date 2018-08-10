@@ -480,7 +480,7 @@ namespace Mehrsan.Test.Controllers
 
             string targetDirectory = @"D:\Code\mehran\Mehrsan_School\Mehrsan.Word\Mehrsan.Word\Words\";
             //string targetDirectory = @"D:\VisualStudioOnline\Mehrsan_School\Mehrsan.Word\Mehrsan.Word\Words\";
-            string wordDirectory = WordApis.GetWordDirectory(trimedWord);
+            string wordDirectory = WordApis.Instance.GetWordDirectory(trimedWord);
             targetDirectory = targetDirectory + wordDirectory;
 
             if (!Directory.Exists(targetDirectory))
