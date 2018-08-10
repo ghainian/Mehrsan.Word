@@ -9,6 +9,6 @@ namespace Mehrsan.Dal.DB
         DbSet<Word> Words { get; set; }
         DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         DbSet<AspNetUser> AspNetUsers { get; set; }
-
+        bool IsDisposed { get; }
     }
 }

@@ -17,6 +17,7 @@ namespace Mehrsan.Dal.DB
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
 
         public static DbContextOptions<WordEntities> Options { get; private set; }
+        public bool IsDisposed { get; private set; }
 
         #endregion
 
@@ -36,6 +37,12 @@ namespace Mehrsan.Dal.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            this.IsDisposed = true;
         }
 
         #endregion

@@ -6,17 +6,17 @@ var myApp = angular.module("myModule", [])
         function ($scope, $interval, $http) {
 
 
-            $("#UserId").autocomplete({
-                source: '@Url.Action("GetUserClaims")',
-                minLength = 2
-            });
+            //$("#UserId").autocomplete({
+            //    source: '@Url.Action("GetUserClaims")',
+            //    minLength = 2
+            //});
 
             $scope.chkPronounceWholeWordChecked = true;
             var stop;
             var _wordIndex = 0;
             var _words = [];
             var _newCarouselhtml = '';
-            var _webUrl = 'http://localhost:44396/';//window.location.href;
+            var _webUrl = 'http://localhost:44378/';//window.location.href;
             var _numberOfImages = 20;
             var _allWords = '';
             var _targetWordArr = '';
@@ -1032,11 +1032,12 @@ var myApp = angular.module("myModule", [])
 
                 var wordText = '';
                 $.ajax({
-                    url: _webUrl + 'Word/GetWord?id=' + wordId + '&targetWord=' + wordText,
-                    type: 'get',
+                    url: _webUrl + 'Word/GetWord',
+                    type: 'post',
                     async: false,
                     headers: headers,
                     dataType: "json",
+                    data: { "id": wordId, "targetWord": wordText},
                     scriptCharset: "utf-8",
                     contentType: "application/x-www-form-urlencoded;charset=utf-8",
                     encoding: "UTF-8",

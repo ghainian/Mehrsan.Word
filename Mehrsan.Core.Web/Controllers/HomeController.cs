@@ -65,14 +65,14 @@ namespace Mehrsan.Core.Web.Controllers
             //AccountController ac = new AccountController();
             UserInfoViewModel userInfo = new UserInfoViewModel();// ac.GetUserInfo();
 
-            return WordManager.GetWordsForReview(userInfo.UserId);
+            return WordRepository.GetWordsForReview(userInfo.UserId);
         }
 
         [AcceptVerbs("GET", "POST")]
         public List<ChartData> GetReviewHistory()
         {
             //.Where(x => x.X < 100 && x.X > 0)
-            List<ChartData> result = WordManager.GetChartData().ToList();
+            List<ChartData> result = WordRepository.GetChartData().ToList();
 
 
             return result;
@@ -84,7 +84,7 @@ namespace Mehrsan.Core.Web.Controllers
             //AccountController ac = new AccountController();
             //UserInfoViewModel userInfo = ac.GetUserInfo();
             UserInfoViewModel userInfo = new UserInfoViewModel();
-            return WordManager.GetAllWords(userInfo.UserId, containText);
+            return WordRepository.GetAllWords(userInfo.UserId, containText);
         }
 
         [AcceptVerbs("GET", "POST")]
@@ -93,31 +93,32 @@ namespace Mehrsan.Core.Web.Controllers
             if (word == null)
                 return null;
 
-            var foundWord = WordManager.GetWordByTargetWord(word.TargetWord);
+            var foundWord = WordRepository.GetWordByTargetWord(word.TargetWord);
             if (foundWord != null)
-                foundWord = WordManager.GetSerializableWord(foundWord);
+                foundWord = WordApis.GetSerializableWord(foundWord);
 
             return foundWord;
         }
 
         public List<Mehrsan.Dal.DB.Word> LoadRelatedSentences(long wordId)
         {
-            return WordManager.LoadRelatedSentences(wordId);
+            return WordRepository.LoadRelatedSentences(wordId);
         }
 
         [AcceptVerbs("GET", "POST")]
         public bool CreateGraph()
         {
-            return WordManager.CreateGraph();
+            return WordRepository.CreateGraph();
         }
 
 
 
         // GET: api/Word/5
         //[ResponseType(typeof(Mehrsan.Dal.DB.Word))]
+        [AcceptVerbs("GET", "POST")]
         public Mehrsan.Dal.DB.Word GetWord(long id, string targetWord)
         {
-            var result = WordManager.GetWords(id, targetWord).FirstOrDefault();
+            var result = WordRepository.GetWords(id, targetWord).FirstOrDefault();
             return result;
         }
 
@@ -148,7 +149,7 @@ namespace Mehrsan.Core.Web.Controllers
                 //UserInfoViewModel userInfo = ac.GetUserInfo();
                 UserInfoViewModel userInfo = new UserInfoViewModel();
                 word.UserId = userInfo.UserId;
-                if (WordManager.PostWord(word))
+                if (WordRepository.CreateDefaultWord(word))
                 {
                     return true;
                 }
@@ -176,7 +177,7 @@ namespace Mehrsan.Core.Web.Controllers
                 return false;
             }
 
-            if (WordManager.UpdateWord(word.Id, word))
+            if (WordRepository.UpdateWord(word.Id, word))
                 return true;
 
             return false;
@@ -190,7 +191,7 @@ namespace Mehrsan.Core.Web.Controllers
                 return false;
             }
 
-            if (WordManager.SetWordAmbiguous(wordId))
+            if (WordRepository.SetWordAmbiguous(wordId))
                 return true;
 
             return false;
@@ -199,7 +200,7 @@ namespace Mehrsan.Core.Web.Controllers
         [AcceptVerbs("GET", "POST")]
         public async Task GetWordsInfoFromOrdNet()
         {
-            WordManager.GetWordsRelatedInfo();
+            WordRepository.GetWordsRelatedInfo();
         }
 
 
@@ -208,7 +209,7 @@ namespace Mehrsan.Core.Web.Controllers
         {
 
 
-            return WordManager.UpdateWordStatus(knowsWord, wordId, reviewTime);
+            return WordRepository.UpdateWordStatus(knowsWord, wordId, reviewTime);
         }
 
 
@@ -220,7 +221,7 @@ namespace Mehrsan.Core.Web.Controllers
             try
             {
 
-                if (WordManager.DeleteWord(id))
+                if (WordRepository.DeleteWord(id))
                 {
                     return Ok();
                 }

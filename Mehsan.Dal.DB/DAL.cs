@@ -30,7 +30,10 @@ namespace Mehrsan.Dal.DB
 
         public WordEntities NewWordEntitiesInstance()
         {
-            DbContext = new WordEntities(WordEntities.Options);
+            if (DbContext == null || DbContext.IsDisposed)//in the case that in the middle of using data context we call another method we do not need to create and return a new DBContext
+            {
+                DbContext = new WordEntities(WordEntities.Options);
+            }
             return DbContext;
 
         }
@@ -476,7 +479,7 @@ namespace Mehrsan.Dal.DB
         public List<AspNetUserClaim> GetUserClaims(string searchText)
         {
             var query = DbContext.AspNetUserClaims;
-            
+
             if (!string.IsNullOrEmpty(searchText))
             {
                 var lastQuery = (from item in query where item.ClaimType.Contains(searchText) select item);
