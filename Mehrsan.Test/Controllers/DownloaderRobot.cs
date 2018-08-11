@@ -24,6 +24,7 @@ namespace Mehrsan.Test.Controllers
     {
         #region Fields
         IWebDriver driver = null;
+        WordRepository wordRepository = new WordRepository();
 
         private const string IE_DRIVER_PATH = @"C:\SeleniumDriver";
         private const string CHROME_DRIVER_PATH = @"C:\SeleniumDriver";
@@ -474,13 +475,13 @@ namespace Mehrsan.Test.Controllers
             Logger.Log(" Mp3 sound for word " + simpleWord + " downloaded successfully");
         }
 
-        private static string GetMp3FilePath(string trimedWord)
+        private string GetMp3FilePath(string trimedWord)
         {
             trimedWord = trimedWord.Trim(Common.Common.Separators);
 
             string targetDirectory = @"D:\Code\mehran\Mehrsan_School\Mehrsan.Word\Mehrsan.Word\Words\";
             //string targetDirectory = @"D:\VisualStudioOnline\Mehrsan_School\Mehrsan.Word\Mehrsan.Word\Words\";
-            string wordDirectory = WordApis.Instance.GetWordDirectory(trimedWord);
+            string wordDirectory = wordRepository.WordApisInstance.GetWordDirectory(trimedWord);
             targetDirectory = targetDirectory + wordDirectory;
 
             if (!Directory.Exists(targetDirectory))

@@ -52,7 +52,7 @@
     <Compile Include="Interface\IWordRepository.cs" />
     <Compile Include="Interface\IWordApis.cs" />
     <Compile Include="WordApis.cs" />
-    <Compile Include="WordManager.cs" />
+    <Compile Include="WordRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

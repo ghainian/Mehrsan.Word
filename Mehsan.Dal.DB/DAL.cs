@@ -11,17 +11,12 @@ namespace Mehrsan.Dal.DB
     {
         #region Fields
 
-        private static readonly IDAL _instance;
         private static WordEntities _dbContext;
 
         #endregion
 
         #region Properties
-
-
-
-        public static IDAL Instance { get { return _instance; } }
-
+        
         public WordEntities DbContext { get => _dbContext; set => _dbContext = value; }
 
         #endregion
@@ -30,23 +25,13 @@ namespace Mehrsan.Dal.DB
 
         public WordEntities NewWordEntitiesInstance()
         {
-            if (DbContext == null || DbContext.IsDisposed)//in the case that in the middle of using data context we call another method we do not need to create and return a new DBContext
-            {
-                DbContext = new WordEntities(WordEntities.Options);
-            }
+            
+            DbContext = new WordEntities(WordEntities.Options);
+            
             return DbContext;
 
         }
-
-        static DAL()
-        {
-            _instance = new DAL();
-        }
-
-        private DAL()
-        {
-
-        }
+        
 
         public bool DeleteWord(long id)
         {

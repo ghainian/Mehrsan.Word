@@ -1,4 +1,5 @@
 ﻿using Mehrsan.Business;
+using Mehrsan.Business.Interface;
 using Mehrsan.Common;
 using Mehrsan.Dal.DB;
 using System;
@@ -28,11 +29,15 @@ namespace Mehrsan.Agent
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Properties
+
+        public IWordRepository WordRepositoryInstance { get; } = new WordRepository();
+        #endregion
+
         public MainWindow()
         {
             InitializeComponent();
-
-
+        
             //RemoveUnwantedFiles();
 
             GetBackup();
@@ -60,7 +65,7 @@ namespace Mehrsan.Agent
 
         }
 
-        private static void SyncMobile()
+        private void SyncMobile()
         {
             using (StreamReader sr = new StreamReader(@"D:\1.txt"))
             {
@@ -83,13 +88,13 @@ namespace Mehrsan.Agent
                     {
 
                     }
-                    Word word= WordRepository.Instance.GetWordByTargetWord(targetWord);
+                    Word word= WordRepositoryInstance.GetWordByTargetWord(targetWord);
 
                     if (word != null)
                     {
                         long wordId = word.Id;
-                        var lastHistory = WordRepository.Instance.GetLastHistory(word.Id);
-                        List<History> histories = WordRepository.Instance.GetHistories(wordId, reviewTime);
+                        var lastHistory = WordRepositoryInstance.GetLastHistory(word.Id);
+                        List<History> histories = WordRepositoryInstance.GetHistories(wordId, reviewTime);
 
                         if ((histories == null || histories.Count == 0))
                         {
@@ -117,7 +122,7 @@ namespace Mehrsan.Agent
                             if (reviewPeriod < 0)
                                 reviewPeriod = 1;
 
-                            DAL.Instance.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod * 2, null, null, null);
+                            WordRepositoryInstance.DalInstance.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod * 2, null, null, null);
                         }
                     }
                     try
@@ -186,10 +191,10 @@ namespace Mehrsan.Agent
         private void CreateHistoryForWordsThatDoNotHave()
         {
             DateTime startTime = DateTime.Now;
-            List<Word> words = WordRepository.Instance.GetAllWords(string.Empty, string.Empty);
+            List<Word> words = WordRepositoryInstance.GetAllWords(string.Empty, string.Empty);
             foreach (Word word in words)
             {
-                History history = WordRepository.Instance.GetLastHistory(word.Id);
+                History history = WordRepositoryInstance.GetLastHistory(word.Id);
                 word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
                 if (history == null)
                 {
@@ -204,7 +209,7 @@ namespace Mehrsan.Agent
                         UpdatedMeaning = word.Meaning
                     };
 
-                    WordRepository.Instance.AddHistory(history);
+                    WordRepositoryInstance.AddHistory(history);
                 }
             }
             Logger.Log("CreateHistoryForWordsThatdoNotHave Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
@@ -274,7 +279,7 @@ namespace Mehrsan.Agent
         private void RemoveSpecialCharsFromWords()
         {
             DateTime startTime = DateTime.Now;
-            WordApis.Instance.RemoveSpecialCharsFromWords();
+            WordRepositoryInstance.WordApisInstance.RemoveSpecialCharsFromWords();
             Logger.Log("RemoveSpecialCharsFromWords Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
 
         }
@@ -284,7 +289,7 @@ namespace Mehrsan.Agent
             DateTime startTime = DateTime.Now;
 
             TimeSpan timeSpan = new TimeSpan(0, 0, 0, 1, 0);
-            WordApis.Instance.UpdateSubtitlesInfo("Spartacus01_04");
+            WordRepositoryInstance.WordApisInstance.UpdateSubtitlesInfo("Spartacus01_04");
 
             //WordManager.InsertSubtitlesByTimeConsideration("Zootopia", timeSpan);
             Logger.Log("MergeRepetitiveWords Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
@@ -293,7 +298,7 @@ namespace Mehrsan.Agent
         private void MergeRepetitiveWords()
         {
             DateTime startTime = DateTime.Now;
-            WordRepository.Instance.MergeRepetitiveWords();
+            WordRepositoryInstance.MergeRepetitiveWords();
             Logger.Log("MergeRepetitiveWords Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
 
         }
@@ -346,14 +351,14 @@ namespace Mehrsan.Agent
 
         private void UpdateNofSpaces()
         {
-            WordRepository.Instance.UpdateNofSpaces();
+            WordRepositoryInstance.UpdateNofSpaces();
         }
 
         private void btnCreatGraph_Click(object sender, RoutedEventArgs e)
         {
 
             DateTime startTime = DateTime.Now;
-            WordRepository.Instance.CreateGraph();
+            WordRepositoryInstance.CreateGraph();
             Logger.Log("Create Graph Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
 
         }
@@ -361,7 +366,7 @@ namespace Mehrsan.Agent
         private async void btnLoadWordsFromOrdNet_Click(object sender, RoutedEventArgs e)
         {
             DateTime startTime = DateTime.Now;
-            await WordRepository.Instance.GetWordsRelatedInfo();
+            await WordRepositoryInstance.GetWordsRelatedInfo();
             Logger.Log("Loading words from ordnet Finished at " + DateTime.Now.ToString("HH:mm:ss") + " after " + (DateTime.Now - startTime).ToString());
         }
     }

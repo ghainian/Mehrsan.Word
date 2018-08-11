@@ -17,18 +17,23 @@ namespace Mehrsan.Business
 {
     public class WordApis : IWordApis
     {
-        #region Properties
+        #region Fields
 
-        public static IWordApis Instance { get; } = new WordApis();
+        private IDAL _dalInstance;
+
+        #endregion
+        #region Properties
+        
+        public IDAL DalInstance { get { return _dalInstance; } }
 
         #endregion
 
 
         #region Methods
 
-        private WordApis()
+        public WordApis(IDAL dalInstance)
         {
-
+            _dalInstance = dalInstance;
         }
 
         public bool WholeWordIsUsed(Word wordUsedByMainWord, Word mainWord)
@@ -42,7 +47,7 @@ namespace Mehrsan.Business
                 {
                     if (dstWordNew.Contains(sep1 + mainWordNew + sep2))
                     {
-                        // if (DAL.Instance.AddToGraph(mainWord, wordUsedByMainWord))
+                        // if (DalInstance.AddToGraph(mainWord, wordUsedByMainWord))
                         return true;
 
                     }
@@ -381,7 +386,7 @@ namespace Mehrsan.Business
         public void RemoveSpecialCharsFromWords()
         {
 
-            foreach (Word dbWord in DAL.Instance.GetWords(0, string.Empty))
+            foreach (Word dbWord in DalInstance.GetWords(0, string.Empty))
             {
                 foreach (char ch in Common.Common.Separators)
                 {
@@ -649,14 +654,14 @@ namespace Mehrsan.Business
             return false;
         }
 
-        private Word GetWordByTargetWord(string word)
+        public Word GetWordByTargetWord(string word)
         {
-            return DAL.Instance.GetWordByTargetWord(word);
+            return DalInstance.GetWordByTargetWord(word);
         }
 
-        private List<Word> GetWords(long id, string targetWord)
+        public List<Word> GetWords(long id, string targetWord)
         {
-            var result = DAL.Instance.GetWords(id, targetWord);
+            var result = DalInstance.GetWords(id, targetWord);
             result = result.Select(x => GetSerializableWord(x)).ToList();
             return result;
         }
@@ -674,7 +679,7 @@ namespace Mehrsan.Business
             return DALGeneric<History>.Instance.Create(history);
         }
 
-        private bool CreateWord(Word word, bool createHistory)
+        public bool CreateWord(Word word, bool createHistory)
         {
             word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
             word.Meaning = Common.Common.HarrassWord(word.Meaning);
@@ -700,7 +705,7 @@ namespace Mehrsan.Business
             return true;
         }
 
-        private bool UpdateWord(long id, Word inpWord)
+        public bool UpdateWord(long id, Word inpWord)
         {
             if (string.IsNullOrEmpty(inpWord.TargetWord))
                 return false;
@@ -729,7 +734,7 @@ namespace Mehrsan.Business
             word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
             word.Meaning = Common.Common.HarrassWord(word.Meaning);
 
-            bool updateResult = DAL.Instance.UpdateWord(id,
+            bool updateResult = DalInstance.UpdateWord(id,
                 word.TargetWord.Trim(Common.Common.Separators),
                 word.Meaning.Trim(Common.Common.Separators),
                 word.StartTime,
@@ -829,7 +834,13 @@ namespace Mehrsan.Business
                 return mp3Url;
             }
             return null;
-        } 
+        }
+
+        public bool DeleteWord(long id)
+        {
+            return DalInstance.DeleteWord(id);
+        }
+        
         #endregion
     }
 }

@@ -5,6 +5,12 @@ namespace Mehrsan.Dal.DB
 {
     public interface IDAL
     {
+        #region Properties
+        
+        #endregion
+
+        #region Methods
+
         bool AddToGraph(Word srcWord, Word dstWord);
         bool DeleteWord(long id);
         List<Word> GetAllWords(string userId, string containText);
@@ -25,6 +31,7 @@ namespace Mehrsan.Dal.DB
         List<AspNetUser> GetUsers(string searchText);
         WordEntities NewWordEntitiesInstance();
 
+        #endregion
 
 
     }

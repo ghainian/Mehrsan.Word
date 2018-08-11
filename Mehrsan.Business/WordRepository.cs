@@ -3,8 +3,6 @@ using Mehrsan.Common;
 using Mehrsan.Dal.DB;
 using System;
 using System.Collections.Generic;
-
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -17,40 +15,47 @@ namespace Mehrsan.Business
 {
     public sealed class WordRepository : IWordRepository
     {
+        #region Fields
+
+        private WordApis _wordApisInstance = null;
+
+        #endregion
+
         #region Properties
 
-        public static IWordRepository Instance { get; } = new WordRepository();
+        public IDAL DalInstance { get; } = new DAL();
+        public IWordApis WordApisInstance { get { return _wordApisInstance; } }
 
         #endregion
 
         #region Methods
 
-        private WordRepository()
+        public WordRepository()
         {
-
+            _wordApisInstance = new WordApis(DalInstance);
         }
 
         public bool WordExists(long id)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return DAL.Instance.WordExists(id);
+                return DalInstance.WordExists(id);
             }
         }
 
         public List<History> GetHistories(long wordId, DateTime reviewTime)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return DAL.Instance.GetHistories(wordId, reviewTime);
+                return DalInstance.GetHistories(wordId, reviewTime);
             }
         }
 
         public List<ChartData> GetChartData()
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                List<ChartData> result = DAL.Instance.GetChartData();
+                List<ChartData> result = DalInstance.GetChartData();
 
                 return result;
             }
@@ -58,7 +63,7 @@ namespace Mehrsan.Business
 
         public bool CreateDefaultWord(Word word)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
                 return CreateDefaultWord(word);
             }
@@ -66,62 +71,63 @@ namespace Mehrsan.Business
 
         public void MergeRepetitiveWords()
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                DAL.Instance.MergeRepetitiveWords();
+                DalInstance.MergeRepetitiveWords();
             }
         }
 
         public void UpdateNofSpaces()
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                DAL.Instance.UpdateNofSpaces();
+                DalInstance.UpdateNofSpaces();
             }
         }
 
         public List<Word> GetAllWords(string userId, string containText)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
                 if (containText.Length < 1)
                     return new List<Word>();
-                List<Word> words = DAL.Instance.GetAllWords(userId, containText);
+                List<Word> words = DalInstance.GetAllWords(userId, containText);
 
-                var newWords = words.Select(s => WordApis.Instance.GetSerializableWord(s)).ToList();
+                var newWords = words.Select(s => WordApisInstance.GetSerializableWord(s)).ToList();
                 return newWords;
             }
         }
 
         public Word GetWordByTargetWord(string word)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return GetWordByTargetWord(word);
+                var result =  WordApisInstance.GetWordByTargetWord(word);
+                return result;
             }
         }
 
         public bool DeleteWord(long id)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return DAL.Instance.DeleteWord(id);
+                return WordApisInstance.DeleteWord(id);
             }
         }
 
         public List<Word> GetWords(long id, string targetWord)
         {
-            using (var dbContext = DAL.Instance.NewWordEntitiesInstance())
+            using (var dbContext = DalInstance.NewWordEntitiesInstance())
             {
-                return GetWords(id, targetWord);
+                return WordApisInstance.GetWords(id, targetWord);
             }
         }
 
         public History GetLastHistory(long wordId)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return DAL.Instance.GetLastHistory(wordId);
+                return DalInstance.GetLastHistory(wordId);
             }
         }
 
@@ -131,7 +137,7 @@ namespace Mehrsan.Business
             {
                 throw new Exception($"Review time can't be negative {reviewTime}");
             }
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
                 if (wordId == 0)
                     throw new Exception("Wrong id is passed");
@@ -157,7 +163,7 @@ namespace Mehrsan.Business
 
                 foreach (Word word in containingWords)
                 {
-                    var lastHistory = DAL.Instance.GetLastHistory(word.Id);
+                    var lastHistory = DalInstance.GetLastHistory(word.Id);
                     if (lastHistory == null)
                     {
                         lastHistory = new History();
@@ -189,7 +195,7 @@ namespace Mehrsan.Business
                         };
                         DALGeneric<History>.Instance.Create(history);
 
-                        int res = DAL.Instance.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod, null, null, null);
+                        int res = DalInstance.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod, null, null, null);
 
                     }
                 }
@@ -199,7 +205,7 @@ namespace Mehrsan.Business
 
         public bool AddHistory(History history)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
                 return AddHistory(history);
             }
@@ -207,33 +213,34 @@ namespace Mehrsan.Business
 
         public bool SetWordAmbiguous(long wordId)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return DAL.Instance.UpdateWord(wordId, string.Empty, string.Empty, null, null, 0, null, null, true) > 0;
+                return DalInstance.UpdateWord(wordId, string.Empty, string.Empty, null, null, 0, null, null, true) > 0;
             }
         }
 
         public bool CreateWord(Word word, bool createHistory)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return CreateWord(word, createHistory);
+                return WordApisInstance.CreateWord(word, createHistory);
             }
         }
 
         public bool UpdateWord(long id, Word inpWord)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return UpdateWord(id, inpWord);
+                var result = WordApisInstance.UpdateWord(id, inpWord);
+                return result;
             }
         }
 
         public string GetWordOnly(long id)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                Word word = DAL.Instance.GetWords(id, string.Empty).FirstOrDefault();
+                Word word = DalInstance.GetWords(id, string.Empty).FirstOrDefault();
 
                 return word.TargetWord;
             }
@@ -241,13 +248,13 @@ namespace Mehrsan.Business
 
         public async Task GetWordsRelatedInfo()
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
                 var baseUrl = "http://ordnet.dk/ddo/ordbog?query=";
                 long index = 0;
                 string messages = string.Empty;
 
-                foreach (Word dbWord in DAL.Instance.GetWords(0, string.Empty))
+                foreach (Word dbWord in DalInstance.GetWords(0, string.Empty))
                 {
                     string targetWord = dbWord.TargetWord;
                     foreach (char ch in Common.Common.Separators)
@@ -269,14 +276,14 @@ namespace Mehrsan.Business
 
                             var url = baseUrl + trimedWord;
                             string targetDirectory = @"D:\Code\mehran\Mehrsan_School\Mehrsan.Word\Mehrsan.Word\Words\";
-                            string wordDirectory = WordApis.Instance.GetWordDirectory(trimedWord);
+                            string wordDirectory = WordApisInstance.GetWordDirectory(trimedWord);
                             targetDirectory = targetDirectory + wordDirectory;
                             if (!Directory.Exists(targetDirectory))
                                 Directory.CreateDirectory(targetDirectory);
 
                             string mp3File = targetDirectory + trimedWord + ".mp3";
 
-                            WordApis.Instance.SaveGoogleImagesForWord(trimedWord, targetDirectory);
+                            WordApisInstance.SaveGoogleImagesForWord(trimedWord, targetDirectory);
 
                             string filePath = targetDirectory + trimedWord + ".html";
                             if (!File.Exists(filePath))
@@ -331,20 +338,22 @@ namespace Mehrsan.Business
                     }
 
                 }
+
                 System.Diagnostics.Debug.WriteLine(messages);
                 messages = string.Empty;
+
             }
         }
 
         public bool CreateGraph()
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
                 List<Word> allWords = null;
 
-                allWords = (from d in DAL.Instance.GetWords(0, string.Empty) orderby d.Id select d).ToList();
+                allWords = (from d in DalInstance.GetWords(0, string.Empty) orderby d.Id select d).ToList();
                 long maxSrcGraphId = 0;
-                var graphs = DAL.Instance.GetGraphs();
+                var graphs = DalInstance.GetGraphs();
                 //if (graphs.Count > 0)
                 //    maxSrcGraphId = (from g in graphs orderby g.Id select g.SrcWordId).Max(s => s);
 
@@ -359,23 +368,23 @@ namespace Mehrsan.Business
 
                     foreach (string word in splittedNewWord)
                     {
-                        wordsUsedByNewWord = DAL.Instance.GetWordsLike(word);
+                        wordsUsedByNewWord = DalInstance.GetWordsLike(word);
                         foreach (Word wordUsedByNewWord in wordsUsedByNewWord)
                         {
-                            if (WordApis.Instance.WholeWordIsUsed(srcWord, wordUsedByNewWord))
+                            if (WordApisInstance.WholeWordIsUsed(srcWord, wordUsedByNewWord))
                             {
-                                DAL.Instance.AddToGraph(srcWord, wordUsedByNewWord);
+                                DalInstance.AddToGraph(srcWord, wordUsedByNewWord);
                             }
                         }
                     }
 
-                    wordsUseNewWord.AddRange(DAL.Instance.GetWordsLike(srcWordNew));
+                    wordsUseNewWord.AddRange(DalInstance.GetWordsLike(srcWordNew));
 
                     foreach (Word wordUseNewWord in wordsUseNewWord)
                     {
-                        if (WordApis.Instance.WholeWordIsUsed(wordUseNewWord, srcWord))
+                        if (WordApisInstance.WholeWordIsUsed(wordUseNewWord, srcWord))
                         {
-                            DAL.Instance.AddToGraph(wordUseNewWord, srcWord);
+                            DalInstance.AddToGraph(wordUseNewWord, srcWord);
                         }
                     }
                 }
@@ -386,19 +395,19 @@ namespace Mehrsan.Business
 
         public List<Word> LoadRelatedSentences(long wordId)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                return DAL.Instance.LoadRelatedSentences(wordId);
+                return DalInstance.LoadRelatedSentences(wordId);
             }
         }
 
         public List<Word> GetWordsForReview(string userId)
         {
-            using (DAL.Instance.NewWordEntitiesInstance())
+            using (DalInstance.NewWordEntitiesInstance())
             {
-                List<Word> words = DAL.Instance.GetWordsForReview(userId, DateTime.Now, 20);
+                List<Word> words = DalInstance.GetWordsForReview(userId, DateTime.Now, 20);
 
-                var newWords = words.Select(s => WordApis.Instance.GetSerializableWord(s)).ToList();
+                var newWords = words.Select(s => WordApisInstance.GetSerializableWord(s)).ToList();
                 return newWords;
             }
         }

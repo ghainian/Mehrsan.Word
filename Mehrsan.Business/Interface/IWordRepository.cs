@@ -7,6 +7,13 @@ namespace Mehrsan.Business.Interface
 {
     public interface IWordRepository
     {
+
+        #region Properties
+        IDAL DalInstance { get; }
+        IWordApis WordApisInstance { get; }
+        #endregion
+
+        #region Methods
         bool AddHistory(History history);
         bool CreateDefaultWord(Word word);
         bool CreateGraph();
@@ -27,6 +34,7 @@ namespace Mehrsan.Business.Interface
         void UpdateNofSpaces();
         bool UpdateWord(long id, Word inpWord);
         bool UpdateWordStatus(bool knowsWord, long wordId, long reviewTime);
-        bool WordExists(long id);
+        bool WordExists(long id); 
+        #endregion
     }
 }

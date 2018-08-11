@@ -25,7 +25,9 @@ namespace Mehrsan.Dal.DB
 
         public WordEntities(DbContextOptions<WordEntities> options) : base(options)
         {
+
             Options = options;
+            IsDisposed = false;
         }
 
 

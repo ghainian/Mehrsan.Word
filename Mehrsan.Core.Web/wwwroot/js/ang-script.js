@@ -27,8 +27,6 @@ var myApp = angular.module("myModule", [])
             var _wordRepeationThresholdForLearning = 3;
             var _numberOfAutomaticRepetitionOfCurrentWord = 0;
             var _playWordQueueInterval = 3000;
-            var _wordReviewStartTime = new Date();
-            var _wordReviewEndTime = new Date();
             var _tokenKey = 'accessToken';
             var _lock = 1;
             var _intervalHandle = 0;
@@ -494,7 +492,7 @@ var myApp = angular.module("myModule", [])
                     encoding: "UTF-8",
                     headers: { 'Authorization': 'Bearer ' + token },
                     success: function (result) {
-                        _wordReviewStartTime = new Date();
+                        setStartTime()                        
                         addRecentWord(targetWord, meaning)
                         callback(result);
 
@@ -510,6 +508,19 @@ var myApp = angular.module("myModule", [])
                 });
             }
 
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            function setStartTime() {
+                if (!_words[_wordIndex].ReviewStartTime || _words[_wordIndex].ReviewStartTime == null || _words[_wordIndex].ReviewStartTime == "")
+                _words[_wordIndex].ReviewStartTime = new Date();
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            function setEndTime() {
+                if (!_words[_wordIndex].ReviewEndTime || _words[_wordIndex].ReviewEndTime == null || _words[_wordIndex].ReviewEndTime == "")
+                    _words[_wordIndex].ReviewEndTime = new Date();
+            }
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             function login() {
@@ -613,7 +624,7 @@ var myApp = angular.module("myModule", [])
 
                 var item = getWordLocally(_words[_wordIndex].id);
 
-                _wordReviewEndTime = new Date();
+                _words[_wordIndex].ReviewEndTime = new Date();
                 var curretWordPreviewText = _words[_wordIndex].targetWord.toLowerCase().trim();
                 curretWordPreviewFoundWord = getWordByTargetWord(curretWordPreviewText);
                 curretWordPreviewFoundWord.targetWord = curretWordPreviewFoundWord.targetWord.toLowerCase().trim();
@@ -714,7 +725,7 @@ var myApp = angular.module("myModule", [])
 
             function updateWordStatusToSpecificResult(result, wordId) {
 
-                var reviewTime = _wordReviewEndTime - _wordReviewStartTime;
+                var reviewTime = _words[ _wordIndex ].ReviewEndTime - _words[ _wordIndex ].ReviewStartTime;
 
                 var token = sessionStorage.getItem(_tokenKey);
                 var headers = {};
@@ -728,7 +739,7 @@ var myApp = angular.module("myModule", [])
                     headers: { 'Authorization': 'Bearer ' + token },
 
                 }).then(function successCallback(response) {
-                    _wordReviewStartTime = new Date();
+                    _words[_wordIndex].ReviewStartTime = new Date();
 
                 }, function errorCallback(err) {
                     alert('updateWordStatusToSpecificResult' + err.responseText);
@@ -826,7 +837,7 @@ var myApp = angular.module("myModule", [])
             function showWord(i) {
                 showChart();
                 _numberOfAutomaticRepetitionOfCurrentWord = 0;
-                _wordReviewStartTime = new Date();
+                _words[_wordIndex].ReviewStartTime = new Date();
                 _currentWordsParts.splice(0, _currentWordsParts.length)
                 var currentWord = _words[i];
                 var str = currentWord.targetWord;
@@ -1444,15 +1455,15 @@ var myApp = angular.module("myModule", [])
                             _words[_wordIndex].meaning = meaning;
                             _words[_wordIndex].writtenByMe = writtenByMe;
                         }
-
+                        showWord(_wordIndex);
                     },
                     error: function (html) {
                         showResult(false);
-
+                        showWord(_wordIndex);
                     }
                 });
 
-                showWord(_wordIndex);
+                
 
             }
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1548,7 +1559,7 @@ var myApp = angular.module("myModule", [])
                     encoding: "UTF-8",
                     headers: headers,
                     success: function (result) {
-                        _wordReviewStartTime = new Date();
+                        _words[_wordIndex].ReviewStartTime = new Date();
                         addRecentWord(targetWord, meaning)
                         callback(result);
 

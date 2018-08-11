@@ -15,7 +15,7 @@ namespace Mehrsan.Business
 
         #region Properties
         public static AccountRepository Instance { get; } = new AccountRepository();
-
+        public IDAL DalInstance { get; } = new DAL();
         #endregion
 
         #region Methods
@@ -27,23 +27,23 @@ namespace Mehrsan.Business
 
         public List<AspNetUser> GetUsers(string searchText)
         {
-            using (var dbContext = DAL.Instance.NewWordEntitiesInstance())
+            using (var dbContext = DalInstance.NewWordEntitiesInstance())
             {
-                return DAL.Instance.GetUsers(searchText);
+                return DalInstance.GetUsers(searchText);
             }
         }
 
         public List<AspNetUserClaim> GetUserClaims(string searchText)
         {
-            using (var dbContext = DAL.Instance.NewWordEntitiesInstance())
+            using (var dbContext = DalInstance.NewWordEntitiesInstance())
             {
-                return DAL.Instance.GetUserClaims(searchText);
+                return DalInstance.GetUserClaims(searchText);
             }
         }
 
         public bool CreateClaim(AspNetUserClaim userClaim)
         {
-            using (var dbContext = DAL.Instance.NewWordEntitiesInstance())
+            using (var dbContext = DalInstance.NewWordEntitiesInstance())
             {
                 DALGeneric<AspNetUserClaim>.Instance.Create(userClaim);
             }
