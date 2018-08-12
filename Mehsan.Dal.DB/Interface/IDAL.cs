@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Mehrsan.Dal.DB
+namespace Mehrsan.Dal.DB.Interface
 {
     public interface IDAL
     {

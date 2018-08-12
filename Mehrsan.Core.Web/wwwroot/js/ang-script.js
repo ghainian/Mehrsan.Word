@@ -12,6 +12,7 @@ var myApp = angular.module("myModule", [])
             //});
 
             $scope.chkPronounceWholeWordChecked = true;
+            var _addWordError = ' Error adding new word '
             var stop;
             var _wordIndex = 0;
             var _words = [];
@@ -514,13 +515,7 @@ var myApp = angular.module("myModule", [])
                 if (!_words[_wordIndex].ReviewStartTime || _words[_wordIndex].ReviewStartTime == null || _words[_wordIndex].ReviewStartTime == "")
                 _words[_wordIndex].ReviewStartTime = new Date();
             }
-
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            function setEndTime() {
-                if (!_words[_wordIndex].ReviewEndTime || _words[_wordIndex].ReviewEndTime == null || _words[_wordIndex].ReviewEndTime == "")
-                    _words[_wordIndex].ReviewEndTime = new Date();
-            }
+            
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             function login() {
@@ -623,8 +618,7 @@ var myApp = angular.module("myModule", [])
 
 
                 var item = getWordLocally(_words[_wordIndex].id);
-
-                _words[_wordIndex].ReviewEndTime = new Date();
+                
                 var curretWordPreviewText = _words[_wordIndex].targetWord.toLowerCase().trim();
                 curretWordPreviewFoundWord = getWordByTargetWord(curretWordPreviewText);
                 curretWordPreviewFoundWord.targetWord = curretWordPreviewFoundWord.targetWord.toLowerCase().trim();
@@ -725,7 +719,7 @@ var myApp = angular.module("myModule", [])
 
             function updateWordStatusToSpecificResult(result, wordId) {
 
-                var reviewTime = Math.abs( _words[ _wordIndex ].ReviewEndTime - _words[ _wordIndex ].ReviewStartTime);
+                var reviewTime = new Date() - _words[ _wordIndex ].ReviewStartTime;
 
                 var token = sessionStorage.getItem(_tokenKey);
                 var headers = {};
@@ -739,7 +733,7 @@ var myApp = angular.module("myModule", [])
                     headers: { 'Authorization': 'Bearer ' + token },
 
                 }).then(function successCallback(response) {
-                    _words[_wordIndex].ReviewStartTime = new Date();
+                    setStartTime()
 
                 }, function errorCallback(err) {
                     alert('updateWordStatusToSpecificResult' + err.responseText);
@@ -837,7 +831,7 @@ var myApp = angular.module("myModule", [])
             function showWord(i) {
                 showChart();
                 _numberOfAutomaticRepetitionOfCurrentWord = 0;
-                _words[_wordIndex].ReviewStartTime = new Date();
+                setStartTime()
                 _currentWordsParts.splice(0, _currentWordsParts.length)
                 var currentWord = _words[i];
                 var str = currentWord.targetWord;
@@ -1339,12 +1333,12 @@ var myApp = angular.module("myModule", [])
                     result = response.data
                     _words[_wordIndex].IsAmbiguous = true;
 
-                    showResult(result);
+                    showResult(result, ' Word set as ambiguous successfully');
                     _wordIndex = _wordIndex + 1;
                     showWord(_wordIndex);
 
                 }, function errorCallback(err) {
-                    showResult(false);
+                    showResult( ' Error setting error as ambiguous ' );
                 });
 
 
@@ -1371,13 +1365,14 @@ var myApp = angular.module("myModule", [])
                 }).then(function successCallback(response) {
 
                     result = response.data
-                    showResult(result);
-                    _wordIndex = _wordIndex + 1;
+                    showResult(result, 'Word deleted successfully');
+                    _words.splice(_wordIndex);//removing deleted item from array
+                    
                     showWord(_wordIndex);
 
 
                 }, function errorCallback(err) {
-                    showResult(false);
+                    showResult(false, " Error deleting word ");
                 });
 
 
@@ -1449,7 +1444,7 @@ var myApp = angular.module("myModule", [])
 
                         addRecentWord(word, meaning)
                         updateWordStatusToSpecificResult(true, wordId);
-                        showResult(result);
+                        showResult(true, " Word status updated successfully ");
                         if (wordId == _words[_wordIndex].id) {
                             _words[_wordIndex].targetWord = word;
                             _words[_wordIndex].meaning = meaning;
@@ -1458,7 +1453,7 @@ var myApp = angular.module("myModule", [])
                         showWord(_wordIndex);
                     },
                     error: function (html) {
-                        showResult(false);
+                        showResult(false, " Error updating word status ");
                         showWord(_wordIndex);
                     }
                 });
@@ -1494,7 +1489,7 @@ var myApp = angular.module("myModule", [])
             }
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            function showResult(result) {
+            function showResult(result,message) {
 
                 var date = new Date().toString("yyyy-MM-dd HH:mm:ss");
                 if (result == true) {
@@ -1509,7 +1504,7 @@ var myApp = angular.module("myModule", [])
 
                 } else {
 
-                    showError(' Error adding new word ');
+                    showError(message);
                 }
             }
 
@@ -1551,7 +1546,7 @@ var myApp = angular.module("myModule", [])
                 $.ajax({
                     url: _webUrl + 'Word/PostWord',
                     type: 'post',
-                    async: false,
+                    async: true,
                     dataType: "json",
                     data: { "id": "1", "targetWord": targetWord, "meaning": meaning, "writtenByMe": writtenByMe },
                     scriptCharset: "utf-8",
@@ -1559,7 +1554,7 @@ var myApp = angular.module("myModule", [])
                     encoding: "UTF-8",
                     headers: headers,
                     success: function (result) {
-                        _words[_wordIndex].ReviewStartTime = new Date();
+                        setStartTime()
                         addRecentWord(targetWord, meaning)
                         callback(result);
 

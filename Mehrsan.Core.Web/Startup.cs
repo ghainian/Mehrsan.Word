@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Mehrsan.Dal.DB.Interface;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +16,9 @@ using Microsoft.Extensions.Logging;
 using Mehrsan.Dal.DB;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using Mehrsan.Business.Interface;
+using Mehrsan.Dal.DB.Interface;
+using Mehrsan.Business;
 
 namespace Mehrsan.Core.Web
 {
@@ -44,13 +47,22 @@ namespace Mehrsan.Core.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddSingleton<IClaimsTransformation, ClaimsTransformer>();
 
+            services.AddSingleton<IClaimsTransformation, ClaimsTransformer>();
+            services.AddTransient<IDAL, DAL>();
+            services.AddTransient<IWordApis, WordApis>();
+            services.AddTransient<IWordRepository, WordRepository>();
 
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminUser", policy =>
+                          policy.RequireClaim("UserType", "Admin"));
             });
 
             services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));

@@ -1,0 +1,1104 @@
+2018-08-13T01:23:27.0317010+02:00 0HLG0LADKC66H:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-08-13T01:23:27.0317010+02:00 0HLG0LADKC66I:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:44378/  0 (ca22a1cb)
+2018-08-13T01:23:27.1284711+02:00 0HLG0LADKC66I:00000001 [INF] Request finished in 76.6283ms 200  (791a596a)
+2018-08-13T01:23:27.1630685+02:00 0HLG0LADKC66H:00000001 [WRN] Failed to determine the https port for redirect. (ca76cc21)
+2018-08-13T01:23:30.1123125+02:00 0HLG0LADKC66H:00000001 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:23:30.6536373+02:00 0HLG0LADKC66H:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-08-13T01:23:31.8878236+02:00 0HLG0LADKC66H:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:23:32.5084473+02:00 0HLG0LADKC66H:00000001 [INF] Executed DbCommand ("64"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-08-13T01:23:33.0945504+02:00 0HLG0LADKC66H:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 2128.2685ms. (50a9e262)
+2018-08-13T01:23:34.5654219+02:00 0HLG0LADKC66H:00000001 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-08-13T01:23:36.2060757+02:00 0HLG0LADKC66H:00000001 [INF] Executed ViewResult - view "Index" executed in 2395.5195ms. (f66409e9)
+2018-08-13T01:23:36.8711728+02:00 0HLG0LADKC66H:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 6347.8943ms (afa2e885)
+2018-08-13T01:23:37.2534028+02:00 0HLG0LADKC66I:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/js/ang-script.js   (ca22a1cb)
+2018-08-13T01:23:37.3437932+02:00 0HLG0LADKC66H:00000001 [INF] Request finished in 10212.363ms 200 text/html; charset=utf-8 (791a596a)
+2018-08-13T01:23:37.6291745+02:00 0HLG0LADKC66I:00000002 [INF] The file "/js/ang-script.js" was not modified (f1f8d725)
+2018-08-13T01:23:37.7713110+02:00 0HLG0LADKC66I:00000002 [INF] Request finished in 697.9504ms 304 application/javascript (791a596a)
+2018-08-13T01:23:38.2499506+02:00 0HLG0LADKC66H:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/GetWordsForReview   (ca22a1cb)
+2018-08-13T01:23:38.3208546+02:00 0HLG0LADKC66H:00000002 [INF] Route matched with "{action = \"GetWordsForReview\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:23:38.3411677+02:00 0HLG0LADKC66H:00000002 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-08-13T01:23:38.3861870+02:00 0HLG0LADKC66H:00000002 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:23:38.5128217+02:00 0HLG0LADKC66H:00000002 [INF] Executed DbCommand ("89"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-08-13T01:23:38.5366264+02:00 0HLG0LADKC66H:00000002 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 174.4781ms. (50a9e262)
+2018-08-13T01:23:38.5684194+02:00 0HLG0LADKC66H:00000002 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:23:38.7346297+02:00 0HLG0LADKC66H:00000002 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" in 397.6255ms (afa2e885)
+2018-08-13T01:23:38.7554452+02:00 0HLG0LADKC66H:00000002 [INF] Request finished in 613.5145ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:23:38.7665838+02:00 0HLG0LADKC66I:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:23:38.8352123+02:00 0HLG0LADKC66I:00000003 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:23:38.9900236+02:00 0HLG0LADKC66I:00000003 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:23:39.0054472+02:00 0HLG0LADKC66I:00000003 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:23:40.6367638+02:00 0HLG0LADKC66I:00000003 [INF] Executed DbCommand ("506"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:23:40.7439708+02:00 0HLG0LADKC66I:00000003 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 1728.7095ms. (50a9e262)
+2018-08-13T01:23:40.8026674+02:00 0HLG0LADKC66I:00000003 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:23:40.8307816+02:00 0HLG0LADKC66I:00000003 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 1968.0802ms (afa2e885)
+2018-08-13T01:23:40.9417144+02:00 0HLG0LADKC66I:00000003 [INF] Request finished in 2083.5228ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:23:41.1328138+02:00 0HLG0LADKC66H:00000003 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:23:41.6209881+02:00 0HLG0LADKC66H:00000003 [INF] Request finished in 483.2539ms 200 audio/mpeg (791a596a)
+2018-08-13T01:23:41.8337083+02:00 0HLG0LADKC66I:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:23:42.1763548+02:00 0HLG0LADKC66I:00000004 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:23:42.2219173+02:00 0HLG0LADKC66I:00000004 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:23:42.2566098+02:00 0HLG0LADKC66I:00000004 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 1.2284ms. (50a9e262)
+2018-08-13T01:23:42.2857176+02:00 0HLG0LADKC66I:00000004 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:23:42.3226212+02:00 0HLG0LADKC66I:00000004 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 108.1134ms (afa2e885)
+2018-08-13T01:23:42.3542973+02:00 0HLG0LADKC66I:00000004 [INF] Request finished in 762.5422ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:09.3131343+02:00 0HLG0LADKC66H:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:24:09.3195484+02:00 0HLG0LADKC66H:00000004 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:09.3272841+02:00 0HLG0LADKC66H:00000004 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:09.3349608+02:00 0HLG0LADKC66H:00000004 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:24:09.3647458+02:00 0HLG0LADKC66H:00000004 [INF] Executed DbCommand ("13"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:24:09.3739297+02:00 0HLG0LADKC66H:00000004 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 40.2214ms. (50a9e262)
+2018-08-13T01:24:09.3910851+02:00 0HLG0LADKC66H:00000004 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:24:09.4075651+02:00 0HLG0LADKC66H:00000004 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 73.0108ms (afa2e885)
+2018-08-13T01:24:09.4198902+02:00 0HLG0LADKC66H:00000004 [INF] Request finished in 99.351ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:09.4331892+02:00 0HLG0LADKC66I:00000005 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWord application/x-www-form-urlencoded;charset=UTF-8 19 (ca22a1cb)
+2018-08-13T01:24:09.4421348+02:00 0HLG0LADKC66I:00000005 [INF] Route matched with "{action = \"GetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:09.4509280+02:00 0HLG0LADKC66I:00000005 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" with arguments (["7518", ""]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:09.4605257+02:00 0HLG0LADKC66I:00000005 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:24:09.4762012+02:00 0HLG0LADKC66I:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:24:09.4856892+02:00 0HLG0LADKC66I:00000005 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 27.6586ms. (50a9e262)
+2018-08-13T01:24:09.4908266+02:00 0HLG0LADKC66I:00000005 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:24:09.4983428+02:00 0HLG0LADKC66I:00000005 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" in 49.3431ms (afa2e885)
+2018-08-13T01:24:09.5077787+02:00 0HLG0LADKC66I:00000005 [INF] Request finished in 72.8288ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:09.5258996+02:00 0HLG0LADKC66H:00000005 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/.mp3   (ca22a1cb)
+2018-08-13T01:24:09.5286751+02:00 0HLG0LADKC66I:00000006 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/UpdateWord application/x-www-form-urlencoded;charset=UTF-8 58 (ca22a1cb)
+2018-08-13T01:24:09.5594891+02:00 0HLG0LADKC66H:00000005 [INF] Request finished in 14.9518ms 404  (791a596a)
+2018-08-13T01:24:09.6006915+02:00 0HLG0LADKC66I:00000006 [INF] Route matched with "{action = \"UpdateWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:09.6065837+02:00 0HLG0LADKC66H:00000006 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:24:09.6141832+02:00 0HLG0LADKC66H:00000006 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:09.6252395+02:00 0HLG0LADKC66H:00000006 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:09.6320788+02:00 0HLG0LADKC66H:00000006 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:24:09.6543963+02:00 0HLG0LADKC66I:00000006 [INF] Authorization failed. (b15dd539)
+2018-08-13T01:24:09.6585828+02:00 0HLG0LADKC66H:00000006 [INF] Executed DbCommand ("13"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:24:09.6720542+02:00 0HLG0LADKC66H:00000006 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 35.4812ms. (50a9e262)
+2018-08-13T01:24:09.6819828+02:00 0HLG0LADKC66I:00000006 [INF] Authorization failed for the request at filter '"Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter"'. (8b6446cb)
+2018-08-13T01:24:09.6858984+02:00 0HLG0LADKC66H:00000006 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:24:09.6974068+02:00 0HLG0LADKC66H:00000006 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 71.4412ms (afa2e885)
+2018-08-13T01:24:09.7175979+02:00 0HLG0LADKC66H:00000006 [INF] Request finished in 103.7573ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:09.7266058+02:00 0HLG0LADKC66I:00000006 [INF] Executing ChallengeResult with authentication schemes ([]). (f3dca807)
+2018-08-13T01:24:09.7368099+02:00 0HLG0LADKC66H:00000007 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:24:09.8168324+02:00 0HLG0LADKC66H:00000007 [INF] Request finished in 9.0123ms 200 audio/mpeg (791a596a)
+2018-08-13T01:24:09.8601357+02:00 0HLG0LADKC66I:00000006 [INF] AuthenticationScheme: "Identity.Application" was challenged. (d45f1f38)
+2018-08-13T01:24:09.8777972+02:00 0HLG0LADKC66H:00000008 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:24:09.8809806+02:00 0HLG0LADKC66I:00000006 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" in 269.5969ms (afa2e885)
+2018-08-13T01:24:09.8916453+02:00 0HLG0LADKC66H:00000008 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:09.9029863+02:00 0HLG0LADKC66I:00000006 [INF] Request finished in 365.4113ms 404  (791a596a)
+2018-08-13T01:24:09.9146696+02:00 0HLG0LADKC66H:00000008 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:09.9234190+02:00  [INF] Connection id ""0HLG0LADKC66I"", Request id ""0HLG0LADKC66I:00000006"": the application completed without reading the entire request body. (54ac9468)
+2018-08-13T01:24:09.9344532+02:00 0HLG0LADKC66H:00000008 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 2.2359ms. (50a9e262)
+2018-08-13T01:24:09.9391947+02:00 0HLG0LADKC66I:00000007 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:24:09.9501543+02:00 0HLG0LADKC66H:00000008 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:24:09.9557997+02:00 0HLG0LADKC66I:00000007 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:09.9636385+02:00 0HLG0LADKC66H:00000008 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 52.5319ms (afa2e885)
+2018-08-13T01:24:09.9723965+02:00 0HLG0LADKC66I:00000007 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:09.9824510+02:00 0HLG0LADKC66H:00000008 [INF] Request finished in 103.4766ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:09.9856209+02:00 0HLG0LADKC66I:00000007 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:24:10.0044587+02:00 0HLG0LADKC66I:00000007 [INF] Executed DbCommand ("7"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:24:10.0150758+02:00 0HLG0LADKC66I:00000007 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 31.9883ms. (50a9e262)
+2018-08-13T01:24:10.0210180+02:00 0HLG0LADKC66I:00000007 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:24:10.0301697+02:00 0HLG0LADKC66I:00000007 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 64.6984ms (afa2e885)
+2018-08-13T01:24:10.0440802+02:00 0HLG0LADKC66I:00000007 [INF] Request finished in 106.0172ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:10.0578884+02:00 0HLG0LADKC66H:00000009 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:24:10.0785670+02:00 0HLG0LADKC66H:00000009 [INF] Request finished in 12.4834ms 200 audio/mpeg (791a596a)
+2018-08-13T01:24:10.1044781+02:00 0HLG0LADKC66I:00000008 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:24:10.1103343+02:00 0HLG0LADKC66I:00000008 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:10.1215782+02:00 0HLG0LADKC66I:00000008 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:10.1308685+02:00 0HLG0LADKC66I:00000008 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0386ms. (50a9e262)
+2018-08-13T01:24:10.1372920+02:00 0HLG0LADKC66I:00000008 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:24:10.1445337+02:00 0HLG0LADKC66I:00000008 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 26.5766ms (afa2e885)
+2018-08-13T01:24:10.1550083+02:00 0HLG0LADKC66I:00000008 [INF] Request finished in 46.2892ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:26.3642096+02:00 0HLG0LADKC66H:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:44378/js/angular.min.js.map   (ca22a1cb)
+2018-08-13T01:24:26.3906280+02:00 0HLG0LADKC66I:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:44378/lib/bootstrap/dist/css/bootstrap.css.map   (ca22a1cb)
+2018-08-13T01:24:26.3991922+02:00 0HLG0LADKC66H:0000000A [INF] Route matched with "{action = \"Index\", controller = \"StatusCode\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.StatusCodeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:26.4657098+02:00 0HLG0LADKC66H:0000000A [INF] Executing action method "Mehrsan.Core.Web.Controllers.StatusCodeController.Index (Mehrsan.Core.Web)" with arguments (["404"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:26.5204634+02:00 0HLG0LADKC66H:0000000A [INF] Unexpected Status Code: 404, OriginalPath: /js/angular.min.js.map (ca6255d1)
+2018-08-13T01:24:26.5515364+02:00 0HLG0LADKC66H:0000000A [INF] Executed action method "Mehrsan.Core.Web.Controllers.StatusCodeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 52.0468ms. (50a9e262)
+2018-08-13T01:24:26.5539282+02:00 0HLG0LADKC66I:00000009 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css.map"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map"' (27b0a520)
+2018-08-13T01:24:26.6027995+02:00 0HLG0LADKC66I:00000009 [INF] Request finished in 203.8575ms 200 text/plain (791a596a)
+2018-08-13T01:24:26.6105593+02:00 0HLG0LADKC66H:0000000A [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-08-13T01:24:26.6780096+02:00 0HLG0LADKC66H:0000000A [INF] Executed ViewResult - view "Index" executed in 73.2666ms. (f66409e9)
+2018-08-13T01:24:26.6988737+02:00 0HLG0LADKC66H:0000000A [INF] Executed action "Mehrsan.Core.Web.Controllers.StatusCodeController.Index (Mehrsan.Core.Web)" in 282.2149ms (afa2e885)
+2018-08-13T01:24:26.7217045+02:00 0HLG0LADKC66H:0000000A [INF] Request finished in 417.243ms 404 text/html; charset=utf-8 (791a596a)
+2018-08-13T01:24:41.9455230+02:00 0HLG0LADKC66I:0000000A [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:24:41.9650185+02:00 0HLG0LADKC66I:0000000A [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:42.0092587+02:00 0HLG0LADKC66I:0000000A [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:42.0542444+02:00 0HLG0LADKC66I:0000000A [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:24:42.0811637+02:00 0HLG0LADKC66I:0000000A [INF] Executed DbCommand ("14"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:24:42.1110835+02:00 0HLG0LADKC66I:0000000A [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 83.3155ms. (50a9e262)
+2018-08-13T01:24:42.1384754+02:00 0HLG0LADKC66I:0000000A [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:24:42.1497110+02:00 0HLG0LADKC66I:0000000A [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 146.4171ms (afa2e885)
+2018-08-13T01:24:42.1771198+02:00 0HLG0LADKC66I:0000000A [INF] Request finished in 254.816ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:42.1932468+02:00 0HLG0LADKC66H:0000000B [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWord application/x-www-form-urlencoded;charset=UTF-8 19 (ca22a1cb)
+2018-08-13T01:24:42.2305755+02:00 0HLG0LADKC66H:0000000B [INF] Route matched with "{action = \"GetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:42.2932540+02:00 0HLG0LADKC66H:0000000B [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" with arguments (["7518", ""]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:42.3093565+02:00 0HLG0LADKC66H:0000000B [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:24:42.3403565+02:00 0HLG0LADKC66H:0000000B [INF] Executed DbCommand ("5"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:24:42.8101784+02:00 0HLG0LADKC66H:0000000B [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 116.2111ms. (50a9e262)
+2018-08-13T01:24:44.0149147+02:00 0HLG0LADKC66H:0000000B [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:24:44.1963864+02:00 0HLG0LADKC66H:0000000B [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" in 1859.6956ms (afa2e885)
+2018-08-13T01:24:44.3873942+02:00 0HLG0LADKC66H:0000000B [INF] Request finished in 2068.7454ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:44.3952356+02:00 0HLG0LADKC66I:0000000B [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/.mp3   (ca22a1cb)
+2018-08-13T01:24:44.4542306+02:00 0HLG0LADKC66H:0000000C [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/UpdateWord application/x-www-form-urlencoded;charset=UTF-8 58 (ca22a1cb)
+2018-08-13T01:24:44.4604366+02:00 0HLG0LADKC66I:0000000B [INF] Request finished in 64.4078ms 404  (791a596a)
+2018-08-13T01:24:44.7193371+02:00 0HLG0LADKC66H:0000000C [INF] Route matched with "{action = \"UpdateWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:44.7244836+02:00 0HLG0LADKC66I:0000000C [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:24:44.7516805+02:00 0HLG0LADKC66H:0000000C [INF] Authorization failed. (b15dd539)
+2018-08-13T01:24:44.7553987+02:00 0HLG0LADKC66I:0000000C [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:44.7726674+02:00 0HLG0LADKC66H:0000000C [INF] Authorization failed for the request at filter '"Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter"'. (8b6446cb)
+2018-08-13T01:24:44.8041410+02:00 0HLG0LADKC66I:0000000C [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:44.8296423+02:00 0HLG0LADKC66H:0000000C [INF] Executing ChallengeResult with authentication schemes ([]). (f3dca807)
+2018-08-13T01:24:44.8448685+02:00 0HLG0LADKC66I:0000000C [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:24:44.8550023+02:00 0HLG0LADKC66H:0000000C [INF] AuthenticationScheme: "Identity.Application" was challenged. (d45f1f38)
+2018-08-13T01:24:44.8633388+02:00 0HLG0LADKC66H:0000000C [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" in 133.2871ms (afa2e885)
+2018-08-13T01:24:44.8939712+02:00 0HLG0LADKC66H:0000000C [INF] Request finished in 469.9822ms 404  (791a596a)
+2018-08-13T01:24:44.9017668+02:00 0HLG0LADKC66I:0000000C [INF] Executed DbCommand ("18"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:24:44.9188098+02:00  [INF] Connection id ""0HLG0LADKC66H"", Request id ""0HLG0LADKC66H:0000000C"": the application completed without reading the entire request body. (54ac9468)
+2018-08-13T01:24:44.9229705+02:00 0HLG0LADKC66I:0000000C [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 77.0365ms. (50a9e262)
+2018-08-13T01:24:44.9392764+02:00 0HLG0LADKC66I:0000000C [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:24:44.9881166+02:00 0HLG0LADKC66I:0000000C [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 193.5022ms (afa2e885)
+2018-08-13T01:24:45.0785224+02:00 0HLG0LADKC66I:0000000C [INF] Request finished in 361.0157ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:24:45.0907508+02:00 0HLG0LADKC66H:0000000D [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:24:45.3044492+02:00 0HLG0LADKC66H:0000000D [INF] Request finished in 32.9476ms 200 audio/mpeg (791a596a)
+2018-08-13T01:24:45.5279575+02:00 0HLG0LADKC66I:0000000D [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:24:45.5633862+02:00 0HLG0LADKC66I:0000000D [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:24:45.5856631+02:00 0HLG0LADKC66I:0000000D [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:24:45.6272627+02:00 0HLG0LADKC66I:0000000D [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0126ms. (50a9e262)
+2018-08-13T01:24:45.6415245+02:00 0HLG0LADKC66I:0000000D [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:24:45.6567318+02:00 0HLG0LADKC66I:0000000D [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 75.8112ms (afa2e885)
+2018-08-13T01:24:45.6707602+02:00 0HLG0LADKC66I:0000000D [INF] Request finished in 232.4956ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:01.3481431+02:00 0HLG0LADKC66J:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:01.3941117+02:00 0HLG0LADKC66J:00000001 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:01.4020815+02:00 0HLG0LADKC66J:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:01.4106414+02:00 0HLG0LADKC66J:00000001 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:01.4297529+02:00 0HLG0LADKC66J:00000001 [INF] Executed DbCommand ("12"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:01.4365230+02:00 0HLG0LADKC66J:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 28.4857ms. (50a9e262)
+2018-08-13T01:26:01.4451705+02:00 0HLG0LADKC66J:00000001 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:01.4525260+02:00 0HLG0LADKC66J:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 50.7685ms (afa2e885)
+2018-08-13T01:26:01.4654101+02:00 0HLG0LADKC66J:00000001 [INF] Request finished in 126.3165ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:01.4755293+02:00 0HLG0LADKC66J:00000002 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:26:01.4849885+02:00 0HLG0LADKC66J:00000002 [INF] Request finished in 8.8102ms 200 audio/mpeg (791a596a)
+2018-08-13T01:26:01.5726476+02:00 0HLG0LADKC66J:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:01.5958388+02:00 0HLG0LADKC66J:00000003 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:01.6093904+02:00 0HLG0LADKC66J:00000003 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:01.6193908+02:00 0HLG0LADKC66J:00000003 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0118ms. (50a9e262)
+2018-08-13T01:26:01.6326484+02:00 0HLG0LADKC66J:00000003 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:01.6457243+02:00 0HLG0LADKC66J:00000003 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 35.5052ms (afa2e885)
+2018-08-13T01:26:01.6548579+02:00 0HLG0LADKC66J:00000003 [INF] Request finished in 85.7626ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:05.9126141+02:00 0HLG0LADKC66J:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:05.9365165+02:00 0HLG0LADKC66J:00000004 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:05.9562077+02:00 0HLG0LADKC66J:00000004 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:05.9661451+02:00 0HLG0LADKC66J:00000004 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:06.0113213+02:00 0HLG0LADKC66J:00000004 [INF] Executed DbCommand ("19"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:06.0324415+02:00 0HLG0LADKC66J:00000004 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 60.1906ms. (50a9e262)
+2018-08-13T01:26:06.0464785+02:00 0HLG0LADKC66J:00000004 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:06.0719814+02:00 0HLG0LADKC66J:00000004 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 116.6027ms (afa2e885)
+2018-08-13T01:26:06.1064054+02:00 0HLG0LADKC66J:00000004 [INF] Request finished in 173.4722ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:06.1211830+02:00 0HLG0LADKC66J:00000005 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWord application/x-www-form-urlencoded;charset=UTF-8 19 (ca22a1cb)
+2018-08-13T01:26:06.1316987+02:00 0HLG0LADKC66J:00000005 [INF] Route matched with "{action = \"GetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:06.1425922+02:00 0HLG0LADKC66J:00000005 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" with arguments (["7518", ""]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:06.1549715+02:00 0HLG0LADKC66J:00000005 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:06.1681116+02:00 0HLG0LADKC66J:00000005 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:26:06.1822481+02:00 0HLG0LADKC66J:00000005 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 28.7967ms. (50a9e262)
+2018-08-13T01:26:06.1932604+02:00 0HLG0LADKC66J:00000005 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:06.2058052+02:00 0HLG0LADKC66J:00000005 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" in 59.8219ms (afa2e885)
+2018-08-13T01:26:06.2239402+02:00 0HLG0LADKC66J:00000005 [INF] Request finished in 94.1311ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:06.2421577+02:00 0HLG0LADKC66K:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/UpdateWord application/x-www-form-urlencoded;charset=UTF-8 58 (ca22a1cb)
+2018-08-13T01:26:06.2458842+02:00 0HLG0LADKC66J:00000006 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/.mp3   (ca22a1cb)
+2018-08-13T01:26:06.2776938+02:00 0HLG0LADKC66K:00000001 [INF] Route matched with "{action = \"UpdateWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:06.2926000+02:00 0HLG0LADKC66J:00000006 [INF] Request finished in 27.1245ms 404  (791a596a)
+2018-08-13T01:26:06.3114050+02:00 0HLG0LADKC66K:00000001 [INF] Authorization failed. (b15dd539)
+2018-08-13T01:26:06.3168823+02:00 0HLG0LADKC66J:00000007 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:06.3341193+02:00 0HLG0LADKC66K:00000001 [INF] Authorization failed for the request at filter '"Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter"'. (8b6446cb)
+2018-08-13T01:26:06.3412656+02:00 0HLG0LADKC66J:00000007 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:06.3503905+02:00 0HLG0LADKC66K:00000001 [INF] Executing ChallengeResult with authentication schemes ([]). (f3dca807)
+2018-08-13T01:26:06.3728589+02:00 0HLG0LADKC66J:00000007 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:06.3775498+02:00 0HLG0LADKC66K:00000001 [INF] AuthenticationScheme: "Identity.Application" was challenged. (d45f1f38)
+2018-08-13T01:26:06.4111359+02:00 0HLG0LADKC66J:00000007 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:06.4173099+02:00 0HLG0LADKC66K:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" in 98.2701ms (afa2e885)
+2018-08-13T01:26:06.4482917+02:00 0HLG0LADKC66K:00000001 [INF] Request finished in 195.21ms 404  (791a596a)
+2018-08-13T01:26:06.4714781+02:00 0HLG0LADKC66J:00000007 [INF] Executed DbCommand ("16"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:06.5506924+02:00  [INF] Connection id ""0HLG0LADKC66K"", Request id ""0HLG0LADKC66K:00000001"": the application completed without reading the entire request body. (54ac9468)
+2018-08-13T01:26:06.5605054+02:00 0HLG0LADKC66J:00000007 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 155.7891ms. (50a9e262)
+2018-08-13T01:26:06.5904229+02:00 0HLG0LADKC66J:00000007 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:06.6120740+02:00 0HLG0LADKC66J:00000007 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 256.892ms (afa2e885)
+2018-08-13T01:26:06.6499018+02:00 0HLG0LADKC66J:00000007 [INF] Request finished in 315.6841ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:06.6609098+02:00 0HLG0LADKC66K:00000002 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:26:06.7128597+02:00 0HLG0LADKC66K:00000002 [INF] Request finished in 25.1207ms 200 audio/mpeg (791a596a)
+2018-08-13T01:26:06.7836080+02:00 0HLG0LADKC66J:00000008 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:06.7944383+02:00 0HLG0LADKC66K:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:06.8110775+02:00 0HLG0LADKC66J:00000008 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:06.8178058+02:00 0HLG0LADKC66K:00000003 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:06.8359566+02:00 0HLG0LADKC66J:00000008 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:06.8425973+02:00 0HLG0LADKC66K:00000003 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:06.8629742+02:00 0HLG0LADKC66K:00000003 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0071ms. (50a9e262)
+2018-08-13T01:26:06.8658260+02:00 0HLG0LADKC66J:00000008 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:06.8797512+02:00 0HLG0LADKC66K:00000003 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:06.8976596+02:00 0HLG0LADKC66J:00000008 [INF] Executed DbCommand ("14"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:06.9016688+02:00 0HLG0LADKC66K:00000003 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 61.1372ms (afa2e885)
+2018-08-13T01:26:06.9153276+02:00 0HLG0LADKC66J:00000008 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 64.5649ms. (50a9e262)
+2018-08-13T01:26:06.9153802+02:00 0HLG0LADKC66K:00000003 [INF] Request finished in 153.6562ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:06.9292541+02:00 0HLG0LADKC66J:00000008 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:06.9433669+02:00 0HLG0LADKC66J:00000008 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 105.9837ms (afa2e885)
+2018-08-13T01:26:06.9633529+02:00 0HLG0LADKC66J:00000008 [INF] Request finished in 203.0033ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:06.9806360+02:00 0HLG0LADKC66K:00000004 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:26:06.9960823+02:00 0HLG0LADKC66K:00000004 [INF] Request finished in 9.1149ms 200 audio/mpeg (791a596a)
+2018-08-13T01:26:07.0609785+02:00 0HLG0LADKC66J:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-08-13T01:26:07.0647998+02:00 0HLG0LADKC66K:00000005 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:07.0811323+02:00 0HLG0LADKC66J:00000009 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:07.0885317+02:00 0HLG0LADKC66K:00000005 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:07.1024425+02:00 0HLG0LADKC66J:00000009 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-08-13T01:26:07.1083663+02:00 0HLG0LADKC66K:00000005 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:08.3638433+02:00 0HLG0LADKC66J:00000009 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:08.6060468+02:00 0HLG0LADKC66K:00000005 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0173ms. (50a9e262)
+2018-08-13T01:26:08.7483588+02:00 0HLG0LADKC66K:00000005 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:08.7615446+02:00 0HLG0LADKC66J:00000009 [INF] Executed DbCommand ("69"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-08-13T01:26:08.7963647+02:00 0HLG0LADKC66K:00000005 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 1673.7036ms (afa2e885)
+2018-08-13T01:26:08.8214278+02:00 0HLG0LADKC66J:00000009 [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 1587.0555ms. (50a9e262)
+2018-08-13T01:26:08.8747658+02:00 0HLG0LADKC66K:00000005 [INF] Request finished in 1784.2839ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:08.8893673+02:00 0HLG0LADKC66J:00000009 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-08-13T01:26:09.0551625+02:00 0HLG0LADKC66J:00000009 [INF] Executed ViewResult - view "Index" executed in 96.1033ms. (f66409e9)
+2018-08-13T01:26:09.4452028+02:00 0HLG0LADKC66J:00000009 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 2279.1161ms (afa2e885)
+2018-08-13T01:26:09.6481352+02:00 0HLG0LADKC66J:00000009 [INF] Request finished in 2449.4714ms 200 text/html; charset=utf-8 (791a596a)
+2018-08-13T01:26:10.2193171+02:00 0HLG0LADKC66K:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/GetWordsForReview   (ca22a1cb)
+2018-08-13T01:26:10.2766260+02:00 0HLG0LADKC66J:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:44378/favicon.ico   (ca22a1cb)
+2018-08-13T01:26:10.3044433+02:00 0HLG0LADKC66K:00000006 [INF] Route matched with "{action = \"GetWordsForReview\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:10.5036406+02:00 0HLG0LADKC66K:00000006 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-08-13T01:26:10.5884952+02:00 0HLG0LADKC66J:0000000A [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\favicon.ico"' (27b0a520)
+2018-08-13T01:26:10.6376977+02:00 0HLG0LADKC66K:00000006 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:10.7050825+02:00 0HLG0LADKC66J:0000000A [INF] Request finished in 696.3702ms 200 image/x-icon (791a596a)
+2018-08-13T01:26:12.9373630+02:00 0HLG0LADKC66J:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:44378/Identity/Account/Login   (ca22a1cb)
+2018-08-13T01:26:12.9916645+02:00 0HLG0LADKC66J:0000000B [INF] Route matched with "{page = \"/Account/Login\", area = \"Identity\", action = \"\", controller = \"\"}". Executing action "/Account/Login" (a44c0341)
+2018-08-13T01:26:13.6945211+02:00 0HLG0LADKC66J:0000000B [INF] Executing handler method "OnGetAsync" with arguments ([""]) - ModelState is Valid (d4ff7456)
+2018-08-13T01:26:14.5048522+02:00 0HLG0LADKC66J:0000000B [INF] AuthenticationScheme: "Identity.External" signed out. (d3f50c8d)
+2018-08-13T01:26:18.4641181+02:00 0HLG0LADKC66K:00000006 [INF] Executed DbCommand ("7,718"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-08-13T01:26:18.4729963+02:00 0HLG0LADKC66K:00000006 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 7917.5003ms. (50a9e262)
+2018-08-13T01:26:18.4835108+02:00 0HLG0LADKC66K:00000006 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:18.4952531+02:00 0HLG0LADKC66K:00000006 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" in 8164.2168ms (afa2e885)
+2018-08-13T01:26:18.5154397+02:00 0HLG0LADKC66K:00000006 [INF] Request finished in 8736.5174ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:18.5235832+02:00 0HLG0LADKC66K:00000007 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:18.5317509+02:00 0HLG0LADKC66K:00000007 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:18.5428607+02:00 0HLG0LADKC66K:00000007 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:18.5519860+02:00 0HLG0LADKC66K:00000007 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:18.5779148+02:00 0HLG0LADKC66K:00000007 [INF] Executed DbCommand ("14"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:18.5852697+02:00 0HLG0LADKC66K:00000007 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 32.9587ms. (50a9e262)
+2018-08-13T01:26:18.5930813+02:00 0HLG0LADKC66K:00000007 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:18.6000287+02:00 0HLG0LADKC66K:00000007 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 59.9478ms (afa2e885)
+2018-08-13T01:26:18.6212480+02:00 0HLG0LADKC66K:00000007 [INF] Request finished in 84.0699ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:18.6510814+02:00 0HLG0LADKC66K:00000008 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:26:20.1625372+02:00 0HLG0LADKC66K:00000008 [INF] Request finished in 1003.6159ms 200 audio/mpeg (791a596a)
+2018-08-13T01:26:20.2706031+02:00 0HLG0LADKC66K:00000009 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:20.5758258+02:00 0HLG0LADKC66K:00000009 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:20.8687622+02:00 0HLG0LADKC66K:00000009 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:20.9093285+02:00 0HLG0LADKC66K:00000009 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0102ms. (50a9e262)
+2018-08-13T01:26:20.9533859+02:00 0HLG0LADKC66K:00000009 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:21.0312623+02:00 0HLG0LADKC66K:00000009 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 283.7924ms (afa2e885)
+2018-08-13T01:26:21.1431062+02:00 0HLG0LADKC66K:00000009 [INF] Request finished in 822.4289ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:27.4937305+02:00 0HLG0LADKC66J:0000000B [INF] Executed action "/Account/Login" in 14373.3151ms (afa2e885)
+2018-08-13T01:26:27.6082898+02:00 0HLG0LADKC66J:0000000B [INF] Request finished in 14644.2096ms 200 text/html; charset=utf-8 (791a596a)
+2018-08-13T01:26:32.0427954+02:00 0HLG0LADKC66K:0000000A [INF] Request starting HTTP/1.1 POST http://localhost:44378/Identity/Account/Login application/x-www-form-urlencoded 301 (ca22a1cb)
+2018-08-13T01:26:32.0576506+02:00 0HLG0LADKC66K:0000000A [INF] Route matched with "{page = \"/Account/Login\", area = \"Identity\", action = \"\", controller = \"\"}". Executing action "/Account/Login" (a44c0341)
+2018-08-13T01:26:32.0903595+02:00 0HLG0LADKC66K:0000000A [INF] Executing handler method "OnPostAsync" with arguments ([""]) - ModelState is Valid (d4ff7456)
+2018-08-13T01:26:32.1732479+02:00 0HLG0LADKC66K:0000000A [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"ApplicationDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:32.3178278+02:00 0HLG0LADKC66K:0000000A [INF] Executed DbCommand ("32"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2018-08-13T01:26:32.6523292+02:00 0HLG0LADKC66K:0000000A [INF] Executed DbCommand ("7"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2018-08-13T01:26:32.8394961+02:00 0HLG0LADKC66K:0000000A [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2018-08-13T01:26:32.8756161+02:00 0HLG0LADKC66K:0000000A [INF] User logged in. (fdce0db4)
+2018-08-13T01:26:32.9583829+02:00 0HLG0LADKC66K:0000000A [INF] Executing LocalRedirectResult, redirecting to "/". (cac120e6)
+2018-08-13T01:26:33.0334963+02:00 0HLG0LADKC66K:0000000A [INF] Executed action "/Account/Login" in 958.4786ms (afa2e885)
+2018-08-13T01:26:33.1089114+02:00 0HLG0LADKC66K:0000000A [INF] Request finished in 1054.784ms 302  (791a596a)
+2018-08-13T01:26:33.1195610+02:00 0HLG0LADKC66J:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-08-13T01:26:33.1491614+02:00 0HLG0LADKC66J:0000000C [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:33.2328929+02:00 0HLG0LADKC66J:0000000C [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-08-13T01:26:33.2659370+02:00 0HLG0LADKC66J:0000000C [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:33.3698327+02:00 0HLG0LADKC66J:0000000C [INF] Executed DbCommand ("76"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-08-13T01:26:33.4623583+02:00 0HLG0LADKC66J:0000000C [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 165.2518ms. (50a9e262)
+2018-08-13T01:26:33.4877774+02:00 0HLG0LADKC66J:0000000C [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-08-13T01:26:33.8406338+02:00 0HLG0LADKC66J:0000000C [INF] Executed ViewResult - view "Index" executed in 57.3109ms. (f66409e9)
+2018-08-13T01:26:33.9338045+02:00 0HLG0LADKC66J:0000000C [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 741.4298ms (afa2e885)
+2018-08-13T01:26:34.1058189+02:00 0HLG0LADKC66J:0000000C [INF] Request finished in 867.0033ms 200 text/html; charset=utf-8 (791a596a)
+2018-08-13T01:26:34.4528844+02:00 0HLG0LADKC66K:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/GetWordsForReview   (ca22a1cb)
+2018-08-13T01:26:34.7263638+02:00 0HLG0LADKC66K:0000000B [INF] Route matched with "{action = \"GetWordsForReview\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:34.7517068+02:00 0HLG0LADKC66K:0000000B [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-08-13T01:26:34.7828741+02:00 0HLG0LADKC66K:0000000B [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:34.9713007+02:00 0HLG0LADKC66K:0000000B [INF] Executed DbCommand ("67"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-08-13T01:26:35.1044790+02:00 0HLG0LADKC66K:0000000B [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 310.8372ms. (50a9e262)
+2018-08-13T01:26:35.1351667+02:00 0HLG0LADKC66K:0000000B [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:35.1888667+02:00 0HLG0LADKC66K:0000000B [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" in 431.3587ms (afa2e885)
+2018-08-13T01:26:35.1993610+02:00 0HLG0LADKC66K:0000000B [INF] Request finished in 949.8649ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:35.2517856+02:00 0HLG0LADKC66J:0000000D [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:35.2634216+02:00 0HLG0LADKC66J:0000000D [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:35.2730751+02:00 0HLG0LADKC66J:0000000D [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:35.2842978+02:00 0HLG0LADKC66J:0000000D [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:35.3064997+02:00 0HLG0LADKC66J:0000000D [INF] Executed DbCommand ("9"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:35.3191692+02:00 0HLG0LADKC66J:0000000D [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 34.3956ms. (50a9e262)
+2018-08-13T01:26:35.3308928+02:00 0HLG0LADKC66J:0000000D [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:35.3492924+02:00 0HLG0LADKC66J:0000000D [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 66.7096ms (afa2e885)
+2018-08-13T01:26:35.3701753+02:00 0HLG0LADKC66J:0000000D [INF] Request finished in 122.0637ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:35.3984344+02:00 0HLG0LADKC66K:0000000C [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:26:35.4492016+02:00 0HLG0LADKC66K:0000000C [INF] Request finished in 10.9695ms 200 audio/mpeg (791a596a)
+2018-08-13T01:26:35.4563275+02:00 0HLG0LADKC66J:0000000E [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:35.4712302+02:00 0HLG0LADKC66J:0000000E [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:35.4834939+02:00 0HLG0LADKC66J:0000000E [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:35.4939026+02:00 0HLG0LADKC66J:0000000E [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0106ms. (50a9e262)
+2018-08-13T01:26:35.5025799+02:00 0HLG0LADKC66J:0000000E [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:35.5165635+02:00 0HLG0LADKC66J:0000000E [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 27.588ms (afa2e885)
+2018-08-13T01:26:35.5298178+02:00 0HLG0LADKC66J:0000000E [INF] Request finished in 82.0997ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:41.0367579+02:00 0HLG0LADKC66K:0000000D [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:41.0469787+02:00 0HLG0LADKC66K:0000000D [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:41.0620739+02:00 0HLG0LADKC66K:0000000D [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:41.0745915+02:00 0HLG0LADKC66K:0000000D [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:41.1009384+02:00 0HLG0LADKC66K:0000000D [INF] Executed DbCommand ("18"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:41.1101439+02:00 0HLG0LADKC66K:0000000D [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 35.4448ms. (50a9e262)
+2018-08-13T01:26:41.1208991+02:00 0HLG0LADKC66K:0000000D [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:41.1285801+02:00 0HLG0LADKC66K:0000000D [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 69.109ms (afa2e885)
+2018-08-13T01:26:41.1418264+02:00 0HLG0LADKC66K:0000000D [INF] Request finished in 99.831ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:41.1555337+02:00 0HLG0LADKC66J:0000000F [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWord application/x-www-form-urlencoded;charset=UTF-8 19 (ca22a1cb)
+2018-08-13T01:26:41.1658587+02:00 0HLG0LADKC66J:0000000F [INF] Route matched with "{action = \"GetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:41.1777738+02:00 0HLG0LADKC66J:0000000F [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" with arguments (["7518", ""]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:41.1902492+02:00 0HLG0LADKC66J:0000000F [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:41.1982202+02:00 0HLG0LADKC66J:0000000F [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:26:41.2090588+02:00 0HLG0LADKC66J:0000000F [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 21.9544ms. (50a9e262)
+2018-08-13T01:26:41.2176540+02:00 0HLG0LADKC66J:0000000F [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:41.2323171+02:00 0HLG0LADKC66J:0000000F [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" in 53.9416ms (afa2e885)
+2018-08-13T01:26:42.7750925+02:00 0HLG0LADKC66J:0000000F [INF] Request finished in 873.2393ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:42.7985458+02:00 0HLG0LADKC66K:0000000E [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/.mp3   (ca22a1cb)
+2018-08-13T01:26:42.8032367+02:00 0HLG0LADKC66J:00000010 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/UpdateWord application/x-www-form-urlencoded;charset=UTF-8 59 (ca22a1cb)
+2018-08-13T01:26:42.8401277+02:00 0HLG0LADKC66K:0000000E [INF] Request finished in 27.5367ms 404  (791a596a)
+2018-08-13T01:26:42.8747465+02:00 0HLG0LADKC66J:00000010 [INF] Route matched with "{action = \"UpdateWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:42.8923213+02:00 0HLG0LADKC66K:0000000F [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:42.9080928+02:00 0HLG0LADKC66K:0000000F [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:42.9229663+02:00 0HLG0LADKC66J:00000010 [INF] Authorization was successful. (0d575a54)
+2018-08-13T01:26:42.9326170+02:00 0HLG0LADKC66K:0000000F [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:42.9433996+02:00 0HLG0LADKC66J:00000010 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:42.9547542+02:00 0HLG0LADKC66K:0000000F [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:42.9655801+02:00 0HLG0LADKC66J:00000010 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:42.9795741+02:00 0HLG0LADKC66K:0000000F [INF] Executed DbCommand ("11"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:42.9963425+02:00 0HLG0LADKC66K:0000000F [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 48.7782ms. (50a9e262)
+2018-08-13T01:26:43.0159673+02:00 0HLG0LADKC66J:00000010 [INF] Executed DbCommand ("9"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:26:43.0252655+02:00 0HLG0LADKC66K:0000000F [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:43.0559417+02:00 0HLG0LADKC66K:0000000F [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 114.1631ms (afa2e885)
+2018-08-13T01:26:43.1062053+02:00 0HLG0LADKC66K:0000000F [INF] Request finished in 215.0631ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:43.1219635+02:00 0HLG0LADKC66K:00000010 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:26:43.1647794+02:00 0HLG0LADKC66K:00000010 [INF] Request finished in 15.3154ms 200 audio/mpeg (791a596a)
+2018-08-13T01:26:43.1857073+02:00 0HLG0LADKC66J:00000010 [INF] Executed DbCommand ("25"ms) [Parameters=["@__wordId_0='?' (DbType = Int64), @__word_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Word] AS [w]
+        WHERE ([w].[Id] <> @__wordId_0) AND ([w].[TargetWord] = @__word_1))
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2018-08-13T01:26:43.1910667+02:00 0HLG0LADKC66K:00000011 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:43.2052485+02:00 0HLG0LADKC66K:00000011 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:43.2160007+02:00 0HLG0LADKC66K:00000011 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:43.2297392+02:00 0HLG0LADKC66K:00000011 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0098ms. (50a9e262)
+2018-08-13T01:26:43.2432152+02:00 0HLG0LADKC66K:00000011 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:43.3892992+02:00 0HLG0LADKC66K:00000011 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 159.9877ms (afa2e885)
+2018-08-13T01:26:43.4478713+02:00 0HLG0LADKC66K:00000011 [INF] Request finished in 220.9793ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:43.4883653+02:00 0HLG0LADKC66J:00000010 [INF] Executed DbCommand ("7"ms) [Parameters=["@p4='?' (DbType = Int64), @p0='?' (Size = 4000), @p1='?' (DbType = Int16), @p2='?' (Size = 4000), @p3='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [Meaning] = @p0, [NofSpace] = @p1, [TargetWord] = @p2, [WrittenByMe] = @p3
+WHERE [Id] = @p4;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:26:43.5799234+02:00 0HLG0LADKC66J:00000010 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 624.8926ms. (50a9e262)
+2018-08-13T01:26:43.6033904+02:00 0HLG0LADKC66J:00000010 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:26:43.6271133+02:00 0HLG0LADKC66J:00000010 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" in 719.7489ms (afa2e885)
+2018-08-13T01:26:43.6781119+02:00 0HLG0LADKC66J:00000010 [INF] Request finished in 844.5606ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:43.6892316+02:00 0HLG0LADKC66K:00000012 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:43.7098631+02:00 0HLG0LADKC66K:00000012 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:43.7436599+02:00 0HLG0LADKC66K:00000012 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:43.7950367+02:00 0HLG0LADKC66K:00000012 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:43.8279505+02:00 0HLG0LADKC66K:00000012 [INF] Executed DbCommand ("13"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:43.8540400+02:00 0HLG0LADKC66K:00000012 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 59.4631ms. (50a9e262)
+2018-08-13T01:26:43.8723226+02:00 0HLG0LADKC66K:00000012 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:43.9008268+02:00 0HLG0LADKC66K:00000012 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 167.286ms (afa2e885)
+2018-08-13T01:26:43.9296125+02:00 0HLG0LADKC66K:00000012 [INF] Request finished in 242.6571ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:43.9645948+02:00 0HLG0LADKC66J:00000011 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:26:44.0207139+02:00 0HLG0LADKC66J:00000011 [INF] Request finished in 34.6328ms 200 audio/mpeg (791a596a)
+2018-08-13T01:26:44.0338651+02:00 0HLG0LADKC66K:00000013 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7518&reviewTime=8443   (ca22a1cb)
+2018-08-13T01:26:44.0401161+02:00 0HLG0LADKC66J:00000012 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:44.0616512+02:00 0HLG0LADKC66J:00000012 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:44.0733260+02:00 0HLG0LADKC66K:00000013 [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:44.0873215+02:00 0HLG0LADKC66J:00000012 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:44.0935543+02:00 0HLG0LADKC66K:00000013 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7518", "8443"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:44.1078886+02:00 0HLG0LADKC66J:00000012 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0114ms. (50a9e262)
+2018-08-13T01:26:44.1281158+02:00 0HLG0LADKC66K:00000013 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:44.1329781+02:00 0HLG0LADKC66J:00000012 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:44.1600088+02:00 0HLG0LADKC66K:00000013 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:26:44.1795965+02:00 0HLG0LADKC66J:00000012 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 73.3116ms (afa2e885)
+2018-08-13T01:26:44.2418403+02:00 0HLG0LADKC66J:00000012 [INF] Request finished in 163.6921ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:44.2532600+02:00 0HLG0LADKC66K:00000013 [INF] Executed DbCommand ("32"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:26:44.3059434+02:00 0HLG0LADKC66K:00000013 [INF] Executed DbCommand ("23"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:26:44.5225806+02:00 0HLG0LADKC66K:00000013 [INF] Executed DbCommand ("71"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:26:44.5751743+02:00 0HLG0LADKC66K:00000013 [INF] Executed DbCommand ("3"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:26:44.6010014+02:00 0HLG0LADKC66K:00000013 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 481.7839ms. (50a9e262)
+2018-08-13T01:26:44.7322619+02:00 0HLG0LADKC66K:00000013 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:26:44.7458548+02:00 0HLG0LADKC66K:00000013 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 657.2663ms (afa2e885)
+2018-08-13T01:26:44.7614597+02:00 0HLG0LADKC66K:00000013 [INF] Request finished in 733.8161ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:48.4477959+02:00 0HLG0LADKC66J:00000013 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:48.6540192+02:00 0HLG0LADKC66J:00000013 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:48.6683578+02:00 0HLG0LADKC66J:00000013 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:48.6859658+02:00 0HLG0LADKC66J:00000013 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:48.7055839+02:00 0HLG0LADKC66J:00000013 [INF] Executed DbCommand ("8"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:48.7156645+02:00 0HLG0LADKC66J:00000013 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 29.5981ms. (50a9e262)
+2018-08-13T01:26:48.7247603+02:00 0HLG0LADKC66J:00000013 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:48.7372107+02:00 0HLG0LADKC66J:00000013 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 67.7676ms (afa2e885)
+2018-08-13T01:26:48.7567839+02:00 0HLG0LADKC66J:00000013 [INF] Request finished in 986.6062ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:48.7682189+02:00 0HLG0LADKC66K:00000014 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWord application/x-www-form-urlencoded;charset=UTF-8 19 (ca22a1cb)
+2018-08-13T01:26:48.7760814+02:00 0HLG0LADKC66K:00000014 [INF] Route matched with "{action = \"GetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:48.7890695+02:00 0HLG0LADKC66K:00000014 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" with arguments (["7518", ""]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:48.7986481+02:00 0HLG0LADKC66K:00000014 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:48.8079849+02:00 0HLG0LADKC66K:00000014 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:26:48.8265100+02:00 0HLG0LADKC66K:00000014 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 25.7753ms. (50a9e262)
+2018-08-13T01:26:48.8408960+02:00 0HLG0LADKC66K:00000014 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:48.8673864+02:00 0HLG0LADKC66K:00000014 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWord (Mehrsan.Core.Web)" in 71.022ms (afa2e885)
+2018-08-13T01:26:48.9061266+02:00 0HLG0LADKC66K:00000014 [INF] Request finished in 120.5127ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:48.9149459+02:00 0HLG0LADKC66J:00000014 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/UpdateWord application/x-www-form-urlencoded;charset=UTF-8 54 (ca22a1cb)
+2018-08-13T01:26:48.9304076+02:00 0HLG0LADKC66K:00000015 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/.mp3   (ca22a1cb)
+2018-08-13T01:26:48.9387750+02:00 0HLG0LADKC66J:00000014 [INF] Route matched with "{action = \"UpdateWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:48.9816308+02:00 0HLG0LADKC66K:00000015 [INF] Request finished in 33.2906ms 404  (791a596a)
+2018-08-13T01:26:48.9907625+02:00 0HLG0LADKC66J:00000014 [INF] Authorization was successful. (0d575a54)
+2018-08-13T01:26:49.0170189+02:00 0HLG0LADKC66K:00000016 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 29 (ca22a1cb)
+2018-08-13T01:26:49.0492939+02:00 0HLG0LADKC66J:00000014 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:49.0696140+02:00 0HLG0LADKC66K:00000016 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:49.1595918+02:00 0HLG0LADKC66J:00000014 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 8.3163ms. (50a9e262)
+2018-08-13T01:26:49.1866754+02:00 0HLG0LADKC66K:00000016 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:49.1933942+02:00 0HLG0LADKC66J:00000014 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:26:49.2246792+02:00 0HLG0LADKC66K:00000016 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:49.2370652+02:00 0HLG0LADKC66J:00000014 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWord (Mehrsan.Core.Web)" in 236.6867ms (afa2e885)
+2018-08-13T01:26:49.2923628+02:00 0HLG0LADKC66K:00000016 [INF] Executed DbCommand ("15"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:26:49.3142532+02:00 0HLG0LADKC66J:00000014 [INF] Request finished in 365.2861ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:49.3818824+02:00 0HLG0LADKC66K:00000016 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 157.376ms. (50a9e262)
+2018-08-13T01:26:49.4028779+02:00 0HLG0LADKC66K:00000016 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:26:49.4263840+02:00 0HLG0LADKC66K:00000016 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 261.5245ms (afa2e885)
+2018-08-13T01:26:49.4421689+02:00 0HLG0LADKC66K:00000016 [INF] Request finished in 433.704ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:49.4563844+02:00 0HLG0LADKC66J:00000015 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/e/l/adel.mp3   (ca22a1cb)
+2018-08-13T01:26:49.4882026+02:00 0HLG0LADKC66J:00000015 [INF] Request finished in 12.5114ms 200 audio/mpeg (791a596a)
+2018-08-13T01:26:49.5263829+02:00 0HLG0LADKC66K:00000017 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/.mp3   (ca22a1cb)
+2018-08-13T01:26:49.5387114+02:00 0HLG0LADKC66J:00000016 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:49.6202038+02:00 0HLG0LADKC66K:00000017 [INF] Request finished in 43.6601ms 404  (791a596a)
+2018-08-13T01:26:49.6285736+02:00 0HLG0LADKC66L:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7518  0 (ca22a1cb)
+2018-08-13T01:26:49.6360270+02:00 0HLG0LADKC66J:00000016 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:49.6542193+02:00 0HLG0LADKC66K:00000018 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7518&reviewTime=14281   (ca22a1cb)
+2018-08-13T01:26:49.6695887+02:00 0HLG0LADKC66J:00000016 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:49.6932385+02:00 0HLG0LADKC66L:00000001 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:49.6996636+02:00 0HLG0LADKC66J:00000016 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0086ms. (50a9e262)
+2018-08-13T01:26:49.7045180+02:00 0HLG0LADKC66K:00000018 [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:26:49.7334853+02:00 0HLG0LADKC66J:00000016 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:49.7890186+02:00 0HLG0LADKC66K:00000018 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7518", "14281"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:49.8072527+02:00 0HLG0LADKC66J:00000016 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 152.5086ms (afa2e885)
+2018-08-13T01:26:49.8284849+02:00 0HLG0LADKC66K:00000018 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:26:49.8393358+02:00 0HLG0LADKC66J:00000016 [INF] Request finished in 298.8646ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:49.8509304+02:00 0HLG0LADKC66L:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7518"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:26:49.8651632+02:00 0HLG0LADKC66K:00000018 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:26:49.8719314+02:00 0HLG0LADKC66L:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0114ms. (50a9e262)
+2018-08-13T01:26:49.8883599+02:00 0HLG0LADKC66L:00000001 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:26:49.9086391+02:00 0HLG0LADKC66K:00000018 [INF] Executed DbCommand ("17"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:26:49.9159597+02:00 0HLG0LADKC66L:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 84.5428ms (afa2e885)
+2018-08-13T01:26:50.0392990+02:00 0HLG0LADKC66L:00000001 [INF] Request finished in 311.551ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:26:50.1679201+02:00 0HLG0LADKC66K:00000018 [INF] Executed DbCommand ("7"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:26:50.4730958+02:00 0HLG0LADKC66K:00000018 [INF] Executed DbCommand ("30"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:26:50.5534696+02:00 0HLG0LADKC66K:00000018 [INF] Executed DbCommand ("7"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:26:50.5783080+02:00 0HLG0LADKC66K:00000018 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 771.112ms. (50a9e262)
+2018-08-13T01:26:50.5874030+02:00 0HLG0LADKC66K:00000018 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:26:50.6004060+02:00 0HLG0LADKC66K:00000018 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 873.1691ms (afa2e885)
+2018-08-13T01:26:50.6178933+02:00 0HLG0LADKC66K:00000018 [INF] Request finished in 964.2645ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:27:31.4671847+02:00 0HLG0LADKC66J:00000017 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 25 (ca22a1cb)
+2018-08-13T01:27:31.4753045+02:00 0HLG0LADKC66J:00000017 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:27:31.4820439+02:00 0HLG0LADKC66J:00000017 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:27:31.4900209+02:00 0HLG0LADKC66J:00000017 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0177ms. (50a9e262)
+2018-08-13T01:27:31.4963308+02:00 0HLG0LADKC66J:00000017 [INF] Executing ObjectResult, writing value of type '"null"'. (8a1b66c8)
+2018-08-13T01:27:31.5046611+02:00 0HLG0LADKC66J:00000017 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 21.714ms (afa2e885)
+2018-08-13T01:27:31.5135898+02:00 0HLG0LADKC66J:00000017 [INF] Request finished in 43.0088ms 204  (791a596a)
+2018-08-13T01:27:43.1825927+02:00 0HLG0LADKC66L:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 25 (ca22a1cb)
+2018-08-13T01:27:43.1879994+02:00 0HLG0LADKC66L:00000002 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:27:43.1959483+02:00 0HLG0LADKC66L:00000002 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:27:43.2012622+02:00 0HLG0LADKC66L:00000002 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0252ms. (50a9e262)
+2018-08-13T01:27:43.2074454+02:00 0HLG0LADKC66L:00000002 [INF] Executing ObjectResult, writing value of type '"null"'. (8a1b66c8)
+2018-08-13T01:27:43.2154291+02:00 0HLG0LADKC66L:00000002 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 21.9998ms (afa2e885)
+2018-08-13T01:27:43.2242358+02:00 0HLG0LADKC66L:00000002 [INF] Request finished in 45.2202ms 204  (791a596a)
+2018-08-13T01:28:40.1181019+02:00 0HLG0LADKC66L:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44378/   (ca22a1cb)
+2018-08-13T01:28:40.1261649+02:00 0HLG0LADKC66L:00000003 [INF] Route matched with "{action = \"Index\", controller = \"Home\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:28:40.1353684+02:00 0HLG0LADKC66L:00000003 [INF] Executing action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-08-13T01:28:40.1454704+02:00 0HLG0LADKC66L:00000003 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:28:40.2169698+02:00 0HLG0LADKC66L:00000003 [INF] Executed DbCommand ("62"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-08-13T01:28:40.2264366+02:00 0HLG0LADKC66L:00000003 [INF] Executed action method "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ViewResult" in 82.5568ms. (50a9e262)
+2018-08-13T01:28:40.2331137+02:00 0HLG0LADKC66L:00000003 [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2018-08-13T01:28:40.2427916+02:00 0HLG0LADKC66L:00000003 [INF] Executed ViewResult - view "Index" executed in 9.5495ms. (f66409e9)
+2018-08-13T01:28:40.3338440+02:00 0HLG0LADKC66L:00000003 [INF] Executed action "Mehrsan.Core.Web.Controllers.HomeController.Index (Mehrsan.Core.Web)" in 166.4317ms (afa2e885)
+2018-08-13T01:28:40.4750037+02:00 0HLG0LADKC66L:00000003 [INF] Request finished in 252.7242ms 200 text/html; charset=utf-8 (791a596a)
+2018-08-13T01:28:41.8726617+02:00 0HLG0LADKC66L:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/GetWordsForReview   (ca22a1cb)
+2018-08-13T01:28:41.9430542+02:00 0HLG0LADKC66M:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44378/favicon.ico   (ca22a1cb)
+2018-08-13T01:28:41.9464152+02:00 0HLG0LADKC66L:00000004 [INF] Route matched with "{action = \"GetWordsForReview\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:28:41.9732334+02:00 0HLG0LADKC66L:00000004 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" - Validation state: Valid (dad538d7)
+2018-08-13T01:28:42.0106376+02:00 0HLG0LADKC66M:00000001 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\Code\mehran\Mehrsan_School\Mehrsan.Word-Development\Mehrsan.Core.Web\wwwroot\favicon.ico"' (27b0a520)
+2018-08-13T01:28:42.0140799+02:00 0HLG0LADKC66L:00000004 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:28:42.0227493+02:00 0HLG0LADKC66M:00000001 [INF] Request finished in 86.939ms 200 image/x-icon (791a596a)
+2018-08-13T01:28:42.0963840+02:00 0HLG0LADKC66L:00000004 [INF] Executed DbCommand ("63"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(@__p_0) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+ORDER BY [w].[NextReviewDate]" (0723d8ff)
+2018-08-13T01:28:42.1128831+02:00 0HLG0LADKC66L:00000004 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 114.5985ms. (50a9e262)
+2018-08-13T01:28:42.1214546+02:00 0HLG0LADKC66L:00000004 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:28:42.1319541+02:00 0HLG0LADKC66L:00000004 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordsForReview (Mehrsan.Core.Web)" in 162.8319ms (afa2e885)
+2018-08-13T01:28:42.1492854+02:00 0HLG0LADKC66L:00000004 [INF] Request finished in 724.8559ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:28:42.1656830+02:00 0HLG0LADKC66M:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 33 (ca22a1cb)
+2018-08-13T01:28:42.1733261+02:00 0HLG0LADKC66M:00000002 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:28:42.1810086+02:00 0HLG0LADKC66M:00000002 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:28:42.1909818+02:00 0HLG0LADKC66M:00000002 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:28:42.2136119+02:00 0HLG0LADKC66M:00000002 [INF] Executed DbCommand ("13"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:28:42.2234123+02:00 0HLG0LADKC66M:00000002 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 32.5027ms. (50a9e262)
+2018-08-13T01:28:42.2307676+02:00 0HLG0LADKC66M:00000002 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:28:42.2423803+02:00 0HLG0LADKC66M:00000002 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 59.1631ms (afa2e885)
+2018-08-13T01:28:42.2559108+02:00 0HLG0LADKC66M:00000002 [INF] Request finished in 85.7441ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:28:42.2751709+02:00 0HLG0LADKC66L:00000005 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/j/e/k/t/i/v/adjektiv.mp3   (ca22a1cb)
+2018-08-13T01:28:42.3337900+02:00 0HLG0LADKC66L:00000005 [INF] Request finished in 8.5622ms 200 audio/mpeg (791a596a)
+2018-08-13T01:28:42.3451990+02:00 0HLG0LADKC66M:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Words/a/d/j/e/k/t/i/v/adjektiv.mp3   (ca22a1cb)
+2018-08-13T01:28:42.3785056+02:00 0HLG0LADKC66L:00000006 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7519  0 (ca22a1cb)
+2018-08-13T01:28:42.4229578+02:00 0HLG0LADKC66M:00000003 [INF] Request finished in 87.5023ms 206 audio/mpeg (791a596a)
+2018-08-13T01:28:42.4526763+02:00 0HLG0LADKC66L:00000006 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:28:42.6670705+02:00 0HLG0LADKC66L:00000006 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7519"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:28:42.7300200+02:00 0HLG0LADKC66L:00000006 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0094ms. (50a9e262)
+2018-08-13T01:28:42.7502809+02:00 0HLG0LADKC66L:00000006 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:28:42.7749077+02:00 0HLG0LADKC66L:00000006 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 153.4426ms (afa2e885)
+2018-08-13T01:28:42.8000297+02:00 0HLG0LADKC66L:00000006 [INF] Request finished in 423.3578ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:34.6307890+02:00 0HLG0LADKC66M:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 31 (ca22a1cb)
+2018-08-13T01:29:34.6417547+02:00 0HLG0LADKC66M:00000004 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:34.6588045+02:00 0HLG0LADKC66M:00000004 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:34.6695487+02:00 0HLG0LADKC66M:00000004 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:34.7109247+02:00 0HLG0LADKC66M:00000004 [INF] Executed DbCommand ("25"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:29:34.7196193+02:00 0HLG0LADKC66M:00000004 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 49.0691ms. (50a9e262)
+2018-08-13T01:29:34.7254989+02:00 0HLG0LADKC66M:00000004 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:29:34.7333207+02:00 0HLG0LADKC66M:00000004 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 81.3437ms (afa2e885)
+2018-08-13T01:29:34.7451234+02:00 0HLG0LADKC66M:00000004 [INF] Request finished in 113.4288ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:34.7618699+02:00 0HLG0LADKC66L:00000007 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/l/y/d/e/adlyde.mp3   (ca22a1cb)
+2018-08-13T01:29:34.7724725+02:00 0HLG0LADKC66L:00000007 [INF] Request finished in 5.6983ms 200 audio/mpeg (791a596a)
+2018-08-13T01:29:34.8236993+02:00 0HLG0LADKC66L:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7519&reviewTime=52462   (ca22a1cb)
+2018-08-13T01:29:34.8265502+02:00 0HLG0LADKC66M:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Words/a/d/l/y/d/e/adlyde.mp3   (ca22a1cb)
+2018-08-13T01:29:34.8293037+02:00 0HLG0LADKC66N:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7520  0 (ca22a1cb)
+2018-08-13T01:29:34.8566880+02:00 0HLG0LADKC66N:00000001 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:34.8785161+02:00 0HLG0LADKC66M:00000005 [INF] Request finished in 32.4806ms 206 audio/mpeg (791a596a)
+2018-08-13T01:29:34.8966471+02:00 0HLG0LADKC66L:00000008 [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:34.8996035+02:00 0HLG0LADKC66N:00000001 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7520"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:34.9108518+02:00 0HLG0LADKC66N:00000001 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.009ms. (50a9e262)
+2018-08-13T01:29:34.9135698+02:00 0HLG0LADKC66L:00000008 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7519", "52462"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:34.9210221+02:00 0HLG0LADKC66N:00000001 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:29:34.9264580+02:00 0HLG0LADKC66L:00000008 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:34.9367885+02:00 0HLG0LADKC66N:00000001 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 37.3117ms (afa2e885)
+2018-08-13T01:29:34.9459502+02:00 0HLG0LADKC66L:00000008 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:29:34.9588459+02:00 0HLG0LADKC66N:00000001 [INF] Request finished in 126.0528ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:34.9891293+02:00 0HLG0LADKC66L:00000008 [INF] Executed DbCommand ("16"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:29:35.0124788+02:00 0HLG0LADKC66L:00000008 [INF] Executed DbCommand ("8"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:29:35.0264419+02:00 0HLG0LADKC66L:00000008 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:29:35.0431321+02:00 0HLG0LADKC66L:00000008 [INF] Executed DbCommand ("3"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:29:35.0550164+02:00 0HLG0LADKC66L:00000008 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 129.587ms. (50a9e262)
+2018-08-13T01:29:35.0719186+02:00 0HLG0LADKC66L:00000008 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:29:35.0843659+02:00 0HLG0LADKC66L:00000008 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 172.6677ms (afa2e885)
+2018-08-13T01:29:35.1099721+02:00 0HLG0LADKC66L:00000008 [INF] Request finished in 274.0956ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:38.8883559+02:00 0HLG0LADKC66M:00000006 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 32 (ca22a1cb)
+2018-08-13T01:29:38.8958252+02:00 0HLG0LADKC66M:00000006 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:38.9160895+02:00 0HLG0LADKC66M:00000006 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:38.9385511+02:00 0HLG0LADKC66M:00000006 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:38.9699332+02:00 0HLG0LADKC66M:00000006 [INF] Executed DbCommand ("12"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:29:38.9797529+02:00 0HLG0LADKC66M:00000006 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 55.7587ms. (50a9e262)
+2018-08-13T01:29:38.9911387+02:00 0HLG0LADKC66M:00000006 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:29:39.0033459+02:00 0HLG0LADKC66M:00000006 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 88.1201ms (afa2e885)
+2018-08-13T01:29:39.0255991+02:00 0HLG0LADKC66M:00000006 [INF] Request finished in 134.2302ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:39.0367985+02:00 0HLG0LADKC66N:00000002 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/m/i/r/a/l/admiral.mp3   (ca22a1cb)
+2018-08-13T01:29:39.0535834+02:00 0HLG0LADKC66N:00000002 [INF] Request finished in 12.7869ms 200 audio/mpeg (791a596a)
+2018-08-13T01:29:39.1041119+02:00 0HLG0LADKC66L:00000009 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7521  0 (ca22a1cb)
+2018-08-13T01:29:39.1091873+02:00 0HLG0LADKC66N:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7520&reviewTime=4252   (ca22a1cb)
+2018-08-13T01:29:39.1244844+02:00 0HLG0LADKC66L:00000009 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:39.1336673+02:00 0HLG0LADKC66N:00000003 [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:39.1541307+02:00 0HLG0LADKC66L:00000009 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7521"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:39.1578600+02:00 0HLG0LADKC66N:00000003 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7520", "4252"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:39.1682640+02:00 0HLG0LADKC66M:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Words/a/d/m/i/r/a/l/admiral.mp3   (ca22a1cb)
+2018-08-13T01:29:39.1893617+02:00 0HLG0LADKC66N:00000003 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:39.1937539+02:00 0HLG0LADKC66L:00000009 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0094ms. (50a9e262)
+2018-08-13T01:29:39.2103848+02:00 0HLG0LADKC66N:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:29:39.2167705+02:00 0HLG0LADKC66L:00000009 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:29:39.2744110+02:00 0HLG0LADKC66N:00000003 [INF] Executed DbCommand ("15"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:29:39.2897258+02:00 0HLG0LADKC66L:00000009 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 125.2589ms (afa2e885)
+2018-08-13T01:29:39.3279704+02:00 0HLG0LADKC66N:00000003 [INF] Executed DbCommand ("5"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:29:39.4589839+02:00 0HLG0LADKC66L:00000009 [INF] Request finished in 223.5579ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:39.5047673+02:00 0HLG0LADKC66N:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:29:39.5535095+02:00 0HLG0LADKC66M:00000007 [INF] Request finished in 418.9759ms 206 audio/mpeg (791a596a)
+2018-08-13T01:29:39.6019946+02:00 0HLG0LADKC66N:00000003 [INF] Executed DbCommand ("6"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:29:39.6558110+02:00 0HLG0LADKC66N:00000003 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 471.4033ms. (50a9e262)
+2018-08-13T01:29:39.6699562+02:00 0HLG0LADKC66N:00000003 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:29:39.7025955+02:00 0HLG0LADKC66N:00000003 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 546.0015ms (afa2e885)
+2018-08-13T01:29:39.7165559+02:00 0HLG0LADKC66N:00000003 [INF] Request finished in 616.6453ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:40.5717747+02:00 0HLG0LADKC66L:0000000A [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 31 (ca22a1cb)
+2018-08-13T01:29:40.5828940+02:00 0HLG0LADKC66L:0000000A [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:40.5912160+02:00 0HLG0LADKC66L:0000000A [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:40.6019957+02:00 0HLG0LADKC66L:0000000A [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:40.6227998+02:00 0HLG0LADKC66L:0000000A [INF] Executed DbCommand ("12"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:29:40.6334599+02:00 0HLG0LADKC66L:0000000A [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 30.2514ms. (50a9e262)
+2018-08-13T01:29:40.6421677+02:00 0HLG0LADKC66L:0000000A [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:29:40.6604487+02:00 0HLG0LADKC66L:0000000A [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 64.2471ms (afa2e885)
+2018-08-13T01:29:40.6862583+02:00 0HLG0LADKC66L:0000000A [INF] Request finished in 98.0159ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:40.7058176+02:00 0HLG0LADKC66M:00000008 [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/v/a/r/e/advare.mp3   (ca22a1cb)
+2018-08-13T01:29:40.7261455+02:00 0HLG0LADKC66M:00000008 [INF] Request finished in 24.1698ms 200 audio/mpeg (791a596a)
+2018-08-13T01:29:40.7602005+02:00 0HLG0LADKC66N:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7521&reviewTime=1665   (ca22a1cb)
+2018-08-13T01:29:40.7665688+02:00 0HLG0LADKC66M:00000009 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7523  0 (ca22a1cb)
+2018-08-13T01:29:40.7728542+02:00 0HLG0LADKC66L:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:44378/Words/a/d/v/a/r/e/advare.mp3   (ca22a1cb)
+2018-08-13T01:29:40.7836305+02:00 0HLG0LADKC66N:00000004 [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:40.7906059+02:00 0HLG0LADKC66M:00000009 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:40.8062302+02:00 0HLG0LADKC66N:00000004 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7521", "1665"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:40.8159876+02:00 0HLG0LADKC66M:00000009 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7523"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:40.8269987+02:00 0HLG0LADKC66N:00000004 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:40.8322289+02:00 0HLG0LADKC66M:00000009 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0106ms. (50a9e262)
+2018-08-13T01:29:40.8438211+02:00 0HLG0LADKC66L:0000000B [INF] Request finished in 82.5146ms 206 audio/mpeg (791a596a)
+2018-08-13T01:29:40.8498945+02:00 0HLG0LADKC66M:00000009 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:29:40.8534182+02:00 0HLG0LADKC66N:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:29:40.8881703+02:00 0HLG0LADKC66M:00000009 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 58.6286ms (afa2e885)
+2018-08-13T01:29:40.9479856+02:00 0HLG0LADKC66N:00000004 [INF] Executed DbCommand ("18"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:29:40.9657420+02:00 0HLG0LADKC66M:00000009 [INF] Request finished in 176.6777ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:40.9865275+02:00 0HLG0LADKC66N:00000004 [INF] Executed DbCommand ("5"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:29:41.0209882+02:00 0HLG0LADKC66N:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:29:41.0415697+02:00 0HLG0LADKC66N:00000004 [INF] Executed DbCommand ("1"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:29:41.0503981+02:00 0HLG0LADKC66N:00000004 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 229.5176ms. (50a9e262)
+2018-08-13T01:29:41.0662545+02:00 0HLG0LADKC66N:00000004 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:29:41.0801533+02:00 0HLG0LADKC66N:00000004 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 279.666ms (afa2e885)
+2018-08-13T01:29:41.0908877+02:00 0HLG0LADKC66N:00000004 [INF] Request finished in 330.54ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:43.1304813+02:00 0HLG0LADKC66L:0000000C [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 33 (ca22a1cb)
+2018-08-13T01:29:43.1404154+02:00 0HLG0LADKC66L:0000000C [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:43.1532492+02:00 0HLG0LADKC66L:0000000C [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:43.1637736+02:00 0HLG0LADKC66L:0000000C [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:43.1875221+02:00 0HLG0LADKC66L:0000000C [INF] Executed DbCommand ("9"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:29:43.1977003+02:00 0HLG0LADKC66L:0000000C [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 32.8754ms. (50a9e262)
+2018-08-13T01:29:43.2053208+02:00 0HLG0LADKC66L:0000000C [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:29:43.2172971+02:00 0HLG0LADKC66L:0000000C [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 63.2563ms (afa2e885)
+2018-08-13T01:29:43.2331543+02:00 0HLG0LADKC66L:0000000C [INF] Request finished in 173.9511ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:43.2398479+02:00 0HLG0LADKC66M:0000000A [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/v/a/r/s/e/l/advarsel.mp3   (ca22a1cb)
+2018-08-13T01:29:43.2515885+02:00 0HLG0LADKC66M:0000000A [INF] Request finished in 9.741ms 200 audio/mpeg (791a596a)
+2018-08-13T01:29:43.3036230+02:00 0HLG0LADKC66N:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Words/a/d/v/a/r/s/e/l/advarsel.mp3   (ca22a1cb)
+2018-08-13T01:29:43.3067567+02:00 0HLG0LADKC66L:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7523&reviewTime=2343   (ca22a1cb)
+2018-08-13T01:29:43.3228266+02:00 0HLG0LADKC66M:0000000B [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7524  0 (ca22a1cb)
+2018-08-13T01:29:43.3564336+02:00 0HLG0LADKC66L:0000000D [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:43.3660824+02:00 0HLG0LADKC66M:0000000B [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:43.3694359+02:00 0HLG0LADKC66N:00000005 [INF] Request finished in 65.9264ms 206 audio/mpeg (791a596a)
+2018-08-13T01:29:43.3814287+02:00 0HLG0LADKC66M:0000000B [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7524"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:43.3967239+02:00 0HLG0LADKC66L:0000000D [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7523", "2343"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:43.3995010+02:00 0HLG0LADKC66M:0000000B [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0098ms. (50a9e262)
+2018-08-13T01:29:43.4150393+02:00 0HLG0LADKC66L:0000000D [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:43.4187524+02:00 0HLG0LADKC66M:0000000B [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:29:43.4361015+02:00 0HLG0LADKC66L:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:29:43.4394301+02:00 0HLG0LADKC66M:0000000B [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 58.0376ms (afa2e885)
+2018-08-13T01:29:43.4726672+02:00 0HLG0LADKC66L:0000000D [INF] Executed DbCommand ("13"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:29:43.4773841+02:00 0HLG0LADKC66M:0000000B [INF] Request finished in 167.6172ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:43.4958863+02:00 0HLG0LADKC66L:0000000D [INF] Executed DbCommand ("5"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:29:43.5542018+02:00 0HLG0LADKC66L:0000000D [INF] Executed DbCommand ("0"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:29:43.6313759+02:00 0HLG0LADKC66L:0000000D [INF] Executed DbCommand ("0"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:29:43.6798493+02:00 0HLG0LADKC66L:0000000D [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 271.4542ms. (50a9e262)
+2018-08-13T01:29:43.6907858+02:00 0HLG0LADKC66L:0000000D [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:29:43.7071365+02:00 0HLG0LADKC66L:0000000D [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 315.9545ms (afa2e885)
+2018-08-13T01:29:43.7214656+02:00 0HLG0LADKC66L:0000000D [INF] Request finished in 417.8114ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:46.0667653+02:00 0HLG0LADKC66N:00000006 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 31 (ca22a1cb)
+2018-08-13T01:29:46.0787594+02:00 0HLG0LADKC66N:00000006 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:46.0863760+02:00 0HLG0LADKC66N:00000006 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:46.0944007+02:00 0HLG0LADKC66N:00000006 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:46.1097960+02:00 0HLG0LADKC66N:00000006 [INF] Executed DbCommand ("6"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:29:46.1162252+02:00 0HLG0LADKC66N:00000006 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 23.1008ms. (50a9e262)
+2018-08-13T01:29:46.1221806+02:00 0HLG0LADKC66N:00000006 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:29:46.1311879+02:00 0HLG0LADKC66N:00000006 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 44.7481ms (afa2e885)
+2018-08-13T01:29:46.1406129+02:00 0HLG0LADKC66N:00000006 [INF] Request finished in 77.1691ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:46.1522311+02:00 0HLG0LADKC66M:0000000C [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/v/e/n/t/advent.mp3   (ca22a1cb)
+2018-08-13T01:29:46.1644451+02:00 0HLG0LADKC66M:0000000C [INF] Request finished in 10.2001ms 200 audio/mpeg (791a596a)
+2018-08-13T01:29:46.1965203+02:00 0HLG0LADKC66N:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Words/a/d/v/e/n/t/advent.mp3   (ca22a1cb)
+2018-08-13T01:29:46.1974571+02:00 0HLG0LADKC66M:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7524&reviewTime=3171   (ca22a1cb)
+2018-08-13T01:29:46.2060925+02:00 0HLG0LADKC66L:0000000E [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7525  0 (ca22a1cb)
+2018-08-13T01:29:46.2414246+02:00 0HLG0LADKC66M:0000000D [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:46.2445760+02:00 0HLG0LADKC66L:0000000E [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:46.2499519+02:00 0HLG0LADKC66N:00000007 [INF] Request finished in 22.194ms 206 audio/mpeg (791a596a)
+2018-08-13T01:29:46.2601076+02:00 0HLG0LADKC66M:0000000D [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7524", "3171"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:46.2812708+02:00 0HLG0LADKC66L:0000000E [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7525"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:46.2837582+02:00 0HLG0LADKC66M:0000000D [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:46.3016662+02:00 0HLG0LADKC66L:0000000E [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0122ms. (50a9e262)
+2018-08-13T01:29:46.3043660+02:00 0HLG0LADKC66M:0000000D [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:29:46.3150909+02:00 0HLG0LADKC66L:0000000E [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:29:46.3310216+02:00 0HLG0LADKC66L:0000000E [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 68.1217ms (afa2e885)
+2018-08-13T01:29:46.3345361+02:00 0HLG0LADKC66M:0000000D [INF] Executed DbCommand ("12"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:29:46.3482995+02:00 0HLG0LADKC66L:0000000E [INF] Request finished in 143.8749ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:46.3634568+02:00 0HLG0LADKC66M:0000000D [INF] Executed DbCommand ("5"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:29:46.3765957+02:00 0HLG0LADKC66M:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:29:46.3884670+02:00 0HLG0LADKC66M:0000000D [INF] Executed DbCommand ("1"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:29:46.4024085+02:00 0HLG0LADKC66M:0000000D [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 133.3645ms. (50a9e262)
+2018-08-13T01:29:46.4121374+02:00 0HLG0LADKC66M:0000000D [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:29:46.4247366+02:00 0HLG0LADKC66M:0000000D [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 169.3012ms (afa2e885)
+2018-08-13T01:29:46.4366675+02:00 0HLG0LADKC66M:0000000D [INF] Request finished in 236.3698ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:47.9178604+02:00 0HLG0LADKC66N:00000008 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 34 (ca22a1cb)
+2018-08-13T01:29:47.9532489+02:00 0HLG0LADKC66N:00000008 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:47.9656366+02:00 0HLG0LADKC66N:00000008 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:47.9824129+02:00 0HLG0LADKC66N:00000008 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:48.0060923+02:00 0HLG0LADKC66N:00000008 [INF] Executed DbCommand ("8"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:29:48.0239222+02:00 0HLG0LADKC66N:00000008 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 38.4529ms. (50a9e262)
+2018-08-13T01:29:48.0341986+02:00 0HLG0LADKC66N:00000008 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:29:48.0458019+02:00 0HLG0LADKC66N:00000008 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 77.7964ms (afa2e885)
+2018-08-13T01:29:48.0687494+02:00 0HLG0LADKC66N:00000008 [INF] Request finished in 386.5553ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:48.0748722+02:00 0HLG0LADKC66L:0000000F [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/d/v/e/r/b/i/u/m/adverbium.mp3   (ca22a1cb)
+2018-08-13T01:29:48.0901223+02:00 0HLG0LADKC66L:0000000F [INF] Request finished in 15.557ms 200 audio/mpeg (791a596a)
+2018-08-13T01:29:48.1518668+02:00 0HLG0LADKC66M:0000000E [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7526  0 (ca22a1cb)
+2018-08-13T01:29:48.1598535+02:00 0HLG0LADKC66L:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Words/a/d/v/e/r/b/i/u/m/adverbium.mp3   (ca22a1cb)
+2018-08-13T01:29:48.1700593+02:00 0HLG0LADKC66N:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7525&reviewTime=1553   (ca22a1cb)
+2018-08-13T01:29:48.2247242+02:00 0HLG0LADKC66N:00000009 [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:48.2297282+02:00 0HLG0LADKC66M:0000000E [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:48.2438358+02:00 0HLG0LADKC66L:00000010 [INF] Request finished in 103.1979ms 206 audio/mpeg (791a596a)
+2018-08-13T01:29:48.2513067+02:00 0HLG0LADKC66N:00000009 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7525", "1553"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:48.2761064+02:00 0HLG0LADKC66N:00000009 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:48.2795828+02:00 0HLG0LADKC66M:0000000E [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7526"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:48.3105187+02:00 0HLG0LADKC66N:00000009 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:29:48.3202027+02:00 0HLG0LADKC66M:0000000E [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.011ms. (50a9e262)
+2018-08-13T01:29:48.4913074+02:00 0HLG0LADKC66N:00000009 [INF] Executed DbCommand ("13"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:29:48.5045395+02:00 0HLG0LADKC66M:0000000E [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:29:48.5366432+02:00 0HLG0LADKC66M:0000000E [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 257.7431ms (afa2e885)
+2018-08-13T01:29:48.5501165+02:00 0HLG0LADKC66N:00000009 [INF] Executed DbCommand ("14"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:29:48.5848493+02:00 0HLG0LADKC66M:0000000E [INF] Request finished in 444.6316ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:48.5933887+02:00 0HLG0LADKC66N:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:29:48.6492070+02:00 0HLG0LADKC66N:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:29:48.7007031+02:00 0HLG0LADKC66N:00000009 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 432.4632ms. (50a9e262)
+2018-08-13T01:29:48.7140582+02:00 0HLG0LADKC66N:00000009 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:29:48.7389642+02:00 0HLG0LADKC66N:00000009 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 491.4357ms (afa2e885)
+2018-08-13T01:29:48.7824063+02:00 0HLG0LADKC66N:00000009 [INF] Request finished in 629.9289ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:49.5480972+02:00 0HLG0LADKC66L:00000011 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 27 (ca22a1cb)
+2018-08-13T01:29:49.6336167+02:00 0HLG0LADKC66L:00000011 [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:49.6633356+02:00 0HLG0LADKC66L:00000011 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:49.6924986+02:00 0HLG0LADKC66L:00000011 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:49.7810503+02:00 0HLG0LADKC66L:00000011 [INF] Executed DbCommand ("16"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:29:49.7993949+02:00 0HLG0LADKC66L:00000011 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 114.3269ms. (50a9e262)
+2018-08-13T01:29:49.8129570+02:00 0HLG0LADKC66L:00000011 [INF] Executing ObjectResult, writing value of type '"Mehrsan.Dal.DB.Word"'. (8a1b66c8)
+2018-08-13T01:29:49.8320679+02:00 0HLG0LADKC66L:00000011 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 168.3897ms (afa2e885)
+2018-08-13T01:29:49.8742743+02:00 0HLG0LADKC66L:00000011 [INF] Request finished in 308.3187ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:49.8834422+02:00 0HLG0LADKC66M:0000000F [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/GetWordByTargetWord application/x-www-form-urlencoded;charset=UTF-8 38 (ca22a1cb)
+2018-08-13T01:29:49.9020810+02:00 0HLG0LADKC66M:0000000F [INF] Route matched with "{action = \"GetWordByTargetWord\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:49.9142030+02:00 0HLG0LADKC66M:0000000F [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" with arguments (["Mehrsan.Dal.DB.Word"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:49.9495990+02:00 0HLG0LADKC66M:0000000F [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:50.0285906+02:00 0HLG0LADKC66M:0000000F [INF] Executed DbCommand ("27"ms) [Parameters=["@__ToLower_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LOWER(LTRIM(RTRIM([w].[TargetWord]))) = @__ToLower_0" (0723d8ff)
+2018-08-13T01:29:50.0515599+02:00 0HLG0LADKC66M:0000000F [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 115.2629ms. (50a9e262)
+2018-08-13T01:29:50.0731175+02:00 0HLG0LADKC66M:0000000F [INF] Executing ObjectResult, writing value of type '"null"'. (8a1b66c8)
+2018-08-13T01:29:50.0937525+02:00 0HLG0LADKC66M:0000000F [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.GetWordByTargetWord (Mehrsan.Core.Web)" in 174.5705ms (afa2e885)
+2018-08-13T01:29:50.1237802+02:00 0HLG0LADKC66M:0000000F [INF] Request finished in 233.9704ms 204  (791a596a)
+2018-08-13T01:29:50.1501432+02:00 0HLG0LADKC66N:0000000A [INF] Request starting HTTP/1.1 HEAD http://localhost:44378/Words/a/f/ /h/ï¿½/n/d/e/af hï¿½nde.mp3   (ca22a1cb)
+2018-08-13T01:29:50.3848794+02:00 0HLG0LADKC66N:0000000A [INF] Request finished in 136.1858ms 404  (791a596a)
+2018-08-13T01:29:50.4841887+02:00 0HLG0LADKC66L:00000012 [INF] Request starting HTTP/1.1 POST http://localhost:44378/Word/LoadRelatedSentences?wordId=7528  0 (ca22a1cb)
+2018-08-13T01:29:50.4919533+02:00 0HLG0LADKC66M:00000010 [INF] Request starting HTTP/1.1 GET http://localhost:44378/Word/UpdateWordStatus?knowsWord=true&wordId=7526&reviewTime=1899   (ca22a1cb)
+2018-08-13T01:29:50.5148499+02:00 0HLG0LADKC66L:00000012 [INF] Route matched with "{action = \"LoadRelatedSentences\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:50.5262973+02:00 0HLG0LADKC66M:00000010 [INF] Route matched with "{action = \"UpdateWordStatus\", controller = \"Word\", page = \"\", area = \"\"}". Executing action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" (a44c0341)
+2018-08-13T01:29:50.5646291+02:00 0HLG0LADKC66L:00000012 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" with arguments (["7528"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:50.5723940+02:00 0HLG0LADKC66M:00000010 [INF] Executing action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" with arguments (["True", "7526", "1899"]) - Validation state: Valid (4e3479ed)
+2018-08-13T01:29:50.5956839+02:00 0HLG0LADKC66L:00000012 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 0.0181ms. (50a9e262)
+2018-08-13T01:29:50.6106268+02:00 0HLG0LADKC66M:00000010 [INF] Entity Framework Core "2.1.1-rtm-30846" initialized '"WordEntities"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2018-08-13T01:29:50.6278152+02:00 0HLG0LADKC66L:00000012 [INF] Executing ObjectResult, writing value of type '"System.Collections.Generic.List`1[[Mehrsan.Dal.DB.Word, Mehrsan.Dal.DB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"'. (8a1b66c8)
+2018-08-13T01:29:50.6418972+02:00 0HLG0LADKC66M:00000010 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE [w].[Id] = @__id_0" (0723d8ff)
+2018-08-13T01:29:50.7246327+02:00 0HLG0LADKC66L:00000012 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.LoadRelatedSentences (Mehrsan.Core.Web)" in 128.3996ms (afa2e885)
+2018-08-13T01:29:50.7302423+02:00 0HLG0LADKC66M:00000010 [INF] Executed DbCommand ("25"ms) [Parameters=["@__targetWord_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [w].[Id], [w].[EndTime], [w].[IsAmbiguous], [w].[IsMovieSubtitle], [w].[Meaning], [w].[MeaningLanguageId], [w].[MovieName], [w].[NextReviewDate], [w].[NofSpace], [w].[StartTime], [w].[TargetLanguageId], [w].[TargetWord], [w].[UserId], [w].[WrittenByMe], [w].[hasOrdNetMeaning], [w].[hasSound]
+FROM [Word] AS [w]
+WHERE LTRIM(RTRIM(LOWER([w].[TargetWord]))) = @__targetWord_0" (0723d8ff)
+2018-08-13T01:29:50.7780816+02:00 0HLG0LADKC66L:00000012 [INF] Request finished in 329.2996ms 200 application/json; charset=utf-8 (791a596a)
+2018-08-13T01:29:50.7843600+02:00 0HLG0LADKC66M:00000010 [INF] Executed DbCommand ("7"ms) [Parameters=["@__wordId_0='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [h].[Id], [h].[Result], [h].[ReviewPeriod], [h].[ReviewTime], [h].[ReviewTimeSpan], [h].[UpdatedMeaning], [h].[UpdatedWord], [h].[WordId]
+FROM [History] AS [h]
+WHERE [h].[WordId] = @__wordId_0
+ORDER BY [h].[Id] DESC" (0723d8ff)
+2018-08-13T01:29:50.8449860+02:00 0HLG0LADKC66M:00000010 [INF] Executed DbCommand ("1"ms) [Parameters=["@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int64), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int64)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [History] ([Result], [ReviewPeriod], [ReviewTime], [ReviewTimeSpan], [UpdatedMeaning], [UpdatedWord], [WordId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+SELECT [Id]
+FROM [History]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2018-08-13T01:29:50.9001869+02:00 0HLG0LADKC66M:00000010 [INF] Executed DbCommand ("0"ms) [Parameters=["@p1='?' (DbType = Int64), @p0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Word] SET [NextReviewDate] = @p0
+WHERE [Id] = @p1;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2018-08-13T01:29:51.0613346+02:00 0HLG0LADKC66M:00000010 [INF] Executed action method "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 450.9099ms. (50a9e262)
+2018-08-13T01:29:51.0871509+02:00 0HLG0LADKC66M:00000010 [INF] Executing ObjectResult, writing value of type '"System.Boolean"'. (8a1b66c8)
+2018-08-13T01:29:51.1191334+02:00 0HLG0LADKC66M:00000010 [INF] Executed action "Mehrsan.Core.Web.Controllers.WordController.UpdateWordStatus (Mehrsan.Core.Web)" in 553.205ms (afa2e885)
+2018-08-13T01:29:51.1583724+02:00 0HLG0LADKC66M:00000010 [INF] Request finished in 721.7614ms 200 application/json; charset=utf-8 (791a596a)

@@ -1,4 +1,5 @@
 ﻿using Mehrsan.Common;
+using Mehrsan.Dal.DB.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

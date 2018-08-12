@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Mehrsan.Dal.DB.Interface;
 
 namespace Mehrsan.Business
 {
@@ -17,7 +18,7 @@ namespace Mehrsan.Business
     {
         #region Fields
 
-        private WordApis _wordApisInstance = null;
+        private IWordApis _wordApisInstance = null;
         private IDAL _dalInstance;
 
         #endregion
@@ -33,27 +34,29 @@ namespace Mehrsan.Business
 
         public WordRepository()
         {
-            NewSession();
+            _dalInstance = new DAL();
+            _wordApisInstance = new WordApis(Dal);
+        }
+
+        public WordRepository(IDAL dal)
+        {
+            _wordApisInstance = new WordApis(dal);
+            _dalInstance = dal;
         }
 
         public bool WordExists(long id)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return Dal.WordExists(id);
             }
         }
 
-        private IDAL NewSession()
-        {
-            _dalInstance = new DAL();
-            _wordApisInstance = new WordApis(Dal);
-            return _dalInstance;
-        }
+        
 
         public List<History> GetHistories(long wordId, DateTime reviewTime)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return Dal.GetHistories(wordId, reviewTime);
             }
@@ -61,7 +64,7 @@ namespace Mehrsan.Business
 
         public List<ChartData> GetChartData()
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 List<ChartData> result = Dal.GetChartData();
 
@@ -71,7 +74,7 @@ namespace Mehrsan.Business
 
         public bool CreateDefaultWord(Word word)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return WordApisInstance.CreateDefaultWord(word);
             }
@@ -79,7 +82,7 @@ namespace Mehrsan.Business
 
         public void MergeRepetitiveWords()
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 Dal.MergeRepetitiveWords();
             }
@@ -87,7 +90,7 @@ namespace Mehrsan.Business
 
         public void UpdateNofSpaces()
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 Dal.UpdateNofSpaces();
             }
@@ -95,7 +98,7 @@ namespace Mehrsan.Business
 
         public List<Word> GetAllWords(string userId, string containText)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 if (containText.Length < 1)
                     return new List<Word>();
@@ -108,7 +111,7 @@ namespace Mehrsan.Business
 
         public Word GetWordByTargetWord(string word)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 var result =  WordApisInstance.GetWordByTargetWord(word);
                 return result;
@@ -117,7 +120,7 @@ namespace Mehrsan.Business
 
         public bool DeleteWord(long id)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return WordApisInstance.DeleteWord(id);
             }
@@ -125,7 +128,7 @@ namespace Mehrsan.Business
 
         public List<Word> GetWords(long id, string targetWord)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return WordApisInstance.GetWords(id, targetWord);
             }
@@ -133,7 +136,7 @@ namespace Mehrsan.Business
 
         public History GetLastHistory(long wordId)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return WordApisInstance.GetLastHistory(wordId);
             }
@@ -145,7 +148,7 @@ namespace Mehrsan.Business
             {
                 throw new Exception($"Review time can't be negative {reviewTime}");
             }
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 if (wordId == 0)
                     throw new Exception("Wrong id is passed");
@@ -213,7 +216,7 @@ namespace Mehrsan.Business
 
         public bool AddHistory(History history)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return AddHistory(history);
             }
@@ -221,7 +224,7 @@ namespace Mehrsan.Business
 
         public bool SetWordAmbiguous(long wordId)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return Dal.UpdateWord(wordId, string.Empty, string.Empty, null, null, 0, null, null, true) > 0;
             }
@@ -229,7 +232,7 @@ namespace Mehrsan.Business
 
         public bool CreateWord(Word word, bool createHistory)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return WordApisInstance.CreateWord(word, createHistory);
             }
@@ -237,7 +240,7 @@ namespace Mehrsan.Business
 
         public bool UpdateWord(long id, Word inpWord)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 var result = WordApisInstance.UpdateWord(id, inpWord);
                 return result;
@@ -246,7 +249,7 @@ namespace Mehrsan.Business
 
         public string GetWordOnly(long id)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 Word word = Dal.GetWords(id, string.Empty).FirstOrDefault();
 
@@ -256,7 +259,7 @@ namespace Mehrsan.Business
 
         public async Task GetWordsRelatedInfo()
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 var baseUrl = "http://ordnet.dk/ddo/ordbog?query=";
                 long index = 0;
@@ -355,7 +358,7 @@ namespace Mehrsan.Business
 
         public bool CreateGraph()
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 List<Word> allWords = null;
 
@@ -403,7 +406,7 @@ namespace Mehrsan.Business
 
         public List<Word> LoadRelatedSentences(long wordId)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 return Dal.LoadRelatedSentences(wordId);
             }
@@ -411,7 +414,7 @@ namespace Mehrsan.Business
 
         public List<Word> GetWordsForReview(string userId)
         {
-            using (NewSession().DbContext)
+            using (_dalInstance.DbContext)
             {
                 List<Word> words = Dal.GetWordsForReview(userId, DateTime.Now, 20);
 

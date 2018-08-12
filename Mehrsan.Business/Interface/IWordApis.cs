@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mehrsan.Dal.DB;
+using Mehrsan.Dal.DB.Interface;
 
 namespace Mehrsan.Business.Interface
 {
