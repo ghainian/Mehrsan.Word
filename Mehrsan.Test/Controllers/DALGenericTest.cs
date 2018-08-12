@@ -64,74 +64,77 @@ namespace Mehrsan.Test.Controllers
         //
         #endregion
 
-        [TestMethod]
-        public void Delete()
-        {
-            try
-            {
-                var newWord = TestModel.Instance.SampleWord;
-                DALGeneric<Word>.Instance.Create(newWord);
+        
+        //[TestMethod]
+        //public void Delete()
+        //{
+        //    try
+        //    {
 
-                Assert.IsTrue(newWord.Id > 0);
-                DALGeneric<Word>.Instance.Delete(newWord.Id);
+        //        var dalInstance = new DALGeneric<Word>();
+        //        var newWord = TestModel.Instance.SampleWord;
+        //        dalInstance.Create(newWord);
 
-                var wordExists = DALGeneric<Word>.Instance.Exists(newWord.Id);
+        //        Assert.IsTrue(newWord.Id > 0);
+        //        DALGeneric<Word>.Instance.Delete(newWord.Id);
+
+        //        var wordExists = DALGeneric<Word>.Instance.Exists(newWord.Id);
                 
-                Assert.IsFalse(wordExists);
+        //        Assert.IsFalse(wordExists);
                 
-            }
-            catch (Exception ee)
-            {
+        //    }
+        //    catch (Exception ee)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        [TestMethod]
-        public void Create()
-        {
-            try
-            {
-                var newWord = TestModel.Instance.SampleWord;
-                DALGeneric<Word>.Instance.Create(newWord);
+        //[TestMethod]
+        //public void Create()
+        //{
+        //    try
+        //    {
+        //        var newWord = TestModel.Instance.SampleWord;
+        //        DALGeneric<Word>.Instance.Create(newWord);
 
-                Assert.IsTrue(newWord.Id > 0);
-                DALGeneric<Word>.Instance.Delete(newWord.Id);
+        //        Assert.IsTrue(newWord.Id > 0);
+        //        DALGeneric<Word>.Instance.Delete(newWord.Id);
 
                
-                var wordExists = DALGeneric<Word>.Instance.Exists(newWord.Id);
+        //        var wordExists = DALGeneric<Word>.Instance.Exists(newWord.Id);
 
-                Assert.IsFalse(wordExists);
+        //        Assert.IsFalse(wordExists);
 
-            }
-            catch (Exception ee)
-            {
+        //    }
+        //    catch (Exception ee)
+        //    {
 
-            }
-        }
-        [TestMethod]
-        public void LoadList()
-        {
-            try
-            {
-                var testClaim = TestModel.Instance.SampleClaim;
-                var result = DALGeneric<AspNetUserClaim>.Instance.Create(testClaim);
-                Assert.IsTrue(result);
-                var parameters = new List<string>() { nameof(testClaim.UserId), nameof(testClaim.ClaimType), nameof(testClaim.ClaimValue) };
-                var values = new List<object>() { testClaim.UserId , testClaim.ClaimType, testClaim.ClaimValue };
-                var loadedClaim = DALGeneric<AspNetUserClaim>.Instance.Load(parameters, values);
-                Assert.IsTrue(loadedClaim[0].UserId == testClaim.UserId);
-                Assert.IsTrue(loadedClaim[0].ClaimType == testClaim.ClaimType);
-                Assert.IsTrue(loadedClaim[0].ClaimValue == testClaim.ClaimValue);
-                DALGeneric<AspNetUserClaim>.Instance.Delete(testClaim.Id);
+        //    }
+        //}
+        //[TestMethod]
+        //public void LoadList()
+        //{
+        //    try
+        //    {
+        //        var testClaim = TestModel.Instance.SampleClaim;
+        //        var result = DALGeneric<AspNetUserClaim>.Instance.Create(testClaim);
+        //        Assert.IsTrue(result);
+        //        var parameters = new List<string>() { nameof(testClaim.UserId), nameof(testClaim.ClaimType), nameof(testClaim.ClaimValue) };
+        //        var values = new List<object>() { testClaim.UserId , testClaim.ClaimType, testClaim.ClaimValue };
+        //        var loadedClaim = DALGeneric<AspNetUserClaim>.Instance.Load(parameters, values);
+        //        Assert.IsTrue(loadedClaim[0].UserId == testClaim.UserId);
+        //        Assert.IsTrue(loadedClaim[0].ClaimType == testClaim.ClaimType);
+        //        Assert.IsTrue(loadedClaim[0].ClaimValue == testClaim.ClaimValue);
+        //        DALGeneric<AspNetUserClaim>.Instance.Delete(testClaim.Id);
 
-                var exists =DALGeneric<AspNetUserClaim>.Instance.Exists(testClaim.Id);
-                Assert.IsFalse(exists);
-            }
-            catch (Exception ee)
-            {
+        //        var exists =DALGeneric<AspNetUserClaim>.Instance.Exists(testClaim.Id);
+        //        Assert.IsFalse(exists);
+        //    }
+        //    catch (Exception ee)
+        //    {
 
-            }
-        }
+        //    }
+        //}
     
 
     }

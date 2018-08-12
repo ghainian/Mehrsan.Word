@@ -9,7 +9,7 @@ namespace Mehrsan.Business.Interface
     {
 
         #region Properties
-        IDAL DalInstance { get; }
+        IDAL Dal { get; }
         IWordApis WordApisInstance { get; }
         #endregion
 

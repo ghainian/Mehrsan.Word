@@ -725,7 +725,7 @@ var myApp = angular.module("myModule", [])
 
             function updateWordStatusToSpecificResult(result, wordId) {
 
-                var reviewTime = _words[ _wordIndex ].ReviewEndTime - _words[ _wordIndex ].ReviewStartTime;
+                var reviewTime = Math.abs( _words[ _wordIndex ].ReviewEndTime - _words[ _wordIndex ].ReviewStartTime);
 
                 var token = sessionStorage.getItem(_tokenKey);
                 var headers = {};

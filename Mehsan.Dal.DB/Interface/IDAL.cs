@@ -6,10 +6,11 @@ namespace Mehrsan.Dal.DB
     public interface IDAL
     {
         #region Properties
+        WordEntities DbContext { get; }
         
         #endregion
 
-        #region Methods
+            #region Methods
 
         bool AddToGraph(Word srcWord, Word dstWord);
         bool DeleteWord(long id);

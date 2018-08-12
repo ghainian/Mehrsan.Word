@@ -113,7 +113,8 @@ namespace Mehrsan.Agent
                                 UpdatedMeaning = word.Meaning
                             };
 
-                            DALGeneric<History>.Instance.Create(history);
+                            var dalGenericInstance = new DALGeneric<History>(WordRepositoryInstance.Dal.DbContext);
+                            dalGenericInstance.Create(history);
 
                             var reviewPeriod = lastHistory.ReviewPeriod;
                             if (reviewPeriod > Common.Common.MaxReviewDate)
@@ -122,7 +123,7 @@ namespace Mehrsan.Agent
                             if (reviewPeriod < 0)
                                 reviewPeriod = 1;
 
-                            WordRepositoryInstance.DalInstance.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod * 2, null, null, null);
+                            WordRepositoryInstance.Dal.UpdateWord(word.Id, string.Empty, string.Empty, null, null, reviewPeriod * 2, null, null, null);
                         }
                     }
                     try

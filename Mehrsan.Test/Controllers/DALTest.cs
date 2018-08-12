@@ -46,51 +46,51 @@ namespace Mehrsan.Test.Controllers
         #endregion
 
 
-        [TestMethod]
-        public void DeleteWord()
-        {
-            try
-            {
-                var newWord = TestModel.Instance.SampleWord;
-                DALGeneric<Word>.Instance.Create(newWord);
+        //[TestMethod]
+        //public void DeleteWord()
+        //{
+        //    try
+        //    {
+        //        var newWord = TestModel.Instance.SampleWord;
+        //        DALGeneric<Word>.Instance.Create(newWord);
 
-                var history = TestModel.Instance.SampleHistory;
-                history.WordId = newWord.Id;
-                DALGeneric<History>.Instance.Create(history);
+        //        var history = TestModel.Instance.SampleHistory;
+        //        history.WordId = newWord.Id;
+        //        DALGeneric<History>.Instance.Create(history);
 
-                DAL.Instance.DeleteWord(newWord.Id);
+        //        new DAL().DeleteWord(newWord.Id);
 
-                var wordExists = DALGeneric<Word>.Instance.Exists(newWord.Id);
-                var histExists = DALGeneric<History>.Instance.Exists(history.Id);
+        //        var wordExists = DALGeneric<Word>.Instance.Exists(newWord.Id);
+        //        var histExists = DALGeneric<History>.Instance.Exists(history.Id);
 
-                Assert.IsFalse(wordExists);
-                Assert.IsFalse(histExists);
+        //        Assert.IsFalse(wordExists);
+        //        Assert.IsFalse(histExists);
 
-            }
-            catch (Exception ee)
-            {
+        //    }
+        //    catch (Exception ee)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        [TestMethod]
-        public void Create()
-        {
-            try
-            {
-                var testClaim = TestModel.Instance.SampleClaim;
-                var result = DALGeneric<AspNetUserClaim>.Instance.Create(testClaim);
-                Assert.IsTrue(result);
-                var loadedClaim = DALGeneric<AspNetUserClaim>.Instance.Load(testClaim.Id);
-                Assert.IsTrue(loadedClaim.UserId == testClaim.UserId);
-                Assert.IsTrue(loadedClaim.ClaimType == testClaim.ClaimType);
-                Assert.IsTrue(loadedClaim.ClaimValue == testClaim.ClaimValue);
-            }
-            catch (Exception ee)
-            {
+        //[TestMethod]
+        //public void Create()
+        //{
+        //    try
+        //    {
+        //        var testClaim = TestModel.Instance.SampleClaim;
+        //        var result = DALGeneric<AspNetUserClaim>.Instance.Create(testClaim);
+        //        Assert.IsTrue(result);
+        //        var loadedClaim = DALGeneric<AspNetUserClaim>.Instance.Load(testClaim.Id);
+        //        Assert.IsTrue(loadedClaim.UserId == testClaim.UserId);
+        //        Assert.IsTrue(loadedClaim.ClaimType == testClaim.ClaimType);
+        //        Assert.IsTrue(loadedClaim.ClaimValue == testClaim.ClaimValue);
+        //    }
+        //    catch (Exception ee)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
     }
 }

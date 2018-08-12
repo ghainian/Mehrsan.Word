@@ -11,12 +11,12 @@ namespace Mehrsan.Dal.DB
     {
         #region Fields
 
-        private static WordEntities _dbContext;
+        private WordEntities _dbContext = new WordEntities(WordEntities.Options);
 
         #endregion
 
         #region Properties
-        
+
         public WordEntities DbContext { get => _dbContext; set => _dbContext = value; }
 
         #endregion

@@ -45,7 +45,7 @@ namespace Mehrsan.Business
         {
             using (var dbContext = DalInstance.NewWordEntitiesInstance())
             {
-                DALGeneric<AspNetUserClaim>.Instance.Create(userClaim);
+                new DALGeneric<AspNetUserClaim>(dbContext) .Create(userClaim);
             }
             return true;
         } 

@@ -12,80 +12,74 @@ namespace Mehrsan.Dal.DB
     {
         #region Fields
 
-        private static readonly IDALGeneric<T> _instance;
 
         #endregion
 
         #region Properties
-
-        public static WordEntities WordEntitiesInstance { get { return new WordEntities(WordEntities.Options); } }
-
-        public static IDALGeneric<T> Instance { get { return _instance; } }
-
+        public WordEntities DbContext { get; set; }
         #endregion
 
         #region Methods
 
-        static DALGeneric()
+
+        public void NewSession()
         {
-            _instance = new DALGeneric<T>();
+            DbContext = new WordEntities(WordEntities.Options);
         }
 
-        private DALGeneric()
+        public DALGeneric(WordEntities dbContext)
         {
-
+            this.DbContext = dbContext;
         }
+
+        
 
         public bool Create(T item)
         {
-            using (var dbContext = WordEntitiesInstance)
+
+
+            if (item != null)
             {
-                
-                if (item != null)
-                {
-                    dbContext.Set<T>().Add(item);
-                    dbContext.SaveChanges();
-                }
-                return true;
+                DbContext.Set<T>().Add(item);
+                DbContext.SaveChanges();
             }
+            return true;
+
         }
 
         public bool Delete(object id)
         {
-            using (var dbContext = WordEntitiesInstance)
+
+            T item = Load(id);
+            if (item != null)
             {
-                T item = Load(id);
-                if (item != null)
-                {
-                    dbContext.Set<T>().Remove(item);
-                    dbContext.SaveChanges();
-                }
-                return true;
+                DbContext.Set<T>().Remove(item);
+                DbContext.SaveChanges();
             }
+            return true;
+
         }
 
         public bool Exists(object id)
         {
             var result = false;
-            using (var dbContext = WordEntitiesInstance)
-            {
 
-                var param = Expression.Parameter(typeof(T), "alias");
+            var param = Expression.Parameter(typeof(T), "alias");
 
-                var query = dbContext.Set<T>().AsQueryable();
-                var expressions = new List<Expression>();
+            var query = DbContext.Set<T>().AsQueryable();
+            var expressions = new List<Expression>();
 
-                var exp = Expression.Lambda<Func<T, bool>>(
-                Expression.Equal(
-                        Expression.Property(param, "Id"),
-                        Expression.Constant(id)
-                    ),
-                    param
-                );
+            var exp = Expression.Lambda<Func<T, bool>>(
+            Expression.Equal(
+                    Expression.Property(param, "Id"),
+                    Expression.Constant(id)
+                ),
+                param
+            );
 
-                query = query.Where(exp);
-                result = query.Any();
-            }
+            query = query.Where(exp);
+            result = query.Any();
+
             return result;
         }
 
@@ -96,45 +90,41 @@ namespace Mehrsan.Dal.DB
             {
                 throw new Exception("Number of parameters and values should be the same");
             }
-
             List<T> result = null;
-            using (var dbContext = WordEntitiesInstance)
+
+            var param = Expression.Parameter(typeof(T), "alias");
+            
+            var query = DbContext.Set<T>().AsQueryable();
+            var expressions = new List<Expression>();
+            for (int i = 0; i < parameters.Count; i++)
             {
-                var param = Expression.Parameter(typeof(T), "alias");
+                var exp = Expression.Lambda<Func<T, bool>>(
+                Expression.Equal(
+                        Expression.Property(param, parameters[i]),
+                        Expression.Constant(values[i])
+                    ),
+                    param
+                );
 
+                query = query.Where(exp);
 
-                var query = dbContext.Set<T>().AsQueryable();
-                var expressions = new List<Expression>();
-                for (int i = 0; i < parameters.Count; i++)
-                {
-                    var exp = Expression.Lambda<Func<T, bool>>(
-                    Expression.Equal(
-                            Expression.Property(param, parameters[i]),
-                            Expression.Constant(values[i])
-                        ),
-                        param
-                    );
-
-                    query = query.Where(exp);
-
-
-                }
-
-
-                if (query.Any())
-                {
-                    result = query.ToList();
-                }
 
             }
+
+
+            if (query.Any())
+            {
+                result = query.ToList();
+            }
+
+
             return result;
         }
 
         public T Load(object id)
         {
             T result = null;
-            using (var dbContext = WordEntitiesInstance)
-            {
+            
                 var param = Expression.Parameter(typeof(T), "alias");
                 var exp = Expression.Lambda<Func<T, bool>>(
                     Expression.Equal(
@@ -144,13 +134,13 @@ namespace Mehrsan.Dal.DB
                     param
                 );
 
-                var query = dbContext.Set<T>().Where(exp);
+                var query = DbContext.Set<T>().Where(exp);
                 if (query.Any())
                 {
                     result = query.FirstOrDefault();
                 }
 
-            }
+            
             return result;
         }
 

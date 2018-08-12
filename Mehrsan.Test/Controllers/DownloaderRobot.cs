@@ -272,7 +272,7 @@ namespace Mehrsan.Test.Controllers
         {
             driver = new ChromeDriver(CHROME_DRIVER_PATH);
             string words = string.Empty;
-            foreach (Word dbWord in DAL.Instance.GetWords(0, string.Empty))
+            foreach (Word dbWord in wordRepository.GetWords(0, string.Empty))
             {
                 //if (dbWord.IsMovieSubtitle == null || !dbWord.IsMovieSubtitle.Value)
                 //    continue;

@@ -19,7 +19,7 @@ namespace Mehrsan.Core.Web.Controllers
     public class WordController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private IWordRepository WordRepositoryInstance = new WordRepository();
+        
 
         public WordController(WordEntities context, ILogger<HomeController> logger)
         {
@@ -43,14 +43,14 @@ namespace Mehrsan.Core.Web.Controllers
             //AccountController ac = new AccountController();
             UserInfoViewModel userInfo = new UserInfoViewModel();// ac.GetUserInfo();
 
-            return WordRepositoryInstance.GetWordsForReview(userInfo.UserId);
+            return new WordRepository().GetWordsForReview(userInfo.UserId);
         }
 
         [AcceptVerbs("GET", "POST")]
         public List<ChartData> GetReviewHistory()
         {
             //.Where(x => x.X < 100 && x.X > 0)
-            List<ChartData> result = WordRepositoryInstance.GetChartData().ToList();
+            List<ChartData> result = new WordRepository().GetChartData().ToList();
 
             
             return result;
@@ -62,7 +62,7 @@ namespace Mehrsan.Core.Web.Controllers
             //AccountController ac = new AccountController();
             //UserInfoViewModel userInfo = ac.GetUserInfo();
             UserInfoViewModel userInfo = new UserInfoViewModel();
-            return WordRepositoryInstance.GetAllWords(userInfo.UserId , containText);
+            return new WordRepository().GetAllWords(userInfo.UserId , containText);
         }
 
         [AcceptVerbs("GET", "POST")]
@@ -71,22 +71,22 @@ namespace Mehrsan.Core.Web.Controllers
             if (word == null)
                 return null;
 
-            var foundWord= WordRepositoryInstance.GetWordByTargetWord(word.TargetWord);
+            var foundWord= new WordRepository().GetWordByTargetWord(word.TargetWord);
             if(foundWord != null)
-                foundWord = WordRepositoryInstance.WordApisInstance.GetSerializableWord(foundWord);
+                foundWord = new WordRepository().WordApisInstance.GetSerializableWord(foundWord);
 
             return foundWord;
         }
 
         public List<Mehrsan.Dal.DB.Word> LoadRelatedSentences(long wordId)
         {
-            return WordRepositoryInstance.LoadRelatedSentences(wordId);
+            return new WordRepository().LoadRelatedSentences(wordId);
         }
 
         [AcceptVerbs("GET", "POST")]
         public bool CreateGraph()
         {
-            return WordRepositoryInstance.CreateGraph();
+            return new WordRepository().CreateGraph();
         }
 
         
@@ -95,7 +95,7 @@ namespace Mehrsan.Core.Web.Controllers
         //[ResponseType(typeof(Mehrsan.Dal.DB.Word))]
         public Mehrsan.Dal.DB.Word GetWord(long id,string targetWord)
         {
-            var result = WordRepositoryInstance.GetWords(id, targetWord).FirstOrDefault();
+            var result = new WordRepository().GetWords(id, targetWord).FirstOrDefault();
             return result;
         }
 
@@ -126,7 +126,7 @@ namespace Mehrsan.Core.Web.Controllers
                 //UserInfoViewModel userInfo = ac.GetUserInfo();
                 UserInfoViewModel userInfo = new UserInfoViewModel();
                 word.UserId = userInfo.UserId;
-                if (WordRepositoryInstance.CreateDefaultWord(word))
+                if (new WordRepository().CreateDefaultWord(word))
                 {
                     return true;
                 }
@@ -154,7 +154,7 @@ namespace Mehrsan.Core.Web.Controllers
                 return false;
             }
 
-            if (WordRepositoryInstance.UpdateWord(word.Id, word))
+            if (new WordRepository().UpdateWord(word.Id, word))
                 return true;
 
             return false;
@@ -168,7 +168,7 @@ namespace Mehrsan.Core.Web.Controllers
                 return false;
             }
 
-            if (WordRepositoryInstance.SetWordAmbiguous(wordId))
+            if (new WordRepository().SetWordAmbiguous(wordId))
                 return true;
 
             return false;
@@ -177,7 +177,7 @@ namespace Mehrsan.Core.Web.Controllers
         [AcceptVerbs("GET", "POST")]
         public  async Task GetWordsInfoFromOrdNet()
         {
-            WordRepositoryInstance.GetWordsRelatedInfo();
+            new WordRepository().GetWordsRelatedInfo();
         }
 
       
@@ -186,7 +186,7 @@ namespace Mehrsan.Core.Web.Controllers
         {
 
             
-            return WordRepositoryInstance.UpdateWordStatus(knowsWord, wordId , reviewTime);
+            return new WordRepository().UpdateWordStatus(knowsWord, wordId , reviewTime);
         }
 
 
@@ -198,7 +198,7 @@ namespace Mehrsan.Core.Web.Controllers
             try
             {
 
-                if (WordRepositoryInstance.DeleteWord(id))
+                if (new WordRepository().DeleteWord(id))
                 {
                     return Ok();
                 }

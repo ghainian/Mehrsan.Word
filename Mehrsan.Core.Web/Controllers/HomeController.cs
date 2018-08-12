@@ -223,7 +223,7 @@ namespace Mehrsan.Core.Web.Controllers
             try
             {
 
-                if (.DeleteWord(id))
+                if (WordRepositoryInstance.DeleteWord(id))
                 {
                     return Ok();
                 }

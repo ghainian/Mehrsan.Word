@@ -28,7 +28,9 @@ namespace Mehrsan.Business.Interface
         bool DeleteWord(long id);
         List<Word> GetWords(long id, string targetWord);
         bool UpdateWord(long id, Word inpWord);
-        bool CreateWord(Word word, bool createHistory); 
+        bool CreateWord(Word word, bool createHistory);
+        History GetLastHistory(long wordId);
+        bool CreateDefaultWord(Word word);
         #endregion
     }
 }

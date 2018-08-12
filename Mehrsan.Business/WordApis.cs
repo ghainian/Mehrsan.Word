@@ -615,7 +615,7 @@ namespace Mehrsan.Business
             return result;
         }
 
-        private bool CreateDefaultWord(Word word)
+        public bool CreateDefaultWord(Word word)
         {
             var searchedWord = GetWords(0, word.TargetWord);
             if (searchedWord == null || searchedWord.Count == 0)
@@ -676,7 +676,8 @@ namespace Mehrsan.Business
 
         private bool AddHistory(History history)
         {
-            return DALGeneric<History>.Instance.Create(history);
+            var dalGenericInstance = new DALGeneric<History>(DalInstance.DbContext);
+            return dalGenericInstance.Create(history);
         }
 
         public bool CreateWord(Word word, bool createHistory)
@@ -686,7 +687,8 @@ namespace Mehrsan.Business
 
             word.TargetWord = word.TargetWord.Trim(Common.Common.Separators);
             word.Meaning = word.Meaning.Trim(Common.Common.Separators);
-            DALGeneric<Word>.Instance.Create(word);
+            var dalGenericInstance = new DALGeneric<Word>(DalInstance.DbContext);
+            dalGenericInstance.Create(word);
             if (createHistory)
             {
 
@@ -840,7 +842,12 @@ namespace Mehrsan.Business
         {
             return DalInstance.DeleteWord(id);
         }
-        
+
+        public History GetLastHistory(long wordId)
+        {
+            return DalInstance.GetLastHistory(wordId);
+        }
+
         #endregion
     }
 }
