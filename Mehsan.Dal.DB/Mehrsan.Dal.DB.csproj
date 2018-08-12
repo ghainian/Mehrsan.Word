@@ -184,6 +184,7 @@
     <Compile Include="DALGeneric.cs" />
     <Compile Include="Interface\IDALGeneric.cs" />
     <Compile Include="Interface\IDAL.cs" />
+    <Compile Include="MetaDataClass\Word.cs" />
     <Compile Include="Model\AspNetUser.cs" />
     <Compile Include="Model\AspNetUserClaim.cs" />
     <Compile Include="Model\History.cs" />
