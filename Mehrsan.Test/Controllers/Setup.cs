@@ -1,5 +1,6 @@
 ﻿using Mehrsan.Dal.DB;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Configuration;
 using System.Data.Entity.Core.EntityClient;
 
@@ -7,7 +8,16 @@ namespace Mehrsan.Test.Controllers
 {
     public class Setup
     {
+        #region Methods
+
         public Setup()
+        {
+            ConfigureDataOptions();
+            InitialiseCommon();
+
+        }
+
+        private  void ConfigureDataOptions()
         {
             var optionsBuilder = new DbContextOptionsBuilder<WordEntities>();
             var configurationBuilder = new Microsoft.Extensions.Configuration.ConfigurationBuilder();
@@ -20,7 +30,22 @@ namespace Mehrsan.Test.Controllers
             using (var _context = new WordEntities(optionsBuilder.Options))
             {
             }
-
         }
+
+        public void InitialiseCommon()
+        {
+            var maxImg = ConfigurationManager.AppSettings["MaxImagePerWord"].ToString();
+            var maxImagePerWord = int.Parse(ConfigurationManager.AppSettings["MaxImagePerWord"].ToString());
+            var agentPath = ConfigurationManager.AppSettings["AgentPath"].ToString();
+            var backupDir = ConfigurationManager.AppSettings["BackupDir"].ToString();
+            var videoDirectory = ConfigurationManager.AppSettings["VideoDirectory"].ToString();
+            var downloadGoogleImageWaitTime = int.Parse(ConfigurationManager.AppSettings["DownloadGoogleImageWaitTime"].ToString());
+            var nofRelatedSentences = int.Parse(ConfigurationManager.AppSettings["NofRelatedSentences"].ToString());
+            var logDirectory = ConfigurationManager.AppSettings["LogDirectory"].ToString();
+            Common.Common.Initialise(maxImagePerWord, agentPath, backupDir,
+            videoDirectory, downloadGoogleImageWaitTime, nofRelatedSentences, logDirectory);
+        } 
+
+        #endregion
     }
 }

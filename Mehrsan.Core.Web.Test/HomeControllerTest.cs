@@ -12,6 +12,7 @@ namespace Mehrsan.Core.Web.Test
         public void Index()
         {
             HomeController controller = new HomeController();
+            var result = controller.Index();
         }
     }
 }

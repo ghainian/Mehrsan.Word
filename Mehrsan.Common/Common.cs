@@ -10,38 +10,42 @@ namespace Mehrsan.Common
     {
 
 
-        public static ConfigurationRoot Configuration { get; set; }
 
+        #region Fields
 
-        public static void Initialise()
+        public static int MaxReviewDate { get; private set; } = 36000;
+        public static long DefaultReviewTimeSpan { get; private set; } = 10000;
+        public static int MaxImagePerWord { get; private set; } = 0;
+        public static string AgentPath { get; private set;  } = string.Empty;
+        public static string BackupDir { get; private set;  } = string.Empty;
+        public static string VideoDirectory { get; private set; } = string.Empty;
+        public static int DownloadGoogleImageWaitTime { get; private set; } = 0;
+        public static int NofRelatedSentences { get; private set; } = 0;
+        public static string LogDirectory { get; private set;  } = string.Empty;
+        public static string[] HtmlTags { get; private set; }
+        public static char[] Separators { get; private set; }
+        public static char[] PersianAlphabet { get; private set; }
+
+        #endregion
+
+        #region Methods
+        public static void Initialise(int maxImagePerWord, string agentPath, string backupdir,
+            string videoDir, int downloadGoogleImageWaitTime, int nofRelatedSentences, string logDirectory)
         {
             MaxReviewDate = 36000;
             DefaultReviewTimeSpan = 10000;
-            MaxImagePerWord = int.Parse(Configuration["MaxImagePerWord"].ToString());
-            AgentPath = Configuration["AgentPath"].ToString();
-            BackupDir = Configuration["BackupDir"].ToString();
-            VideoDirectory = Configuration["VideoDirectory"].ToString();
-            DownloadGoogleImageWaitTime = int.Parse(Configuration["DownloadGoogleImageWaitTime"].ToString());
-            NofRelatedSentences = int.Parse(Configuration["NofRelatedSentences"].ToString());
-            LogDirectory = Configuration["LogDirectory"].ToString();
+            MaxImagePerWord = maxImagePerWord;
+            AgentPath = agentPath;
+            BackupDir = backupdir;
+            VideoDirectory = videoDir;
+            DownloadGoogleImageWaitTime = downloadGoogleImageWaitTime;
+            NofRelatedSentences = nofRelatedSentences;
+            LogDirectory = logDirectory;
             HtmlTags = new string[] { "i", "b", "h1", "h2", "h3", "h4" };
             Separators = new char[] { '\'', '_', '>', '<', '\r', '\n', '\t', '?', '!', '#', '$', '€', '£', '=', ' ', '.', ')', '(', '-', '/', '\"', '@', ':', ';', ',', (char)(8203) };
             PersianAlphabet = new char[] { 'ا', 'ب', 'پ', 'ت', 'ث', 'ج', 'ح', 'خ', 'ه', 'ع', 'غ', 'ف', 'ق', 'ص', 'ض', 'ش', 'س', 'ی', 'ل', 'ن', 'م', 'ک', 'گ', 'ظ', 'ط', 'ز', 'ر', 'ذ', 'د', 'ئ', 'و' };
 
         }
-        public static int MaxReviewDate = 36000;
-        public static long DefaultReviewTimeSpan = 10000;
-        public static int MaxImagePerWord { get; set; } = 0;
-        public static string AgentPath { get; set; } = string.Empty;
-        public static string BackupDir { get; set; } = string.Empty;
-        public static string VideoDirectory { get; set; } = string.Empty;
-        public static int DownloadGoogleImageWaitTime { get; set; } = 0;
-        public static int NofRelatedSentences { get; set; } = 0;
-        public static string LogDirectory { get; set; } = string.Empty;
-        public static string[] HtmlTags { get; set; }
-        public static char[] Separators { get; set; }
-        public static char[] PersianAlphabet { get; set; }
-
         public static string ReadFile(string file)
         {
             using (StreamReader sr = new StreamReader(file))
@@ -94,23 +98,8 @@ namespace Mehrsan.Common
             text = text.Replace("  ", " ");
             return text;
         }
-    }
 
-    public class Logger
-    {
-        public static void Log(string message)
-        {
-            if (!Directory.Exists(Common.LogDirectory))
-                Directory.CreateDirectory(Common.LogDirectory);
-            var now = DateTime.Now;
-            string todayLog = Common.LogDirectory + now.Year + "_" + now.Month + "_" + now.Day + ".txt";
-            using (StreamWriter sw = new StreamWriter(todayLog, true))
-            {
-                sw.WriteLine(now);
-                sw.WriteLine(message);
-                sw.WriteLine("===============================================================================");
-            }
-        }
+        #endregion
     }
 
 }

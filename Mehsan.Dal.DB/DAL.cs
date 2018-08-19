@@ -57,6 +57,7 @@ namespace Mehrsan.Dal.DB
             return true;
 
         }
+
         public bool WordExists(long id)
         {
             return DbContext.Words.Count(e => e.Id == id) > 0;

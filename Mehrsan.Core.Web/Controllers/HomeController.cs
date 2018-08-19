@@ -26,7 +26,7 @@ namespace Mehrsan.Core.Web.Controllers
 
         #region Methods
 
-        public HomeController(WordEntities context, ILogger<HomeController> logger,IWordRepository wordRepository)
+        public HomeController(IWordEntities context, ILogger<HomeController> logger,IWordRepository wordRepository)
         {
             _logger = logger;
             _wordRepository = wordRepository;

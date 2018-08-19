@@ -30,8 +30,22 @@ namespace Mehrsan.Core.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            Common.Common.Configuration = (ConfigurationRoot)configuration;
-            Common.Common.Initialise();
+
+            InitialiseCommon();
+        }
+
+        private void InitialiseCommon()
+        {
+            var maxImg = Configuration["MaxImagePerWord"].ToString();
+            var maxImagePerWord = int.Parse(Configuration["MaxImagePerWord"].ToString());
+            var agentPath = Configuration["AgentPath"].ToString();
+            var backupDir = Configuration["BackupDir"].ToString();
+            var videoDirectory = Configuration["VideoDirectory"].ToString();
+            var downloadGoogleImageWaitTime = int.Parse(Configuration["DownloadGoogleImageWaitTime"].ToString());
+            var nofRelatedSentences = int.Parse(Configuration["NofRelatedSentences"].ToString());
+            var logDirectory = Configuration["LogDirectory"].ToString();
+            Common.Common.Initialise(maxImagePerWord, agentPath, backupDir,
+            videoDirectory, downloadGoogleImageWaitTime, nofRelatedSentences, logDirectory);
         }
 
         public IConfiguration Configuration { get; }
@@ -39,7 +53,7 @@ namespace Mehrsan.Core.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Common.Common.Configuration.GetConnectionString("WordEntities");
+            var connectionString = Configuration.GetConnectionString("WordEntities");
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -78,7 +92,7 @@ namespace Mehrsan.Core.Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
 
-            loggerFactory.AddConsole(Common.Common.Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddFile("Logs/myapp-{Date}.txt");
 
             loggerFactory.AddDebug();
