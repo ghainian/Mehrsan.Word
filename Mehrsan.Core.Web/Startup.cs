@@ -66,8 +66,15 @@ namespace Mehrsan.Core.Web
             services.AddTransient<IDAL, DAL>();
             services.AddTransient<IWordApis, WordApis>();
             services.AddTransient<IWordRepository, WordRepository>();
+            services.AddTransient<IWordEntities, WordEntities>();
 
-            services.AddAuthentication().AddGoogle(googleOptions =>
+            services.AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(new Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions()
+                {
+                    LoginPath = new PathString(@"/Account/Login")
+
+                })
+                .AddGoogle(googleOptions =>
             {
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
@@ -78,6 +85,8 @@ namespace Mehrsan.Core.Web
                 options.AddPolicy("AdminUser", policy =>
                           policy.RequireClaim("UserType", "Admin"));
             });
+
+
 
             services.AddDbContext<WordEntities>(options => options.UseSqlServer(connectionString));
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -124,14 +133,14 @@ namespace Mehrsan.Core.Web
         }
     }
     internal class ClaimsTransformer : IClaimsTransformation
+{
+    // Can consume services from DI as needed, including scoped DbContexts
+    public ClaimsTransformer(IHttpContextAccessor httpAccessor) { }
+    public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal p)
     {
-        // Can consume services from DI as needed, including scoped DbContexts
-        public ClaimsTransformer(IHttpContextAccessor httpAccessor) { }
-        public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal p)
-        {
-            p.AddIdentity(new ClaimsIdentity());
-            return Task.FromResult(p);
-        }
+        p.AddIdentity(new ClaimsIdentity());
+        return Task.FromResult(p);
     }
+}
 
 }

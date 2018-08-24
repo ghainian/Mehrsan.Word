@@ -26,31 +26,40 @@ namespace Mehrsan.Dal.DB
 
         public WordEntities NewWordEntitiesInstance()
         {
-            
+
             DbContext = new WordEntities(WordEntities.Options);
-            
+
             return DbContext;
 
         }
-        
 
+
+        /// <summary>
+        /// Delete a word and its related entities from Database
+        /// </summary>
+        /// <param name="id">Id of target word</param>
+        /// <returns>returns true if the target id exists and delete occur successfully</returns>
         public bool DeleteWord(long id)
         {
 
-            Word word = DbContext.Words.Find(id);
-            if (word == null)
-            {
-                return false;
-            }
+            DbContext.Database.ExecuteSqlCommand($" delete from History where WordId = {id}");
+            DbContext.Database.ExecuteSqlCommand($" delete from Word where Id = {id}");
+            //Word word = DbContext.Words.Find(id);
+            //if (word == null)
+            //{
+            //    return false;
+            //}
 
-            var relatedHistories = (from h in DbContext.Histories where h.WordId == id select h).ToList();
-            foreach (History history in relatedHistories)
-            {
-                DbContext.Histories.Remove(history);
-            }
+            //var relatedHistories = (from h in DbContext.Histories where h.WordId == id select h).ToList();
+            //foreach (History history in relatedHistories)
+            //{
+            //    DbContext.Entry(history).State = EntityState.Deleted;            
+            //    DbContext.Histories.Remove(history);
+            //}
+            
 
-
-            DbContext.Words.Remove(word);
+            //DbContext.Words.Remove(word);
+            //DbContext.Entry(word).State = EntityState.Deleted;
 
             DbContext.SaveChanges();
 
@@ -155,68 +164,42 @@ namespace Mehrsan.Dal.DB
 
         public void UpdateNofSpaces()
         {
+
+            DbContext.Database.ExecuteSqlCommand("update word set targetword = ltrim(rtrim(TargetWord))");
+            DbContext.Database.ExecuteSqlCommand("update Word set nofSpace = len(targetWord) - len(Replace(targetword,' ', ''))");
+            DbContext.SaveChanges();
+            return;
+            var groupedResult = DbContext.Words.FromSql<Word>("select count(1) as NofSpace, targetWord from Word group by LTRIM(RTRIM(targetWord)) as TargetWord");
+            var res = groupedResult.ToList();
             var words = GetAllWords(string.Empty, string.Empty).OrderBy(x => x.NofSpace).ToList();
-            //var words = GetAllWords(string.Empty).Where(x => x.TargetWord.Contains(" i i ") ).ToList();
-            using (StreamWriter sw = new StreamWriter(@"D:\1.txt"))
+
+            foreach (Word word in words)
             {
-                foreach (Word word in words)
+                
+
+                word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
+                word.Meaning = Common.Common.HarrassWord(word.Meaning);
+
+                word.TargetWord = word.TargetWord.Trim(Common.Common.Separators);
+
+
+                var similarWords = GetWords(0, word.TargetWord);
+                foreach (var similarWord in similarWords)//if there are similar words delete them
                 {
-                    word.TargetWord = Common.Common.HarrassWord(word.TargetWord);
-                    word.Meaning = Common.Common.HarrassWord(word.Meaning);
-
-                    //if (word.TargetWord.Contains(" i i ") &&
-                    //    word.Meaning.Contains(" i i ")
-                    //    )
-                    //{
-                    //    //word.TargetWord = word.TargetWord.Substring(1);
-                    //    //word.TargetWord = word.TargetWord.Substring(0, word.TargetWord.Length -1);
-
-                    //    //word.Meaning = word.Meaning.Substring(1);
-                    //    //word.Meaning = word.Meaning.Substring(0, word.Meaning.Length - 1);
-
-                    //    //if (word.TargetWord.Contains("i   i"))
-                    //    //{
-                    //        word.TargetWord = word.TargetWord.Replace(" i i ", " ");
-                    //        word.Meaning = word.Meaning.Replace("i   i", " ");
-                    //    //}
-                    //}
-
-                    string tt = word.TargetWord;
-                    string tt1 = word.Meaning;
-
-                    if (word.Meaning.Length % 2 != 0)
-                    {
-                        word.Meaning = word.Meaning.Trim(Common.Common.Separators);
-                    }
-                    if (word.Meaning.Length % 2 == 0)
-                    {
-                        char[] chars = word.Meaning.ToLower().ToCharArray();
-                        bool isSymetric = true;
-                        for (int i = 0; i < word.Meaning.Length / 2; i++)
-                        {
-                            if (chars[i] != chars[chars.Length / 2 + i])
-                            {
-                                isSymetric = false;
-                                break;
-                            }
-                        }
-
-                        if (isSymetric)
-                        {
-                            word.Meaning = word.Meaning.Substring(0, word.Meaning.Length / 2).Trim();
-                            UpdateWord(word.Id, word.TargetWord, word.Meaning, null, null, 0, null, null, null);
-                            sw.WriteLine(word.Id + "\t" + word.TargetWord + "\t" + word.Meaning);
-                        }
-                    }
-                    word.TargetWord = word.TargetWord.Trim(Common.Common.Separators);
-                    int count = word.TargetWord.Split(' ').Length - 1;
-                    word.NofSpace = (byte)count;
-                    if (word.NofSpace < 0)
-                        word.NofSpace = null;
-
-                    UpdateWord(word.Id, word.TargetWord, word.Meaning, null, null, 0, word.NofSpace, word.WrittenByMe, null);
+                    if (similarWord.Id != word.Id)
+                        DeleteWord(similarWord.Id);
                 }
+
+                int count = word.TargetWord.Split(' ').Length - 1;
+                word.NofSpace = (byte)count;
+                if (word.NofSpace < 0)
+                    word.NofSpace = null;
+
+
+
+                UpdateWord(word.Id, word.TargetWord, word.Meaning, null, null, 0, word.NofSpace, word.WrittenByMe, null);
             }
+
         }
 
         public List<Word> GetAllWords(string userId, string containText)
@@ -325,7 +308,7 @@ namespace Mehrsan.Dal.DB
                            group h by (h.ReviewTime.Year.ToString() + "/" + h.ReviewTime.Month.ToString() + "/" + h.ReviewTime.Day.ToString()) into g
                            select new { Count = g.Count(), Date = g.Key }).ToList();
 
-            result = (from item in resultq select new ChartData() { X = (DateTime.Now - DateTime.Parse(item.Date)).Days, Y = item.Count }).ToList();
+            result = (from item in resultq select new ChartData() { X = (DateTime.Now - DateTime.Parse(item.Date)).Days, Y = item.Count, Total = item.Count }).ToList();
 
             result = (from item in result orderby item.X ascending select item).ToList();
 

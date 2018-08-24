@@ -10,7 +10,7 @@ namespace Mehrsan.Dal.DB.Interface
         
         #endregion
 
-            #region Methods
+        #region Methods
 
         bool AddToGraph(Word srcWord, Word dstWord);
         bool DeleteWord(long id);
@@ -19,7 +19,7 @@ namespace Mehrsan.Dal.DB.Interface
         List<Graph> GetGraphs();
         List<History> GetHistories(long wordId, DateTime reviewTime);
         History GetLastHistory(long wordId);
-        Word GetWordByTargetWord(string word);
+        Word GetWordByTargetWord(string searchKey);
         List<Word> GetWords(long id, string targetWord);
         List<Word> GetWordsForReview(string userId, DateTime reviewDate, int resultCount);
         List<Word> GetWordsLike(string word);

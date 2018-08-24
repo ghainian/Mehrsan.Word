@@ -32,6 +32,9 @@ namespace Mehrsan.Business
 
         #region Methods
 
+        /// <summary>
+        /// This is the repository for handling word processing requirements
+        /// </summary>
         public WordRepository()
         {
             _dalInstance = new DAL();
@@ -105,15 +108,21 @@ namespace Mehrsan.Business
                 List<Word> words = Dal.GetAllWords(userId, containText);
 
                 var newWords = words.Select(s => WordApisInstance.GetSerializableWord(s)).ToList();
+
                 return newWords;
             }
         }
 
-        public Word GetWordByTargetWord(string word)
+        /// <summary>
+        /// Returns the first word in search result condidering the search key
+        /// </summary>
+        /// <param name="searchKey"></param>
+        /// <returns>Returns the first word object in search result condidering the search key</returns>
+        public Word GetWordByTargetWord(string searchKey)
         {
             using (_dalInstance.DbContext)
             {
-                var result =  WordApisInstance.GetWordByTargetWord(word);
+                var result =  WordApisInstance.GetWordByTargetWord(searchKey);
                 return result;
             }
         }

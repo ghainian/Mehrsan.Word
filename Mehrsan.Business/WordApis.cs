@@ -72,6 +72,7 @@ namespace Mehrsan.Business
                 StartTime = word.StartTime,
                 EndTime = word.EndTime,
                 WrittenByMe = word.WrittenByMe,
+                NofSpace = word.NofSpace
                 //Graphs = null,
                 //Graphs1 = null,
 

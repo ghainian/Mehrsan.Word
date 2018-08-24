@@ -16,7 +16,8 @@ using Microsoft.AspNetCore.Authorization;
 namespace Mehrsan.Core.Web.Controllers
 {
     //[System.Web.Http.Authorize]
-    
+
+    [Authorize(Policy = "AdminUser")]
     public class WordController : Controller
     {
         #region Fields
@@ -153,7 +154,7 @@ namespace Mehrsan.Core.Web.Controllers
         }
 
         // POST: api/Word
-        [Authorize(Policy = "AdminUser")]
+        
         public bool UpdateWord(Mehrsan.Dal.DB.Word word)
         {
 

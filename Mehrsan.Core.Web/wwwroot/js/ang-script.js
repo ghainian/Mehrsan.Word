@@ -512,8 +512,10 @@ var myApp = angular.module("myModule", [])
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             function setStartTime() {
-                if (!_words[_wordIndex].ReviewStartTime || _words[_wordIndex].ReviewStartTime == null || _words[_wordIndex].ReviewStartTime == "")
-                _words[_wordIndex].ReviewStartTime = new Date();
+
+                if (_words[_wordIndex] && (!_words[_wordIndex].ReviewStartTime || _words[_wordIndex].ReviewStartTime == null || _words[_wordIndex].ReviewStartTime == ""))
+                    _words[_wordIndex].ReviewStartTime = new Date();
+
             }
             
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1357,22 +1359,27 @@ var myApp = angular.module("myModule", [])
                     headers.Authorization = 'Bearer ' + token;
                 }
 
-                $http({
+                $.ajax({
+
                     method: 'GET',
                     url: _webUrl + 'Word/DeleteWord?id=' + wordId,
                     headers: { 'Authorization': 'Bearer ' + token },
+                    async: true,
+                    dataType: "",
+                    scriptCharset: "utf-8",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    encoding: "UTF-8",
+                    headers: headers,
+                    success: function (result) {
+                        loadWords();
+                        _wordIndex = 0;
+                        showWord(_wordIndex);
+                        showResult(false, " Word deleted successfully ");
+                    },
+                    error: function (html) {
+                        showResult(false, " Deleting word raised error ");
 
-                }).then(function successCallback(response) {
-
-                    result = response.data
-                    showResult(result, 'Word deleted successfully');
-                    _words.splice(_wordIndex);//removing deleted item from array
-                    
-                    showWord(_wordIndex);
-
-
-                }, function errorCallback(err) {
-                    showResult(false, " Error deleting word ");
+                    }
                 });
 
 
