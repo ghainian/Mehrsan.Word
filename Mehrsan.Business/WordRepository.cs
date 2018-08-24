@@ -255,17 +255,7 @@ namespace Mehrsan.Business
                 return result;
             }
         }
-
-        public string GetWordOnly(long id)
-        {
-            using (_dalInstance.DbContext)
-            {
-                Word word = Dal.GetWords(id, string.Empty).FirstOrDefault();
-
-                return word.TargetWord;
-            }
-        }
-
+        
         public async Task GetWordsRelatedInfo()
         {
             using (_dalInstance.DbContext)
@@ -425,8 +415,7 @@ namespace Mehrsan.Business
         {
             using (_dalInstance.DbContext)
             {
-                List<Word> words = Dal.GetWordsForReview(userId, DateTime.Now, 20);
-
+                List<Word> words = Dal.GetWordsForReview(userId, DateTime.Now, Common.Common.NofWordsForPreview);
                 var newWords = words.Select(s => WordApisInstance.GetSerializableWord(s)).ToList();
                 return newWords;
             }

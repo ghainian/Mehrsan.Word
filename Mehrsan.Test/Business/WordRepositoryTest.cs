@@ -6,6 +6,7 @@ using Mehrsan.Dal.DB;
 using Mehrsan.Test.Controllers;
 using Mehrsan.Test.Store;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Mehrsan.Test.Business
 {
@@ -17,7 +18,7 @@ namespace Mehrsan.Test.Business
         private static IWordRepository _wordRepository = null;
         private TestContext testContextInstance;
         private static long _wordId = 0;
-        private static string _userId = "7d8d23dd-2983-4ae0-8507-87a17e12bb9a";
+        
         #endregion
 
         #region Properties
@@ -133,6 +134,27 @@ namespace Mehrsan.Test.Business
             Assert.IsFalse(result);
 
         }
+
+        [TestMethod]
+        public void GetWordsForReview()
+        {
+            var words = _wordRepository.GetWordsForReview(_userId);            
+            Assert.AreEqual(words.Count,Common.Common.NofWordsForPreview);
+
+            _wordRepository = new WordRepository();
+            var wordList = _wordRepository.GetAllWords(_userId, string.Empty);
+
+
+            var wordsForPreview = (from w in wordList             
+             orderby w.NextReviewDate ascending
+             select w).Take(Common.Common.NofWordsForPreview).ToList();
+
+
+            wordsForPreview.Exists(x => words.Select(y=>y.Id).ToList().Contains(x.Id));//checking that all elements of wordsForPreview exists in the words list
+            words.Exists(x => wordsForPreview.Select(y => y.Id).ToList().Contains(x.Id));//checking that all elements of words exists in the wordsForPreview list
+        }
+
+
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:

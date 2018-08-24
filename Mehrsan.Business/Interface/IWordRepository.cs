@@ -24,8 +24,7 @@ namespace Mehrsan.Business.Interface
         List<ChartData> GetChartData();
         List<History> GetHistories(long wordId, DateTime reviewTime);
         History GetLastHistory(long wordId);
-        Word GetWordByTargetWord(string word);
-        string GetWordOnly(long id);
+        Word GetWordByTargetWord(string word);        
         List<Word> GetWords(long id, string targetWord);
         List<Word> GetWordsForReview(string userId);
         Task GetWordsRelatedInfo();

@@ -25,6 +25,7 @@ namespace Mehrsan.Common
         public static string[] HtmlTags { get; private set; }
         public static char[] Separators { get; private set; }
         public static char[] PersianAlphabet { get; private set; }
+        public static int NofWordsForPreview { get; set; } = 20;
 
         #endregion
 
