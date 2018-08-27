@@ -11,10 +11,12 @@ using System.IO;
 using Mehrsan.Dal.DB;
 using Microsoft.Extensions.Logging;
 using Mehrsan.Business.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mehrsan.Core.Web.Controllers
 {
 
+    [Authorize(Policy = "AdminUser")]
     public class HomeController : Controller
     {
         #region Fields

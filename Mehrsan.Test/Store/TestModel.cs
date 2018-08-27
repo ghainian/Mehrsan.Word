@@ -44,7 +44,7 @@ namespace Mehrsan.Test.Store
 
             newWord.IsAmbiguous = true;
             newWord.Meaning = Guid.NewGuid().ToString();
-            newWord.TargetWord = Guid.NewGuid().ToString();
+            newWord.TargetWord = Guid.NewGuid().ToString() + " "+ Guid.NewGuid().ToString();
             newWord.WrittenByMe = true;
             newWord.StartTime = new TimeSpan(100);
             newWord.EndTime = new TimeSpan(200);

@@ -79,6 +79,8 @@ namespace Mehrsan.Business
         {
             using (_dalInstance.DbContext)
             {
+                word.TargetWord = word.TargetWord.Trim();
+                word.NofSpace = (short)(word.TargetWord.Length - word.TargetWord.Replace(" ", "").Length);
                 return WordApisInstance.CreateDefaultWord(word);
             }
         }

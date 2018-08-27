@@ -74,7 +74,9 @@ namespace Mehrsan.Test.Business
         {
             TestModel.Instance.Initialise();
             _wordRepository.CreateDefaultWord(TestModel.Instance.SampleWord);
-            var word = TestModel.Instance.SampleWord;
+            _wordRepository = new WordRepository();
+            var word = _wordRepository.GetWords(TestModel.Instance.SampleWord.Id, string.Empty)[0];
+            Assert.IsTrue(word.NofSpace > 0);
             Assert.IsTrue( word.Id > 0);
             Assert.IsTrue(( word.NextReviewDate - DateTime.Now).TotalDays <= 1  );
             Assert.AreEqual( word.TargetLanguageId , (long) Languages.Danish);

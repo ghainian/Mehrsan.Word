@@ -72,7 +72,9 @@ namespace Mehrsan.Business
                 StartTime = word.StartTime,
                 EndTime = word.EndTime,
                 WrittenByMe = word.WrittenByMe,
-                NofSpace = word.NofSpace
+                NofSpace = word.NofSpace,
+                TargetLanguageId = word.TargetLanguageId,
+                MeaningLanguageId = word.MeaningLanguageId
                 //Graphs = null,
                 //Graphs1 = null,
 

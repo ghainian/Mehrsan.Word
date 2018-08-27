@@ -152,7 +152,7 @@ var myApp = angular.module("myModule", [])
 
                 $http({
                     method: 'GET',
-                    url: _webUrl + 'Word/GetWordsForReview',
+                    url: _webUrl + 'Home/GetWordsForReview',
                     async: false,
                     //scriptCharset: "utf-8",
                     contentType: "application/json",
@@ -678,7 +678,7 @@ var myApp = angular.module("myModule", [])
                 }
 
                 $.ajax({
-                    url: '/api/Word/GetWordsInfoFromOrdNet',
+                    url: '/api/Home/GetWordsInfoFromOrdNet',
                     type: 'GET',
                     async: true,
                     headers: headers,
@@ -731,7 +731,7 @@ var myApp = angular.module("myModule", [])
 
                 $http({
                     method: 'GET',
-                    url: _webUrl + 'Word/UpdateWordStatus?knowsWord=' + result + '&wordId=' + wordId + '&reviewTime=' + reviewTime,
+                    url: _webUrl + 'Home/UpdateWordStatus?knowsWord=' + result + '&wordId=' + wordId + '&reviewTime=' + reviewTime,
                     headers: { 'Authorization': 'Bearer ' + token },
 
                 }).then(function successCallback(response) {
@@ -876,7 +876,7 @@ var myApp = angular.module("myModule", [])
 
                 $http({
                     method: 'POST',
-                    url: _webUrl + 'Word/LoadRelatedSentences?wordId=' + currentWord.id,
+                    url: _webUrl + 'Home/LoadRelatedSentences?wordId=' + currentWord.id,
                     headers: { 'Authorization': 'Bearer ' + token },
 
 
@@ -1039,7 +1039,7 @@ var myApp = angular.module("myModule", [])
 
                 var wordText = '';
                 $.ajax({
-                    url: _webUrl + 'Word/GetWord',
+                    url: _webUrl + 'Home/GetWord',
                     type: 'post',
                     async: false,
                     headers: headers,
@@ -1075,7 +1075,7 @@ var myApp = angular.module("myModule", [])
 
                 $http({
                     method: 'POST',
-                    url: _webUrl + 'Word/GetReviewHistory',
+                    url: _webUrl + 'Home/GetReviewHistory',
                     headers: { 'Authorization': 'Bearer ' + token },
 
 
@@ -1110,7 +1110,7 @@ var myApp = angular.module("myModule", [])
                 }
 
                 $.ajax({
-                    url: _webUrl + 'Word/GetWordByTargetWord',
+                    url: _webUrl + 'Home/GetWordByTargetWord',
                     type: 'post',
                     async: false,
                     headers: headers,
@@ -1235,7 +1235,7 @@ var myApp = angular.module("myModule", [])
 
                 $http({
                     method: 'GET',
-                    url: _webUrl + 'Word/GetAllWords?containText=' + containText,
+                    url: _webUrl + 'Home/GetAllWords?containText=' + containText,
                     headers: { 'Authorization': 'Bearer ' + token },
 
                 }).then(function successCallback(response) {
@@ -1305,7 +1305,7 @@ var myApp = angular.module("myModule", [])
 
                 $http({
                     method: 'GET',
-                    url: _webUrl + 'Word/CreateGraph',
+                    url: _webUrl + 'Home/CreateGraph',
                     headers: { 'Authorization': 'Bearer ' + token },
 
                 }).then(function successCallback(response) {
@@ -1327,7 +1327,7 @@ var myApp = angular.module("myModule", [])
 
                 $http({
                     method: 'GET',
-                    url: _webUrl + 'Word/SetWordAmbiguous?wordId=' + wordId,
+                    url: _webUrl + 'Home/SetWordAmbiguous?wordId=' + wordId,
                     headers: { 'Authorization': 'Bearer ' + token },
 
                 }).then(function successCallback(response) {
@@ -1362,7 +1362,7 @@ var myApp = angular.module("myModule", [])
                 $.ajax({
 
                     method: 'GET',
-                    url: _webUrl + 'Word/DeleteWord?id=' + wordId,
+                    url: _webUrl + 'Home/DeleteWord?id=' + wordId,
                     headers: { 'Authorization': 'Bearer ' + token },
                     async: true,
                     dataType: "",
@@ -1436,7 +1436,7 @@ var myApp = angular.module("myModule", [])
 
 
                 $.ajax({
-                    url: _webUrl + 'Word/UpdateWord',
+                    url: _webUrl + 'Home/UpdateWord',
                     type: 'post',
                     async: true,
                     dataType: "json",
@@ -1551,7 +1551,7 @@ var myApp = angular.module("myModule", [])
                 }
 
                 $.ajax({
-                    url: _webUrl + 'Word/PostWord',
+                    url: _webUrl + 'Home/PostWord',
                     type: 'post',
                     async: true,
                     dataType: "json",

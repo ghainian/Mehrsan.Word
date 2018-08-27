@@ -68,18 +68,24 @@ namespace Mehrsan.Core.Web
             services.AddTransient<IWordRepository, WordRepository>();
             services.AddTransient<IWordEntities, WordEntities>();
 
-            services.AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(new Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions()
-                {
-                    LoginPath = new PathString(@"/Account/Login")
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/login");
 
-                })
+
+            services
+                .AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme)
+
                 .AddGoogle(googleOptions =>
             {
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            })
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/login";
+                options.LogoutPath = "/Identity/Account/logout";
             });
 
+            
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminUser", policy =>
@@ -133,14 +139,14 @@ namespace Mehrsan.Core.Web
         }
     }
     internal class ClaimsTransformer : IClaimsTransformation
-{
-    // Can consume services from DI as needed, including scoped DbContexts
-    public ClaimsTransformer(IHttpContextAccessor httpAccessor) { }
-    public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal p)
     {
-        p.AddIdentity(new ClaimsIdentity());
-        return Task.FromResult(p);
+        // Can consume services from DI as needed, including scoped DbContexts
+        public ClaimsTransformer(IHttpContextAccessor httpAccessor) { }
+        public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal p)
+        {
+            p.AddIdentity(new ClaimsIdentity());
+            return Task.FromResult(p);
+        }
     }
-}
 
 }
