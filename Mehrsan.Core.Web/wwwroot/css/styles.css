@@ -235,9 +235,8 @@ ul.unstyled {
 }
 
 .wordId {
-    position: absolute;
-    left: 4px;
-    top: 4px;
+    position: relative;
+    left: 4px;    
     margin-bottom: 20px;
 }
 

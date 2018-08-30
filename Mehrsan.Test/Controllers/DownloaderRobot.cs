@@ -20,7 +20,7 @@ using Mehrsan.Common;
 namespace Mehrsan.Test.Controllers
 {
     [TestClass]
-    public class EmployeeControllerTest
+    public class DownloaderRobot:Setup
     {
         #region Fields
         IWebDriver driver = null;

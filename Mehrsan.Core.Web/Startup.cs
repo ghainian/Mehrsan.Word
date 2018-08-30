@@ -67,6 +67,7 @@ namespace Mehrsan.Core.Web
             services.AddTransient<IWordApis, WordApis>();
             services.AddTransient<IWordRepository, WordRepository>();
             services.AddTransient<IWordEntities, WordEntities>();
+            services.AddTransient<Common.Interface.ILogger, Common.Logger>();
 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/login");
 
@@ -108,7 +109,6 @@ namespace Mehrsan.Core.Web
         {
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddFile("Logs/myapp-{Date}.txt");
 
             loggerFactory.AddDebug();
             if (env.IsDevelopment())

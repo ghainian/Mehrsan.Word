@@ -9,11 +9,13 @@ namespace Mehrsan.Test.Controllers
     public class Setup
     {
         #region Fields
-
         protected static string _userId = "7d8d23dd-2983-4ae0-8507-87a17e12bb9a";
-
         #endregion
 
+        #region Properties
+        protected Common.Logger Logger { get; } = new Common.Logger();
+        #endregion
+        
         #region Methods
 
         public Setup()

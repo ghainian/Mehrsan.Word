@@ -21,6 +21,7 @@ namespace Mehrsan.Test.Store
         #region Properties
 
         public Word SampleWord { get; set; }
+        public Word SampleWord2 { get; set; }
 
         public History SampleHistory { get; set; }
 
@@ -50,6 +51,20 @@ namespace Mehrsan.Test.Store
             newWord.EndTime = new TimeSpan(200);
             newWord.NextReviewDate = DateTime.Now.AddDays(100);
             SampleWord = newWord;
+
+            var word = new Word();
+            word.TargetWord = "test word " + Guid.NewGuid().ToString();
+            word.Meaning = "test meaning " + Guid.NewGuid().ToString();
+            word.IsAmbiguous = true;
+            word.StartTime = new TimeSpan(1, 1, 1);
+            word.EndTime = new TimeSpan(2, 2, 2);
+            word.MeaningLanguageId = 1;
+            word.TargetLanguageId = 2;
+            word.WrittenByMe = true;
+            word.NextReviewDate = DateTime.Now.AddDays(200);
+            SampleWord2 = word;
+
+
 
             history.Result = true;
             history.ReviewPeriod = 1;

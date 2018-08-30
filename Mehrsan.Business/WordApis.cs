@@ -13,11 +13,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Mehrsan.Dal.DB.Interface;
+using Mehrsan.Common.Interface;
 
 namespace Mehrsan.Business
 {
     public class WordApis : IWordApis
     {
+        public ILogger Logger { get; }
         #region Fields
 
         private IDAL _dalInstance;
@@ -32,8 +34,9 @@ namespace Mehrsan.Business
 
         #region Methods
 
-        public WordApis(IDAL dalInstance)
+        public WordApis(ILogger logger, IDAL dalInstance)
         {
+            this.Logger = logger;
             _dalInstance = dalInstance;
         }
 
@@ -731,6 +734,12 @@ namespace Mehrsan.Business
             if (inpWord.WrittenByMe != null)
                 word.WrittenByMe = inpWord.WrittenByMe;
 
+            if (inpWord.TargetLanguageId != 0)
+                word.TargetLanguageId = inpWord.TargetLanguageId;
+
+            if (inpWord.MeaningLanguageId != 0)
+                word.MeaningLanguageId = inpWord.MeaningLanguageId;
+
             if (inpWord.StartTime != null && inpWord.StartTime.Value != TimeSpan.MinValue)
                 word.StartTime = inpWord.StartTime;
             if (inpWord.EndTime != null && inpWord.EndTime.Value != TimeSpan.MinValue)
@@ -748,7 +757,9 @@ namespace Mehrsan.Business
                 0,
                 (short?)count,
                 word.WrittenByMe,
-                null) > 0;
+                null,
+                word.TargetLanguageId,
+                word.MeaningLanguageId) > 0;
 
             return updateResult;
         }
@@ -791,13 +802,13 @@ namespace Mehrsan.Business
                         } while (imageIndex != -1 && imageCounter <= Mehrsan.Common.Common.MaxImagePerWord);
                         string message = imageCounter + " Image loaded for word " + trimedWord;
                         if (downloadedNow)
-                            Mehrsan.Common.Logger.Log(message);
+                            Logger.Log(message);
                     }
                 }
                 else
                 {
                     string message = "Failed to load google image file for word " + trimedWord;
-                    Mehrsan.Common.Logger.Log(message);
+                    Logger.Log(message);
                 }
             }
             catch (Exception e)

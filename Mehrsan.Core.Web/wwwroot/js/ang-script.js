@@ -848,22 +848,18 @@ var myApp = angular.module("myModule", [])
                 wordId = currentWord.id;
                 $('#lblWordId').val(wordId.toString())
                 var wordId = ' <h4 >' + currentWord.id.toString() + '</h4>';
-                _newCarouselhtml = '<div class="item active" id="slide1">' +
-                    //'<video id="vidMain" controls autoplay loop muted style="opacity:0.8;  ">' +
-                    //                  '<source id="vidMainSrc" src="/video/polina.webm" type="video/webm">' +
-                    //              '</video>' +
-                    '<div id="divNewWord"  class="currentWord carousel-caption ' + className + '">' +
+                _newCarouselhtml = '<div class="item active" style="text-align:center;"  id="slide1">' +
 
-                    '<div class="wordId" data-original-title="Id of The word" data-toggle="tooltip" >' +
-                    wordId +
-                    '</div>' +
                     '<div >' +
-                    ' <p>' + newWord + '</p>'
+                    ' <h1>' + newWord + '</h1>'
                     + '</div>' +
                     '<div >' +
                     '<p>' +
-                    '<small>' + currentWord.meaning + '</small>'
-                    + '</p>';
+                    '<h1>' + currentWord.meaning + '</h1>'
+                    + '</p>'
+                    + '</div>' +
+                    '<div class="wordId" data-original-title="Id of The word" data-toggle="tooltip" >' +
+                    wordId;
 
                 setNewWordPanel(currentWord.targetWord, currentWord.meaning, currentWord.id, currentWord.writtenByMe);
 

@@ -673,19 +673,20 @@ function showWord(i) {
     var wordId = ' <h4 >' + currentWord.Id.toString() + '</h4>';
     _newCarouselhtml = '<div class="item active" id="slide1">' +
 
-                            '<div id="divNewWord"  class="currentWord carousel-caption ' + className + '">' +
+        '<div id="divNewWord"  class="currentWord carousel-caption ' + className + '">' +
 
-                                '<div class="wordId" data-original-title="Id of The word" data-toggle="tooltip" >' +
-                                    wordId +
-                                '</div>' +
-                                '<div >' +
-                                        ' <p>' + newWord + '</p>'
-                             + '</div>' +
-                            '<div >' +
-                                '<p>' +
-                                    '<small>' + currentWord.Meaning + '</small>'
-                             + '</p>';
 
+        '<div >' +
+        ' <p>' + newWord + '</p>'
+        + '</div>' +
+
+        '<div >' +
+        '<p>' +
+        '<small>' + currentWord.Meaning + '</small>'
+        + '</p>'
+        + '</div>' +
+        '<div class="wordId" data-original-title="Id of The word" data-toggle="tooltip" >' +
+        wordId;
     setNewWordPanel(currentWord.TargetWord, currentWord.Meaning, currentWord.Id, currentWord.WrittenByMe);
 
     showWordImages(i);

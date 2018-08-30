@@ -89,6 +89,34 @@ namespace Mehrsan.Test.Business
         }
 
         [TestMethod]
+        public void UpdateWord()
+        {
+            TestModel.Instance.Initialise();
+            _wordRepository.CreateDefaultWord(TestModel.Instance.SampleWord);
+            _wordRepository = new WordRepository();
+            var word = TestModel.Instance.SampleWord2;
+            word.Id = TestModel.Instance.SampleWord.Id;
+            
+            _wordRepository = new WordRepository();//Checking that the history is created
+            var histories = _wordRepository.UpdateWord(word.Id, word);
+
+            _wordRepository = new WordRepository();
+            var updatedWord = _wordRepository.GetWords(TestModel.Instance.SampleWord.Id, string.Empty)[0];
+
+            Assert.AreEqual(  Common.Common.HarrassWord(word.TargetWord), updatedWord.TargetWord, $" Updated targetWord = {updatedWord.TargetWord}, initial targetWord = {word.TargetWord}");
+            Assert.AreEqual(  Common.Common.HarrassWord(word.Meaning), updatedWord.Meaning, $" Updated Meaning = {updatedWord.Meaning}, initial Meaning = {word.Meaning}");
+            Assert.AreEqual(  word.IsAmbiguous, updatedWord.IsAmbiguous, $" Updated IsAmbiguous = {updatedWord.IsAmbiguous}, initial IsAmbiguous = {word.IsAmbiguous}");
+            Assert.AreEqual(  word.StartTime, updatedWord.StartTime, $" Updated StartTime = {updatedWord.StartTime}, initial StartTime = {word.StartTime}");
+            Assert.AreEqual(  word.EndTime, updatedWord.EndTime, $" Updated EndTime = {updatedWord.EndTime}, initial EndTime = {word.EndTime}");
+            Assert.AreEqual(  word.MeaningLanguageId, updatedWord.MeaningLanguageId, $" Updated MeaningLanguageId = {updatedWord.MeaningLanguageId}, initial MeaningLanguageId = {word.MeaningLanguageId}");
+            Assert.AreEqual(  word.TargetLanguageId, updatedWord.TargetLanguageId, $" Updated TargetLanguageId = {updatedWord.TargetLanguageId}, initial TargetLanguageId = {word.TargetLanguageId}");
+            Assert.AreEqual(  word.WrittenByMe, updatedWord.WrittenByMe, $" Updated WrittenByMe = {updatedWord.WrittenByMe}, initial WrittenByMe = {word.WrittenByMe}");
+            Assert.AreEqual(  word.UserId, updatedWord.UserId, $" Updated UserId = {updatedWord.UserId}, initial UserId = {word.UserId}");
+
+
+        }
+
+        [TestMethod]
         public void UpdateNofSpaces()
         {
             _wordRepository.UpdateNofSpaces();

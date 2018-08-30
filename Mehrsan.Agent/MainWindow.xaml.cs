@@ -1,6 +1,7 @@
 ﻿using Mehrsan.Business;
 using Mehrsan.Business.Interface;
 using Mehrsan.Common;
+using Mehrsan.Common.Interface;
 using Mehrsan.Dal.DB;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,14 @@ namespace Mehrsan.Agent
         #region Properties
 
         public IWordRepository WordRepositoryInstance { get; set; }
+        public ILogger Logger { get; }
         #endregion
 
-        public MainWindow(IWordRepository wordRepository)
+        public MainWindow(ILogger logger,  IWordRepository wordRepository)
         {
             InitializeComponent();
-        
+
+            this.Logger = logger;
             //RemoveUnwantedFiles();
 
             GetBackup();

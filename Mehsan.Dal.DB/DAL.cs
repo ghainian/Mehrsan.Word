@@ -324,19 +324,11 @@ namespace Mehrsan.Dal.DB
 
         }
 
-        public int UpdateWord(long wordId, string word, string meaning, TimeSpan? startTime, TimeSpan? endTime, int reviewPeriod, short? nofSpace, bool? writtenByMe, bool? isAmbiguous)
+        public int UpdateWord(long wordId, string word, string meaning, TimeSpan? startTime, TimeSpan? endTime, int reviewPeriod, short? nofSpace, bool? writtenByMe, bool? isAmbiguous, long targetLanguageId = 0, long meaningLanguageId = 0)
         {
             if (reviewPeriod >= Common.Common.MaxReviewDate)
                 reviewPeriod = Common.Common.MaxReviewDate;
-
-
-            if (!string.IsNullOrEmpty(word))
-            {
-                var q = (from w in DbContext.Words where w.Id != wordId && w.TargetWord == word select w);
-                //var list = q.ToList();
-                if (q.Any())
-                    return 0;
-            }
+            
             Word updatedWord = DbContext.Words.Find(wordId);
             DbContext.Words.Attach(updatedWord);
 
@@ -391,6 +383,18 @@ namespace Mehrsan.Dal.DB
             {
                 updatedWord.IsAmbiguous = isAmbiguous;
                 entry.Property(e => e.IsAmbiguous).IsModified = true;
+            }
+
+            if (targetLanguageId != 0)
+            {
+                updatedWord.TargetLanguageId = targetLanguageId;
+                entry.Property(e => e.TargetLanguageId).IsModified = true;
+            }
+
+            if (meaningLanguageId != 0)
+            {
+                updatedWord.MeaningLanguageId = meaningLanguageId;
+                entry.Property(e => e.MeaningLanguageId).IsModified = true;
             }
             return DbContext.SaveChanges();
 

@@ -27,7 +27,7 @@ namespace Mehrsan.Dal.DB.Interface
         List<Word> LoadRelatedSentences(long wordId);
         void MergeRepetitiveWords();
         void UpdateNofSpaces();
-        int UpdateWord(long wordId, string word, string meaning, TimeSpan? startTime, TimeSpan? endTime, int reviewPeriod, short? nofSpace, bool? writtenByMe, bool? isAmbiguous);
+        int UpdateWord(long wordId, string word, string meaning, TimeSpan? startTime, TimeSpan? endTime, int reviewPeriod, short? nofSpace, bool? writtenByMe, bool? isAmbiguous, long targetLanguageId = 0, long meaningLanguageId = 0);
         bool WordExists(long id);
         List<AspNetUser> GetUsers(string searchText);
         WordEntities NewWordEntitiesInstance();

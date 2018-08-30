@@ -10,11 +10,7 @@
 
 
     <div ng-app="myModule" ng-controller="myController">
-
         <div class="container-fluid" id="main" data-ng-init="playWordQueue()">
-
-            
-            
             <div class="container-fluid ">
                 <div class="row" id="divWordImages">
                     <div class="container-outer " style="display:none">
@@ -24,57 +20,27 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="row" id="myCarousel">
-                <div class="col-12">
+                <div class="col-12" style="background:#999999">
 
-                    <div class="col-lg-1 ">
-                        &nbsp;
-                    </div>
-                    <div class="col-lg-10" style="background:#999999">
-
-                        <div class="col-lg-2">
-                            <!-- Indicators -->
-
-                        </div>
-                        <div class="col-lg-8 videoFrame">
-                            <div class="mainVideo embed-responsive " style="margin:auto;">
-
-
-                                <div style="position:relative;">
-
-                                    <ol class="carousel-indicators">
-                                        <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
-                                        <li data-slide-to="1" data-target="#myCarousel"></li>
-                                        <li data-slide-to="2" data-target="#myCarousel"></li>
-                                    </ol>
-                                    <div id="divCarousel" class="carousel-inner" style="opacity:1; ">
-
-                                    </div><!-- carousel-inner -->
-                                    <!-- Controls -->
-                                    <a class="left carousel-control" data-slide="prev" href="#myCarousel" id="ancLeftArrowCarousel"><span class="icon-prev"></span></a>
-                                    <a class="right carousel-control" data-slide="next" href="#myCarousel" id="ancRightArrowCarousel"><span class="icon-next"></span></a>
-                                </div>
+                    <div>
+                        <div style="">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
+                            </ol>
+                            <div id="divCarousel" class="carousel-inner" style="opacity:1; ">
                             </div>
+                            <a class="top-left" data-slide="prev" href="#myCarousel" id="ancLeftArrowCarousel"><span class="icon-prev"></span></a>
+                            <a class="top-right" data-slide="next" href="#myCarousel" id="ancRightArrowCarousel"><span class="icon-next"></span></a>
                         </div>
                     </div>
-                    <div class="col-lg-1 ">
-                        &nbsp;
-                    </div>
-
-
                 </div>
             </div><!-- end myCarousel -->
             <div class="row" id="bigCallout2">
                 <div class="col-12">
 
-                    <!-- end alert -->
-
-                    <div class="col-lg-1">
-                        &nbsp;
-                    </div>
-                    <div class="well col-lg-10">
+                    <div class="well col-lg-12">
 
                         <div class="col-lg-4 ">
                             <a href="" class="btn btn-small btn-default" id="btnAddWord" data-toggle="tooltip" data-original-title="Shows the add word panel">New<span class="glyphicon "></span></a>
@@ -114,10 +80,7 @@
             </div><!-- end bigCallout -->
             <div class="row " id="bigCallout1">
 
-                <div class="col-lg-1">
-                    &nbsp;
-                </div>
-                <div id="successAlert" class="col-10">
+                <div id="successAlert" class="col-12">
                     <button type="button" id="btnCloseAddWord" class="close">&times;</button>
                     <div class="panel">
                         <form class="form-horizontal">
@@ -153,12 +116,7 @@
                         </form>
                     </div>
                 </div><!-- end alert -->
-                <div class="col-lg-1">
-                    &nbsp;
-                </div>
-                <div class="col-lg-1">
-                    &nbsp;
-                </div>
+                
                 <div id="importFile" class="alert alert-success col-lg-10 alert-block fade in well">
                     <form id="fileupload" action="/api/Word/ImportWords" method="POST" enctype="multipart/form-data">
                         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
@@ -310,7 +268,6 @@
             <div class="col-12">
                 <div class="col-sm-12">
                     <h3>Recently added words</h3>
-
                     <div class="list-group" id="divRecentlyAddedWords" ng-repeat="recentWord in _recentWords">
                         <a href="#" class="list-group-item">
                             <h4 class="list-group-item-heading">{{recentWord.TargetWord}}   <small>   {{recentWord.Time}}  </small>  </h4>
