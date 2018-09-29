@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <script src="~/js/jquery-1.10.2.js"></script>
-    <script src="~/js/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.js"></script>
+
 
 
     <div ng-app="myModule" ng-controller="myController">
@@ -29,8 +31,10 @@
                             <ol class="carousel-indicators">
                                 <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
                             </ol>
+
                             <div id="divCarousel" class="carousel-inner" style="opacity:1; ">
                                 <div ng-include="'..\\html\\word.html'"></div>
+
                             </div>
                             <a class="top-left" data-slide="prev" href="#myCarousel" id="ancLeftArrowCarousel"><span class="icon-prev"></span></a>
                             <a class="top-right" data-slide="next" href="#myCarousel" id="ancRightArrowCarousel"><span class="icon-next"></span></a>
@@ -117,7 +121,7 @@
                         </form>
                     </div>
                 </div><!-- end alert -->
-                
+
                 <div id="importFile" class="alert alert-success col-lg-10 alert-block fade in well">
                     <form id="fileupload" action="/api/Word/ImportWords" method="POST" enctype="multipart/form-data">
                         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->

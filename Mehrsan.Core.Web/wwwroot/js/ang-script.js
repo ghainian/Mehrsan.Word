@@ -1,6 +1,5 @@
-/// <reference path="angular.min.js" />
 
-var myApp = angular.module("myModule", [])
+var myApp = angular.module("myModule", ['ngSanitize'])
 
     .controller('myController', ['$scope', '$interval', '$http', '$sce',
         function ($scope, $interval, $http, $sce) {
@@ -826,9 +825,8 @@ var myApp = angular.module("myModule", [])
                 _currentWordsParts.splice(0, _currentWordsParts.length)
                 $scope.currentWord = _words[i];
                 var str = $scope.currentWord.targetWord;
-                $scope.wordInSpan = $sce.trustAsHtml(
-                    getWordInSpan($scope.currentWord.id, str)
-                );
+                $scope.wordInSpan = getWordInSpan($scope.currentWord.id, str);
+                $sce.trustAsHtml($scope.wordInSpan);
 
                 $scope.isAmbiguous = $scope.currentWord.IsAmbiguous != null && $scope.currentWord.IsAmbiguous;
                 
