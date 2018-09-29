@@ -1,0 +1,27 @@
+<h4> {{currentWord.id}} </h4>
+<div class='item active' style='text-align:center;' id='slide1'>
+    <div>
+        <p style="background:yellow;">dsa {{$sce.trustAsHtml(wordInSpan)}}</p>
+        <h1 style="background:blue;">{{wordInSpan}} </h1>
+    </div>
+    <div>
+        <p>
+            <h1 style="background:red;">' + {{currentWord.meaning}} + '</h1>'
+
+        </p>
+    </div>
+    <div class='wordId' data-original-title='Id of The word' data-toggle='tooltip'>
+        <h4> {{currentWord.id}} </h4>
+        <ul>
+
+            <li ng-repeat="sentence in relatedSentences">
+               <p ng-bind-html="getWordInSpan(sentence.id, sentence.targetWord)"></p> 
+                <span>
+                    <small>
+                        {{sentence.meaning}}
+                    </small>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

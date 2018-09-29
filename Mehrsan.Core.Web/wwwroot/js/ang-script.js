@@ -2,8 +2,8 @@
 
 var myApp = angular.module("myModule", [])
 
-    .controller('myController', ['$scope', '$interval', '$http',
-        function ($scope, $interval, $http) {
+    .controller('myController', ['$scope', '$interval', '$http', '$sce',
+        function ($scope, $interval, $http, $sce) {
 
 
             //$("#UserId").autocomplete({
@@ -63,8 +63,6 @@ var myApp = angular.module("myModule", [])
                         orientation: "horizontal"
                     });
                 });
-
-
             }
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,15 +86,9 @@ var myApp = angular.module("myModule", [])
 
                     callController();
 
-                    //$("#txtMeaning").on("input propertychange paste", meaningBoxKeyDown);
-                    //$("#txtWord").on("input propertychange paste", meaningBoxKeyDown);
-                    //$("#txtMeaning").on("kyup ", meaningBoxKeyDown);
-                    //$("#txtWord").on("kyup", meaningBoxKeyDown);
-
                     $("#btnUndo").click(undo);
 
                     $('#importFile').slideUp();
-                    //$("#vidMain").on("play", videoPlayingHandler);
 
                     $('#successAlert').slideDown();
 
@@ -105,9 +97,6 @@ var myApp = angular.module("myModule", [])
                     $('#btnImportFile').click(importFile);
 
                     $('#btnCreateGraph').click(createGraph);
-
-                    //$('#btnBatchImport').click(batchImport);
-
                     $('#btnCreateNewWord').click(takeDecisionForNewInformation);
                     $('#btnUpdateWord').click(takeDecisionForNewInformation);
                     $('#btnDeleteWord').click(deleteWord);
@@ -493,7 +482,7 @@ var myApp = angular.module("myModule", [])
                     encoding: "UTF-8",
                     headers: { 'Authorization': 'Bearer ' + token },
                     success: function (result) {
-                        setStartTime()                        
+                        setStartTime()
                         addRecentWord(targetWord, meaning)
                         callback(result);
 
@@ -517,7 +506,7 @@ var myApp = angular.module("myModule", [])
                     _words[_wordIndex].ReviewStartTime = new Date();
 
             }
-            
+
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             function login() {
@@ -620,7 +609,7 @@ var myApp = angular.module("myModule", [])
 
 
                 var item = getWordLocally(_words[_wordIndex].id);
-                
+
                 var curretWordPreviewText = _words[_wordIndex].targetWord.toLowerCase().trim();
                 curretWordPreviewFoundWord = getWordByTargetWord(curretWordPreviewText);
                 curretWordPreviewFoundWord.targetWord = curretWordPreviewFoundWord.targetWord.toLowerCase().trim();
@@ -721,7 +710,7 @@ var myApp = angular.module("myModule", [])
 
             function updateWordStatusToSpecificResult(result, wordId) {
 
-                var reviewTime = new Date() - _words[ _wordIndex ].ReviewStartTime;
+                var reviewTime = new Date() - _words[_wordIndex].ReviewStartTime;
 
                 var token = sessionStorage.getItem(_tokenKey);
                 var headers = {};
@@ -835,35 +824,36 @@ var myApp = angular.module("myModule", [])
                 _numberOfAutomaticRepetitionOfCurrentWord = 0;
                 setStartTime()
                 _currentWordsParts.splice(0, _currentWordsParts.length)
-                var currentWord = _words[i];
-                var str = currentWord.targetWord;
-                var newWord = getWordInSpan(currentWord.id, str);
+                $scope.currentWord = _words[i];
+                var str = $scope.currentWord.targetWord;
+                $scope.wordInSpan = $sce.trustAsHtml(
+                    getWordInSpan($scope.currentWord.id, str)
+                );
 
-                var isAmbiguous = currentWord.IsAmbiguous != null && currentWord.IsAmbiguous;
-                var className = 'word' + (isAmbiguous ? "Ambiguous" : "Normal");
+                $scope.isAmbiguous = $scope.currentWord.IsAmbiguous != null && $scope.currentWord.IsAmbiguous;
+                
+                if ($scope.currentWord.StartTime != null && $scope.currentWord.StartTime != undefined)
+                    playVideo($scope.currentWord);
+                //$('#divCarousel').empty();
+                //wordId = currentWord.id;
+                //$('#lblWordId').val(wordId.toString())
+                //var wordId = ' <h4 >' + currentWord.id.toString() + '</h4>';
+                //_newCarouselhtml = '<div class="item active" style="text-align:center;"  id="slide1">' +
 
-                if (currentWord.StartTime != null && currentWord.StartTime != undefined)
-                    playVideo(currentWord);
-                $('#divCarousel').empty();
-                wordId = currentWord.id;
-                $('#lblWordId').val(wordId.toString())
-                var wordId = ' <h4 >' + currentWord.id.toString() + '</h4>';
-                _newCarouselhtml = '<div class="item active" style="text-align:center;"  id="slide1">' +
+                //    '<div >' +
+                //    ' <h1>' + newWord + '</h1>'
+                //    + '</div>' +
+                //    '<div >' +
+                //    '<p>' +
+                //    '<h1>' + currentWord.meaning + '</h1>'
+                //    + '</p>'
+                //    + '</div>' +
+                //    '<div class="wordId" data-original-title="Id of The word" data-toggle="tooltip" >' +
+                //    wordId;
 
-                    '<div >' +
-                    ' <h1>' + newWord + '</h1>'
-                    + '</div>' +
-                    '<div >' +
-                    '<p>' +
-                    '<h1>' + currentWord.meaning + '</h1>'
-                    + '</p>'
-                    + '</div>' +
-                    '<div class="wordId" data-original-title="Id of The word" data-toggle="tooltip" >' +
-                    wordId;
+                setNewWordPanel($scope.currentWord.targetWord, $scope.currentWord.meaning, $scope.currentWord.id, $scope.currentWord.writtenByMe);
 
-                setNewWordPanel(currentWord.targetWord, currentWord.meaning, currentWord.id, currentWord.writtenByMe);
-
-                showWordImages(i);
+                //showWordImages(i);
                 var token = sessionStorage.getItem(_tokenKey);
                 var headers = {};
                 if (token) {
@@ -872,7 +862,7 @@ var myApp = angular.module("myModule", [])
 
                 $http({
                     method: 'POST',
-                    url: _webUrl + 'Home/LoadRelatedSentences?wordId=' + currentWord.id,
+                    url: _webUrl + 'Home/LoadRelatedSentences?wordId=' + $scope.currentWord.id,
                     headers: { 'Authorization': 'Bearer ' + token },
 
 
@@ -880,24 +870,14 @@ var myApp = angular.module("myModule", [])
 
                     sentences = response.data;
                     var index = 0;
-                    _newCarouselhtml = _newCarouselhtml + '<p>';
-                    for (index = 0; index < sentences.length; index++) {
-                        var spannedSentence = getWordInSpan(sentences[index].id, sentences[index].targetWord);
-                        _newCarouselhtml = _newCarouselhtml + spannedSentence + " = <span> <small>"
-                            + sentences[index].meaning + " _  </small></span>";
-                    }
-                    _newCarouselhtml = _newCarouselhtml + '</p>'
-
+                    $scope.relatedSentences = sentences
+                    
                 }, function errorCallback(err) {
 
                     alert('showWord' + err.responseText);
 
                 });
-
-
-                _newCarouselhtml = _newCarouselhtml + '</div>';
-                $('#divCarousel').append(_newCarouselhtml);
-
+                
                 $("span").hover(wordSpanHover, null);
                 initializeTooltips();
 

@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tasks", "tasks", "{B9572036
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{CCC26D5E-325E-409A-8B09-C6027FCC4D42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehrsan.Angular.Core", "Mehrsan.Angular.Core\Mehrsan.Angular.Core.csproj", "{D4B92EA1-69E0-4B06-8124-1A4000B2F8DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,12 @@ Global
 		{D3E35F7B-93EF-466D-9535-28E84CB1ACCE}.Mine|Any CPU.Build.0 = Release|Any CPU
 		{D3E35F7B-93EF-466D-9535-28E84CB1ACCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E35F7B-93EF-466D-9535-28E84CB1ACCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4B92EA1-69E0-4B06-8124-1A4000B2F8DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B92EA1-69E0-4B06-8124-1A4000B2F8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4B92EA1-69E0-4B06-8124-1A4000B2F8DC}.Mine|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B92EA1-69E0-4B06-8124-1A4000B2F8DC}.Mine|Any CPU.Build.0 = Debug|Any CPU
+		{D4B92EA1-69E0-4B06-8124-1A4000B2F8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B92EA1-69E0-4B06-8124-1A4000B2F8DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

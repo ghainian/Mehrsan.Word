@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Mehrsan.Dal.DB
 {
-    public partial class WordEntities : DbContext, IWordEntities
+    public  class WordEntities : DbContext, IWordEntities
     {
 
         #region Properties
@@ -25,7 +25,7 @@ namespace Mehrsan.Dal.DB
 
         public WordEntities(DbContextOptions<WordEntities> options) : base(options)
         {
-
+            
             Options = options;
             IsDisposed = false;
         }
