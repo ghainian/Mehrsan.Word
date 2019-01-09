@@ -463,7 +463,7 @@ namespace Mehrsan.Business
 
                                 string mp3File = targetDirectory + trimedWord + ".mp3";
 
-                                WordApisInstance.SaveGoogleImagesForWord(trimedWord, targetDirectory);
+                                WordApis.SaveGoogleImagesForWord(trimedWord, targetDirectory);
 
                                 string filePath = targetDirectory + trimedWord + ".html";
                                 if (!File.Exists(filePath))

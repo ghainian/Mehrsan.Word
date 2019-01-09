@@ -481,7 +481,7 @@ namespace Mehrsan.Business
             return dir;
         }
 
-        public async void SaveGoogleImagesForWord(string trimedWord, string targetDirectory)
+        public static async void SaveGoogleImagesForWord(string trimedWord, string targetDirectory)
         {
 
             var googleImageUrl = "https://www.google.dk/search?site=&tbm=isch&source=hp&biw=1920&bih=919&q=ABCDEFGH&oq=ABCDEFGH&gs_l=img.3..0l10.2852.3597.0.4226.4.4.0.0.0.0.142.414.2j2.4.0....0...1.1.64.img..0.4.411.lJv85Iott1M&gws_rd=cr&ei=fZeSVr3PJsOuswGtnqawAg";
@@ -492,7 +492,7 @@ namespace Mehrsan.Business
 
         }
 
-        public async Task<string> SendCrossDomainCallForBinaryFile(string url, string saveFilePath)
+        public static async Task<string> SendCrossDomainCallForBinaryFile(string url, string saveFilePath)
         {
             try
             {
@@ -764,7 +764,7 @@ namespace Mehrsan.Business
             return updateResult;
         }
 
-        private async Task ExtractGoogleImageFiles(string trimedWord, string targetDirectory, string googleImageFile)
+        private static async Task ExtractGoogleImageFiles(string trimedWord, string targetDirectory, string googleImageFile)
         {
             try
             {
@@ -801,14 +801,12 @@ namespace Mehrsan.Business
 
                         } while (imageIndex != -1 && imageCounter <= Mehrsan.Common.Common.MaxImagePerWord);
                         string message = imageCounter + " Image loaded for word " + trimedWord;
-                        if (downloadedNow)
-                            Logger.Log(message);
+                        
                     }
                 }
                 else
                 {
                     string message = "Failed to load google image file for word " + trimedWord;
-                    Logger.Log(message);
                 }
             }
             catch (Exception e)
@@ -817,7 +815,7 @@ namespace Mehrsan.Business
             }
         }
 
-        private string ExtractImageTableFromGoogleImageFile(StreamReader sr1)
+        private static string ExtractImageTableFromGoogleImageFile(StreamReader sr1)
         {
             var fileText = sr1.ReadToEnd();
             var startTableTag = "<table class=\"images_table\"";
@@ -829,7 +827,7 @@ namespace Mehrsan.Business
             return imageTableText;
         }
 
-        private async Task SaveGoogleImageFile(string googleImageCustomizedUrl, string googleImageFile)
+        public static async Task SaveGoogleImageFile(string googleImageCustomizedUrl, string googleImageFile)
         {
 
             if (!File.Exists(googleImageFile))
