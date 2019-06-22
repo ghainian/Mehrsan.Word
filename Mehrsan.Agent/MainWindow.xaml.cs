@@ -69,16 +69,7 @@ namespace Mehrsan.Agent
                     line = sr.ReadLine().Trim();
 
                     DateTime reviewTime = DateTime.Now;
-
-                    try
-                    {
-                        reviewTime = DateTime.Parse(line.Trim());
-
-                    }
-                    catch (Exception ehhy)
-                    {
-
-                    }
+                    reviewTime = DateTime.Parse(line.Trim());
                     Word word= WordRepositoryInstance.GetWordByTargetWord(targetWord);
 
                     if (word != null)

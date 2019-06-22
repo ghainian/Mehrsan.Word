@@ -11,10 +11,6 @@ namespace Mehrsan.Common
 {
     public class Logger : Mehrsan.Common.Interface.ILogger
     {
-        #region Fields
-        private string _defaultCategory = "Default Category";
-
-        #endregion
 
         #region Properties
 

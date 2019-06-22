@@ -153,19 +153,11 @@ namespace Mehrsan.Business
                                         {
 
                                         }
-
-                                        try
-                                        {
-                                            UpdateWord(foundWord.Id, newWord);
-                                        }
-                                        catch (Exception e)
-                                        {
-                                        }
+                                        UpdateWord(foundWord.Id, newWord);                                        
                                     }
                                     startTime = TimeSpan.MinValue;
                                     endTime = TimeSpan.MinValue;
                                     danishSentence = string.Empty;
-
                                     Logger.Log("Word " + newWord.TargetWord + " from movie " + newWord.MovieName + " inserted successfully");
                                 }
                                 else
@@ -244,15 +236,7 @@ namespace Mehrsan.Business
                                     {
 
                                     }
-
-                                    try
-                                    {
-                                        CreateDefaultWord(newWord);
-                                    }
-                                    catch (Exception e)
-                                    {
-                                    }
-
+                                    CreateDefaultWord(newWord);                                    
                                     startTime = TimeSpan.MinValue;
                                     endTime = TimeSpan.MinValue;
                                     danishSentence = string.Empty;
@@ -339,7 +323,7 @@ namespace Mehrsan.Business
                                     {
                                         CreateDefaultWord(newWord);
                                     }
-                                    catch (Exception e)
+                                    catch (Exception )
                                     {
                                         var words = GetWords(0, newWord.TargetWord);
                                         newWord.Id = words[0].Id;
@@ -544,7 +528,7 @@ namespace Mehrsan.Business
                         if (GetWordByTargetWord(word.TargetWord) == null)
                             CreateWord(word, false);
                     }
-                    catch (Exception eee)
+                    catch (Exception )
                     {
 
                     }
@@ -809,7 +793,7 @@ namespace Mehrsan.Business
                     string message = "Failed to load google image file for word " + trimedWord;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }

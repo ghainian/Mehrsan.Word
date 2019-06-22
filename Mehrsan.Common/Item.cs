@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace Mehrsan.Common
 {
     public class Item

@@ -122,6 +122,7 @@
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <None Include="Schema20180721.sql" />
+    <Build Include="schemaData20180818.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="20180721.bak" />

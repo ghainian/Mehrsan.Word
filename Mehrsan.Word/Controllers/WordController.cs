@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
-
-
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -25,14 +22,14 @@ namespace Mehrsan.Word.Controllers
     //[System.Web.Http.Authorize]
     public class WordController : ApiController, IWordController
     {
-        
+
         private string StorageRoot
         {
             get { return Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Files")); }
         }
 
-        
-        
+
+
 
         // GET: api/Word/GetWords
         public List<Mehrsan.Dal.DB.Word> GetWordsForReview()
@@ -40,16 +37,16 @@ namespace Mehrsan.Word.Controllers
             AccountController ac = new AccountController();
             UserInfoViewModel userInfo = ac.GetUserInfo();
 
-            return WordRepository.Instance.GetWordsForReview(userInfo.UserId);
+            return repo.GetWordsForReview(userInfo.UserId);
         }
 
         [System.Web.Http.AcceptVerbs("GET", "POST")]
         public List<ChartData> GetReviewHistory()
         {
-            //.Where(x => x.X < 100 && x.X > 0)
-            List<ChartData> result = WordRepository.Instance.GetChartData().ToList();
-
-            
+            using (var repo = new WordRepository())
+            {
+                List<ChartData> result = repo.GetChartData().ToList();
+            }
             return result;
         }
 
@@ -58,41 +55,49 @@ namespace Mehrsan.Word.Controllers
         {
             AccountController ac = new AccountController();
             UserInfoViewModel userInfo = ac.GetUserInfo();
-
-            return WordRepository.Instance.GetAllWords(userInfo.UserId , containText);
+            using (var repo = new WordRepository())
+            {
+                return repo.GetAllWords(userInfo.UserId, containText);
+            }
         }
 
         [System.Web.Http.AcceptVerbs("GET", "POST")]
-        public Mehrsan.Dal.DB.Word GetWordByTargetWord(Mehrsan.Dal.DB.Word  word)
+        public Mehrsan.Dal.DB.Word GetWordByTargetWord(Mehrsan.Dal.DB.Word word)
         {
             if (word == null)
                 return null;
 
-            var foundWord= WordRepository.Instance.GetWordByTargetWord(word.TargetWord);
-            if(foundWord != null)
-                foundWord = WordApis.Instance.GetSerializableWord(foundWord);
+            using (var repo = new WordRepository())
+            {
+                var foundWord = repo.GetWordByTargetWord(word.TargetWord);
+                if (foundWord != null)
+                    foundWord = WordApis.Instance.GetSerializableWord(foundWord);
 
-            return foundWord;
+                return foundWord;
+            }
         }
 
         public List<Mehrsan.Dal.DB.Word> LoadRelatedSentences(long wordId)
         {
-            return WordRepository.Instance.LoadRelatedSentences(wordId);
+            using (var repo = new WordRepository())
+            {
+                return repo.LoadRelatedSentences(wordId);
+            }
         }
 
         [System.Web.Http.AcceptVerbs("GET", "POST")]
         public bool CreateGraph()
         {
-            return WordRepository.Instance.CreateGraph();
+            return repo.CreateGraph();
         }
 
-        
+
 
         // GET: api/Word/5
         [ResponseType(typeof(Dal.DB.Word))]
-        public Dal.DB.Word GetWord(long id,string targetWord)
+        public Dal.DB.Word GetWord(long id, string targetWord)
         {
-            var result = WordRepository.Instance.GetWords(id, targetWord).FirstOrDefault();
+            var result = repo.GetWords(id, targetWord).FirstOrDefault();
             return result;
         }
 
@@ -120,7 +125,7 @@ namespace Mehrsan.Word.Controllers
             AccountController ac = new AccountController();
             UserInfoViewModel userInfo = ac.GetUserInfo();
             word.UserId = userInfo.UserId;
-            if (WordRepository.Instance.CreateDefaultWord(word))
+            if (repo.CreateDefaultWord(word))
             {
                 return true;
             }
@@ -142,7 +147,7 @@ namespace Mehrsan.Word.Controllers
                 return false;
             }
 
-            if (WordRepository.Instance.UpdateWord(word.Id, word))
+            if (repo.UpdateWord(word.Id, word))
                 return true;
 
             return false;
@@ -156,25 +161,25 @@ namespace Mehrsan.Word.Controllers
                 return false;
             }
 
-            if (WordRepository.Instance.SetWordAmbiguous(wordId))
+            if (repo.SetWordAmbiguous(wordId))
                 return true;
 
             return false;
         }
 
         [System.Web.Http.AcceptVerbs("GET", "POST")]
-        public  async Task GetWordsInfoFromOrdNet()
+        public async Task GetWordsInfoFromOrdNet()
         {
-            WordRepository.Instance.GetWordsRelatedInfo();
+            repo.GetWordsRelatedInfo();
         }
 
-      
+
         [System.Web.Http.AcceptVerbs("GET", "POST")]
-        public bool UpdateWordStatus(bool knowsWord,long wordId,long reviewTime )
+        public bool UpdateWordStatus(bool knowsWord, long wordId, long reviewTime)
         {
 
-            
-            return WordRepository.Instance.UpdateWordStatus(knowsWord, wordId , reviewTime);
+
+            return repo.UpdateWordStatus(knowsWord, wordId, reviewTime);
         }
 
 
@@ -231,14 +236,14 @@ namespace Mehrsan.Word.Controllers
             return;
         }
 
-        
+
 
         // DELETE: api/Word/5
         [ResponseType(typeof(Mehrsan.Dal.DB.Word))]
         [System.Web.Http.AcceptVerbs("GET", "POST")]
         public IHttpActionResult DeleteWord(long id)
         {
-            if (WordRepository.Instance.DeleteWord(id))
+            if (repo.DeleteWord(id))
             {
                 return Ok();
 
@@ -250,10 +255,10 @@ namespace Mehrsan.Word.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            
+
             base.Dispose(disposing);
         }
 
-        
+
     }
 }
